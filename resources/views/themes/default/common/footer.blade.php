@@ -1,76 +1,142 @@
-        <footer>
-            <div class="uk-vision-section uk-section uk-section-small">
-                <div class="uk-container uk-container-large ">
-                    <div class="uk-child-width-1-2@m uk-child-width-1-4@l uk-grid" uk-grid uk-scrollspy=" cls: uk-animation-slide-bottom-small; target: .block;  delay: 400; repeat: false;">
-                        <div class="block">
-                            <a href="{{ url('/') }}" >
-                                <img alt="" loading="eager" src="{{asset('themes-assets/img/logo.png')}}" width="120" style="background: white;padding: 8px;">
+@include('themes.default.common.locationsection')
+<footer class="bg-primary overflow-hidden">
+    <div class="border-b border-white/10">
+        <div class="container-custom">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-14">
+                <div>
+                    <img src="{{ asset('themes-assets/img/logo.png') }}" class="h-20 bg-white p-3 mb-6">
+                    <p class="text-white/80 text-sm leading-7">
+                        CIWEC Hospital is Nepal's leading travel medicine
+                        and international healthcare provider serving
+                        travelers, expatriates, diplomats and local communities.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-black mb-6">
+                        Quick Links
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="./index.php" class="text-white/80 hover:text-secondary transition">
+                                Home
                             </a>
-                            <p class="uk-text-white">
-                                {{ $setting->welcome_title }}
-                            </p>
-                        </div>
-                        <div class="block">
-                            <h3 class="uk-text-white uk-margin-small-bottom">IMPORTANT LINKS</h3>
-                            <ul class="uk-footer-ul uk-margin-remove-top">
-                                @foreach ($navigations as $row)
-                                    <li><a href="{{ url('page/' . posttype_url($row->uri)) }}">{{ $row->post_type }}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="block">
-                            <h3 class="uk-text-white uk-margin-small-bottom">OUR PRODUCTS</h3>
-                            <ul class="uk-footer-ul uk-margin-remove-top">
-                                @foreach ($products as $row)
-                                    <li><a href="{{url(geturl($row['uri'],$row['page_key']))}}">{{ $row->post_title }}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="block">
-                            <h3 class="uk-text-white uk-margin-small-bottom">CONTACT US</h3>
-                            <ul class="uk-footer-ul uk-margin-remove-top">
-                                <li class="uk-text-white"><i class="fa-solid fa-location-dot uk-margin-small-right"></i>{{ $setting->address }}</li>
-                                <li class="uk-text-white"><i class="fa-solid fa-location-dot uk-margin-small-right"></i>{{ $setting->address2 }}</li>
-                                <li class="uk-text-white"><i class="fa-solid fa-phone uk-margin-small-right"></i>{{ $setting->phone }}</li>
-                                <li class="uk-text-white"><i class="fa-solid fa-envelope uk-margin-small-right"></i>{{ $setting->email_primary }}</li>
-                            </ul>
-                        </div>
+                        <li>
+                            <a href="./about.php" class="text-white/80 hover:text-secondary transition">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./services.php" class="text-white/80 hover:text-secondary transition">
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./doctors.php" class="text-white/80 hover:text-secondary transition">
+                                Doctors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./researchandpublication.php"
+                                class="text-white/80 hover:text-secondary transition">
+                                Research
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-black mb-6">
+                        Key Services
+                    </h3>
+
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="./altitudesickness.php" class="text-white/80 hover:text-secondary transition">
+                                Travel Medicine
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./healthinformation.php" class="text-white/80 hover:text-secondary transition">
+                                Family Medicine
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./healthscreening.php" class="text-white/80 hover:text-secondary transition">
+                                Health Screening
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./contactus.php" class="text-white/80 hover:text-secondary transition">
+                                Emergency Care
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-lg font-black mb-6">
+                        Subscribe
+                    </h3>
+                    <p class="text-white/70 text-sm mb-5">
+                        Get healthcare updates and newsletters.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Email Address"
+                            class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
+                        <button class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="flex gap-3 mt-6">
+                        <a href="#"
+                            class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="uk-bg-dark uk-padding-small">
-                <div class="uk-container uk-container-large">
-                    <div class="uk-child-width-1-3@m uk-grid" uk-grid uk-scrollspy=" cls: uk-animation-slide-bottom-small; target: .block;  delay: 400; repeat: false;">
-                        <div class="uk-flex uk-flex-middle block" style="gap:15px;">
-                            <!-- <a href="#" class="uk-text-white">Terms and Condition</a>
-                            <a href="#" class="uk-text-white">Privacy</a> -->
-                        </div>
-                        <div class="uk-text-center block">
-                            <p class="uk-margin-remove uk-text-white">{{ $setting->copyright_text }}</p>
-                            <p class="uk-margin-remove uk-text-white">Design & Developed By <a href="https://cyberlink.com.np/" target="_blank">Cyberlink Pvt. Ltd.</a></p>
-                        </div>
-                        <div class="uk-flex uk-flex-middle uk-flex-right">
-                            <div class="uk-footer-icon block">
-                                <a href="{{ $setting->facebook_link }}" class="uk-icon-button uk-margin-small-right" uk-icon="facebook"></a>
-                                <a href="{{ $setting->instagram_link }}" class="uk-icon-button uk-margin-small-right" uk-icon="instagram"></a>
-                                <a href="{{ $setting->twitter_link }}" class="uk-icon-button uk-margin-small-right" uk-icon="x"></a>
-                                <a href="{{ $setting->youtube_link }}" class="uk-icon-button" uk-icon="youtube"></a>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="pb-20 lg:pb-0 md:pb-0">
+        <div class="container-custom">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 py-6">
+                <p class="text-white/60 text-sm">
+                    © 2026 CIWEC Hospital. All Rights Reserved.
+                </p>
+                <div class="flex gap-5 text-sm">
+                    <a href="./privacypolicy.php" class="text-white/60 hover:text-secondary transition">
+                        Privacy Policy
+                    </a>
+                    <a href="./termsandconditions.php" class="text-white/60 hover:text-secondary transition">
+                        Terms & Conditions
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
+</footer>
+<!-- Back to top button  -->
+<button id="backToTop" aria-label="Back to top"
+    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-white border-2 border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,.08)] text-primary opacity-0 pointer-events-none translate-y-8 transition-all duration-500 rounded-full hover:border-primary hover:text-secondary z-50">
+    <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" stroke="#E5E7EB" stroke-width="4" fill="none" />
+        <circle id="scrollProgress" cx="50" cy="50" r="46" stroke="#D71920" stroke-width="4"
+            fill="none" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" />
+    </svg>
+    <i class="fa-solid fa-arrow-up relative z-10 text-sm pointer-events-none"></i>
+</button>
 
-        </footer>
-
-        <script src="{{asset('themes-assets/js/uikit-icons.js')}}"></script>
-        <script src="{{asset('themes-assets/js/jquery.js')}}"></script>
-        <script src="{{asset('themes-assets/js/youtube.js')}}"></script>
-        <script>
-            $(function() {
-                setTimeout("$('#preloader').fadeOut('slow')", 800)
-            })
-        </script>
-	</body>
+@include('themes.default.common.stickyfooterbar')
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{{ asset('themes-assets/js/scripts.js') }}"></script>
+</body>
 
 </html>
