@@ -96,7 +96,7 @@ class PostDocController extends Controller
     {
         $post_id = intval($postId);
         $data = PostDocModel::find($id);
-        return view('admin.multiple-doc.edit', compact('data',intval('post_id')));
+        return view('admin.multiple-doc.edit', compact('data','post_id'));
     }
 
     /**

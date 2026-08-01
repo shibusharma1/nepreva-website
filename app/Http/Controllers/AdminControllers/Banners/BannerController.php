@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\AdminControllers\Banners;
 
 use App\Models\Banners\BannerModel;
@@ -18,8 +19,8 @@ class BannerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {      
-        $data = BannerModel::orderBy('id','desc')->get();
+    {
+        $data = BannerModel::orderBy('id', 'desc')->get();
         return view('admin.banner.index', compact('data'));
     }
 
@@ -30,8 +31,8 @@ class BannerController extends Controller
      */
     public function create()
     {
-       return view('admin.banner.create');
-   }
+        return view('admin.banner.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -41,39 +42,33 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-    
-    $request->validate([
-            'picture'=> 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
+        $request->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
         ]);
-    $width = env('BANNER_WIDTH');
-    $height = env('BANNER_HEIGHT');
-    
-
-    $req = $request->all();
-    $file =  $request->file('picture');
-
-    if($request->hasFile('picture')){
-        $banner = $request->file('picture')->getClientOriginalName();
-        $extension = $request->file('picture')->getClientOriginalExtension();
-        $banner = explode('.', $banner);
-        $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.' . $extension;
-        $destinationPath = public_path('uploads/banners');
-        $banner_picture = Image::make($file->getRealPath());
-        //$width = Image::make($file->getRealPath())->width();
-        //$height = Image::make($file->getRealPath())->height();    
-        $banner_picture->resize($width, $height, function($constraint){
-            $constraint->aspectRatio();
-        })->save($destinationPath .'/'. $banner_name );
-    }  
-    $req['picture'] = $banner_name;
-    $data = BannerModel::create($req);
-    if($data){
-        return redirect()->back()->with('message','Successfully added.');
-    }else{
+        $width = env('BANNER_WIDTH');
+        $height = env('BANNER_HEIGHT');
+        $req = $request->all();
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $banner = $file->getClientOriginalName();
+            $banner = explode('.', $banner);
+            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.webp';
+            $destinationPath = public_path('uploads/banners');
+            $banner_picture = Image::make($file->getRealPath());
+            $banner_picture
+                ->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->encode('webp', 85)
+                ->save($destinationPath . '/' . $banner_name);
+            $req['picture'] = $banner_name;
+        }
+        $data = BannerModel::create($req);
+        if ($data) {
+            return redirect()->back()->with('message', 'Successfully added.');
+        }
         return "Error";
     }
-}
-
     /**
      * Display the specified resource.
      *
@@ -108,41 +103,38 @@ class BannerController extends Controller
     {
         $banner_width = env('BANNER_WIDTH');
         $banner_height = env('BANNER_HEIGHT');
-        
-        $data = BannerModel::find($id); 
-        $file = $request->file('picture');
- 
-        if($request->hasFile('picture')){
-
-            // Remove old file if exists
-            $data = BannerModel::find($id);
-            if(file_exists(public_path('uploads/banners/' .  $data->picture))){   
-                unlink('uploads/banners/' . $data->picture);
+        $data = BannerModel::find($id);
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            // Delete old image
+            if (
+                !empty($data->picture) &&
+                file_exists(public_path('uploads/banners/' . $data->picture))
+            ) {
+                unlink(public_path('uploads/banners/' . $data->picture));
             }
-
-            // Upload new file
-            $banner = $request->file('picture')->getClientOriginalName();
-            $extension = $request->file('picture')->getClientOriginalExtension();
+            $banner = $file->getClientOriginalName();
             $banner = explode('.', $banner);
-            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.' . $extension;
+            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.webp';
             $destinationPath = public_path('uploads/banners');
             $banner_picture = Image::make($file->getRealPath());
-            $banner_picture->resize($banner_width, $banner_height, function($constraint){
-                $constraint->aspectRatio();
-            })->save($destinationPath .'/'. $banner_name );
+            $banner_picture
+                ->resize($banner_width, $banner_height, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->encode('webp', 85)
+                ->save($destinationPath . '/' . $banner_name);
             $data->picture = $banner_name;
-            }
-        
-           $data->title = $request->title;
-           $data->caption = $request->caption;
-           $data->content = $request->content;        
-           $data->link_title = $request->link_title;        
-           $data->link = $request->link;   
-           $data->video = $request->video;   
-           $data->save(); 
-           if($data->save()){
-                return redirect()->back()->with('message','Update Successful.'); 
-           }
+        }
+
+        $data->title = $request->title;
+        $data->caption = $request->caption;
+        $data->content = $request->content;
+        $data->link_title = $request->link_title;
+        $data->link = $request->link;
+        $data->video = $request->video;
+        $data->save();
+        return redirect()->back()->with('message', 'Update Successful.');
     }
 
     /**
@@ -154,9 +146,9 @@ class BannerController extends Controller
     public function destroy(BannerModel $bannerModel, $id)
     {
         $data = BannerModel::find($id);
-        if(file_exists(public_path('uploads/banners/' .  $data->picture))){               
-              unlink('uploads/banners/' . $data->picture);
-            }        
+        if (file_exists(public_path('uploads/banners/' .  $data->picture))) {
+            unlink('uploads/banners/' . $data->picture);
+        }
         $data->delete();
     }
 }

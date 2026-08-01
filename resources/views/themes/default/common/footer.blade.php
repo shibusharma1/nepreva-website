@@ -6,9 +6,10 @@
                 <div>
                     <img src="{{ asset('themes-assets/img/logo.png') }}" class="h-20 bg-white p-3 mb-6">
                     <p class="text-white/80 text-sm leading-7">
-                        CIWEC Hospital is Nepal's leading travel medicine
+                        {{-- CIWEC Hospital is Nepal's leading travel medicine
                         and international healthcare provider serving
-                        travelers, expatriates, diplomats and local communities.
+                        travelers, expatriates, diplomats and local communities. --}}
+                        {{ $setting->welcome_text }}
                     </p>
                 </div>
                 <div>
@@ -20,27 +21,12 @@
                             <a href="./index.php" class="text-white/80 hover:text-secondary transition">
                                 Home
                             </a>
+                            @foreach ($navigations as $row)
                         <li>
-                            <a href="./about.php" class="text-white/80 hover:text-secondary transition">
-                                About Us
-                            </a>
+                            <a href="{{ url('page/' . posttype_url($row->uri)) }}"
+                                class="text-white/80 hover:text-secondary transition">{{ $row->post_type }}</a>
                         </li>
-                        <li>
-                            <a href="./services.php" class="text-white/80 hover:text-secondary transition">
-                                Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./doctors.php" class="text-white/80 hover:text-secondary transition">
-                                Doctors
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./researchandpublication.php"
-                                class="text-white/80 hover:text-secondary transition">
-                                Research
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div>
@@ -78,26 +64,37 @@
                     <p class="text-white/70 text-sm mb-5">
                         Get healthcare updates and newsletters.
                     </p>
-                    <form class="flex">
-                        <input type="email" placeholder="Email Address"
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex">
+                        @csrf
+                        <input type="email" placeholder="Email Address" name="email"
                             class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
-                        <button class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition">
+                        <button type="submit" class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
                     <div class="flex gap-3 mt-6">
-                        <a href="#"
-                            class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#"
+                        @if ($setting->facebook_link)
+                            <a href="{{ $setting->facebook_link }}"
+                                class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        @endif
+                        @if ($setting->instagram_link)
+                            <a href="{{ $setting->instagram_link }}"
+                                class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        @endif
+                        @if ($setting->youtube_link)
+                            <a href="{{ $setting->youtube_link }}"
+                                class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        @endif
+                        {{-- <a href="#"
                             class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
                             <i class="fab fa-linkedin-in"></i>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -109,7 +106,13 @@
         <div class="container-custom">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 py-6">
                 <p class="text-white/60 text-sm">
-                    © 2026 CIWEC Hospital. All Rights Reserved.
+                    © {{ date('Y') }} {{ $setting->copyright_text }}
+                </p>
+                <p class="text-sm text-white/70">
+                    Designed & Developed by
+                    <a href="https://cyberlink.com.np/" class="text-white hover:underline">
+                        Cyberlink Pvt. Ltd.
+                    </a>
                 </p>
                 <div class="flex gap-5 text-sm">
                     <a href="./privacypolicy.php" class="text-white/60 hover:text-secondary transition">
@@ -137,6 +140,72 @@
 @include('themes.default.common.stickyfooterbar')
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{ asset('themes-assets/js/scripts.js') }}"></script>
+<!-- Success Toast -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            background: '#ffffff',
+            color: '#1f2937',
+            iconColor: '#11497B',
+        });
+    </script>
+@endif
+
+@if (session('message'))
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'info',
+            title: "{{ session('message') }}",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            background: '#ffffff',
+            color: '#1f2937',
+        });
+    </script>
+@endif
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: "{{ session('error') }}",
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+            background: '#ffffff',
+            color: '#1f2937',
+        });
+    </script>
+@endif
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Please fix the highlighted fields and try again.',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            background: '#ffffff',
+            color: '#1f2937',
+        });
+    </script>
+@endif
+
 </body>
 
 </html>

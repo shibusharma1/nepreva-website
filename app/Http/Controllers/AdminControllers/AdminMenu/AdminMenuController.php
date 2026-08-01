@@ -7,6 +7,7 @@ use App\Models\Inquiry\ContactModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AdminMenu\AdminMenuModel;
+use App\Models\Inquiry\AppointmentModel;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -113,6 +114,20 @@ class AdminMenuController extends Controller
             return redirect()->back()->with('success',' Deleted  successfully');
         }
     }
+    public function appointment_inquiry()
+    {
+        $appointments = AppointmentModel::orderBy('id','desc')->get();
+        return view('admin.appointment.index',compact('appointments'));    
+    }
+
+    public function appointment_delete($id){
+        $del = AppointmentModel::findorfail($id);
+        if($del->delete())
+        {
+            return redirect()->back()->with('success',' Deleted  successfully');
+        }
+    }
+
     public function application_inquiry()
     {
         $career = CareerModel::orderBy('id','desc')->get();

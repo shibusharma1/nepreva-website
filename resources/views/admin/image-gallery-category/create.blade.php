@@ -22,14 +22,14 @@
                     </div>
                   </div> 
 
-                   <div class="form-group">
+                   {{-- <div class="form-group">
                     <label for="inputStandard" class="col-lg-3 control-label">Picture </label>
                     <div class="col-lg-8">
                       <div class="bs-component">
                         <input type="file" id="inputStandard" name="picture" class="form-control" placeholder="" />
                       </div>
                     </div>
-                  </div>  
+                  </div>   --}}
 
                   <div class="form-group">
                     <label for="inputStandard" class="col-lg-3 control-label">Caption </label>

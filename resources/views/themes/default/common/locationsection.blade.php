@@ -24,11 +24,7 @@
                 class="bg-white border border-slate-200 overflow-hidden">
                 <!-- MAP -->
                 <div class="h-[280px]">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5812.9173464410205!2d85.317739!3d27.7204!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb191c66b55369%3A0x54f86a9e462d1192!2sCIWEC%20Hospital%20Pvt.%20Ltd.!5e1!3m2!1sen!2snp!4v1779884686270!5m2!1sen!2snp"
-                        class="w-full h-full border-0"
-                        loading="lazy">
-                    </iframe>
+                   {!! $setting->google_map !!}
                 </div>
                 <!-- CONTENT -->
                 <div class="p-8">
@@ -58,9 +54,7 @@
                                 Address
                             </h4>
                             <p class="text-slate-600 leading-7">
-                                G.P.O Box 12895<br>
-                                Kapurdhara Marg<br>
-                                Kathmandu 44600, Nepal
+                               {!! $setting->address !!}
                             </p>
                         </div>
                         <div>
@@ -69,9 +63,9 @@
                                 Phone
                             </h4>
                             <a
-                                href="tel:+97714524111"
+                                href="tel:{{ $setting->phone }}"
                                 class="text-slate-600 hover:text-secondary">
-                                +977-1-4524111
+                               {{ $setting->phone }}
                             </a>
                         </div>
                         <div>
@@ -80,9 +74,9 @@
                                 Email
                             </h4>
                             <a
-                                href="mailto:info@ciwec-clinic.com"
+                                href="mailto:{{ $setting->email_primary }}"
                                 class="text-slate-600 hover:text-secondary">
-                                info@ciwec-clinic.com
+                                {{ $setting->email_primary }}
                             </a>
                         </div>
                     </div>
@@ -93,11 +87,7 @@
                 class="bg-white border border-slate-200 overflow-hidden">
                 <!-- MAP -->
                 <div class="h-[280px]">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5786.639085664441!2d83.959212!3d28.209360000000004!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995951c2ffd853d%3A0xa5dcb30f60d4c9b9!2sCIWEC%20Hospital%20Pokhara!5e1!3m2!1sen!2snp!4v1779884725455!5m2!1sen!2snp"
-                        class="w-full h-full border-0"
-                        loading="lazy">
-                    </iframe>
+                    {!! $setting->google_map2 !!}
                 </div>
                 <!-- CONTENT -->
                 <div class="p-8">
@@ -127,8 +117,7 @@
                                 Address
                             </h4>
                             <p class="text-slate-600 leading-7">
-                                14th Street, Lakeside<br>
-                                Pokhara-6, Nepal
+                               {!! $setting->address2 !!}
                             </p>
                         </div>
                         <div>
@@ -136,18 +125,18 @@
                                 Phone
                             </h4>
                             <a
-                                href="tel:+97761453082"
+                                href="tel:{{ $setting->phone2 }}"
                                 class="text-slate-600 hover:text-secondary">
-                                +977-61-453082
+                                {{ $setting->phone2 }}
                             </a>
                         </div>
                         <div>
                             <h4 class="text-primary font-semibold mb-1">
                                 Email
                             </h4>
-                            <a href="mailto:pkradministrator@ciwec-clinic.com"
+                            <a href="mailto:{{ $setting->email_secondary }}"
                                 class="text-slate-600 hover:text-secondary">
-                                pkradministrator@ciwec-clinic.com
+                                {{ $setting->email_secondary }}
                             </a>
                         </div>
                     </div>

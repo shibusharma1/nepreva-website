@@ -22,14 +22,14 @@
                     </div>
                   </div> 
 
-                   <div class="form-group">
+                   {{-- <div class="form-group">
                     <label class="col-lg-3 control-label" for="textArea3"> Video Link </label>
                     <div class="col-lg-8">
                       <div class="bs-component">
                         <textarea class="form-control" id="textArea3" name="video" rows="3" autocomplete="off"></textarea>
                       </div>
                     </div>
-                  </div> 
+                  </div>  --}}
 
                   <div class="form-group">
                     <label for="inputStandard" class="col-lg-3 control-label">Caption </label>

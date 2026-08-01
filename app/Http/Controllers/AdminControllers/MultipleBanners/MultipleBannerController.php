@@ -18,7 +18,7 @@ class MultipleBannerController extends Controller
      */
     public function index($id)
     {
-        $data = MultipleBannerModel::where('banner_id',$id)->orderBy('id','desc')->get();
+        $data = MultipleBannerModel::where('banner_id', $id)->orderBy('id', 'desc')->get();
         return view('admin.multiplebanner.index', compact('data'));
     }
 
@@ -39,38 +39,35 @@ class MultipleBannerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
-        // return $request;
+    {
         $request->validate([
-                'picture'=> 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:3072',
-            ]);
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:3072',
+        ]);
         $width = env('BANNER_WIDTH');
         $height = env('BANNER_HEIGHT');
-
         $req = $request->all();
-        $file =  $request->file('picture');
-
-        if($request->hasFile('picture')){
-            $banner = $request->file('picture')->getClientOriginalName();
-            $extension = $request->file('picture')->getClientOriginalExtension();
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $banner = $file->getClientOriginalName();
             $banner = explode('.', $banner);
-            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.' . $extension;
+            // Save as WebP
+            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.webp';
             $destinationPath = public_path('uploads/banners');
             $banner_picture = Image::make($file->getRealPath());
-            //$width = Image::make($file->getRealPath())->width();
-            //$height = Image::make($file->getRealPath())->height();    
-            $banner_picture->resize($width, $height, function($constraint){
-                $constraint->aspectRatio();
-            })->save($destinationPath .'/'. $banner_name );
-        }  
-        $req['banner_id'] = $request->parentId;
-        $req['picture'] = $banner_name;
-        $data = MultipleBannerModel::create($req);
-        if($data){
-            return redirect()->back()->with('message','Successfully added.');
-        }else{
-            return "Error";
+            $banner_picture
+                ->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->encode('webp', 85)
+                ->save($destinationPath . '/' . $banner_name);
+            $req['picture'] = $banner_name;
         }
+        $req['banner_id'] = $request->parentId;
+        $data = MultipleBannerModel::create($req);
+        if ($data) {
+            return redirect()->back()->with('message', 'Successfully added.');
+        }
+        return "Error";
     }
 
     /**
@@ -90,10 +87,10 @@ class MultipleBannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($bannerId,$id)
+    public function edit($bannerId, $id)
     {
         $data = MultipleBannerModel::find($id);
-        return view('admin.multiplebanner.edit',compact('data'));
+        return view('admin.multiplebanner.edit', compact('data'));
     }
 
     /**
@@ -103,45 +100,43 @@ class MultipleBannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$bannerid, $id)
+    public function update(Request $request, $bannerid, $id)
     {
         $banner_width = env('BANNER_WIDTH');
         $banner_height = env('BANNER_HEIGHT');
-        
-        $data = MultipleBannerModel::find($id); 
-        $file = $request->file('picture');
- 
-        if($request->hasFile('picture')){
-
-            // Remove old file if exists
-            $data = MultipleBannerModel::find($id);
-            if(file_exists(public_path('public/uploads/banners/' .  $data->picture))){   
-                unlink('public/uploads/banners/' . $data->picture);
+        $data = MultipleBannerModel::find($id);
+        if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            // Delete old image
+            if (
+                !empty($data->picture) &&
+                file_exists(public_path('uploads/banners/' . $data->picture))
+            ) {
+                unlink(public_path('uploads/banners/' . $data->picture));
             }
-
-            // Upload new file
-            $banner = $request->file('picture')->getClientOriginalName();
-            $extension = $request->file('picture')->getClientOriginalExtension();
+            $banner = $file->getClientOriginalName();
             $banner = explode('.', $banner);
-            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.' . $extension;
+            // Save as WebP
+            $banner_name = Str::slug($banner[0]) . '-' . Str::random(40) . '.webp';
             $destinationPath = public_path('uploads/banners');
             $banner_picture = Image::make($file->getRealPath());
-            $banner_picture->resize($banner_width, $banner_height, function($constraint){
-                $constraint->aspectRatio();
-            })->save($destinationPath .'/'. $banner_name );
+            $banner_picture
+                ->resize($banner_width, $banner_height, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->encode('webp', 85)
+                ->save($destinationPath . '/' . $banner_name);
             $data->picture = $banner_name;
-            }
-        
-           $data->title = $request->title;
-           $data->caption = $request->caption;
-           $data->content = $request->content;            
-           $data->link = $request->link; 
-             $isChecked = $request->has('status');
-            $data->status = ($isChecked)?'1':'0'; 
-           $data->save(); 
-           if($data->save()){
-                return redirect()->back()->with('message','Update Successful.'); 
-           }
+        }
+
+        $data->title = $request->title;
+        $data->caption = $request->caption;
+        $data->content = $request->content;
+        $data->link = $request->link;
+        $data->status = $request->has('status') ? '1' : '0';
+        $data->save();
+
+        return redirect()->back()->with('message', 'Update Successful.');
     }
 
     /**
@@ -153,16 +148,16 @@ class MultipleBannerController extends Controller
     public function destroy($bannerId, $id)
     {
         $data = MultipleBannerModel::find($id);
-        if($data->picture){
-        if(file_exists(public_path('public/uploads/banners/' .  $data->picture))){               
-            unlink('public/uploads/banners/' . $data->picture);
-          }  
-        }     
+        if ($data->picture) {
+            if (file_exists(public_path('public/uploads/banners/' .  $data->picture))) {
+                unlink('public/uploads/banners/' . $data->picture);
+            }
+        }
 
         $data->delete();
         return response()->json([
-                    'message' => 'Delete Successful!',
-                    'class_name' => 'alert-success'
-                ]);
+            'message' => 'Delete Successful!',
+            'class_name' => 'alert-success'
+        ]);
     }
 }

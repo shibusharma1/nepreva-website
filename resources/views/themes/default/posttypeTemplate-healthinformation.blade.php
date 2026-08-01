@@ -2,439 +2,255 @@
 @section('meta_keyword', $data->meta_keyword)
 @section('meta_description', $data->meta_description)
 @section('content')
-    <section class="section-padding bg-white">
+    @include('themes.default.common.herobanner')
+
+    <section class="section-padding bg-white overflow-hidden">
         <div class="container-custom">
-            <div class="max-w-4xl mx-auto text-center">
-                <span class="section-subtitle">
-                    Explore CIWEC
-                </span>
-                <h2 class="section-title">
-                    Moments That Define Our Journey
-                </h2>
-                <p class="mt-6 text-slate-600 leading-8">
-                    Explore photographs and videos showcasing
-                    our healthcare services, medical professionals,
-                    events, facilities and milestones throughout
-                    CIWEC's history.
-                </p>
-            </div>
-        </div>
-        <div class="container-custom mt-8">
-            <div class="flex
-            flex-wrap
-            justify-center
-            gap-3">
-                <button class="gallery-filter active" data-filter="all">
-                    All
-                </button>
-                <button class="gallery-filter" data-filter="hospital">
-                    Hospital
-                </button>
-                <button class="gallery-filter" data-filter="doctors">
-                    Doctors
-                </button>
-                <button class="gallery-filter" data-filter="events">
-                    Events
-                </button>
-                <button class="gallery-filter" data-filter="facilities">
-                    Facilities
-                </button>
-                <!-- <button
-                    class="gallery-filter"
-                    data-filter="community">
-                    Community Outreach
-                    </button> -->
-                <button class="gallery-filter" data-filter="research">
-                    Research
-                </button>
-            </div>
-        </div>
-        <div class="container-custom mt-8">
-            <div id="galleryGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-                <!-- HOSPITAL -->
-                <div class="gallery-item hospital">
-                    <img src="./assets/img/history/history1.webp" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item hospital">
-                    <img src="./assets/img/history/history2.webp" class="w-full h-[300px] object-cover">
-                </div>
-                <!-- DOCTORS -->
-                <div class="gallery-item doctors">
-                    <img src="./assets/img/history/history3.webp" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item doctors">
-                    <img src="./assets/img/doctors/david.png" class="w-full h-[300px] object-cover">
-                </div>
-                <!-- EVENTS -->
-                <div class="gallery-item events">
-                    <img src="./assets/img/speciality/img1.jpg" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item events">
-                    <img src="./assets/img/speciality/img4.jpg" class="w-full h-[300px] object-cover">
-                </div>
-                <!-- FACILITIES -->
-                <div class="gallery-item facilities">
-                    <img src="./assets/img/health/healthinformation.png" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item facilities">
-                    <img src="./assets/img/health/immunization.png" class="w-full h-[300px] object-cover">
-                </div>
-            </div>
-            <div id="gallery-empty-state" class="hidden">
-                <div class="bg-slate-100 border border-slate-200 py-16 px-8 text-center">
-                    <div class="w-20 h-20 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-images text-primary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black mb-3">
-                        No Images Available
-                    </h3>
-                    <p class="text-slate-600 max-w-lg mx-auto leading-7">
-                        There are currently no images available in this category.
-                        Please explore other gallery sections or check back later.
+            <!-- HEADER -->
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+                <div class="max-w-3xl">
+                    <span
+                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                        <span class="w-2 h-2 bg-secondary"></span>
+                        Research Health Information
+                    </span>
+                    <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
+                        Health Informations & Health Information
+
+                    </h2>
+                    <p class="text-slate-600 text-base md:text-lg leading-8">
+                        Explore health care updates, travel medicine insights,
+                        research health information and hospital healthdata.
+
                     </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section-padding bg-slate-200 overflow-hidden">
-        <div class="container-custom">
-            <!-- HEADING -->
-            <div class="text-center mb-12">
-                <span class="section-subtitle">
-                    Video Gallery
-                </span>
-                <h2 class="section-title">
-                    Stories In Motion
-                </h2>
-                <p class="max-w-3xl mx-auto
-                text-slate-600
-                mt-6
-                leading-8">
-                    Explore videos highlighting CIWEC's healthcare
-                    services, community initiatives, medical expertise
-                    and memorable moments throughout our journey.
-                </p>
+            <!-- FILTER BAR -->
+            <div class="border border-slate-200 bg-slate-100 p-5 md:p-6 mb-6">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+                    <!-- LEFT -->
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-semibold text-primary">
+                            Show
+                        </span>
+                        <select id="perPage"
+                            class="h-11 px-4 border border-slate-300 bg-white text-sm text-slate-700 focus:border-secondary outline-none">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                        </select>
+                        <span class="text-sm text-slate-600">
+                            entries
+                        </span>
+                    </div>
+                    <!-- SEARCH -->
+                    <div class="relative w-full lg:w-[320px]">
+                        <input type="text" id="searchInput" placeholder="Search healthinformation..."
+                            class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-white text-sm outline-none focus:border-secondary">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                        </i>
+                    </div>
+                </div>
             </div>
-            <!-- VIDEOS -->
-            <div class="grid
-            md:grid-cols-2
-            xl:grid-cols-3
-            gap-8">
-                <!-- VIDEO -->
+            <!-- LOADER -->
+            <div id="publicationLoader" class="hidden py-12">
                 <div
-                    class="group
-                bg-white
-                border
+                    class="w-12 h-12 border-[3px]
                 border-slate-200
-                overflow-hidden
-                hover:border-secondary
-                hover:-translate-y-2
-                transition-all duration-500">
-                    <div class="relative
-                    overflow-hidden">
-                        <img src="./assets/img/history/history1.webp"
-                            class="w-full
-                        h-[260px]
-                        object-cover
-                        transition-all duration-700
-                        group-hover:scale-110">
-                        <!-- OVERLAY -->
-                        <div
-                            class="absolute inset-0
-                        bg-primary/40
-                        group-hover:bg-primary/60
-                        transition-all">
-                        </div>
-                        <!-- PLAY -->
-                        <button
-                            class="videoBtn
-                        absolute
-                        inset-0
-                        flex
-                        items-center
-                        justify-center"
-                            data-video="./assets/vdo/banner.mp4">
-                            <div
-                                class="w-20
-                            h-20
-                            rounded-full
-                            bg-white
-                            text-primary
-                            flex
-                            items-center
-                            justify-center
-                            shadow-2xl">
-                                <i
-                                    class="fa-solid fa-play
-                                text-xl
-                                ml-1">
-                                </i>
-                            </div>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-secondary
-                        font-bold
-                        text-sm">
-                            Documentary
-                        </span>
-                        <h3
-                            class="text-primary
-                        text-xl
-                        font-black
-                        mt-3">
-                            The CIWEC Story
-                        </h3>
-                        <p class="text-slate-600
-                        mt-4
-                        leading-7">
-                            A journey through more than four decades
-                            of healthcare excellence.
-                        </p>
-                    </div>
+                border-t-secondary
+                rounded-full
+                animate-spin
+                mx-auto">
                 </div>
-                <!-- VIDEO -->
-                <div
-                    class="group
-                bg-white
-                border
-                border-slate-200
-                overflow-hidden
-                hover:border-secondary
-                hover:-translate-y-2
-                transition-all duration-500">
-                    <div class="relative
-                    overflow-hidden">
-                        <img src="./assets/img/history/history2.webp"
-                            class="w-full
-                        h-[260px]
-                        object-cover
-                        transition-all duration-700
-                        group-hover:scale-110">
-                        <div class="absolute inset-0
-                        bg-primary/40">
-                        </div>
-                        <button
-                            class="videoBtn
-                        absolute
-                        inset-0
-                        flex
-                        items-center
-                        justify-center"
-                            data-video="./assets/vdo/banner.mp4">
-                            <div
-                                class="w-20 h-20
-                            rounded-full
-                            bg-white
-                            text-primary
-                            flex items-center justify-center">
-                                <i class="fa-solid fa-play
-                                text-xl ml-1">
-                                </i>
-                            </div>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-secondary
-                        font-bold
-                        text-sm">
-                            Medical Camp
-                        </span>
-                        <h3
-                            class="text-primary
-                        text-xl
-                        font-black
-                        mt-3">
-                            Community Outreach Program
-                        </h3>
-                        <p class="text-slate-600
-                        mt-4
-                        leading-7">
-                            Bringing quality healthcare services
-                            beyond hospital walls.
-                        </p>
-                    </div>
+            </div>
+            <!-- CONTENT -->
+            <div id="publicationContent">
+                <!-- TABLE -->
+                <div class="overflow-x-auto border border-slate-200 bg-white">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th class="px-5 py-4 text-left text-sm font-bold uppercase tracking-wide">
+                                    #
+                                </th>
+                                <th class="px-5 py-4 text-left text-sm font-bold uppercase tracking-wide">
+                                    Publication Title
+                                </th>
+                                <th class="px-5 py-4 text-center text-sm font-bold uppercase tracking-wide">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="publicationTable">
+                            <!-- AJAX DATA -->
+                        </tbody>
+                    </table>
                 </div>
-                <!-- VIDEO -->
-                <div
-                    class="group
-                bg-white
-                border
-                border-slate-200
-                overflow-hidden
-                hover:border-secondary
-                hover:-translate-y-2
-                transition-all duration-500">
-                    <div class="relative
-                    overflow-hidden">
-                        <img src="./assets/img/history/history3.webp"
-                            class="w-full
-                        h-[260px]
-                        object-cover
-                        transition-all duration-700
-                        group-hover:scale-110">
-                        <div class="absolute inset-0
-                        bg-primary/40">
-                        </div>
-                        <button
-                            class="videoBtn
-                        absolute
-                        inset-0
-                        flex
-                        items-center
-                        justify-center"
-                            data-video="./assets/vdo/banner.mp4">
-                            <div
-                                class="w-20 h-20
-                            rounded-full
-                            bg-white
-                            text-primary
-                            flex items-center justify-center">
-                                <i class="fa-solid fa-play
-                                text-xl ml-1">
-                                </i>
-                            </div>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-secondary
-                        font-bold
-                        text-sm">
-                            Health Education
-                        </span>
-                        <h3
-                            class="text-primary
-                        text-xl
-                        font-black
-                        mt-3">
-                            Doctor Insights & Awareness
-                        </h3>
-                        <p class="text-slate-600
-                        mt-4
-                        leading-7">
-                            Expert healthcare guidance from
-                            CIWEC specialists.
-                        </p>
-                    </div>
+                <!-- PAGINATION -->
+                <div id="publicationPagination" class="flex flex-wrap justify-center gap-2 mt-8">
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ========================================= -->
-    <!-- VIDEO MODAL -->
-    <!-- ========================================= -->
-    <div id="videoModal" class="fixed inset-0 z-[9999] hidden">
-        <div id="videoOverlay" class="absolute inset-0 bg-black/90">
-        </div>
-        <div class="relative
-        flex
-        items-center
-        justify-center
-        h-screen
-        p-4">
-            <button id="closeVideo"
-                class="absolute
-            top-6
-            right-6
-            text-white
-            text-3xl
-            z-10">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="w-full
-            max-w-6xl
-            aspect-video">
-                <iframe id="videoFrame" class="w-full h-full" src="" allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </div>
 
     <script>
-        const videoBtns =
-            document.querySelectorAll(".videoBtn");
-        const videoModal =
-            document.getElementById("videoModal");
-        const videoFrame =
-            document.getElementById("videoFrame");
-        const closeVideo =
-            document.getElementById("closeVideo");
-        const videoOverlay =
-            document.getElementById("videoOverlay");
-        videoBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
-                videoFrame.src =
-                    btn.dataset.video + "?autoplay=1";
-                videoModal.classList.remove("hidden");
-                document.body.style.overflow =
-                    "hidden";
-            });
-        });
-
-        function closeVideoModal() {
-            videoModal.classList.add("hidden");
-            videoFrame.src = "";
-            document.body.style.overflow = "";
-        }
-
-        closeVideo.addEventListener(
-            "click",
-            closeVideoModal
-        );
-
-        videoOverlay.addEventListener(
-            "click",
-            closeVideoModal
-        );
+        const healthinformation = {!! json_encode(
+            $healthinformation->map(function ($post) {
+                    return [
+                        'id' => $post->id,
+                        'title' => $post->post_title,
+                        'documents' => $post->documents->map(function ($doc) {
+                                return [
+                                    'title' => $doc->title,
+                                    'file' => asset('uploads/doc/' . $doc->document),
+                                ];
+                            })->values(),
+                        'detailsUrl' => url('page/' . $post->uri),
+                    ];
+                })->values(),
+        ) !!};
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const filterButtons =
-                document.querySelectorAll(".gallery-filter");
-            const galleryItems =
-                document.querySelectorAll(".gallery-item");
+        const publicationTable = document.getElementById("publicationTable");
+        if (publicationTable) {
+            const pagination = document.getElementById("publicationPagination");
+            const loader = document.getElementById("publicationLoader");
+            const content = document.getElementById("publicationContent");
+            const searchInput = document.getElementById("searchInput");
+            const perPageSelect = document.getElementById("perPage");
 
-            function filterGallery(filter) {
-                const emptyState =
-                    document.getElementById("gallery-empty-state");
-                let visibleCount = 0;
-                galleryItems.forEach(item => {
-                    if (
-                        filter === "all" ||
-                        item.classList.contains(filter)
-                    ) {
-                        item.style.display = "block";
-                        visibleCount++;
-                    } else {
-                        item.style.display = "none";
-                    }
-                });
+            let currentPage = 1;
+            let perPage = 5;
+            let search = "";
 
-                if (visibleCount === 0) {
-                    emptyState.classList.remove("hidden");
-                } else {
-                    emptyState.classList.add("hidden");
+            function showLoader() {
+                if (loader)
+                    loader.classList.remove("hidden");
+                if (content) {
+                    content.style.opacity = ".3";
+                    content.style.pointerEvents = "none";
                 }
             }
 
-            // Initial state
-            filterGallery("all");
-            filterButtons.forEach(button => {
-                button.addEventListener("click", () => {
-                    const filter =
-                        button.dataset.filter;
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove("active");
-                    });
-                    button.classList.add("active");
-                    filterGallery(filter);
+            function hideLoader() {
+                if (loader)
+                    loader.classList.add("hidden");
+                if (content) {
+                    content.style.opacity = "1";
+                    content.style.pointerEvents = "auto";
+                }
+            }
+
+            function getActionButtons(item) {
+                if (!item.documents.length) {
+                    return `<span class="text-slate-400">No Document</span>`;
+                }
+                let buttons = "";
+                item.documents.forEach(doc => {
+                    buttons += `
+                <a href="${doc.file}"
+                   target="_blank"
+                   download
+                   class="inline-flex items-center gap-2 text-primary font-semibold mr-3">
+                    <i class="fa-solid fa-file-pdf text-secondary"></i>
+                    ${doc.title}
+                </a>
+            `;
                 });
-            });
-        });
+                return buttons;
+            }
+
+            function renderTable(data) {
+                publicationTable.innerHTML = "";
+                if (!data.length) {
+                    publicationTable.innerHTML = `
+                <tr>
+                    <td colspan="3"
+                        class="px-5 py-8 text-center text-slate-500">
+                        No records found
+                    </td>
+                </tr>
+            `;
+                    return;
+                }
+
+                data.forEach((item, index) => {
+                    publicationTable.innerHTML += `
+                <tr class="border-b border-slate-200 hover:bg-slate-100 transition">
+                    <td class="px-5 py-4 font-semibold text-primary">
+                        ${(currentPage - 1) * perPage + index + 1}
+                    </td>
+                    <td class="px-5 py-4 text-slate-700">
+                        ${item.title}
+                    </td>
+                    <td class="px-5 py-4 text-center">
+                        ${getActionButtons(item)}
+                    </td>
+                </tr>
+            `;
+                });
+
+            }
+
+            function renderPagination(totalPages) {
+                if (!pagination)
+                    return;
+                pagination.innerHTML = "";
+                if (totalPages <= 1)
+                    return;
+                for (let i = 1; i <= totalPages; i++) {
+                    pagination.innerHTML += `
+                <button
+                    onclick="changePage(${i})"
+                    class="px-4 py-2 border transition
+                    ${currentPage === i
+                        ? "bg-primary text-white border-primary"
+                        : "bg-white text-primary border-slate-300 hover:bg-primary hover:text-white"}">
+                    ${i}
+                </button>
+            `;
+                }
+            }
+
+            function fetchhealthinformation() {
+                showLoader();
+                setTimeout(() => {
+                    const filtered = healthinformation.filter(item =>
+                        item.title.toLowerCase().includes(search.toLowerCase())
+                    );
+                    const totalPages = Math.ceil(filtered.length / perPage);
+                    const start = (currentPage - 1) * perPage;
+                    const data = filtered.slice(start, start + perPage);
+                    renderTable(data);
+                    renderPagination(totalPages);
+                    hideLoader();
+                }, 300);
+            }
+            window.changePage = function(page) {
+                currentPage = page;
+                fetchhealthinformation();
+            }
+            if (perPageSelect) {
+                perPageSelect.addEventListener("change", function(e) {
+                    perPage = parseInt(e.target.value);
+                    currentPage = 1;
+                    fetchhealthinformation();
+                });
+            }
+            if (searchInput) {
+                let typingTimer;
+                searchInput.addEventListener("keyup", function(e) {
+                    clearTimeout(typingTimer);
+                    typingTimer = setTimeout(function() {
+                        search = e.target.value;
+                        currentPage = 1;
+                        fetchhealthinformation();
+                    }, 300);
+                });
+            }
+            fetchhealthinformation();
+        }
     </script>
 
 @endsection

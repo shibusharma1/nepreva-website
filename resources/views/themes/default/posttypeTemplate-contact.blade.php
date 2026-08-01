@@ -2,6 +2,7 @@
 @section('meta_keyword', $data->meta_keyword)
 @section('meta_description', $data->meta_description)
 @section('content')
+    @include('themes.default.common.herobanner')
 
     <section class="section-padding bg-white overflow-hidden">
         <div class="container-custom">
@@ -19,37 +20,81 @@
                         Complete the form below and a member of our
                         team will respond as soon as possible.
                     </p>
-                    <form class="space-y-6">
+                    @if (session('success'))
+                        <div id="flash-message"
+                            class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-green-700">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div id="flash-message"
+                            class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700">
+                            @if (is_array(session('message')))
+                                <ul class="list-disc pl-5">
+                                    @foreach (session('message') as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                {{ session('message') }}
+                            @endif
+                        </div>
+                    @endif
+                    <form action="{{ route('sendmail_contact') }}" method="POST" class="space-y-6">
+                        @csrf
+
+                        <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
                         <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Full Name -->
                             <div>
-                                <label class="block text-sm font-semibold text-primary mb-2">
+                                <label for="full_name" class="block text-sm font-semibold text-primary mb-2">
                                     Full Name
                                 </label>
-                                <input type="text" placeholder="Enter your full name"
+                                <input type="text" name="full_name" placeholder="Enter your full name"
                                     class="w-full h-14 px-5 border border-slate-300 focus:border-secondary outline-none transition">
                             </div>
+
+                            <!-- Email -->
                             <div>
                                 <label class="block text-sm font-semibold text-primary mb-2">
                                     Email Address
                                 </label>
-                                <input type="email" placeholder="Enter your email"
+                                <input type="email" name="email" placeholder="Enter your email"
                                     class="w-full h-14 px-5 border border-slate-300 focus:border-secondary outline-none transition">
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-primary mb-2">
-                                Phone Number
-                            </label>
-                            <input type="text" placeholder="Enter your phone number"
-                                class="w-full h-14 px-5 border border-slate-300 focus:border-secondary outline-none transition">
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Phone -->
+                            <div>
+                                <label class="block text-sm font-semibold text-primary mb-2">
+                                    Phone Number
+                                </label>
+                                <input type="text" name="phone" placeholder="Enter your phone number"
+                                    class="w-full h-14 px-5 border border-slate-300 focus:border-secondary outline-none transition">
+                            </div>
+
+                            <!-- Subject -->
+                            <div>
+                                <label class="block text-sm font-semibold text-primary mb-2">
+                                    Subject
+                                </label>
+                                <input type="text" name="subject" placeholder="Enter subject"
+                                    class="w-full h-14 px-5 border border-slate-300 focus:border-secondary outline-none transition">
+                            </div>
                         </div>
+
+                        <!-- Message -->
                         <div>
                             <label class="block text-sm font-semibold text-primary mb-2">
                                 Message
                             </label>
-                            <textarea rows="6" placeholder="How can we help you?"
+                            <textarea rows="6" name="message" placeholder="How can we help you?"
                                 class="w-full p-5 border border-slate-300 focus:border-secondary outline-none transition"></textarea>
                         </div>
+
+                        <!-- Button -->
                         <button type="submit" class="btn-primary">
                             Send Message
                         </button>

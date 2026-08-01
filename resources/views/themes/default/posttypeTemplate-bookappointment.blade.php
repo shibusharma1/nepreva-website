@@ -2,7 +2,7 @@
 @section('meta_keyword', $data->meta_keyword)
 @section('meta_description', $data->meta_description)
 @section('content')
-
+    @include('themes.default.common.herobanner')
     <section id="appointmentForm" class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <div class="text-center max-w-4xl mx-auto mb-8">
@@ -21,7 +21,24 @@
                 <!-- FORM -->
                 <div class="xl:col-span-8">
                     <div class="bg-white border border-slate-200 p-8 lg:p-10">
-                        <form>
+                        @if (session('error'))
+                            <div id="flash-message"
+                                class="my-4 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-red-700">
+                                @if (is_array(session('message')))
+                                    <ul class="list-disc pl-5">
+                                        @foreach (session('message') as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    {{ session('message') }}
+                                @endif
+                            </div>
+                        @endif
+
+                        <form action="{{ route('sendmail_appointment') }}" method="POST">
+                            @csrf
+                            <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
                             <!-- REQUEST TYPE -->
                             <div class="mb-8">
                                 <label class="block text-primary font-bold mb-4">
@@ -29,25 +46,29 @@
                                 </label>
                                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                                     <label class="border border-slate-200 p-4 cursor-pointer hover:border-secondary">
-                                        <input type="radio" name="requestType" checked>
+                                        <input type="radio" name="request_type" value="Appointment"
+                                            {{ old('request_type') == 'Appointment' || !old('request_type') ? 'checked' : '' }}>
                                         <span class="ml-2">
                                             Appointment
                                         </span>
                                     </label>
                                     <label class="border border-slate-200 p-4 cursor-pointer hover:border-secondary">
-                                        <input type="radio" name="requestType">
+                                        <input type="radio" name="request_type" value="Inquiry"
+                                            {{ old('request_type') == 'Inquiry' ? 'checked' : '' }}>
                                         <span class="ml-2">
                                             Inquiry
                                         </span>
                                     </label>
                                     <label class="border border-slate-200 p-4 cursor-pointer hover:border-secondary">
-                                        <input type="radio" name="requestType">
+                                        <input type="radio" name="request_type" value="Health Screening"
+                                            {{ old('request_type') == 'Health Screening' ? 'checked' : '' }}>
                                         <span class="ml-2">
                                             Health Screening
                                         </span>
                                     </label>
                                     <label class="border border-slate-200 p-4 cursor-pointer hover:border-secondary">
-                                        <input type="radio" name="requestType">
+                                        <input type="radio" name="request_type" value="Travel Medicine"
+                                            {{ old('request_type') == 'Travel Medicine' ? 'checked' : '' }}>
                                         <span class="ml-2">
                                             Travel Medicine
                                         </span>
@@ -60,28 +81,31 @@
                                     <label class="block text-primary font-semibold mb-2">
                                         Full Name *
                                     </label>
-                                    <input type="text"
-                                        class="w-full h-14 border border-slate-300 px-5 focus:border-secondary outline-none">
+                                    <input type="text" name="name" value="{{ old('name') }}"
+                                        class="w-full h-14 border border-slate-300 px-5 focus:border-secondary outline-none"
+                                        required>
                                 </div>
                                 <div>
                                     <label class="block text-primary font-semibold mb-2">
                                         Email Address *
                                     </label>
-                                    <input type="email"
-                                        class="w-full h-14 border border-slate-300 px-5 focus:border-secondary outline-none">
+                                    <input type="email" name="email" value="{{ old('email') }}"
+                                        class="w-full h-14 border border-slate-300 px-5 focus:border-secondary outline-none"
+                                        required>
                                 </div>
                                 <div>
                                     <label class="block text-primary font-semibold mb-2">
                                         Phone Number *
                                     </label>
-                                    <input type="tel"
-                                        class="w-full h-14 border border-slate-300 px-5 focus:border-secondary outline-none">
+                                    <input type="tel" name="phone" value="{{ old('phone') }}"
+                                        class="w-full h-14 border border-slate-300 px-5 focus:border-secondary outline-none"
+                                        required>
                                 </div>
                                 <div>
                                     <label class="block text-primary font-semibold mb-2">
                                         Nationality
                                     </label>
-                                    <input type="text"
+                                    <input type="text" name="nationality" value="{{ old('nationality') }}"
                                         class="w-full h-14 border border-slate-300 px-5 focus:border-secondary outline-none">
                                 </div>
                             </div>
@@ -91,11 +115,11 @@
                                     <label class="block text-primary font-semibold mb-2">
                                         Preferred Location
                                     </label>
-                                    <select class="w-full h-14 border border-slate-300 px-5">
-                                        <option>
+                                    <select name="location" class="w-full h-14 border border-slate-300 px-5">
+                                        <option value="Kathmandu">
                                             Kathmandu
                                         </option>
-                                        <option>
+                                        <option value="Pokhara" {{ old('location') == 'Pokhara' ? 'selected' : '' }}>
                                             Pokhara
                                         </option>
                                     </select>
@@ -104,20 +128,20 @@
                                     <label class="block text-primary font-semibold mb-2">
                                         Department
                                     </label>
-                                    <select class="w-full h-14 border border-slate-300 px-5">
-                                        <option>
+                                    <select name="department" class="w-full h-14 border border-slate-300 px-5">
+                                        <option value="">
                                             Select Department
                                         </option>
-                                        <option>
+                                        <option value="Internal Medicine">
                                             Internal Medicine
                                         </option>
-                                        <option>
+                                        <option value="Pediatrics">
                                             Pediatrics
                                         </option>
-                                        <option>
+                                        <option value="Cardiology">
                                             Cardiology
                                         </option>
-                                        <option>
+                                        <option value="Orthopedics">
                                             Orthopedics
                                         </option>
                                     </select>
@@ -126,13 +150,20 @@
                                     <label class="block text-primary font-semibold mb-2">
                                         Preferred Date
                                     </label>
-                                    <input type="date" class="w-full h-14 border border-slate-300 px-5">
+                                    <input type="text" id="appointment_date" name="appointment_date"
+                                        value="{{ old('appointment_date') }}" placeholder="MM/DD/YYYY"
+                                        class="w-full h-14 border border-slate-300 px-5" required>
                                 </div>
                                 <div>
                                     <label class="block text-primary font-semibold mb-2">
                                         Preferred Time
                                     </label>
-                                    <input type="time" class="w-full h-14 border border-slate-300 px-5">
+                                    <select id="appointment_time" name="appointment_time"
+                                        class="w-full h-14 border border-slate-300 px-5" required>
+                                        <option value="">
+                                            Select Time
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <!-- MESSAGE -->
@@ -140,8 +171,23 @@
                                 <label class="block text-primary font-semibold mb-2">
                                     Message / Requirement
                                 </label>
-                                <textarea rows="4" class="w-full border border-slate-300 p-5 resize-none focus:border-secondary outline-none"
-                                    placeholder="Describe your symptoms, appointment request, inquiry or healthcare requirement..."></textarea>
+                                <textarea name="message" rows="4"
+                                    class="w-full border border-slate-300 p-5 resize-none focus:border-secondary outline-none"
+                                    placeholder="Describe your symptoms, appointment request, inquiry or healthcare requirement...">
+                                    {{ old('message') }}
+                                    </textarea>
+                            </div>
+                            <!-- TERMS -->
+                            <div class="mt-6 flex items-start gap-3">
+                                <input id="terms" type="checkbox" name="terms" required
+                                    class="mt-1 h-5 w-5 accent-[var(--primary)] cursor-pointer">
+                                <label for="terms" class="text-sm text-slate-600 leading-6 cursor-pointer">
+                                    I accept the
+                                    <a href="{{ url('page/terms-and-conditions.html') }}"
+                                        class="text-primary font-medium hover:underline">
+                                        Terms & Conditions
+                                    </a>
+                                </label>
                             </div>
                             <!-- SUBMIT -->
                             <div class="mt-6">
@@ -184,7 +230,9 @@
                                         Appointment Desk
                                     </h4>
                                     <p class="text-white/70 text-sm">
-                                        +977-XXXXXXXXX
+                                        <a href="tel: {{ $setting->phone }}">
+                                            {{ $setting->phone }}
+                                        </a>
                                     </p>
                                 </div>
                             </div>
@@ -196,7 +244,10 @@
                                         Email Support
                                     </h4>
                                     <p class="text-white/70 text-sm">
-                                        info@ciwec.com
+                                        {{-- info@ciwec.com --}}
+                                        <a href="mailto: {{ $setting->email_primary }}">
+                                            {{ $setting->email_primary }}
+                                        </a>
                                     </p>
                                 </div>
                             </div>
@@ -417,7 +468,7 @@
                             For urgent medical assistance,
                             contact us immediately.
                         </p>
-                        <a href="tel:+977XXXXXXXXX"
+                        <a href="tel:{{ $setting->phone }}"
                             class="block
                         text-center
                         bg-secondary
@@ -428,7 +479,7 @@
                         mt-8
                         hover:bg-primary
                         transition">
-                            +977 XXX XXX XXXX
+                            {{ $setting->phone }}
                         </a>
                         <div
                             class="grid
@@ -447,7 +498,7 @@
                             transition">
                                 Call Now
                             </a>
-                            <a href="./bookappointment.php"
+                            <a href="./bookappointment.html"
                                 class="bg-primary
                             text-white
                             py-4
@@ -476,4 +527,98 @@
             </div>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#appointment_date", {
+            dateFormat: "Y-m-d",
+            minDate: "today",
+            disableMobile: true
+        });
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('SITE_KEY') }}"></script>
+    <script>
+        grecaptcha.ready(function() {
+            function executeRecaptcha() {
+                grecaptcha.execute('<?php echo env('SITE_KEY'); ?>', {
+                    action: 'homepage'
+                }).then(function(token) {
+                    document.getElementById('g_recaptcha_response').value = token;
+                });
+            }
+
+            // Initial execution of reCAPTCHA
+            executeRecaptcha();
+
+            // Refresh the reCAPTCHA token every 100 seconds (less than 2 minutes)
+            setInterval(executeRecaptcha, 900000);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const dateInput = document.getElementById('appointment_date');
+            const timeSelect = document.getElementById('appointment_time');
+
+            function formatDate(date) {
+                return date.toISOString().split('T')[0];
+            }
+
+            function populateTimes() {
+
+                timeSelect.innerHTML = '';
+
+                const selectedDate = dateInput.value;
+                const today = formatDate(new Date());
+                const now = new Date();
+
+                let slotsAdded = 0;
+
+                for (let hour = 9; hour <= 17; hour++) {
+
+                    for (let minute = 0; minute < 60; minute += 30) {
+
+                        const hh = String(hour).padStart(2, '0');
+                        const mm = String(minute).padStart(2, '0');
+
+                        // Skip past times if today
+                        if (selectedDate === today) {
+                            if (
+                                hour < now.getHours() ||
+                                (hour === now.getHours() && minute <= now.getMinutes())
+                            ) {
+                                continue;
+                            }
+                        }
+
+                        const option = document.createElement('option');
+                        option.value = `${hh}:${mm}`;
+
+                        const displayHour = hour > 12 ? hour - 12 : hour;
+                        const ampm = hour >= 12 ? 'PM' : 'AM';
+
+                        option.text = `${displayHour}:${mm} ${ampm}`;
+
+                        timeSelect.appendChild(option);
+                        slotsAdded++;
+                    }
+                }
+
+                // No slots available
+                if (slotsAdded === 0) {
+                    const option = document.createElement('option');
+                    option.value = "";
+                    option.text = "No slots available for today.";
+                    option.disabled = true;
+                    option.selected = true;
+                    timeSelect.appendChild(option);
+                }
+            }
+
+            dateInput.addEventListener('change', populateTimes);
+
+            populateTimes();
+
+        });
+    </script>
 @endsection

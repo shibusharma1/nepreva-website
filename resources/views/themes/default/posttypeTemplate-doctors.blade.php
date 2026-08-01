@@ -2,6 +2,7 @@
 @section('meta_keyword', $data->meta_keyword)
 @section('meta_description', $data->meta_description)
 @section('content')
+    @include('themes.default.common.herobanner')
     <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <!-- HEADER -->
@@ -141,6 +142,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- ========================================= -->
     <!-- SPECIALTIES -->
     <!-- ========================================= -->
@@ -308,7 +311,7 @@
             <!-- STATS -->
             <div class="grid md:grid-cols-4 gap-6 mt-20">
                 <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-4xl font-black">
+                    <h3 class="text-primary text-3xl font-black">
                         Multi
                     </h3>
                     <p class="text-slate-600 mt-3">
@@ -316,7 +319,7 @@
                     </p>
                 </div>
                 <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-4xl font-black">
+                    <h3 class="text-primary text-3xl font-black">
                         Expert
                     </h3>
                     <p class="text-slate-600 mt-3">
@@ -324,7 +327,7 @@
                     </p>
                 </div>
                 <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-4xl font-black">
+                    <h3 class="text-primary text-3xl font-black">
                         Trusted
                     </h3>
                     <p class="text-slate-600 mt-3">
@@ -332,7 +335,7 @@
                     </p>
                 </div>
                 <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-4xl font-black">
+                    <h3 class="text-primary text-3xl font-black">
                         Quality
                     </h3>
                     <p class="text-slate-600 mt-3">
@@ -342,6 +345,7 @@
             </div>
         </div>
     </section>
+
     <section class="section-padding relative overflow-hidden bg-primary">
         <!-- BACKGROUND SHAPES -->
         <div
@@ -484,6 +488,7 @@
             </div>
         </div>
     </section>
+    
     <script>
         const doctors = [{
                 name: "Dr. David R. Shlim",
@@ -782,11 +787,11 @@
                 ${doctor.education
                   .map(
                     (item) => `
-                        <li class="flex items-start gap-2 text-sm text-slate-600">
-                            <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
-                            <span>${item}</span>
-                        </li>
-                    `,
+                            <li class="flex items-start gap-2 text-sm text-slate-600">
+                                <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
+                                <span>${item}</span>
+                            </li>
+                        `,
                   )
                   .join("")}
    

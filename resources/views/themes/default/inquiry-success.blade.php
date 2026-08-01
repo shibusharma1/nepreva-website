@@ -1,40 +1,128 @@
 @extends('themes.default.common.master')
 
+@section('post_title','Success')
+
 @section('content')
-<!-- start section -->
-<section class="uk-section uk-booking bg-white uk-position-relative" style="background: #f2f2f2;">
-    <div class="uk-container uk-container-small"
-         uk-scrollspy="target:[uk-scrollspy-class], img, h1, h2, h3, h4, h5, h6, hr, .uk-button, li, p; cls: uk-animation-slide-top-small; delay: 50; repeat: false;"
-         style="padding-top: 4rem; padding-bottom: 4rem;">
-        
-        <div class="uk-card uk-card-default uk-card-body uk-border-rounded uk-box-shadow-medium uk-text-center" style="background: #fff;">
-            <div class="uk-margin-bottom">
-                <span class="uk-icon-button uk-button-success" uk-icon="icon: check; ratio: 2"></span>
-            </div>
+<style>
+  #success {
+        position: relative;
+        min-height: 80vh;
+        background: #f7f9fb;
+    }
 
-            <h2 class="uk-text-bold uk-text-success uk-margin-small-bottom">Sent Successfully!</h2>
+    #success .success-box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        max-width: 520px;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 20px 20px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 35px rgba(0,0,0,.08);
+    }
 
-            <p class="uk-text-lead uk-margin-remove-top">
-                Dear <b>{{ $name }}</b>,
-            </p>
+    .success-icon {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        background: #e8f8ef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 48px;
+        font-weight: bold;
+    }
 
-            <p class="uk-margin-small-top">
-                {!! $message !!}
-            </p>
+    .success-box h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 15px;
+    }
 
-            <hr class="uk-divider-icon">
+    .success-box h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 15px;
+    }
 
-            <p class="uk-text-muted">
-                <b>Best Wishes</b><br>
-                {{ $setting->site_name }}
-            </p>
+    .success-box p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #666;
+        margin-bottom: 15px;
+    }
 
-            <div class="uk-margin-top">
-                <a href="{{ url('/') }}" class="uk-button uk-button-primary uk-border-rounded">Return to Home</a>
-            </div>
-        </div>
+    .success-divider {
+        width: 80px;
+        height: 3px;
+        background: var(--primary);
+        margin: 25px auto;
+        border-radius: 10px;
+    }
 
+    .success-box .btn-home {
+        display: inline-block;
+        padding: 13px 28px;
+        background: var(--primary);
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 5px;
+        transition: .3s;
+    }
+
+    .success-box .btn-home:hover {
+        background: #082b40;
+    }
+
+
+    @media(max-width:600px){
+
+        #success .success-box{
+            width:90%;
+            padding:30px 20px;
+        }
+
+        .success-box h1{
+            font-size:26px;
+        }
+
+    }
+</style>
+<section id="success">
+  <div class="success-box">
+    <div class="success-icon">
+      ✓
     </div>
+    <h1>
+      Sent Successfully!
+    </h1>
+    <h2>
+      Dear {{ $name }},
+    </h2>
+    <p>
+      {!! $message !!}
+    </p>
+    <div class="success-divider">
+    </div>
+    <p>
+      <strong>
+        Best Wishes
+      </strong>
+      <br>
+      {{ $setting->site_name }}
+    </p>
+    <a href="{{ url('/') }}" class="btn-home">
+      Return To Homepage
+    </a>
+  </div>
 </section>
-<!-- end section -->
-@stop
+@endsection

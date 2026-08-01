@@ -71,7 +71,7 @@
     class="hidden lg:flex md:flex fixed right-6 inset-y-0 items-center z-40">
     <div class="overflow-hidden shadow-[0_12px_35px_rgba(0,0,0,.12)]">
         <!-- APPOINTMENT -->
-        <a href="./bookappointment.php" class="group flex
+        <a href="./bookappointment.html" class="group flex
             items-center
             w-[64px]
             hover:w-[260px]
@@ -102,7 +102,7 @@
             </span>
         </a>
         <!-- DOCTOR -->
-        <!-- <a href="./doctors.php"
+        <!-- <a href="./doctors.html"
             class="group
             flex
             items-center
@@ -137,7 +137,7 @@
             </span>
         </a> -->
         <!-- INQUIRY -->
-        <a href="./contactus.php"
+        <a href="./contact.html"
             class="group
             flex
             items-center
@@ -166,7 +166,7 @@
     lg:hidden md:hidden">
     <div class="grid grid-cols-2">
         <!-- DOCTOR -->
-        <!-- <a href="./doctors.php"
+        <!-- <a href="./doctors.html"
             class="flex flex-col items-center justify-center py-3 text-primary">
             <i class="fa-solid fa-user-doctor text-lg mb-1"></i>
             <span class="text-[11px] font-semibold">
@@ -174,7 +174,7 @@
             </span>
         </a> -->
         <!-- INQUIRY -->
-        <a href="./contactus.php"
+        <a href="./contact.html"
             class="flex flex-col items-center justify-center py-3 border-x border-slate-200 text-primary">
             <i class="fa-regular fa-message text-lg mb-1"></i>
             <span class="text-[11px] font-semibold">
@@ -182,7 +182,7 @@
             </span>
         </a>
         <!-- APPOINTMENT -->
-        <a href="./bookappointment.php"
+        <a href="./bookappointment.html"
             class="flex flex-col items-center justify-center py-3 bg-primary text-white">
             <i class="fa-regular fa-calendar-check text-lg mb-1"></i>
             <span class="text-[11px] font-semibold">

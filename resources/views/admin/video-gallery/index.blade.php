@@ -13,6 +13,7 @@
 						<thead>
 							<tr class="bg-light">
 								<th class="">SN</th>
+								<th class=""><Title></Title></th>                            
 								<th class="">Caption</th>                            
 								<th class="">Created at</th>                            
 								<th class="text-center">Action</th>
@@ -23,6 +24,7 @@
 							@foreach($data as $row)
 							<tr class="id{{$row->id}}">
 								<td class="">{{$loop->iteration}}</td>
+								<td class="">{{$row->title}}</td>
 								<td class="">{{$row->caption}}</td>
 								<td class="">{{ ucfirst($row->created_at) }}</td>
 								<td class="text-center">  

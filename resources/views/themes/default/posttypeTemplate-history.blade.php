@@ -2,6 +2,7 @@
 @section('meta_keyword', $data->meta_keyword)
 @section('meta_description', $data->meta_description)
 @section('content')
+       @include('themes.default.common.herobanner')
 
     <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">

@@ -19,7 +19,7 @@ class PostCategoryController extends Controller
      */
     public function index()
     {
-        $data = PostCategoryModel::orderBy('id','desc')->get();
+        $data = PostCategoryModel::orderBy('id', 'desc')->get();
         return view('admin.post-category.index', compact('data'));
     }
 
@@ -43,34 +43,28 @@ class PostCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category'=>'required',
-            'uri'=>'required'
+            'category' => 'required',
+            'uri' => 'required'
         ]);
         $data = $request->all();
         $file =  $request->file('thumbnail');
-        if($request->hasfile('thumbnail')){
-
-            $category_file = $request->file('thumbnail')->getClientOriginalName();
-            $extension = $request->file('thumbnail')->getClientOriginalExtension();
+        if ($request->hasFile('thumbnail')) {
+            $category_file = $file->getClientOriginalName();
             $category_file = explode('.', $category_file);
-            $file_name = Str::slug( 'icon-'.$category_file[0]) . '-' . Str::random(40) . '.' . $extension;
-
+            // Save as WebP
+            $file_name = Str::slug('icon-' . $category_file[0]) . '-' . Str::random(40) . '.webp';
             $destinationOriginal = public_path('uploads/original');
-            $pic = Image::make($file->getRealPath());
-            $width = Image::make($file->getRealPath())->width();
-            $height = Image::make($file->getRealPath())->height(); 
-
-            $pic->resize($width, $height, function($constraint){
-            $constraint->aspectRatio();
-             })->save($destinationOriginal .'/'. $file_name );
-             $data['thumbnail'] = $file_name;
+            Image::make($file->getRealPath())
+                ->encode('webp', 85)
+                ->save($destinationOriginal . '/' . $file_name);
+            $data['thumbnail'] = $file_name;
         }
 
-        $data['uri'] = Str::slug($request->uri);        
+        $data['uri'] = Str::slug($request->uri);
         $result = PostCategoryModel::create($data);
-        if($result){
-            return redirect()->back()->with('message','Successfully added.');
-        }else{
+        if ($result) {
+            return redirect()->back()->with('message', 'Successfully added.');
+        } else {
             return "Error";
         }
     }
@@ -93,10 +87,10 @@ class PostCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(PostCategoryModel $postCategoryModel, $id)
-    {   
-       $data = PostCategoryModel::find($id);
-       $posttype = PostTypeModel::all();
-       return view('admin.post-category.edit', compact('data','posttype'));
+    {
+        $data = PostCategoryModel::find($id);
+        $posttype = PostTypeModel::all();
+        return view('admin.post-category.edit', compact('data', 'posttype'));
     }
 
     /**
@@ -109,48 +103,37 @@ class PostCategoryController extends Controller
     public function update(Request $request, PostCategoryModel $postCategoryModel, $id)
     {
         $request->validate([
-            'category'=>'required',
-            'uri'=>'required'
+            'category' => 'required',
+            'uri' => 'required'
         ]);
-        
+
         $data = PostCategoryModel::find($id);
         $file =  $request->file('thumbnail');
         $file_name = '';
-        if($request->hasfile('thumbnail')){
-            $data = PostCategoryModel::find($id);  
-            if($data->thumbnail){               
-                if(file_exists(public_path('uploads/original/' .  $data->thumbnail))){
-                    unlink('uploads/original/' . $data->thumbnail);
-                }                  
+        if ($request->hasFile('thumbnail')) {
+            // Delete old image
+            if ($data->thumbnail) {
+                $oldImage = public_path('uploads/original/' . $data->thumbnail);
+                if (file_exists($oldImage)) {
+                    unlink($oldImage);
+                }
             }
-            $category_file = $request->file('thumbnail')->getClientOriginalName();
-            $extension = $request->file('thumbnail')->getClientOriginalExtension();
+            $category_file = $file->getClientOriginalName();
             $category_file = explode('.', $category_file);
-            $file_name = Str::slug($category_file[0]) . '-' . Str::random(40) . '.' . $extension;
-            
+            // Save as WebP
+            $file_name = Str::slug($category_file[0]) . '-' . Str::random(40) . '.webp';
             $destinationOriginal = public_path('uploads/original');
-            
-
-        $product_picture = Image::make($file->getRealPath());
-        $width = Image::make($file->getRealPath())->width();
-        $height = Image::make($file->getRealPath())->height();        
-      
-        /****Upload Original Image****/
-        $product_picture->resize($width, $height, function($constraint){
-            $constraint->aspectRatio();
-             })->save($destinationOriginal .'/'. $file_name ); 
-
-        $data->thumbnail = $file_name;
-        }   
-
+            Image::make($file->getRealPath())->encode('webp', 85)->save($destinationOriginal . '/' . $file_name);
+            $data->thumbnail = $file_name;
+        }
         $data->post_type = $request->post_type;
         $data->category = $request->category;
-        $data->uri = Str::slug($request->uri);  
-        $data->ordering = $request->ordering;  
+        $data->uri = Str::slug($request->uri);
+        $data->ordering = $request->ordering;
         $data->category_caption = $request->category_caption;
-        $data->category_content = $request->category_content;        
+        $data->category_content = $request->category_content;
         $data->save();
-        return redirect()->back()->with('message','Update Successful.');
+        return redirect()->back()->with('message', 'Update Successful.');
     }
 
     /**
@@ -162,25 +145,28 @@ class PostCategoryController extends Controller
     public function destroy(PostCategoryModel $postCategoryModel, $id)
     {
         $data = PostCategoryModel::find($id);
-         if($data->thumbnail  != NULL){
-            unlink('uploads/original/' . $data->thumbnail );
+        if ($data->thumbnail) {
+            $imagePath = public_path('uploads/original/' . $data->thumbnail);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
         $data->delete();
         return 'Are you sure to delete?';
     }
 
-     // Delete Post Thumbnail
-     function delete_category_thumb(PostCategoryModel $postCategoryModel, $id){
-         $data = PostCategoryModel::find($id);
-         if($data->thumbnail){                
-                if(file_exists(public_path('uploads/original/' .  $data->thumbnail))){
-                    unlink('uploads/original/' . $data->thumbnail);
-                }                   
+    // Delete Post Thumbnail
+    function delete_category_thumb(PostCategoryModel $postCategoryModel, $id)
+    {
+        $data = PostCategoryModel::find($id);
+        if ($data->thumbnail) {
+            $imagePath = public_path('uploads/original/' . $data->thumbnail);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
             }
-         $data->thumbnail = NULL;
-         $data->save();
-         return response('Delete Successful.');
+        }
+        $data->thumbnail = NULL;
+        $data->save();
+        return response('Delete Successful.');
     }
-
-
 }

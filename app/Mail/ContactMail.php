@@ -2,41 +2,32 @@
 
 namespace App\Mail;
 
+use App\Models\Inquiry\ContactModel;
 use App\Models\Settings\SettingModel;
-use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class ContactMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public ContactModel $contact;
+
+    public function __construct(ContactModel $contact)
     {
-        //
+        $this->contact = $contact;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build(Request $request)
+    public function build()
     {
-        $data = SettingModel::where('id',1)->first();
-        $email = $request->email;
-        return $this->view('emails.contact-mail', [
-            'data' => $data,
-            'request' => $request
-        ])->subject('Inquiry');
+        $data = SettingModel::find(1);
+
+        return $this->subject('New Contact Form Submission Received')
+            ->view('emails.contact-mail', [
+                'data' => $data,
+                'contact' => $this->contact,
+            ]);
     }
 }

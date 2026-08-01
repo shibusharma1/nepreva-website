@@ -32,9 +32,9 @@
               </div>
             </div>
           </div>
-          @if (Request::segment(2) == 'career')
+          @if (Request::segment(2) == 'about' || Request::segment(2) == 'services')
             <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Position Type</label>
+              <label for="inputStandard" class="col-lg-2 control-label">Sub Title</label>
               <div class="col-lg-9">
                 <div class="bs-component">
                   <input type="text" id="" name="sub_title" class="form-control" value="{{$data->sub_title}}" />
@@ -43,9 +43,9 @@
             </div>
           @endif
 
-          @if(Request::segment(2) == 'blog')
+          @if(Request::segment(2) == 'services')
             <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Author</label>
+              <label for="inputStandard" class="col-lg-2 control-label">Icon</label>
               <div class="col-lg-9">
                 <div class="bs-component">
                   <input type="text" id="" name="associated_title" class="form-control"

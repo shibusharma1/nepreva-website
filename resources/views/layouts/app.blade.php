@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,16 +15,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/skin/default_skin/css/theme.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/skin/default_skin/css/theme2.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/skin/default_skin/css/theme3.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/admin-tools/admin-forms/css/admin-forms.css') }}">
-    <link rel="shortcut icon" href="{{ asset('themes-assets/images/favicon.png') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/skin/default_skin/css/theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/skin/default_skin/css/theme2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/skin/default_skin/css/theme3.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin-tools/admin-forms/css/admin-forms.css') }}">
+    {{-- <link rel="shortcut icon" href="{{ asset('themes-assets/images/favicon.png') }}"> --}}
+    <link rel="icon" type="image/png" href="{{ asset('themes-assets/img/logo.png') }}">
 </head>
+
 <body class="external-page external-alt sb-l-c sb-r-c">
     <!-- Start: Main -->
     <div id="main" class="animated fadeIn">
@@ -61,14 +60,17 @@
         </section>
     </div>
 
-    <!-- END: PAGE SCRIPTS --> 
-<script src="https://www.google.com/recaptcha/api.js?render={{env('SITE_KEY')}}"></script>
-<script>
-grecaptcha.ready(function() {
-    grecaptcha.execute('{{env("SITE_KEY")}}', {action: 'homepage'}).then(function(token) {
-       document.getElementById('g_recaptcha_response').value=token;
-    });
-});
-</script>
+    <!-- END: PAGE SCRIPTS -->
+    <script src="https://www.google.com/recaptcha/api.js?render={{ env('SITE_KEY') }}"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('{{ env('SITE_KEY') }}', {
+                action: 'homepage'
+            }).then(function(token) {
+                document.getElementById('g_recaptcha_response').value = token;
+            });
+        });
+    </script>
 </body>
+
 </html>

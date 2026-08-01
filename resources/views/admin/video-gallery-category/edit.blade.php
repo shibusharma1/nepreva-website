@@ -23,7 +23,7 @@
                     </div>
                   </div> 
 
-                   <div class="form-group">
+                   {{-- <div class="form-group">
                     <label class="col-lg-3 control-label" for="textArea3"> Video Link </label>
                     <div class="col-lg-8">
                       <div class="bs-component">
@@ -40,7 +40,7 @@
                       </div>
                     </div>
                   </div> 
-                  @endif                  
+                  @endif                   --}}
 
                   <div class="form-group">
                     <label for="inputStandard" class="col-lg-3 control-label"> Caption </label>
@@ -60,7 +60,6 @@
                     </div>
                   </div> 
 
-                               
               </div>
             </div>          
           </div>

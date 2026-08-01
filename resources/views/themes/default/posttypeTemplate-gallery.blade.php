@@ -2,7 +2,9 @@
 @section('meta_keyword', $data->meta_keyword)
 @section('meta_description', $data->meta_description)
 @section('content')
+    @include('themes.default.common.herobanner')
     <section class="section-padding bg-white">
+        <!-- Heading -->
         <div class="container-custom">
             <div class="max-w-4xl mx-auto text-center">
                 <span class="section-subtitle">
@@ -19,88 +21,53 @@
                 </p>
             </div>
         </div>
+        <!-- Filters -->
         <div class="container-custom mt-8">
-            <div class="flex
-            flex-wrap
-            justify-center
-            gap-3">
+            <div class="flex flex-wrap justify-center gap-3">
+                <!-- All -->
                 <button class="gallery-filter active" data-filter="all">
                     All
                 </button>
-                <button class="gallery-filter" data-filter="hospital">
-                    Hospital
-                </button>
-                <button class="gallery-filter" data-filter="doctors">
-                    Doctors
-                </button>
-                <button class="gallery-filter" data-filter="events">
-                    Events
-                </button>
-                <button class="gallery-filter" data-filter="facilities">
-                    Facilities
-                </button>
-                <!-- <button
-                    class="gallery-filter"
-                    data-filter="community">
-                    Community Outreach
-                    </button> -->
-                <button class="gallery-filter" data-filter="research">
-                    Research
-                </button>
+                <!-- Dynamic Categories -->
+                @foreach ($categories as $category)
+                    <button class="gallery-filter" data-filter="{{ Str::slug($category->caption) }}">
+                        {{ $category->category }}
+                    </button>
+                @endforeach
             </div>
         </div>
+        <!-- Gallery -->
         <div class="container-custom mt-8">
             <div id="galleryGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-                <!-- HOSPITAL -->
-                <div class="gallery-item hospital">
-                    <img src="./assets/img/history/history1.webp" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item hospital">
-                    <img src="./assets/img/history/history2.webp" class="w-full h-[300px] object-cover">
-                </div>
-                <!-- DOCTORS -->
-                <div class="gallery-item doctors">
-                    <img src="./assets/img/history/history3.webp" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item doctors">
-                    <img src="./assets/img/doctors/david.png" class="w-full h-[300px] object-cover">
-                </div>
-                <!-- EVENTS -->
-                <div class="gallery-item events">
-                    <img src="./assets/img/speciality/img1.jpg" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item events">
-                    <img src="./assets/img/speciality/img4.jpg" class="w-full h-[300px] object-cover">
-                </div>
-                <!-- FACILITIES -->
-                <div class="gallery-item facilities">
-                    <img src="./assets/img/health/healthinformation.png" class="w-full h-[300px] object-cover">
-                </div>
-                <div class="gallery-item facilities">
-                    <img src="./assets/img/health/immunization.png" class="w-full h-[300px] object-cover">
-                </div>
-            </div>
-            <div id="gallery-empty-state" class="hidden">
-                <div class="bg-slate-100 border border-slate-200 py-16 px-8 text-center">
-                    <div class="w-20 h-20 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-images text-primary text-3xl">
-                        </i>
+                @forelse ($galleries as $key => $gallery)
+                    <div class="gallery-item {{ Str::slug($gallery->category->caption) }}">
+                        <img loading="lazy" decoding="async" src="{{ asset('uploads/galleries/' . $gallery->picture) }}"
+                            alt="{{ $gallery->caption }}" class="w-full h-[300px] object-cover">
                     </div>
-                    <h3 class="text-primary text-2xl font-black mb-3">
-                        No Images Available
-                    </h3>
-                    <p class="text-slate-600 max-w-lg mx-auto leading-7">
-                        There are currently no images available in this category.
-                        Please explore other gallery sections or check back later.
-                    </p>
-                </div>
+                @empty
+                    <div class="md:col-span-2 xl:col-span-4">
+                        <div id="gallery-empty-state">
+                            <div class="bg-slate-100 border border-slate-200 py-16 px-8 text-center">
+                                <div class="w-20 h-20 mx-auto bg-primary/10 flex items-center justify-center mb-6">
+                                    <i class="fa-solid fa-images text-primary text-3xl"></i>
+                                </div>
+                                <h3 class="text-primary text-2xl font-black mb-3">
+                                    No Images Available
+                                </h3>
+                                <p class="text-slate-600 max-w-lg mx-auto leading-7">
+                                    There are currently no images available in this category.
+                                    Please explore other gallery sections or check back later.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
 
     <section class="section-padding bg-slate-200 overflow-hidden">
         <div class="container-custom">
-            <!-- HEADING -->
             <div class="text-center mb-12">
                 <span class="section-subtitle">
                     Video Gallery
@@ -108,224 +75,59 @@
                 <h2 class="section-title">
                     Stories In Motion
                 </h2>
-                <p class="max-w-3xl mx-auto
-                text-slate-600
-                mt-6
-                leading-8">
+                <p class="max-w-3xl mx-auto text-slate-600 mt-6 leading-8">
                     Explore videos highlighting CIWEC's healthcare
                     services, community initiatives, medical expertise
                     and memorable moments throughout our journey.
                 </p>
             </div>
-            <!-- VIDEOS -->
-            <div class="grid
-            md:grid-cols-2
-            xl:grid-cols-3
-            gap-8">
-                <!-- VIDEO -->
-                <div
-                    class="group
-                bg-white
-                border
-                border-slate-200
-                overflow-hidden
-                hover:border-secondary
-                hover:-translate-y-2
-                transition-all duration-500">
-                    <div class="relative
-                    overflow-hidden">
-                        <img src="./assets/img/history/history1.webp"
-                            class="w-full
-                        h-[260px]
-                        object-cover
-                        transition-all duration-700
-                        group-hover:scale-110">
-                        <!-- OVERLAY -->
+            {{-- Videos --}}
+            <div id="videoGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+                @forelse($videos as $video)
+                    <div class="video-item {{ Str::slug($video->category->caption) }}">
                         <div
-                            class="absolute inset-0
-                        bg-primary/40
-                        group-hover:bg-primary/60
-                        transition-all">
-                        </div>
-                        <!-- PLAY -->
-                        <button
-                            class="videoBtn
-                        absolute
-                        inset-0
-                        flex
-                        items-center
-                        justify-center"
-                            data-video="./assets/vdo/banner.mp4">
-                            <div
-                                class="w-20
-                            h-20
-                            rounded-full
-                            bg-white
-                            text-primary
-                            flex
-                            items-center
-                            justify-center
-                            shadow-2xl">
-                                <i
-                                    class="fa-solid fa-play
-                                text-xl
-                                ml-1">
-                                </i>
+                            class="group bg-white border border-slate-200 overflow-hidden hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                            <div class="relative overflow-hidden">
+                                <img src="{{ $video->thumbnail }}"
+                                    class="w-full h-[260px] object-cover transition-all duration-700 group-hover:scale-110"
+                                    alt="{{ $video->title }}">
+                                <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/60 transition-all">
+                                </div>
+                                <button class="videoBtn absolute inset-0 flex items-center justify-center"
+                                    data-video="{{ $video->embed_url }}">
+                                    <div
+                                        class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center shadow-2xl">
+                                        <i class="fa-solid fa-play text-xl ml-1"></i>
+                                    </div>
+                                </button>
                             </div>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-secondary
-                        font-bold
-                        text-sm">
-                            Documentary
-                        </span>
-                        <h3
-                            class="text-primary
-                        text-xl
-                        font-black
-                        mt-3">
-                            The CIWEC Story
-                        </h3>
-                        <p class="text-slate-600
-                        mt-4
-                        leading-7">
-                            A journey through more than four decades
-                            of healthcare excellence.
-                        </p>
-                    </div>
-                </div>
-                <!-- VIDEO -->
-                <div
-                    class="group
-                bg-white
-                border
-                border-slate-200
-                overflow-hidden
-                hover:border-secondary
-                hover:-translate-y-2
-                transition-all duration-500">
-                    <div class="relative
-                    overflow-hidden">
-                        <img src="./assets/img/history/history2.webp"
-                            class="w-full
-                        h-[260px]
-                        object-cover
-                        transition-all duration-700
-                        group-hover:scale-110">
-                        <div class="absolute inset-0
-                        bg-primary/40">
-                        </div>
-                        <button
-                            class="videoBtn
-                        absolute
-                        inset-0
-                        flex
-                        items-center
-                        justify-center"
-                            data-video="./assets/vdo/banner.mp4">
-                            <div
-                                class="w-20 h-20
-                            rounded-full
-                            bg-white
-                            text-primary
-                            flex items-center justify-center">
-                                <i class="fa-solid fa-play
-                                text-xl ml-1">
-                                </i>
+                            <div class="p-6">
+                                <span class="text-secondary font-bold text-sm">
+                                    {{ $video->category->category }}
+                                </span>
+                                <h3 class="text-primary text-xl font-black mt-3">
+                                    {{ $video->title }}
+                                </h3>
+                                <p class="text-slate-600 mt-4 leading-7">
+                                    {{ $video->caption }}
+                                </p>
                             </div>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-secondary
-                        font-bold
-                        text-sm">
-                            Medical Camp
-                        </span>
-                        <h3
-                            class="text-primary
-                        text-xl
-                        font-black
-                        mt-3">
-                            Community Outreach Program
-                        </h3>
-                        <p class="text-slate-600
-                        mt-4
-                        leading-7">
-                            Bringing quality healthcare services
-                            beyond hospital walls.
-                        </p>
-                    </div>
-                </div>
-                <!-- VIDEO -->
-                <div
-                    class="group
-                bg-white
-                border
-                border-slate-200
-                overflow-hidden
-                hover:border-secondary
-                hover:-translate-y-2
-                transition-all duration-500">
-                    <div class="relative
-                    overflow-hidden">
-                        <img src="./assets/img/history/history3.webp"
-                            class="w-full
-                        h-[260px]
-                        object-cover
-                        transition-all duration-700
-                        group-hover:scale-110">
-                        <div class="absolute inset-0
-                        bg-primary/40">
                         </div>
-                        <button
-                            class="videoBtn
-                        absolute
-                        inset-0
-                        flex
-                        items-center
-                        justify-center"
-                            data-video="./assets/vdo/banner.mp4">
-                            <div
-                                class="w-20 h-20
-                            rounded-full
-                            bg-white
-                            text-primary
-                            flex items-center justify-center">
-                                <i class="fa-solid fa-play
-                                text-xl ml-1">
-                                </i>
-                            </div>
-                        </button>
                     </div>
-                    <div class="p-6">
-                        <span class="text-secondary
-                        font-bold
-                        text-sm">
-                            Health Education
-                        </span>
-                        <h3
-                            class="text-primary
-                        text-xl
-                        font-black
-                        mt-3">
-                            Doctor Insights & Awareness
-                        </h3>
-                        <p class="text-slate-600
-                        mt-4
-                        leading-7">
-                            Expert healthcare guidance from
-                            CIWEC specialists.
-                        </p>
+                @empty
+                    <div class="col-span-full">
+                        <div class="bg-white py-20 text-center">
+                            <i class="fa-solid fa-video text-5xl text-primary"></i>
+                            <h3 class="text-2xl font-bold mt-6">
+                                No Videos Available
+                            </h3>
+                        </div>
                     </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
 
-    <!-- ========================================= -->
-    <!-- VIDEO MODAL -->
-    <!-- ========================================= -->
     <div id="videoModal" class="fixed inset-0 z-[9999] hidden">
         <div id="videoOverlay" class="absolute inset-0 bg-black/90">
         </div>
@@ -354,87 +156,46 @@
     </div>
 
     <script>
-        const videoBtns =
-            document.querySelectorAll(".videoBtn");
-        const videoModal =
-            document.getElementById("videoModal");
-        const videoFrame =
-            document.getElementById("videoFrame");
-        const closeVideo =
-            document.getElementById("closeVideo");
-        const videoOverlay =
-            document.getElementById("videoOverlay");
+        const videoBtns = document.querySelectorAll(".videoBtn");
+        const videoModal = document.getElementById("videoModal");
+        const videoFrame = document.getElementById("videoFrame");
+        const closeVideo = document.getElementById("closeVideo");
+        const videoOverlay = document.getElementById("videoOverlay");
         videoBtns.forEach(btn => {
             btn.addEventListener("click", () => {
-                videoFrame.src =
-                    btn.dataset.video + "?autoplay=1";
+                videoFrame.src = btn.dataset.video + "?autoplay=1&rel=0";
                 videoModal.classList.remove("hidden");
-                document.body.style.overflow =
-                    "hidden";
+                document.body.style.overflow = "hidden";
             });
         });
-
         function closeVideoModal() {
             videoModal.classList.add("hidden");
             videoFrame.src = "";
             document.body.style.overflow = "";
         }
-
-        closeVideo.addEventListener(
-            "click",
-            closeVideoModal
-        );
-
-        videoOverlay.addEventListener(
-            "click",
-            closeVideoModal
-        );
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const filterButtons =
-                document.querySelectorAll(".gallery-filter");
-            const galleryItems =
-                document.querySelectorAll(".gallery-item");
-
-            function filterGallery(filter) {
-                const emptyState =
-                    document.getElementById("gallery-empty-state");
-                let visibleCount = 0;
-                galleryItems.forEach(item => {
-                    if (
-                        filter === "all" ||
-                        item.classList.contains(filter)
-                    ) {
-                        item.style.display = "block";
-                        visibleCount++;
-                    } else {
-                        item.style.display = "none";
-                    }
-                });
-
-                if (visibleCount === 0) {
-                    emptyState.classList.remove("hidden");
-                } else {
-                    emptyState.classList.add("hidden");
-                }
-            }
-
-            // Initial state
-            filterGallery("all");
+        closeVideo.addEventListener("click", closeVideoModal);
+        videoOverlay.addEventListener("click", closeVideoModal);
+        // gallery js
+        const filterButtons = document.querySelectorAll(".gallery-filter");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        if (filterButtons.length && galleryItems.length) {
             filterButtons.forEach(button => {
                 button.addEventListener("click", () => {
-                    const filter =
-                        button.dataset.filter;
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove("active");
-                    });
+                    // Active button
+                    filterButtons.forEach(btn => btn.classList.remove("active"));
                     button.classList.add("active");
-                    filterGallery(filter);
+                    const filter = button.dataset.filter;
+                    galleryItems.forEach(item => {
+                        if (filter === "all") {
+                            item.style.display = "";
+                        } else {
+                            item.style.display = item.classList.contains(filter) ?
+                                "" :
+                                "none";
+                        }
+                    });
                 });
             });
-        });
+        }
     </script>
-
 @endsection

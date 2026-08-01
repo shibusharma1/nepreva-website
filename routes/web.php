@@ -9,6 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+
 Route::get('/', 'FrontendControllers\FrontpageController@index');
 
 /* Authentication Routes... */
@@ -34,11 +35,16 @@ Route::get('page/photogallery/{category_id}', 'FrontendControllers\FrontpageCont
 
 // Send Mail
 Route::post('page/contact/sendmail', 'FrontendControllers\FrontpageController@sendmail')->name('sendmail');
+Route::post('page/contact/contact-sendmail_appointment', 'FrontendControllers\FrontpageController@sendmail_contact_appointment')->name('sendmail_appointment');
 Route::post('page/contact/contact-sendmail', 'FrontendControllers\FrontpageController@sendmail_contact')->name('sendmail_contact');
 Route::post('page/career/resume-sendmail', 'FrontendControllers\FrontpageController@sendmail_resume')->name('sendmail_resume');
 Route::post('page/order/sendorder', 'FrontendControllers\FrontpageController@sendorder')->name('sendorder');
 Route::post('page/career/sendresume', 'FrontendControllers\FrontpageController@sendresume')->name('sendresume');
 Route::get('category/{uri}', 'FrontendControllers\FrontpageController@category_navigation')->name('category.navigation');
+
+//For News Letter
+Route::post('/newsletter-subscribe',  'FrontendControllers\FrontpageController@newsletter')->name('newsletter.subscribe');
+Route::get('/newsletter/unsubscribe/{id}', 'AdminControllers\Newsletter\NewsletterSubscriberController@unsubscribeNewsletter')->middleware('signed')->name('newsletter.unsubscribe');
 
 //=========================================== Backend Routes =======================================================//
 Route::middleware(['auth'])->group(function () {
@@ -46,9 +52,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/admin-user', 'AdminControllers\Members\UserController@admin_user');
     Route::get('admin/agent-user', 'AdminControllers\Members\UserController@agent_user');
     Route::get('inquiry/contact_us', 'AdminControllers\AdminMenu\AdminMenuController@contact_inquiry');
-    Route::delete('inquiry/contact_us/{id}','AdminControllers\AdminMenu\AdminMenuController@contact_delete')->name('inquiry.delete');
+    Route::delete('inquiry/contact_us/{id}', 'AdminControllers\AdminMenu\AdminMenuController@contact_delete')->name('inquiry.delete');
+    Route::get('inquiry/appointments', 'AdminControllers\AdminMenu\AdminMenuController@appointment_inquiry');
+    Route::delete('inquiry/appointment/{id}', 'AdminControllers\AdminMenu\AdminMenuController@appointment_delete')->name('appointment.delete');
     Route::get('inquiry/application', 'AdminControllers\AdminMenu\AdminMenuController@application_inquiry');
-    Route::delete('inquiry/application/{id}','AdminControllers\AdminMenu\AdminMenuController@career_delete')->name('career.delete');
+    Route::delete('inquiry/application/{id}', 'AdminControllers\AdminMenu\AdminMenuController@career_delete')->name('career.delete');
 
     Route::resources([
         'admin/adminmenu' => 'AdminControllers\AdminMenu\AdminMenuController',
@@ -62,8 +70,28 @@ Route::middleware(['auth'])->group(function () {
         'admin/videocategory' => 'AdminControllers\Galleries\VideoGalleryCategoryController',
         'admin/videogallery' => 'AdminControllers\Galleries\VideoGalleryController',
         'admin/settings' => 'AdminControllers\Settings\SettingController',
-        
-    ]);    
+
+    ]);
+
+    //For newsletter subscriber
+    Route::get('admin/newsletter-subscribers', 'AdminControllers\Newsletter\NewsletterSubscriberController@index')->name('newsletter.subscribers');
+    Route::get('admin/newsletter-subscribers/create', 'AdminControllers\Newsletter\NewsletterSubscriberController@create')->name('newsletter.subscribers.create');
+    Route::post('admin/newsletter-subscribers/store', 'AdminControllers\Newsletter\NewsletterSubscriberController@store')->name('newsletter.subscribers.store');
+    Route::get('admin/newsletter-subscribers/edit/{id}', 'AdminControllers\Newsletter\NewsletterSubscriberController@edit')->name('newsletter.subscribers.edit');
+    Route::post('/admin/newsletter-subscribers/update', 'AdminControllers\Newsletter\NewsletterSubscriberController@update')->name('newsletter.subscribers.update');
+    Route::get('/admin/newsletter-subscribers/delete/{id}', 'AdminControllers\Newsletter\NewsletterSubscriberController@delete')->name('newsletter.subscribe.delete');
+
+    // Newsletter Email Templates
+    Route::get('/admin/newsletter-email-template', 'AdminControllers\Newsletter\NewsletterEmailTemplateController@index')->name('newsletter.email.template');
+    Route::get('/admin/newsletter-email-template/create', 'AdminControllers\Newsletter\NewsletterEmailTemplateController@create')->name('newsletter.email.template.create');
+    Route::post('/admin/newsletter-email-template/store', 'AdminControllers\Newsletter\NewsletterEmailTemplateController@store')->name('newsletter.email.template.store');
+    Route::get('/admin/newsletter-email-template/edit/{id}', 'AdminControllers\Newsletter\NewsletterEmailTemplateController@edit')->name('newsletter.email.template.edit');
+    Route::put('/admin/newsletter-email-template/update/{id}', 'AdminControllers\Newsletter\NewsletterEmailTemplateController@update')->name('newsletter.email.template.update');
+    Route::get('/admin/newsletter-email-template/delete/{id}', 'AdminControllers\Newsletter\NewsletterEmailTemplateController@delete')->name('newsletter.email.template.delete');
+
+    // Send Newsletter
+    Route::get('/admin/newsletter-subscribers-list', 'AdminControllers\Newsletter\NewsletterSubscriberController@NewsLetterSubscribers')->name('newsletter.send');
+    Route::post('/admin/send-newsletter-to-subscribers', 'AdminControllers\Newsletter\NewsletterSubscriberController@sendNewsletter')->name('ajax.newsletter.send');
 
     Route::resource('admin.multiplephoto', 'AdminControllers\Posts\PostImageController');
     Route::resource('admin.multiplevideo', 'AdminControllers\Posts\MultipleVideoController');
@@ -108,7 +136,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('adminimg/multiplephoto/{id}', 'AdminControllers\Posts\PostImageController@update')->name('multiplephoto.update');
     Route::delete('adminimg/multiplephoto/{id}', 'AdminControllers\Posts\PostImageController@destroy');
 
-// Associated Post
+    // Associated Post
     Route::get('admin/associated/{type}/{id}', 'AdminControllers\Posts\AssociatedPostController@associated_post')->name('associated.post.index');
     Route::get('admin/associated/{type}/{id}/create', 'AdminControllers\Posts\AssociatedPostController@create')->name('admin.associated.create');
     Route::post('admin/associated/{type}/{id}/store', 'AdminControllers\Posts\AssociatedPostController@store')->name('admin.associated.store');
@@ -116,7 +144,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/associated/{type}/{id}/edit', 'AdminControllers\Posts\AssociatedPostController@edit')->name('admin.associated.edit');
     Route::put('admin/associated/{type}/{id}', 'AdminControllers\Posts\AssociatedPostController@update')->name('admin.associated.update');
 
-  // Upload multiple document
+    // Upload multiple document
     Route::get('doc/multipledocument/{post_id}', 'AdminControllers\Posts\PostDocController@index')->name('doc.multipledocument');
     Route::get('doc/multipledocument/{post_id}/create', 'AdminControllers\Posts\PostDocController@create');
     Route::post('doc/multipledocument/store', 'AdminControllers\Posts\PostDocController@store')->name('multipledocument.store');
@@ -126,13 +154,11 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('doc/multipledocument/{id}', 'AdminControllers\Posts\PostDocController@delete_doc_file');
 
     // List User for API
-    Route::get('admin/pages/listusers/{dept}', 'AdminControllers\Circulars\CircularController@listusers');
-    Route::get('admin/pages/departments', 'AdminControllers\Circulars\CircularController@departments');
+    // Route::get('admin/pages/listusers/{dept}', 'AdminControllers\Circulars\CircularController@listusers');
+    // Route::get('admin/pages/departments', 'AdminControllers\Circulars\CircularController@departments');
 
     View::composer(['*'], function ($view) {
         $posttype = App\Models\Posts\PostTypeModel::orderBy('ordering', 'asc')->get();
         $view->with('posttype', $posttype);
     });
-
-  
 });

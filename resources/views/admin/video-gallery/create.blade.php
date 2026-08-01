@@ -36,6 +36,15 @@
                   </div>  
 
 				<div class="form-group">
+					<label for="inputStandard" class="col-lg-3 control-label">Title </label>
+					<div class="col-lg-8">
+						<div class="bs-component">
+							<input type="text" id="inputStandard" name="title" class="form-control" placeholder="" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
 					<label for="inputStandard" class="col-lg-3 control-label">Caption </label>
 					<div class="col-lg-8">
 						<div class="bs-component">

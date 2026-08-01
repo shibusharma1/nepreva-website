@@ -1,127 +1,100 @@
-@extends('themes.default.common.master')
-@section('post_title','404')
-@section('content')
-<style type="text/css">
-	* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
+@extends('themes.default.common.master') @section('post_title','404 - Page Not Found') @section('content')
 
-body {
-  padding: 0;
-  margin: 0;
-}
+<section class="relative min-h-[85vh] flex items-center bg-slate-100 overflow-hidden">
+    {{-- Background --}}
+    <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
+        <img src="{{ asset('themes-assets/img/background/bg-img1.webp') }}" class="mx-auto w-full opacity-30" />
+    </div>
 
-#notfound {
-  position: relative;
-  height: 100vh;
-}
+    <div class="container-custom relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            {{-- Error Number --}}
+            <div class="text-[120px] md:text-[180px] font-black text-primary/10 leading-none select-none">404</div>
 
-#notfound .notfound {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
+            {{-- Icon --}}
+            <div
+                class="-mt-20 mb-8 inline-flex items-center justify-center w-24 h-24 bg-primary text-white rounded-full shadow-xl"
+            >
+                <i class="fa-solid fa-triangle-exclamation text-4xl"></i>
+            </div>
 
-.notfound {
-  max-width: 520px;
-  width: 100%;
-  line-height: 1.4;
-  text-align: center;
-}
+            {{-- Heading --}}
+            <h1 class="text-primary text-4xl md:text-5xl font-black mb-6">Page Not Found</h1>
 
-.notfound .notfound-404 {
-  position: relative;
-  height: 200px;
-  margin: 0px auto 20px;
-  z-index: -1;
-}
+            <p class="max-w-2xl mx-auto text-slate-600 text-lg leading-8">
+                Sorry, the page you are looking for may have been removed, renamed or is temporarily unavailable. Please
+                check the URL or return to the homepage.
+            </p>
 
-.notfound .notfound-404 h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 100px;
-  font-weight: 200;
-  margin: 0px;
-  color: #211b19;
-  text-transform: uppercase;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
+            {{-- Buttons --}}
+            <div class="flex flex-wrap justify-center gap-5 mt-10">
+                <a
+                    href="{{ url('/') }}"
+                    class="bg-primary text-white font-bold px-8 py-4 hover:bg-secondary transition-all duration-300 inline-flex items-center gap-3"
+                >
+                    <i class="fa-solid fa-house"></i>
 
-.notfound .notfound-404 h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 28px;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: #211b19;
-  background: #fff;
-  padding: 10px 5px;
-  margin: auto;
-  display: inline-block;
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-}
+                    Back to Home
+                </a>
 
-.notfound a {
-  font-family: 'Montserrat', sans-serif;
-  display: inline-block;
-  font-weight: 700;
-  text-decoration: none;
-  color: #fff;
-  text-transform: uppercase;
-  padding: 13px 23px;
-  background: #ff6300;
-  font-size: 18px;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-}
+                <a
+                    href="{{ url('/contact') }}"
+                    class="border border-primary text-primary font-bold px-8 py-4 hover:bg-primary hover:text-white transition-all duration-300 inline-flex items-center gap-3"
+                >
+                    <i class="fa-solid fa-envelope"></i>
 
-.notfound a:hover {
-  color: #ff6300;
-  background: #211b19;
-}
+                    Contact Us
+                </a>
+            </div>
+        </div>
 
-@media only screen and (max-width: 767px) {
-  .notfound .notfound-404 h1 {
-    font-size: 148px;
-  }
-}
+        {{-- Quick Links --}}
+        <div class="max-w-5xl mx-auto mt-20">
+            <div class="bg-white border border-slate-200 shadow-lg">
+                <div class="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+                    <a href="{{ url('/page/about') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                        <div
+                            class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
+                        >
+                            <i class="fa-solid fa-circle-info text-2xl"></i>
+                        </div>
 
-@media only screen and (max-width: 480px) {
-  .notfound .notfound-404 {
-    height: 148px;
-    margin: 0px auto 10px;
-  }
-  .notfound .notfound-404 h1 {
-    font-size: 86px;
-  }
-  .notfound .notfound-404 h2 {
-    font-size: 16px;
-  }
-  .notfound a {
-    padding: 7px 15px;
-    font-size: 14px;
-  }
-}
+                        <h3 class="font-bold text-primary">About Us</h3>
+                    </a>
 
-	</style>
-<div id="notfound">
-		<div class="notfound">
-			<div class="notfound-404">
-				<h1>Oops!</h1>
-				<h2>404 - The Page can't be found</h2>
-			</div>
-			<a href="{{ url('/') }}">Go TO Homepage</a>
-		</div>
-	</div>
+                    <a href="{{ url('/page/services') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                        <div
+                            class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
+                        >
+                            <i class="fa-solid fa-stethoscope text-2xl"></i>
+                        </div>
+
+                        <h3 class="font-bold text-primary">Services</h3>
+                    </a>
+
+                    <a href="{{ url('/page/doctors') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                        <div
+                            class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
+                        >
+                            <i class="fa-solid fa-user-doctor text-2xl"></i>
+                        </div>
+
+                        <h3 class="font-bold text-primary">Doctors</h3>
+                    </a>
+
+                    <a href="{{ url('/bookappointment') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                        <div
+                            class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
+                        >
+                            <i class="fa-solid fa-calendar-check text-2xl"></i>
+                        </div>
+
+                        <h3 class="font-bold text-primary">Appointment</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @endsection

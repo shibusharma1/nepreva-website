@@ -95,59 +95,57 @@
                 </li>
             @endif
 
-            {{-- @if (checkAuth(4))
-      <li class="">
-        @if (Request::segment(2) == 'imagecategory' || Request::segment(2) == 'imagegallery')
-        <a class="accordion-toggle menu-open" href="avoid:javascript;">
-          @else
-          <a href="avoid:javascript;" class="accordion-toggle">
+            <li class="">
+                @if (Request::segment(2) == 'imagecategory' || Request::segment(2) == 'imagegallery')
+                    <a class="accordion-toggle menu-open" href="avoid:javascript;">
+                    @else
+                        <a href="avoid:javascript;" class="accordion-toggle">
+                @endif
+                <span class="fa fa-file-image-o text-info"></span>
+                <span class="sidebar-title"> Manage Photo Gallery </span>
+                <span class="caret"></span>
+                </a>
+                <ul class="nav sub-nav">
+                    <li class="{{ Request::segment(2) == 'imagecategory' ? 'active' : '' }}">
+                        <a href="{{ url('admin/imagecategory') }}">
+                            <span class="fa fa fa-arrows-h"></span>
+                            Gallery Category
+                        </a>
+                    </li>
+                    <li class="{{ Request::segment(2) == 'imagegallery' ? 'active' : '' }}">
+                        <a href="{{ url('admin/imagegallery') }}">
+                            <span class="fa fa fa-arrows-h"></span>
+                            Photos
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            @if (checkAuth(5))
+                <li class="">
+                    <a href="avoid:javascript;" class="accordion-toggle">
+                        <span class="fa fa-file-video-o text-info"></span>
+                        <span class="sidebar-title"> Manage Video Gallery </span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a href="{{ url('admin/videocategory') }}">
+                                <span class="fa fa fa-arrows-h"></span>
+                                Video Category
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('admin/videogallery') }}">
+                                <span class="fa fa fa-arrows-h"></span>
+                                Videos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @endif
-            <span class="fa fa-file-image-o text-info"></span>
-            <span class="sidebar-title"> Manage Photo Gallery </span>
-            <span class="caret"></span>
-          </a>
-          <ul class="nav sub-nav">
-            <li class="{{ (Request::segment(2) == 'imagecategory') ? 'active' : ''}}">
-              <a href="{{ url('admin/imagecategory') }}">
-                <span class="fa fa fa-arrows-h"></span>
-                Gallery Category
-              </a>
-            </li>
-            <li class="{{ (Request::segment(2) == 'imagegallery') ? 'active' : ''}}">
-              <a href="{{ url('admin/imagegallery') }}">
-                <span class="fa fa fa-arrows-h"></span>
-                Photos
-              </a>
-            </li>
-          </ul>
-      </li>
-      @endif --}}
-            {{-- @if (checkAuth(5))
-      <li class="">
-        <a href="avoid:javascript;" class="accordion-toggle">
-          <span class="fa fa-file-video-o text-info"></span>
-          <span class="sidebar-title"> Manage Video Gallery </span>
-          <span class="caret"></span>
-        </a>
-        <ul class="nav sub-nav">
-          <li>
-            <a href="{{ url('admin/videocategory') }}">
-              <span class="fa fa fa-arrows-h"></span>
-              Video Category
-            </a>
-          </li>
-          <li>
-            <a href="{{ url('admin/videogallery') }}">
-              <span class="fa fa fa-arrows-h"></span>
-              Videos
-            </a>
-          </li>
-        </ul>
-      </li>
-      @endif --}}
 
-
-            @if (checkAuth(9))
+            {{-- @if (checkAuth(9))
                 <li class="">
                     <a class="accordion-toggle">
                         <span class="glyphicon glyphicon-user text-info"></span>
@@ -169,8 +167,50 @@
                         </li>
                     </ul>
                 </li>
-            @endif
+            @endif --}}
 
+            {{-- {{ dd(route('newsletter.subscribers')) }} --}}
+            <li class="">
+                @if (Request::segment(2) == 'newsletter-subscribers' ||
+                        Request::segment(2) == 'newsletter-email-template' ||
+                        Request::segment(2) == 'newsletter-subscribers-list')
+                    <a class="accordion-toggle menu-open">
+                    @else
+                        <a class="accordion-toggle">
+                @endif
+
+                <span class="glyphicon glyphicon-envelope text-info"></span>
+                <span class="sidebar-title">Newsletter</span>
+                <span class="caret"></span>
+                </a>
+
+                <ul class="nav sub-nav">
+                    <!-- Subscribers -->
+                    <li class="{{ Request::segment(2) == 'newsletter-subscribers' ? 'active' : '' }}">
+                        <a href="{{ route('newsletter.subscribers') }}">
+                            <span class="fa fa-arrows-h"></span>
+                            Subscribers
+                        </a>
+                    </li>
+
+                    {{-- <!-- Email Template -->
+                    <li class="{{ Request::segment(2) == 'newsletter-email-template' ? 'active' : '' }}">
+                        <a href="{{ route('newsletter.email.template') }}">
+                            <span class="fa fa-arrows-h"></span>
+                            Email Template
+                        </a>
+                    </li>
+
+                    <!-- Send Email -->
+                    <li class="{{ Request::segment(2) == 'newsletter-subscribers-list' ? 'active' : '' }}">
+                        <a href="{{ route('newsletter.send') }}">
+                            <span class="fa fa-arrows-h"></span>
+                            Send Email
+                        </a>
+                    </li> --}}
+                </ul>
+            </li>
+            {{-- </li> --}}
 
             @if (checkAuth(9))
                 <li class="">
@@ -213,16 +253,22 @@
                 <span class="caret"></span>
                 </a>
                 <ul class="nav sub-nav">
-                    <li class="{{ Request::segment(2) == 'application' ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::segment(2) == 'application' ? 'active' : '' }}">
                         <a href="{{ url('inquiry/application') }}">
                             <span class="fa fa fa-arrows-h"></span>
                             Applications
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="{{ Request::segment(2) == 'contact_us' ? 'active' : '' }}">
                         <a href="{{ url('inquiry/contact_us') }}">
                             <span class="fa fa fa-arrows-h"></span>
                             Contact Us
+                        </a>
+                    </li>
+                    <li class="{{ Request::segment(2) == 'appointments' ? 'active' : '' }}">
+                        <a href="{{ url('inquiry/appointments') }}">
+                            <span class="fa fa fa-arrows-h"></span>
+                            Appointments
                         </a>
                     </li>
                 </ul>
