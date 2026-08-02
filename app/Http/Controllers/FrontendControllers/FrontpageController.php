@@ -40,10 +40,11 @@ class FrontpageController extends Controller
 {
   public function index()
   {
-    $banners = BannerModel::first();
-    $about = PostTypeModel::where('id', '1')->first();
+    $banner = BannerModel::first();
+    $history = PostModel::where('post_type', 1)->where('post_parent', 82)->orderBy('post_order')->get();
+    // dd($history);
 
-    return view('themes.default.frontpage', compact('banners', 'about'));
+    return view('themes.default.frontpage', compact('banner', 'history'));
   }
 
   public function posttype($uri)
@@ -112,6 +113,25 @@ class FrontpageController extends Controller
     $videoCategories = collect();
     $videos = collect();
     $services = collect();
+    $doctors = collect();
+    $specialities = collect();
+    $expertcare = collect();
+    $healthguide = collect();
+    $travelguide = collect();
+    $faq = collect();
+    $altitudesection = collect();
+    $aboutsection = collect();
+    $missionvisionvalue = collect();
+    $historyheading = collect();
+    $history = collect();
+    $historicalgalleryheading = collect();
+    $historicalgallery = collect();
+    $foundersheading = collect();
+    $founders = collect();
+    $csrhero = collect();
+    $csrfeaturedheading = collect();
+    $csrfeatured = collect();
+    $featuredstory = collect();
 
     if ($data->uri === 'gallery') {
       $categories = ImageGalleryCategoryModel::whereHas('galleries')->orderBy('created_at')->get();
@@ -125,15 +145,44 @@ class FrontpageController extends Controller
         ->latest()
         ->get();
     }
-    
-    // dd($data);
     if ($data->uri == 'services') {
       $services = PostModel::with('documents')->where('post_type', $data->post_type)->orderBy('post_order')->get();
-      }
-      // dd($services->where('post_parent', 26)->skip(2),$services->where('post_parent', 37));
+    }
+    if ($data->uri == "doctors-at-ciwec") {
+      $doctors = PostModel::where('post_type', 2)->where('post_parent', 45)->orderBy('post_order')->get();
+      $specialities = PostModel::where('post_type', 2)->where('post_parent', 46)->orderBy('post_order')->get();
+      $expertcare = PostModel::where('id', 57)->where('post_type', 2)->where('post_parent', 27)->orderBy('post_order')->first();
+    }
+    if ($data->uri == "family-medicine-health-screening") {
+      $healthguide = PostModel::with('documents')->where('post_type', 2)->where('post_parent', 62)->orderBy('post_order')->get();
+      $travelguide = PostModel::with('documents')->where('post_type', 2)->where('post_parent', 63)->orderBy('post_order')->first();
+      $faq = PostModel::where('post_type', 2)->where('post_parent', 65)->orderBy('post_order')->get();
+    }
+    if ($data->uri == "altitude-illness-frostbite") {
+      $altitudesection = PostModel::with('documents')->where('post_type', 2)->where('post_parent', 29)->orderBy('post_order')->get();
+    }
 
+    if ($data->uri == "about-us") {
+      $aboutsection = PostModel::where('post_type', 1)->where('post_parent', 17)->orderBy('post_order')->get();
+      $missionvisionvalue = PostModel::where('post_type', 1)->where('post_parent', 77)->orderBy('post_order')->get();
+    }
+    if ($data->uri == "ciwec-history") {
+      $historyheading = PostModel::where('id',82)->first();
+      $history = PostModel::where('post_type', 1)->where('post_parent', 82)->orderBy('post_order')->get();
+      $historicalgalleryheading = PostModel::where('id', 87)->first();
+      $historicalgallery = PostModel::where('post_type', 1)->where('post_parent', 87)->orderBy('post_order')->get();
+      $foundersheading = PostModel::where('id', 94)->first();
+      $founders = PostModel::where('post_type', 1)->where('post_parent', 94)->orderBy('post_order')->get();
+    }
+     if ($data->uri == "ciwec-csr") {
+      $csrhero = PostModel::where('id',96)->first();
+      $csrfeaturedheading = PostModel::where('id',97)->first();
+      $csrfeatured = PostModel::where('post_type', 1)->where('post_parent', 97)->orderBy('post_order')->get();
+      $featuredstory = PostModel::where('id',98)->first();
+     }
 
-    return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos', 'categories', 'galleries', 'videoCategories', 'videos','services'));
+    // dd($csrhero,$csrfeaturedheading,$csrfeatured,$featuredstory);
+    return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos', 'categories', 'galleries', 'videoCategories', 'videos', 'services', 'doctors', 'specialities', 'expertcare', 'healthguide', 'travelguide', 'faq', 'altitudesection', 'aboutsection', 'missionvisionvalue','historyheading','history','historicalgalleryheading','historicalgallery','foundersheading','founders','csrhero','csrfeaturedheading','csrfeatured','featuredstory'));
   }
 
   public function product_detail($uri)

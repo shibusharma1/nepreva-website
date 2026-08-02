@@ -3,7 +3,7 @@
 @section('meta_description', $data->meta_description)
 @section('content')
     @include('themes.default.common.herobanner')
-    <section class="section-padding bg-slate-100 overflow-hidden">
+    {{-- <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="max-w-4xl mx-auto text-center mb-14">
@@ -123,24 +123,229 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+    <section class="section-padding bg-slate-100 overflow-hidden">
+
+        <div class="container-custom">
+
+            {{-- HEADER --}}
+
+            <div class="max-w-4xl mx-auto text-center mb-14">
+
+                <span class="section-subtitle">
+                    Medical Specialists
+                </span>
+
+                <h2 class="section-title">
+                    Find The Right Doctor
+                </h2>
+
+                <p class="text-slate-600 mt-6 leading-8">
+                    Search our experienced healthcare professionals by
+                    name, specialty or location.
+                </p>
+
+            </div>
+
+            {{-- FILTER PANEL --}}
+
+            <div id="doctor-search" class="bg-white border border-slate-200 p-6 lg:p-8 shadow-sm">
+
+                <div class="grid lg:grid-cols-12 gap-5">
+
+                    {{-- SEARCH --}}
+
+                    <div class="lg:col-span-5">
+
+                        <label class="block text-primary font-semibold mb-3">
+                            Search Doctor
+                        </label>
+
+                        <div class="relative">
+
+                            <input type="text" id="doctorSearch" placeholder="Search by doctor name..."
+                                class="w-full h-14 border border-slate-300 pl-14 pr-5 focus:border-secondary outline-none transition">
+
+                            <i
+                                class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+
+                        </div>
+
+                    </div>
+
+                    {{-- Department --}}
+
+                    <div class="lg:col-span-3">
+
+                        <label class="block text-primary font-semibold mb-3">
+                            Department
+                        </label>
+
+                        <select id="departmentFilter"
+                            class="w-full h-14 border border-slate-300 px-4 focus:border-secondary outline-none">
+
+                            <option value="">
+                                All Departments
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    {{-- Location --}}
+
+                    <div class="lg:col-span-2">
+
+                        <label class="block text-primary font-semibold mb-3">
+                            Location
+                        </label>
+
+                        <select id="locationFilter"
+                            class="w-full h-14 border border-slate-300 px-4 focus:border-secondary outline-none">
+
+                            <option value="">
+                                All Locations
+                            </option>
+
+                            <option value="Kathmandu">
+                                Kathmandu
+                            </option>
+
+                            <option value="Pokhara">
+                                Pokhara
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    {{-- RESET --}}
+
+                    <div class="lg:col-span-2 flex items-end">
+
+                        <button id="resetFilters"
+                            class="w-full h-14 bg-primary text-white font-semibold hover:bg-secondary transition">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {{-- TOP BAR --}}
+
+            <div class="flex flex-wrap items-center justify-between gap-4 my-12">
+
+                <div>
+
+                    <span class="text-secondary font-semibold uppercase tracking-[3px]">
+                        Our Medical Team
+                    </span>
+
+                    <h2 class="text-primary text-4xl font-black mt-2">
+                        Available Doctors
+                    </h2>
+
+                </div>
+
+                <div class="px-6 py-3 font-semibold">
+
+                    Showing
+
+                    <span id="doctorCount">
+                        {{ count($doctors) }} Doctors
+                    </span>
+
+                </div>
+
+            </div>
+
+            {{-- Loader --}}
+
+            <div id="doctorLoader" class="hidden py-24">
+
+                <div class="flex flex-col items-center">
+
+                    <div class="w-16 h-16 border-[3px] border-slate-200 border-t-secondary rounded-full animate-spin"></div>
+
+                    <p class="text-slate-500 mt-5">
+                        Loading Doctors...
+                    </p>
+
+                </div>
+
+            </div>
+
+            {{-- GRID --}}
+
+            <div id="doctorGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            </div>
+
+            {{-- EMPTY --}}
+
+            <div id="doctorEmptyState" class="hidden">
+
+                <div class="bg-slate-100 border border-slate-200 py-24 px-8 text-center">
+
+                    <div class="w-24 h-24 mx-auto bg-primary/10 flex items-center justify-center mb-8">
+
+                        <i class="fa-solid fa-user-doctor text-primary text-4xl"></i>
+
+                    </div>
+
+                    <h3 class="text-primary text-3xl font-black">
+
+                        No Doctors Found
+
+                    </h3>
+
+                    <p class="text-slate-600 max-w-xl mx-auto mt-4 leading-8">
+
+                        We couldn't find any doctors matching your search criteria.
+
+                    </p>
+
+                    <button id="clearSearchBtn" class="btn-primary mt-8">
+
+                        Clear Filters
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
     <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
-        <!-- OVERLAY -->
+
         <div id="doctorOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
         </div>
-        <!-- MODAL -->
+
         <div class="relative h-screen flex items-center justify-center p-4">
+
             <div class="bg-white max-w-6xl w-full max-h-[80vh] overflow-y-auto relative">
-                <!-- CLOSE -->
+
                 <button id="closeDoctorModal"
                     class="absolute top-5 right-5 w-12 h-12 bg-primary text-white z-20 hover:bg-secondary transition">
+
                     <i class="fa-solid fa-xmark"></i>
+
                 </button>
-                <!-- CONTENT -->
+
                 <div id="doctorModalContent"></div>
+
             </div>
+
         </div>
+
     </div>
 
 
@@ -155,7 +360,7 @@
                     Areas Of Expertise
                 </span>
                 <h2 class="section-title">
-                    Medical Specialties We Cover
+                    Medical Specialities We Cover
                 </h2>
                 <p class="text-slate-600 mt-6 leading-8">
                     Our multidisciplinary team provides specialized
@@ -166,144 +371,39 @@
             <!-- SPECIALTY GRID -->
             <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                 <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-stethoscope text-primary text-3xl">
-                        </i>
+                
+                @foreach ($specialities as $speciality)
+                    <div
+                        class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                        <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
+                            <i class="{{ $speciality->associated_title }} text-primary hover:text-secondary text-3xl">
+                            </i>
+                        </div>
+                        <h3 class="text-primary text-2xl font-black">
+                            {{ $speciality->post_title }}
+                        </h3>
+                        <p class="text-slate-600 mt-4 leading-7">
+                            {!! $speciality->post_excerpt !!}
+                        </p>
                     </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Internal Medicine
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        Comprehensive adult healthcare,
-                        diagnosis and treatment.
-                    </p>
-                </div>
-                <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-20 h-20 mx-auto bg-secondary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-heart-pulse text-secondary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Cardiology
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        Heart health, cardiovascular
-                        assessment and prevention.
-                    </p>
-                </div>
-                <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-baby text-primary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Pediatrics
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        Specialized healthcare for
-                        infants, children and adolescents.
-                    </p>
-                </div>
-                <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-20 h-20 mx-auto bg-secondary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-earth-asia text-secondary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Travel Medicine
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        Vaccinations, travel consultations
-                        and preventive care.
-                    </p>
-                </div>
-                <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-mountain text-primary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Altitude Medicine
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        High-altitude illness prevention
-                        and treatment expertise.
-                    </p>
-                </div>
-                <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-20 h-20 mx-auto bg-secondary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-allergies text-secondary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Dermatology
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        Diagnosis and treatment
-                        of skin-related conditions.
-                    </p>
-                </div>
-                <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-lungs text-primary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Pulmonology
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        Respiratory care and
-                        lung health management.
-                    </p>
-                </div>
-                <!-- CARD -->
-                <div
-                    class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
-                    <div class="w-20 h-20 mx-auto bg-secondary/10 flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-brain text-secondary text-3xl">
-                        </i>
-                    </div>
-                    <h3 class="text-primary text-2xl font-black">
-                        Neurology
-                    </h3>
-                    <p class="text-slate-600 mt-4 leading-7">
-                        Specialized care for disorders
-                        affecting the nervous system.
-                    </p>
-                </div>
+                @endforeach
             </div>
             <!-- FEATURE BAR -->
             <div class="bg-primary mt-20 overflow-hidden">
                 <div class="grid lg:grid-cols-12 items-center">
                     <div class="lg:col-span-8 p-10 lg:p-14">
                         <span class="text-secondary font-bold uppercase tracking-[3px]">
-                            Comprehensive Healthcare
+                            {{ $expertcare->sub_title }}
                         </span>
                         <h3 class="text-white text-4xl font-black mt-5">
-                            Expert Care Across Multiple Specialties
+                            {{ $expertcare->post_title }}
                         </h3>
                         <p class="text-white/80 mt-6 leading-8">
-                            Our collaborative approach allows specialists
-                            from different disciplines to work together
-                            to provide the best possible outcomes.
+                            {{ $expertcare->post_excerpt }}
                         </p>
                     </div>
                     <div class="lg:col-span-4">
-                        <img src="./assets/img/altitude-expert-doctor.png" alt=""
+                        <img src="{{ asset('uploads/medium/' . $expertcare->banner) }}" alt="{{ $expertcare->post_title }}"
                             class="w-full h-[300px] object-cover">
                     </div>
                 </div>
@@ -389,7 +489,7 @@
                             Schedule your consultation
                             with a trusted specialist.
                         </p>
-                        <a href="./bookappointment.php"
+                        <a href="{{ url('page/bookappointment.html') }}"
                             class="inline-block mt-8 bg-primary text-white px-8 py-3 font-semibold hover:bg-secondary transition">
                             Book Now
                         </a>
@@ -425,7 +525,7 @@
                             Get assistance regarding
                             doctors and appointments.
                         </p>
-                        <a href="./contact.php"
+                        <a href="{{ url('page/contact.html') }}"
                             class="inline-block mt-8 bg-primary text-white px-8 py-3 font-semibold hover:bg-secondary transition">
                             Contact Us
                         </a>
@@ -444,14 +544,14 @@
                             Immediate medical assistance
                             available 24 hours a day.
                         </p>
-                        <a href="tel:+977XXXXXXXXX"
+                        <a href="tel:{{ $setting->phone }}"
                             class="inline-block mt-8 bg-red-600 text-white px-8 py-3 font-semibold hover:bg-red-700 transition">
                             Call Now
                         </a>
                     </div>
                 </div>
                 <!-- BOTTOM STATS -->
-                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mt-16">
+                {{-- <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mt-16">
                     <div class="text-center">
                         <h3 class="text-white text-4xl font-black">
                             Expert
@@ -484,184 +584,243 @@
                             Emergency Support
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
     
+    @php
+        $doctorData = $doctors
+            ->map(function ($doctor) {
+                return [
+                    'id' => $doctor->id,
+                    'slug' => $doctor->uri,
+                    'name' => $doctor->post_title,
+                    'department' => $doctor->sub_title,
+                    'qualification' => $doctor->post_excerpt,
+                    'experience' => $doctor->associated_title,
+                    'about' => strip_tags($doctor->post_content),
+
+                    'location' => 'Kathmandu',
+                    'languages' => 'English, Nepali',
+                    'patients' => '5000+',
+                    'research' => '12',
+                    'education' => [],
+
+                    'image' => !empty($doctor->banner)
+                        ? asset('uploads/medium/' . $doctor->banner)
+                        : asset('uploads/medium/david-IMsaOobp4lk4Er82hHTKnU9LoaxxMES6SqAyyURl.webp'),
+                ];
+            })
+            ->values();
+    @endphp
     <script>
-        const doctors = [{
-                name: "Dr. David R. Shlim",
-                location: "Kathmandu",
-                department: "Internal Medicine",
-                qualification: "MD, Medical Director Emeritus",
-                experience: "25+ Years",
-                image: "./assets/img/doctors/david.png",
+        const doctors = @json($doctorData);
+        let currentDoctors = [...doctors];
+    </script>
 
-                about: "Extensive experience in travel medicine and infectious disease.",
-
-                education: ["Harvard Medical School", "Internal Medicine Residency"],
-
-                languages: "English, Nepali",
-
-                patients: "5000+",
-                research: "12",
-            },
-
-            {
-                name: "Dr. Samrat Bashyal",
-                location: "Kathmandu",
-                department: "General Practice",
-                qualification: "MD, General Practitioner",
-                experience: "10+ Years",
-                image: "./assets/img/doctors/samrat.png",
-
-                about: "Experienced physician focusing on primary healthcare.",
-
-                education: ["Kathmandu University", "MD General Practice"],
-
-                languages: "English, Nepali",
-
-                patients: "3500+",
-                research: "5",
-            },
-        ];
-
+    <script>
         const doctorLoader = document.getElementById("doctorLoader");
-
         const doctorGrid = document.getElementById("doctorGrid");
 
         function showLoader() {
+
             doctorLoader.classList.remove("hidden");
 
             doctorGrid.classList.add("hidden");
+
         }
 
         function hideLoader() {
+
             doctorLoader.classList.add("hidden");
 
             doctorGrid.classList.remove("hidden");
+
         }
 
         function populateDepartments() {
+
             const departmentSelect = document.getElementById("departmentFilter");
 
-            const departments = [...new Set(doctors.map((doctor) => doctor.department))];
+            departmentSelect.innerHTML = `
+        <option value="">
+            All Departments
+        </option>
+    `;
 
-            departments.forEach((department) => {
+            const departments = [...new Set(
+                doctors.map(item => item.department).filter(Boolean)
+            )];
+
+            departments.forEach(department => {
+
                 departmentSelect.insertAdjacentHTML(
                     "beforeend",
                     `
-             <option value="${department}">
-                 ${department}
-             </option>
-             `,
+            <option value="${department}">
+                ${department}
+            </option>
+            `
                 );
+
             });
+
         }
 
         function renderDoctors(data) {
+
+            currentDoctors = data;
+
             const doctorCount = document.getElementById("doctorCount");
 
             const emptyState = document.getElementById("doctorEmptyState");
 
             doctorGrid.innerHTML = "";
 
-            doctorCount.innerText = `${data.length} Doctor${data.length !== 1 ? "s" : ""}`;
+            doctorCount.innerText =
+                `${data.length} Doctor${data.length !== 1 ? "s" : ""}`;
 
             if (data.length === 0) {
+
+                doctorGrid.innerHTML = "";
+
                 emptyState.classList.remove("hidden");
 
                 return;
+
             }
 
             emptyState.classList.add("hidden");
 
             data.forEach((doctor, index) => {
-                doctorGrid.innerHTML += `
-    
-         <article
-             class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
-    
-             <div class="relative overflow-hidden">
-    
-                 <img
-                     src="${doctor.image || "./assets/img/doctor-placeholder.jpg"}"
-                     alt="${doctor.name}"
-                     class="w-full h-[320px] object-cover transition duration-700 group-hover:scale-105">
-    
-                 <div
-                     class="absolute top-4 left-4">
-    
-                     <span
-                         class="bg-primary text-white px-4 py-2 text-xs font-semibold">
-    
-                         ${doctor.location}
-    
-                     </span>
-    
-                 </div>
-    
-             </div>
-    
-             <div class="p-6">
-    
-                 <span
-                     class="text-secondary text-sm font-semibold">
-    
-                     ${doctor.department}
-    
-                 </span>
-    
-                 <h3
-                     class="text-primary text-xl font-black mt-2">
-    
-                     ${doctor.name}
-    
-                 </h3>
-    
-                 <p
-                     class="text-slate-500 text-sm mt-3 leading-7">
-    
-                     ${doctor.qualification}
-    
-                 </p>
-    
-                 <div
-                     class="flex items-center justify-between mt-5 pt-5 border-t">
-    
-                     <span class="text-sm text-slate-600">
-    
-                         ${doctor.experience}
-    
-                     </span>
-    
-                     <span class="text-sm text-secondary font-semibold">
-    
-                         Experience
-    
-                     </span>
-    
-                 </div>
-    
-                 <button
-                     onclick="openDoctor(${doctors.indexOf(doctor)})"
-                     class="btn-primary w-full mt-6">
-    
-                     View Profile
-    
-                 </button>
-    
-             </div>
-    
-         </article>
-    
-         `;
-            });
-        }
-        const doctorModal = document.getElementById("doctorModal");
 
-        const doctorModalContent = document.getElementById("doctorModalContent");
+                doctorGrid.insertAdjacentHTML(
+                    "beforeend",
+
+                    `
+<article
+class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+
+    <div class="relative overflow-hidden">
+
+        <img
+            src="${doctor.image}"
+            alt="${doctor.name}"
+            class="w-full h-[320px] object-cover transition duration-700 group-hover:scale-105">
+
+        <div class="absolute top-4 left-4">
+
+            <span class="bg-primary text-white px-4 py-2 text-xs font-semibold">
+
+                ${doctor.location}
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="p-6">
+
+        <span class="text-secondary text-sm font-semibold">
+
+            ${doctor.department}
+
+        </span>
+
+        <h3 class="text-primary text-xl font-black mt-2">
+
+            ${doctor.name}
+
+        </h3>
+
+        <p class="text-slate-500 text-sm mt-3 leading-7">
+
+            ${doctor.qualification}
+
+        </p>
+
+        <div
+            class="flex items-center justify-between mt-5 pt-5 border-t">
+
+            <span class="text-sm text-slate-600">
+
+                ${doctor.experience}
+
+            </span>
+
+            <span class="text-sm text-secondary font-semibold">
+
+                Experience
+
+            </span>
+
+        </div>
+
+        <button
+            onclick="openDoctor(${index})"
+            class="btn-primary w-full mt-6">
+
+            View Profile
+
+        </button>
+
+    </div>
+
+</article>
+`
+                );
+
+            });
+
+        }
+
+        function filterDoctors() {
+
+            showLoader();
+
+            setTimeout(() => {
+
+                const keyword =
+                    document.getElementById("doctorSearch")
+                    .value
+                    .toLowerCase();
+
+                const department =
+                    document.getElementById("departmentFilter").value;
+
+                const location =
+                    document.getElementById("locationFilter").value;
+
+                const filtered = doctors.filter(doctor => {
+
+                    const matchSearch =
+                        doctor.name.toLowerCase().includes(keyword);
+
+                    const matchDepartment =
+                        department === "" ||
+                        doctor.department === department;
+
+                    const matchLocation =
+                        location === "" ||
+                        doctor.location === location;
+
+                    return (
+                        matchSearch &&
+                        matchDepartment &&
+                        matchLocation
+                    );
+
+                });
+
+                renderDoctors(filtered);
+
+                hideLoader();
+
+            }, 500);
+
+        }
 
         function openDoctor(index) {
             const doctor = doctors[index];
@@ -787,11 +946,11 @@
                 ${doctor.education
                   .map(
                     (item) => `
-                            <li class="flex items-start gap-2 text-sm text-slate-600">
-                                <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
-                                <span>${item}</span>
-                            </li>
-                        `,
+                                                    <li class="flex items-start gap-2 text-sm text-slate-600">
+                                                        <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
+                                                        <span>${item}</span>
+                                                    </li>
+                                                `,
                   )
                   .join("")}
    
@@ -875,6 +1034,7 @@
             }, 500);
         }
         document.addEventListener("DOMContentLoaded", () => {
+
             populateDepartments();
 
             renderDoctors(doctors);
@@ -891,13 +1051,34 @@
                 .getElementById("locationFilter")
                 .addEventListener("change", filterDoctors);
 
-            document.getElementById("resetFilters").addEventListener("click", () => {
-                document.getElementById("doctorSearch").value = "";
-                document.getElementById("departmentFilter").value = "";
-                document.getElementById("locationFilter").value = "";
+            document
+                .getElementById("resetFilters")
+                .addEventListener("click", () => {
 
-                renderDoctors(doctors);
-            });
+                    document.getElementById("doctorSearch").value = "";
+
+                    document.getElementById("departmentFilter").value = "";
+
+                    document.getElementById("locationFilter").value = "";
+
+                    renderDoctors(doctors);
+
+                });
+
+            document
+                .getElementById("clearSearchBtn")
+                .addEventListener("click", () => {
+
+                    document.getElementById("doctorSearch").value = "";
+
+                    document.getElementById("departmentFilter").value = "";
+
+                    document.getElementById("locationFilter").value = "";
+
+                    renderDoctors(doctors);
+
+                });
+
         });
     </script>
 

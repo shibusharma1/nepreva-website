@@ -75,7 +75,7 @@
             </div>
           </div>
           <?php */?>
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label class="col-lg-3 control-label" for="banner">Picture</label>
             <div class="col-lg-6">
               <div class="bs-component">
@@ -83,7 +83,7 @@
               </div>
               ( Width: 1500px, Height:500px all time fix size )
             </div>
-          </div>
+          </div> --}}
 
           <div class="form-group">
             <label class="col-lg-3 control-label" for=""></label>

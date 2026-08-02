@@ -343,8 +343,8 @@
 <section id="hero-section" class="relative">
     <!-- VIDEO HERO -->
     <div class="relative h-[70vh] md:h-[80vh] xl:h-[90vh] overflow-hidden">
-        <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
-            <source src="{{ asset('themes-assets/vdo/banner.mp4') }}" type="video/mp4">
+        <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto">
+            <source src="{{ asset('themes-assets/vdo/banner.webm') }}" type="video/mp4">
         </video>
         <!-- Overlay -->
         <div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-black/20"></div>
@@ -355,17 +355,20 @@
                     <span
                         class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
                         <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
-                        Trusted Since 1982
+                        {{-- Trusted Since 1982 --}}
+                        {{ $banner->caption }}
                     </span>
                     <h1
                         class="text-white font-black leading-tight text-[34px] md:text-[52px] xl:text-[70px]">
-                        International Standard Healthcare in Nepal
+                        {{-- International Standard Healthcare in Nepal --}}
+                        {{ $banner->title }}
                     </h1>
                     <p
                         class="mt-6 text-white/90 text-base md:text-lg xl:text-xl leading-relaxed max-w-2xl">
-                        Providing world-class travel medicine, family medicine,
+                        {{-- Providing world-class travel medicine, family medicine,
                         specialist care and emergency services from Kathmandu and
-                        Pokhara for over 40 years.
+                        Pokhara for over 40 years. --}}
+                        {{ $banner->content }}
                     </p>
                 </div>
             </div>
@@ -381,7 +384,7 @@
         <div class="bg-white border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
             <div class="grid grid-cols-1 md:grid-cols-3">
                 <!-- FIND DOCTOR (Hidden on Mobile) -->
-                <a href="./doctors.php"
+                <a href="{{ url('doctors-at-ciwec.html') }}"
                     class="hidden md:flex group items-center gap-4 p-5 md:p-7 border-r border-slate-200 hover:bg-slate-100 transition-all duration-300">
                     <div class="w-14 h-14 bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
                         <i class="fa-solid fa-user-doctor text-xl"></i>
@@ -397,7 +400,7 @@
                     <i class="fa-solid fa-arrow-right text-secondary text-sm transition-all duration-300 group-hover:translate-x-1"></i>
                 </a>
                 <!-- INQUIRY (Hidden on Mobile) -->
-                <a href="./contactus.php"
+                <a href="{{ url('page/contact.html') }}"
                     class="hidden md:flex group items-center gap-4 p-5 md:p-7 border-r border-slate-200 hover:bg-slate-100 transition-all duration-300">
                     <div class="w-14 h-14 bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
                         <i class="fa-solid fa-comments text-xl"></i>
@@ -413,7 +416,7 @@
                     <i class="fa-solid fa-arrow-right text-secondary text-sm transition-all duration-300 group-hover:translate-x-1"></i>
                 </a>
                 <!-- APPOINTMENT (Visible on All Devices) -->
-                <a href="./bookappointment.php"
+                <a href="{{ url('page/bookappointment.html') }}"
                     class="group flex items-center gap-4 p-5 md:p-7 bg-primary text-white hover:bg-secondary transition-all duration-300 w-full">
                     <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 flex items-center justify-center flex-shrink-0">
                         <i class="fa-solid fa-calendar-check text-lg md:text-xl"></i>
@@ -463,7 +466,7 @@
                    international-standard healthcare services to residents,
                    expatriates, travelers and organizations.
                </p>
-               <a href="./about.php"
+               <a href="{{ url('about-us.html') }}"
                    class="inline-flex mt-8 bg-primary text-white px-7 py-4 font-semibold hover:bg-primary/90 transition">
                    Learn More
                </a>
@@ -483,7 +486,7 @@
                     Specialized Medical Services
                 </h2>
             </div>
-            <a href="./services.php"
+            <a href="{{ url('services.html') }}"
                 class="hidden lg:inline-flex items-center gap-2 text-primary font-semibold hover:text-secondary transition">
                 View All
                 <i class="fa-solid fa-arrow-right"></i>
@@ -519,7 +522,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img11.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -543,7 +546,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img1.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -567,7 +570,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img11.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -591,7 +594,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img1.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -615,7 +618,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img11.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -639,7 +642,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img1.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -663,7 +666,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img11.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -687,7 +690,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img1.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -711,7 +714,7 @@
             </div>
             <!-- CARD -->
             <div class="swiper-slide">
-                <a href="./services.php" class="speciality-card group">
+                <a href="{{ url('services.html') }}" class="speciality-card group">
                     <img src="./assets/img/speciality/img11.jpg"
                         class="speciality-image">
                     <div class="speciality-overlay"></div>
@@ -742,7 +745,7 @@
 <section class="relative section-padding bg-slate-100 overflow-hidden">
     <!-- <div class="absolute inset-x-0 bottom-0 z-0 animate-mountain"> -->
     <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-        <img src="./assets/img/background/bg-img1.webp" class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-contain opacity-[0.4]">
+        <img src="{{ asset('themes-assets/img/bg-img1.webp') }}" class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-contain opacity-[0.4]">
     </div>
     <div class="relative z-10 container-custom">
         <!-- <div class="max-w-3xl mb-12"> -->
@@ -868,14 +871,6 @@
 </script>
 <!-- Statistics section -->
 <section class="relative section-padding bg-slate-200 overflow-hidden">
-    <!-- <div class="absolute inset-0 pointer-events-none overflow-hidden">
-      <i class="fa-solid fa-stethoscope absolute top-16 left-10 text-[120px] text-primary/10 rotate-12"></i>
-      <i class="fa-solid fa-heart-pulse absolute top-32 right-20 text-[140px] text-primary/10"></i>
-      <i class="fa-solid fa-user-doctor absolute top-1/2 left-1/4 text-[130px] text-primary/10 -rotate-6"></i>
-      <i class="fa-solid fa-dna absolute bottom-24 left-16 text-[150px] text-primary/10 rotate-12"></i>
-      <i class="fa-solid fa-microscope absolute bottom-16 right-16 text-[110px] text-primary/10"></i>
-      <i class="fa-solid fa-shield-heart absolute bottom-40 right-1/3 text-[130px] text-primary/10 rotate-6"></i>
-      </div> -->
     <div class="container-custom">
         <div class="grid xl:grid-cols-2 gap-12 xl:gap-20 items-center">
             <!-- LEFT -->
@@ -898,11 +893,11 @@
                 </p>
                 <div
                     class="flex flex-wrap gap-4">
-                    <a href="./about.php"
+                    <a href="{{ url('about-us.html') }}"
                         class="border border-primary text-white font-bold px-7 py-4 bg-primary hover:bg-secondary hover:text-white transition-all duration-300">
                         Learn More
                     </a>
-                    <a href="./contactus.php"
+                    <a href="{{ url('page/contact.html') }}"
                         class="border border-primary text-primary font-bold px-7 py-4 hover:bg-primary hover:text-white transition-all duration-300">
                         Contact Us
                     </a>
@@ -915,7 +910,7 @@
                     class="absolute inset-0 bg-primary/5 blur-3xl">
                 </div>
                 <img
-                    src="./assets/img/world-map.svg"
+                    src="{{ asset('themes-assets/img/world-map.svg') }}"
                     alt="World Map"
                     class="relative z-10 w-full max-w-[700px] mx-auto">
                 <!-- NEPAL -->
@@ -1011,7 +1006,7 @@
                     diagnostic facilities and patient-focused innovations at CIWEC.
                 </p>
             </div>
-            <a href="./services.php"
+            <a href="{{ url('services.html') }}"
                 class="inline-flex items-center gap-3 text-primary font-bold group">
                 View All Updates
                 <span
@@ -1046,7 +1041,7 @@
                             Get expert medical advice from experienced specialists
                             before making important treatment decisions.
                         </p>
-                        <a href="./bookappointment.php"
+                        <a href="{{ url('page/bookappointment.html') }}"
                             class="inline-flex items-center gap-3 text-primary font-bold group">
                             Learn More
                             <span
@@ -1076,7 +1071,7 @@
                             Reliable medication delivered safely to your home
                             with professional pharmacy support.
                         </p>
-                        <a href="./doctors.php"
+                        <a href="{{ url('doctors-at-ciwec.html') }}"
                             class="inline-flex items-center gap-3 text-primary font-bold mt-6">
                             Learn More
                             <i class="fa-solid fa-arrow-right text-secondary"></i>
@@ -1098,7 +1093,7 @@
                             Comprehensive diagnostic services powered by modern
                             equipment and expert laboratory professionals.
                         </p>
-                        <a href="./doctors.php"
+                        <a href="{{ url('doctors-at-ciwec.html') }}"
                             class="inline-flex items-center gap-3 text-primary font-bold mt-6">
                             Learn More
                             <i class="fa-solid fa-arrow-right text-secondary"></i>
@@ -1142,7 +1137,7 @@
                             Access expert consultations from experienced doctors
                             across multiple medical specialties.
                         </p>
-                        <a href="./bookappointment.php"
+                        <a href="{{ url('page/bookappointment.html') }}"
                             class="inline-flex items-center gap-3 text-primary font-bold mt-6">
                             Learn More
                             <i class="fa-solid fa-arrow-right text-secondary"></i>
@@ -1156,7 +1151,7 @@
 
 <section class="section-padding relative bg-slate-100 overflow-hidden">
     <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-        <img src="./assets/img/background/bg-img5.webp" class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-contain opacity-[0.4]">
+        <img src="{{ asset('themes-assets/img/bg-img5.webp') }}" class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-contain opacity-[0.4]">
     </div>
     <div class="relative z-10 container-custom">
         <div class="grid xl:grid-cols-[1fr_1fr_1.2fr] gap-6 xl:gap-8 items-stretch">
@@ -1184,7 +1179,7 @@
                     <p class="text-secondary font-semibold mb-5">
                         Senior Consultant Physician
                     </p>
-                    <a href="./doctors.php" class="inline-flex items-center gap-3 text-primary font-bold text-sm group">
+                    <a href="{{ url('doctors-at-ciwec.html') }}" class="inline-flex items-center gap-3 text-primary font-bold text-sm group">
                         View Profile
                         <span class="w-8 h-8 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
                             <i class="fa-solid fa-arrow-right text-[11px]"></i>
@@ -1214,7 +1209,7 @@
                     <p class="text-secondary font-semibold mb-5">
                         Travel Medicine Specialist
                     </p>
-                    <a href="./doctors.php"
+                    <a href="{{ url('doctors-at-ciwec.html') }}"
                         class="inline-flex items-center gap-3 text-primary font-bold text-sm group">
                         View Profile
                         <span class="w-8 h-8 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
@@ -1238,7 +1233,7 @@
                     from Nepal and around the world.
                 </p>
                 <div>
-                    <a href="./doctors.php"
+                    <a href="{{ url('doctors-at-ciwec.html') }}"
                         class="btn-primary">
                         View All Doctors
                     </a>
@@ -1757,7 +1752,7 @@
 <!-- Award section -->
 <section class="relative section-padding bg-slate-100 overflow-hidden">
     <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-        <img src="./assets/img/background/bg-img3.webp" class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-fill opacity-[0.4]">
+        <img src="{{ asset('themes-assets/img/bg-img3.webp') }}" class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-fill opacity-[0.4]">
     </div>
     <div class="relative z-10 container-custom">
         <!-- HEADER -->
@@ -2121,12 +2116,12 @@
                     research publications and hospital newsletters.
                 </p>
             </div>
-            <a href="./researchandpublication.php" class="inline-flex items-center gap-3 text-primary font-bold group">
+            {{-- <a href="./researchandpublication.php" class="inline-flex items-center gap-3 text-primary font-bold group">
                 View All Publications
                 <span class="w-9 h-9 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </span>
-            </a>
+            </a> --}}
         </div>
         <!-- FILTER BAR -->
         <div class="border border-slate-200 bg-slate-100 p-5 md:p-6 mb-6">

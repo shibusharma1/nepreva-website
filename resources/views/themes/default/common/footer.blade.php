@@ -18,7 +18,7 @@
                     </h3>
                     <ul class="space-y-3">
                         <li>
-                            <a href="./index.php" class="text-white/80 hover:text-secondary transition">
+                            <a href="{{ url('/') }}" class="text-white/80 hover:text-secondary transition">
                                 Home
                             </a>
                             @foreach ($navigations as $row)
@@ -35,26 +35,14 @@
                     </h3>
 
                     <ul class="space-y-3">
-                        <li>
-                            <a href="./altitudesickness.php" class="text-white/80 hover:text-secondary transition">
-                                Travel Medicine
+                        @foreach ($services->skip(1)->take(6) as $service)
+                            <li>
+                            <a href="{{ url($service->uri) }}" class="text-white/80 hover:text-secondary transition">
+                                {{ $service->post_title }}
                             </a>
                         </li>
-                        <li>
-                            <a href="./healthinformation.php" class="text-white/80 hover:text-secondary transition">
-                                Family Medicine
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./healthscreening.php" class="text-white/80 hover:text-secondary transition">
-                                Health Screening
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./contactus.php" class="text-white/80 hover:text-secondary transition">
-                                Emergency Care
-                            </a>
-                        </li>
+                        @endforeach
+                    
                     </ul>
                 </div>
                 <div>
@@ -91,10 +79,7 @@
                                 <i class="fab fa-youtube"></i>
                             </a>
                         @endif
-                        {{-- <a href="#"
-                            class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a> --}}
+                       
                     </div>
                 </div>
             </div>

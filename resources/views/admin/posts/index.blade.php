@@ -75,7 +75,7 @@
 
                                         <td>
                                             @if (
-                                                $row->id == 17 ||
+                                                
                                                     (Request::segment(2) == 'product' && Request::segment(3)) ||
                                                     (Request::segment(2) == 'frontpage' && $row->id == 29))
                                                 <a href="{{ url('admin/associated/' . Request::segment(2) . '/' . $row->id) }}"

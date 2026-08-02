@@ -220,24 +220,43 @@ document.addEventListener("DOMContentLoaded", () => {
 | FAQ
 |--------------------------------------------------------------------------
 */
-  const faqItems = document.querySelectorAll(".faq-item");
-  if (faqItems.length) {
-    faqItems[0]?.classList.add("active");
-    faqItems.forEach((item) => {
-      const button = item.querySelector(".faq-btn");
-      if (button) {
-        button.addEventListener("click", () => {
-          const isActive = item.classList.contains("active");
-          faqItems.forEach((faq) => {
-            faq.classList.remove("active");
-          });
-          if (!isActive) {
-            item.classList.add("active");
-          }
-        });
-      }
-    });
-  }
+//  const faqItems = document.querySelectorAll(".faq-item");
+
+// if (faqItems.length) {
+
+//     // Open first FAQ by default
+//     faqItems[0].classList.add("active");
+
+
+//     faqItems.forEach((item) => {
+
+//         const button = item.querySelector(".faq-btn");
+
+//         if (button) {
+
+//             button.addEventListener("click", () => {
+
+//                 const isActive = item.classList.contains("active");
+
+
+//                 // Close all FAQs
+//                 faqItems.forEach((faq) => {
+//                     faq.classList.remove("active");
+//                 });
+
+
+//                 // Open clicked FAQ if it was closed
+//                 if (!isActive) {
+//                     item.classList.add("active");
+//                 }
+
+//             });
+
+//         }
+
+//     });
+
+// }
   /*
 |--------------------------------------------------------------------------
 | Patient Stories Slider
@@ -441,226 +460,5 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   }
-  /*
-|--------------------------------------------------------------------------
-| HISTORY TIMELINE
-|--------------------------------------------------------------------------
-*/
-  const historyButtons = document.querySelectorAll(".history-year");
-  if (historyButtons.length) {
-    const historyData = {
-      1982: {
-        title: "Foundation Of CIWEC",
-        image: "./assets/img/history/history1.webp",
-        description:
-          "CIWEC Hospital was established in 1982 with a vision to provide international-standard healthcare services in Nepal. Initially serving diplomats, expatriates, aid workers, and travelers, the institution quickly earned a reputation for delivering high-quality medical care through experienced professionals, advanced diagnostics, and a patient-centered approach.",
-      },
-      2000: {
-        title: "Service Expansion",
-        image: "./assets/img/history/history2.webp",
-        description:
-          "As healthcare needs continued to evolve, CIWEC expanded its range of medical services and specialties. New departments, enhanced outpatient care, and comprehensive preventive health programs were introduced, enabling the hospital to serve a broader community while maintaining its commitment to international healthcare standards.",
-      },
-      2005: {
-        title: "Modern Medical Facilities",
-        image: "./assets/img/history/history3.webp",
-        description:
-          "CIWEC invested significantly in modern medical technology and infrastructure, introducing advanced diagnostic equipment, improved laboratory services, and upgraded clinical facilities. These developments strengthened the hospital's ability to provide accurate diagnoses, efficient treatments, and a higher standard of patient care.",
-      },
-      2014: {
-        title: "CIWEC Pokhara Opened",
-        image: "./assets/img/history/history1.webp",
-        description:
-          "Expanding beyond Kathmandu, CIWEC established its Pokhara facility in 2014 to provide trusted healthcare services to residents, travelers, trekkers, and international visitors in western Nepal.",
-      },
-      2020: {
-        title: "Enhanced Global Care",
-        image: "./assets/img/history/history2.webp",
-        description:
-          "During a period of global healthcare challenges, CIWEC strengthened its international patient support services and emergency response capabilities.",
-      },
-      2025: {
-        title: "Future Ready Healthcare",
-        image: "./assets/img/history/history3.webp",
-        description:
-          "Building on decades of excellence, CIWEC continues to embrace innovation, digital transformation, and patient-focused healthcare solutions.",
-      },
-    };
-    historyButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        historyButtons.forEach((btn) => btn.classList.remove("active"));
-        button.classList.add("active");
-        const year = button.dataset.year;
-        const data = historyData[year];
-        if (!data) return;
-        document.getElementById("historyYear").textContent = year;
-        document.getElementById("historyTitle").textContent = data.title;
-        document.getElementById("historyDescription").textContent =
-          data.description;
-        document.getElementById("historyImage").src = data.image;
-      });
-    });
-  }
-  /*
-|--------------------------------------------------------------------------
-| PUBLICATION SYSTEM
-|--------------------------------------------------------------------------
-*/
-//   const publicationTable = document.getElementById("publicationTable");
-//   if (publicationTable) {
-//     const publicationData = {
-//       newsletter: [
-//         {
-//           id: 1,
-//           title: "Newsletter July 2025",
-//           file: "./assets/pdf/news1.pdf",
-//         },
-//         {
-//           id: 2,
-//           title: "March – April Newsletter",
-//           file: "./assets/pdf/news2.pdf",
-//         },
-//       ],
-//       "health-information": [
-//         {
-//           id: 1,
-//           title: "Health Information July 2025",
-//           file: "./assets/pdf/news1.pdf",
-//           detailsUrl: "./health-information-detail.php?id=1",
-//         },
-//       ],
-//       research: [
-//         {
-//           id: 1,
-//           title: "Research Publication 2025",
-//           file: "./assets/pdf/news1.pdf",
-//           detailsUrl: "./research-detail.php?id=1",
-//         },
-//       ],
-//     };
-//     const publications = publicationData[currentType] ?? [];
-//     const pagination = document.getElementById("publicationPagination");
-//     const loader = document.getElementById("publicationLoader");
-//     const content = document.getElementById("publicationContent");
-//     const searchInput = document.getElementById("searchInput");
-//     const perPageSelect = document.getElementById("perPage");
-//     let currentPage = 1;
-//     let perPage = 5;
-//     let search = "";
-//     function showLoader() {
-//       if (loader) loader.classList.remove("hidden");
-//       if (content) {
-//         content.style.opacity = ".3";
-//         content.style.pointerEvents = "none";
-//       }
-//     }
-//     function hideLoader() {
-//       if (loader) loader.classList.add("hidden");
-//       if (content) {
-//         content.style.opacity = "1";
-//         content.style.pointerEvents = "auto";
-//       }
-//     }
-//     function getActionButtons(item) {
-//       if (actionType === "download") {
-//         return `
-// <a href="${item.file}"
-//    download
-//    class="inline-flex items-center gap-2 text-primary font-semibold">
-// <i class="fa-solid fa-file-pdf text-secondary"></i>
-// Download
-// </a>
-// `;
-//       }
-//       return `
-// <a href="${item.file}"
-//    target="_blank"
-//    rel="noopener noreferrer"
-//    class="inline-flex items-center gap-2 text-secondary font-semibold">
-// <i class="fa-solid fa-file-pdf"></i>
-// Read More
-// </a>
-// `;
-//     }
-//     function renderTable(data) {
-//       publicationTable.innerHTML = "";
-//       if (!data.length) {
-//         publicationTable.innerHTML = `
-// <tr>
-//    <td colspan="3"
-//       class="px-5 py-8 text-center text-slate-500">
-//       No records found
-//    </td>
-// </tr>
-// `;
-//         return;
-//       }
-//       data.forEach((item, index) => {
-//         publicationTable.innerHTML += `
-// <tr class="border-b border-slate-200 hover:bg-slate-100 transition">
-//    <td class="px-5 py-4 font-semibold text-primary">
-//       ${(currentPage - 1) * perPage + index + 1}
-//    </td>
-//    <td class="px-5 py-4 text-slate-700">
-//       ${item.title}
-//    </td>
-//    <td class="px-5 py-4 text-center">
-//       ${getActionButtons(item)}
-//    </td>
-// </tr>
-// `;
-//       });
-//     }
-//     function renderPagination(totalPages) {
-//       if (!pagination) return;
-//       pagination.innerHTML = "";
-//       if (totalPages <= 1) return;
-//       for (let i = 1; i <= totalPages; i++) {
-//         pagination.innerHTML += `
-// <button
-// onclick="changePage(${i})"
-// class="${currentPage === i ? "bg-primary text-white" : "bg-white text-primary"}">
-// ${i}
-// </button>
-// `;
-//       }
-//     }
-//     function fetchPublications() {
-//       showLoader();
-//       setTimeout(() => {
-//         const filtered = publications.filter((item) =>
-//           item.title.toLowerCase().includes(search.toLowerCase()),
-//         );
-//         const totalPages = Math.ceil(filtered.length / perPage);
-//         const start = (currentPage - 1) * perPage;
-//         const data = filtered.slice(start, start + perPage);
-//         renderTable(data);
-//         renderPagination(totalPages);
-//         hideLoader();
-//       }, 500);
-//     }
-//     window.changePage = function (page) {
-//       currentPage = page;
-//       fetchPublications();
-//     };
-//     if (perPageSelect) {
-//       perPageSelect.addEventListener("change", (e) => {
-//         perPage = parseInt(e.target.value);
-//         currentPage = 1;
-//         fetchPublications();
-//       });
-//     }
-//     if (searchInput) {
-//       let typingTimer;
-//       searchInput.addEventListener("keyup", (e) => {
-//         clearTimeout(typingTimer);
-//         typingTimer = setTimeout(() => {
-//           search = e.target.value;
-//           currentPage = 1;
-//           fetchPublications();
-//         }, 500);
-//       });
-//     }
-//     fetchPublications();
-//   }
+
 });
