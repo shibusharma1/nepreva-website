@@ -1,17 +1,15 @@
 <div class="hidden lg:block bg-white border-b border-slate-200">
     <div class="container-custom">
         <div class="h-11 flex items-center justify-between">
-            <!-- LEFT -->
             <div class="flex items-center gap-8">
-                <!-- Kathmandu -->
                 <div class="flex items-center gap-2 text-sm">
                     <i class="fa-solid fa-location-dot text-secondary"></i>
                     <span class="text-slate-500">
                         Kathmandu
                     </span>
-                    <a href="tel:+97714524111"
+                    <a href="tel:{{ $setting->phone }}"
                         class="font-medium text-slate-800 hover:text-primary transition">
-                        +977-1-4524111
+                        {{ $setting->phone }}
                     </a>
                 </div>
                 <!-- Divider -->
@@ -22,9 +20,9 @@
                     <span class="text-slate-500">
                         Pokhara
                     </span>
-                    <a href="tel:+97761453082"
+                    <a href="tel:{{ $setting->phone2 }}"
                         class="font-medium text-slate-800 hover:text-primary transition">
-                        +977-61-453082
+                        {{ $setting->phone2 }}
                     </a>
                 </div>
             </div>
@@ -47,9 +45,9 @@
 <div class="lg:hidden bg-primary">
     <div class="container-custom">
         <div class="h-10 flex items-center justify-center">
-            <a href="tel:+97714524111"
+            <a href="tel:{{ $setting->phone }}"
                 class="text-white text-sm font-medium">
-                Emergency: +977-1-4524111
+                Emergency: {{ $setting->phone }}
             </a>
         </div>
     </div>

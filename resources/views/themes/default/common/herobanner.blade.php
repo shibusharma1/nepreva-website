@@ -1,5 +1,5 @@
 <section class="relative h-[220px] md:h-[280px] overflow-hidden">
-    <img src="{{ $data->banner ? asset('uploads/medium/' . $data->banner) : asset('themes-assets/img/company.jpg') }}"
+    <img src="{{ $data->banner ? asset('uploads/medium/' . $data->banner) : asset('themes-assets/img/ciwec.webp') }}"
         alt="{{ $data->post_type }}" class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-primary/80"></div>
     <div class="relative z-10 h-full flex items-center">

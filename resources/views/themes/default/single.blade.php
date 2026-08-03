@@ -1,62 +1,36 @@
-@extends('themes.default.common.master')
-@section('title',$data->post_title)
-@section('meta_keyword',$data->meta_keyword)
-@section('meta_description',$data->meta_description)
-@section('thumbnail',$data->page_thumbnail)
+@extends('themes.default.common.master') @section('title', $data->post_title) @section('meta_keyword', $data->meta_keyword)
+@section('meta_description', $data->meta_description) @section('thumbnail', $data->page_thumbnail)
 @section('content')
-
-<!--------------------------- banner section start ------------------------------------->
-<div class="uk-inline uk-detail-banner"> 
-    <img src="{{ $data->banner ? asset('uploads/medium/'.$data->banner) : asset('themes-assets/img/commit/img4.jpg') }}" loading="lazy" alt="{{$data->post_title}}">
-    <div class="uk-overlay uk-overlay-primary uk-position-cover uk-detail-overlay uk-flex uk-flex-column uk-flex-center">
-        <div class=" uk-width-1-1 uk-text-center" uk-scrollspy=" cls: uk-animation-slide-bottom-small; target:  h1;  delay: 400; repeat: false;">
-            <h1 class="uk-margin-small-top">{{$data->post_title}}</h1>
-        </div>
-    </div>
-</div>
-<!--------------------------- banner section end ------------------------------------->
-<!--------------------------- introduction section start ------------------------------------->
-<section class="uk-section">
-    <div class="uk-container uk-container-large">
-        <div class=" uk-grid" uk-scrollspy=" cls: uk-animation-slide-bottom-small; target: .block;  delay: 400; repeat: false;">
-            <div class="uk-width-2-3@m block">
-                <div uk-lightbox>
-                    <a class="uk-inline uk-blog-detail-img uk-inline-clip uk-transition-toggle" tabindex="0" href="{{asset('themes-assets/img/blog1.png')}}">
-                        <img src="{{$data->banner ? asset('uploads/medium/'.$data->banner) : asset('themes-assets/img/blog1.png')}}" class=" uk-transition-scale-up uk-transition-opaque" loading="lazy" width="1800" height="1200" alt="{{$data->post_title}}">
-                    </a>
-                </div>
-                <div>
-                    <div class="uk-flex uk-margin-top" style="gap:15px;">
-                        <div class="uk-text-uppercase">
-                            <i class="fa-solid fa-user uk-text-secondary uk-margin-small-right"></i>
-                            {{$data->associated_title}}
-                        </div>
-                        <div class="uk-text-uppercase">
-                            <i class="fa-solid fa-calendar uk-text-secondary uk-margin-small-right"></i>
-                            {{ $data->created_at->format('d F, Y') }}
-                        </div>
-                    </div>
-                    <hr>
-                    <p class="uk-text-justify">
-                        {!! $data->post_content  !!}
-                    </p>
-                </div>
-                <div class="uk-margin-bottom">
-                    <h4 class="f-20 uk-text-bold">SHARE THIS:</h4>
-                    <div class="uk-footer-icon">
-                        <a href="" class="uk-icon-button " uk-icon="facebook"></a>
-                        <a href="" class="uk-icon-button " uk-icon="instagram"></a>
-                        <a href="" class="uk-icon-button " uk-icon="x"></a>
-                        <a href="" class="uk-icon-button" uk-icon="youtube"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="uk-width-1-3@m block">
-                @include('themes/default/common/blog-sidebar')
+    <section class="relative h-[420px] overflow-hidden">
+        <img src="{{ $data->banner ? asset('uploads/medium/' . $data->banner) : asset('themes-assets/img/commit/img4.jpg') }}"
+            alt="{{ $data->post_title }}" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-primary/70"></div>
+        <div class="relative container-custom h-full flex items-center justify-center text-center">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl lg:text-6xl font-black text-white mt-5">{{ $data->post_title }}</h1>
             </div>
         </div>
-    </div>
-</section>
-<!--------------------------- introduction section end ------------------------------------->
-
+    </section>
+    <section class="section-padding bg-white">
+        <div class="container-custom">
+            <div class="grid lg:grid-cols-12 gap-14">
+                <div class="lg:col-span-8">
+                    <img src="{{ $data->banner ? asset('uploads/medium/' . $data->banner) : asset('themes-assets/img/blog1.png') }}"
+                        class="w-full h-[500px] object-cover rounded-xl" alt="{{ $data->post_title }}" />
+                    <div class="flex flex-wrap gap-8 mt-8 text-sm font-semibold uppercase tracking-wide">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-user text-secondary"></i>
+                            <span>{{ $data->associated_title }}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-calendar text-secondary"></i>
+                            <span>{{ $data->created_at->format('d F, Y') }}</span>
+                        </div>
+                    </div>
+                    <hr class="my-10 border-slate-200" />
+                    <div class="editor-content">{!! $data->post_content !!}</div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

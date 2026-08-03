@@ -100,10 +100,10 @@
                     </a>
                 </p>
                 <div class="flex gap-5 text-sm">
-                    <a href="./privacypolicy.php" class="text-white/60 hover:text-secondary transition">
+                    <a href="{{ url('page/privacy-policy.html') }}" class="text-white/60 hover:text-secondary transition">
                         Privacy Policy
                     </a>
-                    <a href="./termsandconditions.php" class="text-white/60 hover:text-secondary transition">
+                    <a href="{{ url('page/terms-and-conditions.html') }}" class="text-white/60 hover:text-secondary transition">
                         Terms & Conditions
                     </a>
                 </div>
@@ -111,6 +111,7 @@
         </div>
     </div>
 </footer>
+
 <!-- Back to top button  -->
 <button id="backToTop" aria-label="Back to top"
     class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-white border-2 border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,.08)] text-primary opacity-0 pointer-events-none translate-y-8 transition-all duration-500 rounded-full hover:border-primary hover:text-secondary z-50">
@@ -123,10 +124,14 @@
 </button>
 
 @include('themes.default.common.stickyfooterbar')
+
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{{ asset('themes-assets/js/scripts.js') }}"></script>
 <!-- Success Toast -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@stack('scripts')
+
 @if (session('success'))
     <script>
         Swal.fire({
@@ -175,6 +180,7 @@
         });
     </script>
 @endif
+
 @if ($errors->any())
     <script>
         Swal.fire({
@@ -192,5 +198,4 @@
 @endif
 
 </body>
-
 </html>

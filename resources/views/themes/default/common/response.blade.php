@@ -1,7 +1,6 @@
 @php
     $notificationTypes = ['success', 'error', 'info', 'warning'];
 @endphp
-
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -31,7 +30,6 @@
 <script>
     function ajax_response(response) {
         const notificationTypes = ['success', 'error', 'info', 'warning'];
-
         notificationTypes.forEach(function(type) {
             if (response[type]) {
                 if (Array.isArray(response.message)) {

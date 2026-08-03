@@ -9,7 +9,7 @@
                     'description' => $item->post_excerpt ?? '',
                     'image' => !empty($item->banner)
                         ? asset('uploads/medium/' . $item->banner)
-                        : asset('uploads/medium/default.webp'),
+                        : asset('themes-assets/img/ciwec.webp'),
                 ],
             ];
         });
@@ -62,7 +62,7 @@
       <div class="lg:col-span-5">
         <img id="historyImage" src="{{ !empty($firstHistory->banner)
                             ? asset('uploads/medium/' . $firstHistory->banner)
-                            : asset('uploads/medium/default.webp') }}"
+                            : asset('themes-assets/img/ciwec.webp') }}"
                         alt="{{ $firstHistory->post_title }}" class="w-full h-56 sm:h-64 md:h-80 lg:h-[430px] object-cover">
       </div>
       <!-- CONTENT -->

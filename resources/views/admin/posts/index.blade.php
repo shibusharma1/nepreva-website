@@ -93,9 +93,11 @@
                                             {{-- <a href="{{  route('admin.multiplevideo.index', $row->id ) }}" title="Video">
                                                     <i class="fa fa-file-video-o" aria-hidden="true"></i>
                                                   </a> --}}
+                                            @if(Request::segment(2) != 'about')
                                             <a href="{{ route('doc.multipledocument', $row->id) }}" title="PDF">
                                                 <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                             </a>
+                                            @endif
 
                                         </td>
                                         <td class="date"> {{ $row->created_at }} </td>

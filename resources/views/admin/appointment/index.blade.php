@@ -16,7 +16,7 @@
                                         <th>Patients</th>
                                         <th>Contact</th>
                                         <th>Service</th>
-                                        <th>Appointment</th>
+                                        <th>Appointment Date</th>
                                         {{-- <th>Status</th> --}}
                                         <th>Message</th>
                                         <th class="text-center">Action</th>
@@ -46,7 +46,7 @@
                                                     <br>
                                                     Department : {{ $row->service }}
                                                     <br>
-                                                    Hospital Branch : {{ $row->location }}
+                                                    Hospital Branch : <strong> {{ $row->location }} </strong>
                                                 </td>
                                                 <td>
                                                     <strong>{{ \Carbon\Carbon::parse($row->appointment_date)->format('d M Y') }}</strong>

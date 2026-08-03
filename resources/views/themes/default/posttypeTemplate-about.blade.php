@@ -19,41 +19,31 @@
         <section class="section-padding bg-white">
             <div class="container-custom">
                 <div class="grid lg:grid-cols-12 gap-12 items-center">
-
                     <div class="lg:col-span-7">
-
                         <span class="section-subtitle">
                             {{ $aboutIntro->sub_title }}
                         </span>
-
                         <h2 class="section-title mt-4">
                             {{ $aboutIntro->post_title }}
                         </h2>
-
                         <div class="w-20 h-1 bg-secondary mt-6 mb-8">
                         </div>
-
                         <p class="text-slate-600 leading-8">
                             {{ $aboutIntro->post_excerpt }}
                         </p>
-
                         <p class="text-slate-600 leading-8 mt-6">
                             {{ $aboutIntro->post_content }}
                         </p>
-
                     </div>
-
                     <div class="lg:col-span-5">
                         <div class="relative">
-
                             <img src="{{ !empty($aboutIntro->banner)
                                 ? asset('uploads/medium/' . $aboutIntro->banner)
-                                : asset('uploads/medium/default.webp') }}"
+                                : asset('themes-assets/img/ciwec.webp') }}"
                                 alt="{{ $aboutIntro->post_title }}" class="w-full h-[500px] object-cover">
 
                             <div class="absolute bottom-0 right-0
                         bg-primary text-white p-8">
-
                                 @php
                                     $experienceParts = preg_split(
                                         '/(?<=\+)\s+/',
@@ -61,17 +51,13 @@
                                         2,
                                     );
                                 @endphp
-
                                 <h3 class="text-4xl font-black">
                                     {{ $experienceParts[0] ?? '' }}
                                 </h3>
-
                                 <p>
                                     {{ $experienceParts[1] ?? '' }}
                                 </p>
-
                             </div>
-
                         </div>
                     </div>
 
@@ -162,159 +148,128 @@
                         <!-- VISION -->
                         <div
                             class="group
-                    relative
-                    bg-white
-                    border
-                    border-slate-200
-                    p-10
-                    hover:border-secondary
-                    hover:-translate-y-2
-                    hover:shadow-[0_20px_50px_rgba(0,0,0,.08)]
-                    transition-all duration-500">
+                                    relative
+                                    bg-white
+                                    border
+                                    border-slate-200
+                                    p-10
+                                    hover:border-secondary
+                                    hover:-translate-y-2
+                                    hover:shadow-[0_20px_50px_rgba(0,0,0,.08)]
+                                    transition-all duration-500">
 
                             <div
                                 class="w-20 h-20
-                        bg-primary/5
-                        flex
-                        items-center
-                        justify-center
-                        mb-8">
+                                        bg-primary/5
+                                        flex
+                                        items-center
+                                        justify-center
+                                        mb-8">
 
-                                <i
-                                    class="{{ $vision->associated_title }}
-                            text-primary
-                            text-3xl">
+                                <i class="{{ $vision->associated_title }}
+                                        text-primary
+                                        text-3xl">
                                 </i>
-
                             </div>
-
-                            <h3
-                                class="text-primary
-                        text-3xl
-                        font-black
-                        mb-6">
+                            <h3 class="text-primary
+                                        text-3xl
+                                        font-black
+                                        mb-6">
                                 {{ $vision->post_title }}
                             </h3>
 
-                            <p class="text-slate-600
-                        leading-8">
+                            <p class="text-slate-600 leading-8">
                                 {{ $vision->post_excerpt }}
                             </p>
 
                             <div
                                 class="absolute
-                        bottom-0
-                        left-0
-                        w-0
-                        h-1
-                        bg-secondary
-                        group-hover:w-full
-                        transition-all duration-500">
+                                    bottom-0
+                                    left-0
+                                    w-0
+                                    h-1
+                                    bg-secondary
+                                    group-hover:w-full
+                                    transition-all duration-500">
                             </div>
-
                         </div>
                     @endif
                     @if ($mission)
-                        <!-- MISSION -->
                         <div
                             class="group
-                    relative
-                    bg-primary
-                    text-white
-                    p-10
-                    hover:-translate-y-2
-                    hover:shadow-[0_20px_50px_rgba(0,0,0,.12)]
-                    transition-all duration-500">
+                                    relative
+                                    bg-primary
+                                    text-white
+                                    p-10
+                                    hover:-translate-y-2
+                                    hover:shadow-[0_20px_50px_rgba(0,0,0,.12)]
+                                    transition-all duration-500">
 
                             <div
                                 class="w-20 h-20
-                        bg-white/10
-                        flex
-                        items-center
-                        justify-center
-                        mb-8">
-
-                                <i
-                                    class="{{ $mission->associated_title }}
-                            text-white
-                            text-3xl">
+                                    bg-white/10
+                                    flex
+                                    items-center
+                                    justify-center
+                                    mb-8">
+                                <i class="{{ $mission->associated_title }} text-white text-3xl">
                                 </i>
-
                             </div>
-
                             <h3 class="text-3xl
-                        font-black
-                        mb-6">
+                                        font-black
+                                        mb-6">
                                 {{ $mission->post_title }}
                             </h3>
 
-                            <p class="text-white/85
-                        leading-8">
+                            <p class="text-white/85 leading-8">
                                 {{ $mission->post_excerpt }}
                             </p>
 
-                            <div
-                                class="absolute
-                        bottom-0
-                        left-0
-                        w-full
-                        h-1
-                        bg-secondary">
+                            <div class="absolute
+                                        bottom-0
+                                        left-0
+                                        w-full
+                                        h-1
+                                        bg-secondary">
                             </div>
-
                         </div>
                     @endif
                     @if ($values)
                         <!-- VALUES -->
                         <div
                             class="group
-                    relative
-                    bg-white
-                    border
-                    border-slate-200
-                    p-10
-                    hover:border-secondary
-                    hover:-translate-y-2
-                    hover:shadow-[0_20px_50px_rgba(0,0,0,.08)]
-                    transition-all duration-500">
+                                    relative
+                                    bg-white
+                                    border
+                                    border-slate-200
+                                    p-10
+                                    hover:border-secondary
+                                    hover:-translate-y-2
+                                    hover:shadow-[0_20px_50px_rgba(0,0,0,.08)]
+                                    transition-all duration-500">
 
-                            <div
-                                class="w-20 h-20
-                        bg-primary/5
-                        flex
-                        items-center
-                        justify-center
-                        mb-8">
+                            <div class="w-20 h-20
+                                    bg-primary/5
+                                    flex
+                                    items-center
+                                    justify-center
+                                    mb-8">
 
-                                <i
-                                    class="{{ $values->associated_title }}
-                            text-primary
-                            text-3xl">
+                                <i class="{{ $values->associated_title }} text-primary text-3xl">
                                 </i>
-
                             </div>
-
-                            <h3
-                                class="text-primary
-                        text-3xl
-                        font-black
-                        mb-6">
+                            <h3 class="text-primary text-3xl font-black mb-6">
                                 {{ $values->post_title }}
                             </h3>
 
                             @php
                                 $valueItems = preg_split('/\r\n|\r|\n/', trim($values->post_content ?? ''));
-
                                 $valueItems = array_values(array_filter(array_map('trim', $valueItems)));
                             @endphp
-
                             <ul class="space-y-4">
-
                                 @foreach ($valueItems as $valueItem)
                                     <li class="flex items-center gap-3">
-
-                                        <i class="fa-solid fa-check
-                                    text-secondary">
+                                        <i class="fa-solid fa-check text-secondary">
                                         </i>
 
                                         <span class="text-slate-700">
@@ -323,23 +278,20 @@
 
                                     </li>
                                 @endforeach
-
                             </ul>
 
                             <div
                                 class="absolute
-                        bottom-0
-                        left-0
-                        w-0
-                        h-1
-                        bg-secondary
-                        group-hover:w-full
-                        transition-all duration-500">
+                                        bottom-0
+                                        left-0
+                                        w-0
+                                        h-1
+                                        bg-secondary
+                                        group-hover:w-full
+                                        transition-all duration-500">
                             </div>
-
                         </div>
                     @endif
-
                 </div>
             </div>
         </section>
@@ -347,10 +299,7 @@
     @if ($whyChooseSection)
         <section class="section-padding bg-slate-100 overflow-hidden">
             <div class="container-custom">
-
-                <!-- HEADING -->
                 <div class="text-center mb-12">
-
                     <span class="section-subtitle">
                         {{ $whyChooseSection->sub_title }}
                     </span>
@@ -359,18 +308,16 @@
                         {{ $whyChooseSection->post_title }}
                     </h2>
 
-                    <p
-                        class="max-w-3xl mx-auto
-                text-slate-600
-                mt-6
-                leading-8">
+                    <p class="max-w-3xl mx-auto
+                            text-slate-600
+                            mt-6
+                            leading-8">
                         {{ $whyChooseSection->post_excerpt }}
                     </p>
 
                 </div>
                 <!-- STATS -->
                 <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-
                     <!-- ITEM -->
                     <div
                         class="bg-white border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,.08)] transition-all duration-500">
@@ -390,9 +337,7 @@
                     </div>
 
                     <!-- ITEM -->
-                    <div
-                        class="bg-white border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,.08)] transition-all duration-500">
-
+                    <div class="bg-white border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,.08)] transition-all duration-500">
                         <div class="w-16 h-16 mx-auto bg-primary/5 flex items-center justify-center mb-6">
                             <i class="fa-solid fa-globe text-primary text-2xl"> </i>
                         </div>
@@ -408,26 +353,19 @@
                     </div>
 
                     <!-- ITEM -->
-                    <div
-                        class="bg-white border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,.08)] transition-all duration-500">
-
+                    <div class="bg-white border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,.08)] transition-all duration-500">
                         <div class="w-16 h-16 mx-auto bg-primary/5 flex items-center justify-center mb-6">
                             <i class="fa-solid fa-user-doctor text-primary text-2xl"> </i>
                         </div>
-
                         <h3 class="text-primary text-4xl font-black">
                             80+
                         </h3>
-
                         <p class="mt-4 text-slate-600 font-medium">
                             Medical Specialists
                         </p>
-
                     </div>
-
                     <!-- ITEM -->
                     <div class="bg-primary text-white p-8 text-center relative overflow-hidden">
-
                         <div
                             class="absolute top-0 right-0 w-24 h-24 bg-secondary/20 rounded-full translate-x-10 -translate-y-10">
                         </div>
@@ -449,18 +387,9 @@
                 </div>
                 <!-- TRUST BAR -->
                 <div class="mt-16 bg-white border border-slate-200 p-8 lg:p-10">
-
-                    <div class="grid md:grid-cols-2
-                xl:grid-cols-4
-                gap-8">
-
+                    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                         <div>
-
-                            <h4
-                                class="text-primary
-                        font-black
-                        text-xl
-                        mb-3">
+                            <h4 class="text-primary font-black text-xl mb-3">
                                 Travel Medicine Leaders
                             </h4>
 

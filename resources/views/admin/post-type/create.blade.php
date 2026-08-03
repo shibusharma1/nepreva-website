@@ -57,7 +57,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label"> Caption </label>
             <div class="col-lg-8">
               <div class="bs-component">
@@ -65,7 +65,7 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
 
 
           <div class="form-group">
@@ -104,7 +104,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label"> Is Menu ? </label>
             <div class="col-lg-8">
               <div class="bs-component">
@@ -125,7 +125,7 @@
                 </select>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Banner </label>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -278,6 +277,8 @@
     </header>
     <!-- Searchbar -->
     @include('themes.default.common.searchbar')
+    
+@push('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -436,3 +437,4 @@
 
         });
     </script>
+@endpush

@@ -1,5 +1,5 @@
 @extends('themes.default.common.master')
- @section('content')
+@section('content')
 
     <!-- HERO -->
     <section id="hero-section" class="relative">
@@ -180,33 +180,6 @@
             </div>
         </div>
     </section>
-
-    <script>
-        const items = document.querySelectorAll('.model-item');
-        const image = document.getElementById('centerImage');
-
-        items.forEach(item => {
-
-            item.addEventListener('click', () => {
-
-                items.forEach(i => i.classList.remove('active'));
-
-                item.classList.add('active');
-
-
-                image.style.opacity = '0';
-                image.style.transform = 'scale(.95)';
-
-                setTimeout(() => {
-                    image.src = item.dataset.image;
-                    image.style.opacity = '1';
-                    image.style.transform = 'scale(1)';
-                }, 250);
-
-            });
-
-        });
-    </script>
 
     <!-- Statistics section -->
     <section class="relative section-padding bg-slate-200 overflow-hidden">
@@ -429,11 +402,11 @@
         </div>
     </section>
 
-    @if ($patientStoriesHeading && $patientStories->isNotEmpty()) 
-    @php
-        $featuredStory = $patientStories->first();
-        $otherStories = $patientStories->skip(1)->take(4);
-    @endphp
+    @if ($patientStoriesHeading && $patientStories->isNotEmpty())
+        @php
+            $featuredStory = $patientStories->first();
+            $otherStories = $patientStories->skip(1)->take(4);
+        @endphp
         <section class="section-padding relative bg-white overflow-hidden">
             <div class="container-custom">
                 <!-- HEADING -->
@@ -578,50 +551,6 @@
         </div>
     @endif
 
-    <script>
-        const videoModal = document.getElementById("videoModal");
-        const storyVideo = document.getElementById("storyVideo");
-        const closeVideoModal = document.getElementById("closeVideoModal");
-        if (videoModal && storyVideo) {
-            document.querySelectorAll(".story-card[data-video]").forEach((card) => {
-                const playButton = card.querySelector(".story-play-btn");
-                if (!playButton) return;
-                playButton.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const video = card.dataset.video;
-                    if (!video) return;
-                    const separator = video.includes("?") ? "&" : "?";
-                    storyVideo.src =
-                        `${video}${separator}autoplay=1&rel=0&modestbranding=1`;
-                    videoModal.classList.remove("hidden");
-                    videoModal.classList.add("flex");
-                    document.body.style.overflow = "hidden";
-                });
-            });
-            const closeModal = () => {
-                videoModal.classList.add("hidden");
-                videoModal.classList.remove("flex");
-                storyVideo.src = "";
-                document.body.style.overflow = "";
-            };
-            closeVideoModal?.addEventListener("click", closeModal);
-            videoModal.addEventListener("click", (e) => {
-                if (e.target === videoModal) {
-                    closeModal();
-                }
-            });
-            document.addEventListener("keydown", (e) => {
-                if (
-                    e.key === "Escape" &&
-                    !videoModal.classList.contains("hidden")
-                ) {
-                    closeModal();
-                }
-            });
-        }
-    </script>
-
     <!-- TESTIMONIAL -->
     <section class="section-padding bg-slate-200 overflow-hidden">
         <div class="container-custom">
@@ -753,7 +682,7 @@
                 </div>
             </div>
         </section>
-    @endif 
+    @endif
 
     @if ($publications)
         <section class="section-padding bg-white overflow-hidden relative">
@@ -833,6 +762,78 @@
             </div>
         </section>
     @endif
+
+
+    <script>
+        const items = document.querySelectorAll('.model-item');
+        const image = document.getElementById('centerImage');
+
+        items.forEach(item => {
+
+            item.addEventListener('click', () => {
+
+                items.forEach(i => i.classList.remove('active'));
+
+                item.classList.add('active');
+
+
+                image.style.opacity = '0';
+                image.style.transform = 'scale(.95)';
+
+                setTimeout(() => {
+                    image.src = item.dataset.image;
+                    image.style.opacity = '1';
+                    image.style.transform = 'scale(1)';
+                }, 250);
+
+            });
+
+        });
+    </script>
+
+    <script>
+        const videoModal = document.getElementById("videoModal");
+        const storyVideo = document.getElementById("storyVideo");
+        const closeVideoModal = document.getElementById("closeVideoModal");
+        if (videoModal && storyVideo) {
+            document.querySelectorAll(".story-card[data-video]").forEach((card) => {
+                const playButton = card.querySelector(".story-play-btn");
+                if (!playButton) return;
+                playButton.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const video = card.dataset.video;
+                    if (!video) return;
+                    const separator = video.includes("?") ? "&" : "?";
+                    storyVideo.src =
+                        `${video}${separator}autoplay=1&rel=0&modestbranding=1`;
+                    videoModal.classList.remove("hidden");
+                    videoModal.classList.add("flex");
+                    document.body.style.overflow = "hidden";
+                });
+            });
+            const closeModal = () => {
+                videoModal.classList.add("hidden");
+                videoModal.classList.remove("flex");
+                storyVideo.src = "";
+                document.body.style.overflow = "";
+            };
+            closeVideoModal?.addEventListener("click", closeModal);
+            videoModal.addEventListener("click", (e) => {
+                if (e.target === videoModal) {
+                    closeModal();
+                }
+            });
+            document.addEventListener("keydown", (e) => {
+                if (
+                    e.key === "Escape" &&
+                    !videoModal.classList.contains("hidden")
+                ) {
+                    closeModal();
+                }
+            });
+        }
+    </script>
 
     <script>
         const publications = {!! json_encode(
