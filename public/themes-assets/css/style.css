@@ -929,3 +929,313 @@ WHATS NEW SECTION
 .faq-item.active .faq-icon {
     transform: rotate(45deg);
 }
+
+.model-item {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.model-item:hover {
+    transform: translateY(-8px);
+    border-color: #11497b;
+    box-shadow: 0 20px 40px rgba(17, 73, 123, 0.12);
+}
+.model-item h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #11497b;
+    margin-bottom: 8px;
+}
+.model-item p {
+    color: #64748b;
+    line-height: 1.7;
+}
+.model-item.active {
+    background: linear-gradient(135deg, #11497b, #1d5e95);
+    border-color: #11497b;
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 25px 60px rgba(17, 73, 123, 0.28);
+}
+.model-item.active h3,
+.model-item.active p,
+.model-item.active i {
+    color: white;
+}
+.ciwec-image-wrapper {
+    width: 420px;
+    height: 420px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 10px solid white;
+    box-shadow: 0 30px 80px rgba(17, 73, 123, 0.15);
+    position: relative;
+    z-index: 5;
+}
+.ciwec-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+.ciwec-ring {
+    position: absolute;
+    width: 560px;
+    height: 560px;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    border: 3px dashed rgba(17, 73, 123, 0.12);
+    transform: translate(-50%, -50%);
+    animation: rotateRing 60s linear infinite;
+}
+
+.ciwec-ring::before,
+.ciwec-ring::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e53935;
+}
+
+.ciwec-ring::before {
+    top: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ciwec-image-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    border-radius: 50px;
+    border: 1px solid rgba(17, 73, 123, 0.08);
+    z-index: -1;
+}
+
+.ciwec-ring::after {
+    bottom: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#centerImage {
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+#centerImage.changing {
+    opacity: 0;
+    transform: scale(0.92) rotate(2deg);
+}
+
+@keyframes rotateRing {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.03);
+        opacity: 0.15;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 1024px) {
+    .ciwec-image-wrapper {
+        width: 380px;
+        height: 380px;
+    }
+
+    .ciwec-ring {
+        width: 450px;
+        height: 450px;
+    }
+
+    .ciwec-ring-pulse {
+        width: 420px;
+        height: 420px;
+    }
+}
+
+@media (max-width: 640px) {
+    .ciwec-image-wrapper {
+        width: 280px;
+        height: 280px;
+    }
+
+    .ciwec-ring {
+        width: 330px;
+        height: 330px;
+    }
+
+    .ciwec-ring-pulse {
+        width: 300px;
+        height: 300px;
+    }
+
+    .model-item {
+        padding: 20px;
+    }
+
+    .model-item h3 {
+        font-size: 18px;
+    }
+}
+
+.model-item::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border: 2px solid #11497b;
+    /* border-radius: 999px; */
+    border-radius: 40px;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.model-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.8s;
+}
+
+.model-item:hover::before {
+    left: 120%;
+}
+
+.left-card::after {
+    right: -38px;
+}
+
+.right-card::after {
+    left: -38px;
+}
+
+.left-card::after {
+    content: "";
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 2px solid #11497b;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+.right-card::after {
+    content: "";
+    position: absolute;
+    left: -35px;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 2px solid #11497b;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes floatUp {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes floatDown {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+.left-card {
+    animation: floatUp 6s ease-in-out infinite;
+}
+
+.right-card {
+    animation: floatDown 6s ease-in-out infinite;
+}
+
+.ciwec-image {
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+.ciwec-image-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(
+        circle,
+        rgba(17, 73, 123, 0.15),
+        transparent 70%
+    );
+    z-index: -1;
+}
+
+@keyframes imageFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.ciwec-center-wrap {
+    position: relative;
+    width: 520px;
+    height: 520px;
+    animation: imageFloat 8s ease-in-out infinite;
+}
