@@ -58,4 +58,16 @@ class PostModel extends Model
     {
         return $this->hasMany('App\Models\Posts\PostDocModel', 'post_id');
     }
+    public function parent()
+    {
+        return $this->belongsTo(PostModel::class, 'post_parent', 'id');
+    }
+    public function rootParent()
+    {
+        $post = $this;
+        while ($post->parent) {
+            $post = $post->parent;
+        }
+        return $post;
+    }
 }

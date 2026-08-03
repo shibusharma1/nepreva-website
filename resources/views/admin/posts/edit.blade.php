@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-          @if (Request::segment(2) == 'about' || Request::segment(2) == 'services')
+          @if (Request::segment(2) == 'home' || Request::segment(2) == 'about' || Request::segment(2) == 'services')
             <div class="form-group">
               <label for="inputStandard" class="col-lg-2 control-label">Sub Title</label>
               <div class="col-lg-9">
@@ -43,7 +43,7 @@
             </div>
           @endif
 
-          @if(Request::segment(2) == 'services')
+          @if(Request::segment(2) == 'home' || Request::segment(2) == 'services' || Request::segment(2) == 'about')
             <div class="form-group">
               <label for="inputStandard" class="col-lg-2 control-label">Icon</label>
               <div class="col-lg-9">
@@ -226,6 +226,7 @@
               value="{{$data->post_order}}" />
           </label>
         </div>
+        
         <?php /* ?>
         <div class="sid_ mb10">
           <label class="field text"> Homepage Order

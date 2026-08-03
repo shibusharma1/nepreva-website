@@ -11,6 +11,7 @@
  */
 
 Route::get('/', 'FrontendControllers\FrontpageController@index');
+Route::get('/search','FrontendControllers\FrontpageController@search')->name('search');
 
 /* Authentication Routes... */
 Route::get('adminisclient', 'Auth\LoginController@showLoginForm')->name('login');

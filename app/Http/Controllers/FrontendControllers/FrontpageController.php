@@ -42,9 +42,76 @@ class FrontpageController extends Controller
   {
     $banner = BannerModel::first();
     $history = PostModel::where('post_type', 1)->where('post_parent', 82)->orderBy('post_order')->get();
-    // dd($history);
+    $specialitiesheading = PostModel::where('id', 104)->first();
+    $specialities = PostModel::where('post_type', 15)->where('post_parent', 104)->orderBy('post_order')->get();
+    $whyciwecheading = PostModel::where('id', 105)->first();
+    $whyciwec = PostModel::where('post_type', 15)->where('post_parent', 105)->orderBy('post_order')->get();
+    $leftCards = $whyciwec->take(3);
+    $rightCards = $whyciwec->slice(3, 3);
+    $trustedworldwide =  PostModel::where('id', 106)->first();
+    $whatsnewheading = PostModel::find(107);
+    $whatsnewcards = PostModel::where('post_type', 15)->where('post_parent', 107)->orderBy('post_order')->take(5)->get();
+    $featuredCard = $whatsnewcards->first();
+    $smallCards = $whatsnewcards->slice(1, 4);
+    $doctorssection = PostModel::where('id', 129)->first();
+    $ktmdoctors = PostModel::where('post_type', 2)->where('post_parent', 45)->where('icon', 'Kathmandu')->first();
+    $pkhdoctors = PostModel::where('post_type', 2)->where('post_parent', 45)->where('icon', 'Pokhara')->first();
+    $patientStoriesHeading = PostModel::where('id', 130)->first();
+    $patientStories = PostModel::where('post_type', 15)->where('post_parent', 130)->orderBy('post_order')->get();
+    $testimonialheading = PostModel::where('id', 136)->first();
+    $testimonials = PostModel::where('post_type', 15)->where('post_parent', 136)->orderBy('post_order')->get();
+    $awardheading = PostModel::where('id', 142)->first();
+    $awards = PostModel::where('post_type', 15)->where('post_parent', 142)->orderBy('post_order')->get();
+    $publications = PostModel::with('documents')->where('id', 148)->first();
+    // dd($publications);
 
-    return view('themes.default.frontpage', compact('banner', 'history'));
+    return view('themes.default.frontpage', compact('banner', 'history', 'specialitiesheading', 'specialities', 'whyciwecheading', 'whyciwec', 'leftCards', 'rightCards', 'trustedworldwide', 'whatsnewheading', 'whatsnewcards', 'featuredCard', 'smallCards', 'doctorssection', 'ktmdoctors', 'pkhdoctors', 'patientStories', 'patientStoriesHeading', 'testimonialheading', 'testimonials', 'awardheading', 'awards', 'publications'));
+  }
+
+  public function search(Request $request)
+  {
+    $request->validate([
+      'q' => 'required|string|min:2|max:100',
+    ]);
+
+    $search = trim($request->input('q'));
+
+    $results = PostModel::query()
+      ->with('documents')
+      ->where('post_type',2)
+      ->whereIn('post_parent',[26,27,28,29,45])
+      ->where('status', '1')
+      ->where('published', '1')
+      ->where('is_active', '1')
+      ->where('is_draft', '0')
+      ->where('is_trashed', '0')
+      ->where(function ($query) use ($search) {
+        $query->where('post_title', 'LIKE', "%{$search}%")
+          ->orWhere('sub_title', 'LIKE', "%{$search}%")
+          ->orWhere('post_excerpt', 'LIKE', "%{$search}%")
+          ->orWhere('post_content', 'LIKE', "%{$search}%")
+          ->orWhere('post_tags', 'LIKE', "%{$search}%")
+          ->orWhere('meta_keyword', 'LIKE', "%{$search}%")
+          ->orWhere('meta_description', 'LIKE', "%{$search}%");
+      })
+      ->orderByRaw("
+            CASE
+                WHEN post_title = ? THEN 1
+                WHEN post_title LIKE ? THEN 2
+                WHEN post_title LIKE ? THEN 3
+                WHEN sub_title LIKE ? THEN 4
+                ELSE 5
+            END
+        ", [
+        $search,
+        "{$search}%",
+        "%{$search}%",
+        "%{$search}%"
+      ])
+      ->orderBy('post_order')
+      ->paginate(10)
+      ->withQueryString();
+    return view('themes.default.search-results', compact('results','search'));
   }
 
   public function posttype($uri)
@@ -167,22 +234,22 @@ class FrontpageController extends Controller
       $missionvisionvalue = PostModel::where('post_type', 1)->where('post_parent', 77)->orderBy('post_order')->get();
     }
     if ($data->uri == "ciwec-history") {
-      $historyheading = PostModel::where('id',82)->first();
+      $historyheading = PostModel::where('id', 82)->first();
       $history = PostModel::where('post_type', 1)->where('post_parent', 82)->orderBy('post_order')->get();
       $historicalgalleryheading = PostModel::where('id', 87)->first();
       $historicalgallery = PostModel::where('post_type', 1)->where('post_parent', 87)->orderBy('post_order')->get();
       $foundersheading = PostModel::where('id', 94)->first();
       $founders = PostModel::where('post_type', 1)->where('post_parent', 94)->orderBy('post_order')->get();
     }
-     if ($data->uri == "ciwec-csr") {
-      $csrhero = PostModel::where('id',96)->first();
-      $csrfeaturedheading = PostModel::where('id',97)->first();
+    if ($data->uri == "ciwec-csr") {
+      $csrhero = PostModel::where('id', 96)->first();
+      $csrfeaturedheading = PostModel::where('id', 97)->first();
       $csrfeatured = PostModel::where('post_type', 1)->where('post_parent', 97)->orderBy('post_order')->get();
-      $featuredstory = PostModel::where('id',98)->first();
-     }
+      $featuredstory = PostModel::where('id', 98)->first();
+    }
 
     // dd($csrhero,$csrfeaturedheading,$csrfeatured,$featuredstory);
-    return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos', 'categories', 'galleries', 'videoCategories', 'videos', 'services', 'doctors', 'specialities', 'expertcare', 'healthguide', 'travelguide', 'faq', 'altitudesection', 'aboutsection', 'missionvisionvalue','historyheading','history','historicalgalleryheading','historicalgallery','foundersheading','founders','csrhero','csrfeaturedheading','csrfeatured','featuredstory'));
+    return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos', 'categories', 'galleries', 'videoCategories', 'videos', 'services', 'doctors', 'specialities', 'expertcare', 'healthguide', 'travelguide', 'faq', 'altitudesection', 'aboutsection', 'missionvisionvalue', 'historyheading', 'history', 'historicalgalleryheading', 'historicalgallery', 'foundersheading', 'founders', 'csrhero', 'csrfeaturedheading', 'csrfeatured', 'featuredstory'));
   }
 
   public function product_detail($uri)

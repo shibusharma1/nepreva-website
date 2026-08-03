@@ -201,6 +201,7 @@
               value="{{ $post_order }}" />
           </label>
         </div>
+        
         <?php /*?>
         <div class="sid_ mb10">
           <label class="field text"> Homepage Order
