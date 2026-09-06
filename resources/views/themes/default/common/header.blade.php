@@ -163,12 +163,7 @@
             @endforeach
         </div>
     </div>
-    <div id="mobileOverlay"
-        class="fixed inset-0 bg-black/50 backdrop-blur-[2px]
-         opacity-0 invisible
-         transition-all duration-500
-         z-[998]">
-    </div>
+
     <!-- HEADER -->
     <header id="header" class="sticky top-0 z-50 bg-white border-b border-slate-200">
         <div class="container-custom">

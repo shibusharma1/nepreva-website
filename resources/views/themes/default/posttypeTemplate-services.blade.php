@@ -114,7 +114,7 @@
     <!-- MODAL -->
     <div
         id="serviceModalContent"
-        class="relative flex w-full max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl max-h-[94vh] sm:max-h-[90vh] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+        class="relative flex w-full max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl max-h-[94vh] sm:max-h-[90vh] flex-col overflow-hidden bg-white shadow-2xl">
 
         <!-- MODAL HEADER -->
         <div
@@ -189,27 +189,6 @@
             </div>
 
         </div>
-
-        <!-- MODAL FOOTER -->
-        {{-- <div
-            class="flex shrink-0 justify-end border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 sm:py-4 md:px-8">
-
-            <button
-                type="button"
-                id="serviceModalDone"
-                class="btn-primary text-sm sm:text-base">
-
-                Close
-
-                <i
-                    class="fa-solid fa-xmark ml-2"
-                    aria-hidden="true">
-                </i>
-
-            </button>
-
-        </div> --}}
-
     </div>
 
 </div>

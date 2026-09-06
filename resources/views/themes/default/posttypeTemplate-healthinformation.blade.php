@@ -15,7 +15,7 @@
                         Research Health Information
                     </span>
                     <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
-                        Health Informations & Health Information
+                        Health Informations
 
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8">

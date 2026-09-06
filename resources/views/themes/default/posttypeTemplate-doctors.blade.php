@@ -113,27 +113,16 @@
         </div>
     </section>
     <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
-
         <div id="doctorOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
         </div>
-
         <div class="relative h-screen flex items-center justify-center p-4">
-
             <div class="bg-white max-w-6xl w-full max-h-[80vh] overflow-y-auto relative">
-
-                <button id="closeDoctorModal"
-                    class="absolute top-5 right-5 w-12 h-12 bg-primary text-white z-20 hover:bg-secondary transition">
-
+                <button id="closeDoctorModal" class="absolute top-5 right-5 w-12 h-12 bg-primary text-white z-20 hover:bg-secondary transition">
                     <i class="fa-solid fa-xmark"></i>
-
                 </button>
-
                 <div id="doctorModalContent"></div>
-
             </div>
-
         </div>
-
     </div>
     <section class="section-padding bg-white overflow-hidden">
         <div class="container-custom">
@@ -381,7 +370,7 @@
                     'experience' => $doctor->associated_title,
                     'about' => strip_tags($doctor->post_content),
 
-                    'location' => 'Kathmandu',
+                    'location' => $doctor->icon,
                     'languages' => 'English, Nepali',
                     'patients' => '5000+',
                     'research' => '12',
@@ -461,7 +450,7 @@
                                 <img
                                     src="${doctor.image}"
                                     alt="${doctor.name}"
-                                    class="w-full h-[320px] object-cover transition duration-700 group-hover:scale-105">
+                                    class="w-full h-[280px] object-cover transition duration-700 group-hover:scale-105">
 
                                 <div class="absolute top-4 left-4">
 

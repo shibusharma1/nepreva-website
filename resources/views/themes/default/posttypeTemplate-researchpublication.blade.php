@@ -15,7 +15,7 @@
                         Research Publications
                     </span>
                     <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
-                        Health Informations & Publications
+                        Research Informations & Publications
 
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8">

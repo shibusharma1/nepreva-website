@@ -343,7 +343,7 @@
                             alt="{{ $ktmdoctors->post_title }}" loading="lazy"
                             class="w-full h-[320px] md:h-[420px] object-cover transition duration-700 group-hover:scale-105">
                         <!-- BRANCH -->
-                        <div class="absolute left-5 top-5 bg-secondary px-4 py-2 border border-slate-200">
+                        <div class="absolute left-5 top-5 bg-primary px-4 py-2 border border-slate-200">
                             <span class="text-white text-xs font-bold uppercase tracking-[1px]"> {{ $ktmdoctors->icon }}
                             </span>
                         </div>
@@ -371,7 +371,7 @@
                         <img src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
                             alt="{{ $pkhdoctors->post_title }}"
                             class="w-full h-[320px] md:h-[420px] object-cover transition duration-700 group-hover:scale-105">
-                        <div class="absolute left-5 top-5 bg-secondary px-4 py-2 border border-slate-200">
+                        <div class="absolute left-5 top-5 bg-primary px-4 py-2 border border-slate-200">
                             <span class="text-white text-xs font-bold uppercase tracking-[1px]"> {{ $pkhdoctors->icon }}
                             </span>
                         </div>
