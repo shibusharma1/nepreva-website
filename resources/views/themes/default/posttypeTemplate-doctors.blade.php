@@ -441,76 +441,34 @@
                     doctorGrid.insertAdjacentHTML(
                         "beforeend",
 
-                        `
-                        <article
-                        class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
-
+                        `<article class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                             <div class="relative overflow-hidden">
-
                                 <img
                                     src="${doctor.image}"
                                     alt="${doctor.name}"
                                     class="w-full h-[280px] object-cover transition duration-700 group-hover:scale-105">
-
                                 <div class="absolute top-4 left-4">
-
                                     <span class="bg-primary text-white px-4 py-2 text-xs font-semibold">
-
                                         ${doctor.location}
-
                                     </span>
-
                                 </div>
-
                             </div>
-
                             <div class="p-6">
-
                                 <span class="text-secondary text-sm font-semibold">
-
                                     ${doctor.department}
-
                                 </span>
-
                                 <h3 class="text-primary text-xl font-black mt-2">
-
                                     ${doctor.name}
-
                                 </h3>
-
-                                <p class="text-slate-500 text-sm mt-3 leading-7">
-
+                                <p class="text-slate-500 text-sm mt-1 leading-7">
                                     ${doctor.qualification}
-
                                 </p>
-
-                                <div
-                                    class="flex items-center justify-between mt-5 pt-5 border-t">
-
-                                    <span class="text-sm text-slate-600">
-
-                                        ${doctor.experience}
-
-                                    </span>
-
-                                    <span class="text-sm text-secondary font-semibold">
-
-                                        Experience
-
-                                    </span>
-
-                                </div>
-
                                 <button
                                     onclick="openDoctor(${index})"
-                                    class="btn-primary w-full mt-6">
-
+                                    class="btn-primary w-full mt-3">
                                     View Profile
-
                                 </button>
-
                             </div>
-
                         </article>
                         `
                     );

@@ -8,9 +8,6 @@
                         <img src="{{ asset('themes-assets/img/logo.png') }}" class="h-20 bg-white p-3 mb-6">
                     </a>
                     <p class="text-white/80 text-sm leading-7">
-                        {{-- CIWEC Hospital is Nepal's leading travel medicine
-                        and international healthcare provider serving
-                        travelers, expatriates, diplomats and local communities. --}}
                         {{ $setting->welcome_text }}
                     </p>
                 </div>
@@ -60,8 +57,7 @@
                         <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
                         <input type="email" placeholder="Email Address" name="email"
                             class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
-                        <button type="submit"
-                            class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition">
+                        <button type="submit" class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
@@ -84,7 +80,6 @@
                                 <i class="fab fa-youtube"></i>
                             </a>
                         @endif
-
                     </div>
                 </div>
             </div>
@@ -147,10 +142,8 @@
                 document.getElementById('g_recaptcha_response').value = token;
             });
         }
-
         // Initial execution of reCAPTCHA
         executeRecaptcha();
-
         // Refresh the reCAPTCHA token every 100 seconds (less than 2 minutes)
         setInterval(executeRecaptcha, 900000);
     });

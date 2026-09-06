@@ -755,10 +755,7 @@ class FrontpageController extends Controller
           ->with('error', 'Unable to process your request right now.');
       }
     } else {
-      return redirect()->back()->with([
-        'error' => true,
-        'message' => 'You are Robot.'
-      ]);
+      return back()->with('error', 'You are Robot.');
     }
   }
 }
