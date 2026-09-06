@@ -4,7 +4,8 @@
     <!-- HERO -->
     <section id="hero-section" class="relative">
         <!-- VIDEO HERO -->
-        <div class="relative h-[70vh] md:h-[80vh] xl:h-[90vh] overflow-hidden">
+        {{-- <div class="relative h-[70vh] md:h-[80vh] xl:h-[90vh] overflow-hidden"> --}}
+        <div class="relative h-[clamp(650px,85vh,900px)] overflow-hidden">
             <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto">
                 <source src="{{ asset('themes-assets/vdo/banner.webm') }}" type="video/mp4">
             </video>
@@ -353,10 +354,14 @@
                             {{-- Dr. Sarah Sharma --}} {{ $ktmdoctors->post_title }}
                         </h3>
                         <p class="text-secondary font-semibold mb-5">{{ $ktmdoctors->sub_title }}</p>
-                        <a href="{{ url('doctors-at-ciwec.html') }}"
-                            class="inline-flex items-center gap-3 text-primary font-bold text-sm group"> View Profile <span
+                        <button type="button" onclick="openHomeDoctor('ktm')"
+                            class="inline-flex items-center gap-3 text-primary font-bold text-sm group">
+                            View Profile
+                            <span
                                 class="w-8 h-8 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
-                                <i class="fa-solid fa-arrow-right text-[11px]"></i> </span> </a>
+                                <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                            </span>
+                        </button>
                     </div>
                 </article>
                 <!-- ========================= DOCTOR 2 ========================= -->
@@ -376,12 +381,14 @@
                             {{ $pkhdoctors->post_title }}
                         </h3>
                         <p class="text-secondary font-semibold mb-5">{{ $pkhdoctors->sub_title }}</p>
-                        <a href="{{ url('doctors-at-ciwec.html') }}"
-                            class="inline-flex items-center gap-3 text-primary font-bold text-sm group"> View Profile
+                        <button type="button" onclick="openHomeDoctor('pkh')"
+                            class="inline-flex items-center gap-3 text-primary font-bold text-sm group">
+                            View Profile
                             <span
                                 class="w-8 h-8 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
                                 <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                            </span> </a>
+                            </span>
+                        </button>
                     </div>
                 </article>
                 <div class="bg-slate-50 border border-slate-200 p-8 md:p-10 xl:p-12 flex flex-col justify-center">
@@ -401,6 +408,21 @@
             </div>
         </div>
     </section>
+
+    {{-- Doctor modal --}}
+    <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
+        <div id="doctorOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
+        </div>
+        <div class="relative h-screen flex items-center justify-center p-4">
+            <div class="bg-white max-w-6xl w-full max-h-[80vh] overflow-y-auto relative">
+                <button id="closeDoctorModal"
+                    class="absolute top-5 right-5 w-12 h-12 bg-primary text-white z-20 hover:bg-secondary transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div id="doctorModalContent"></div>
+            </div>
+        </div>
+    </div>
 
     @if ($patientStoriesHeading && $patientStories->isNotEmpty())
         @php
@@ -1007,4 +1029,169 @@
             fetchPublications();
         });
     </script>
+    @php
+        $homeDoctors = [
+            'ktm' => [
+                'id' => $ktmdoctors->id,
+                'slug' => $ktmdoctors->uri,
+                'name' => $ktmdoctors->post_title,
+                'department' => $ktmdoctors->sub_title,
+                'qualification' => $ktmdoctors->post_excerpt,
+                'experience' => $ktmdoctors->associated_title,
+                'about' => strip_tags($ktmdoctors->post_content),
+
+                'location' => $ktmdoctors->icon,
+                'languages' => 'English, Nepali',
+                'patients' => '5000+',
+                'research' => '12',
+                'education' => [],
+
+                'image' => !empty($ktmdoctors->banner)
+                    ? asset('uploads/medium/' . $ktmdoctors->banner)
+                    : asset('uploads/medium/david-IMsaOobp4lk4Er82hHTKnU9LoaxxMES6SqAyyURl.webp'),
+            ],
+
+            'pkh' => [
+                'id' => $pkhdoctors->id,
+                'slug' => $pkhdoctors->uri,
+                'name' => $pkhdoctors->post_title,
+                'department' => $pkhdoctors->sub_title,
+                'qualification' => $pkhdoctors->post_excerpt,
+                'experience' => $pkhdoctors->associated_title,
+                'about' => strip_tags($pkhdoctors->post_content),
+
+                'location' => $pkhdoctors->icon,
+                'languages' => 'English, Nepali',
+                'patients' => '5000+',
+                'research' => '12',
+                'education' => [],
+
+                'image' => !empty($pkhdoctors->banner)
+                    ? asset('uploads/medium/' . $pkhdoctors->banner)
+                    : asset('uploads/medium/david-IMsaOobp4lk4Er82hHTKnU9LoaxxMES6SqAyyURl.webp'),
+            ],
+        ];
+    @endphp
+    @push('scripts')
+        <script>
+            const homeDoctors = @json($homeDoctors);
+            const doctorModal = document.getElementById("doctorModal");
+            const doctorModalContent = document.getElementById("doctorModalContent");
+
+            function openHomeDoctor(key) {
+                const doctor = homeDoctors[key];
+                if (!doctor) return;
+                doctorModalContent.innerHTML = `
+                    <div class="grid lg:grid-cols-12">
+                        <!-- IMAGE -->
+                        <div class="lg:col-span-5">
+                            <img
+                                src="${doctor.image || "./assets/img/doctor-placeholder.jpg"}"
+                                class="w-full h-[280px] lg:h-full object-cover">
+                        </div>
+                    
+                        <!-- DETAILS -->
+                        <div class="lg:col-span-7 p-3 lg:p-4">
+                            <span
+                                class="inline-block bg-secondary/10 text-secondary px-3 py-1 text-sm font-semibold">
+                                ${doctor.department}
+                            </span>
+                    
+                            <h2 class="text-primary text-3xl font-black mt-3">
+                                ${doctor.name}
+                            </h2>
+                    
+                            <p class="text-slate-600 mt-2 text-sm">
+                                ${doctor.qualification}
+                            </p>
+                            <!-- STATS -->
+                            <div class="grid grid-cols-3 gap-3 mt-4">
+                                <div class="text-center">
+                                    <div class="text-primary text-2xl font-black">
+                                        ${doctor.experience}
+                                    </div>
+                    
+                                    <p class="text-xs text-slate-500">
+                                        Experience
+                                    </p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-primary text-2xl font-black">
+                                        ${doctor.patients}
+                                    </div>
+                                    <p class="text-xs text-slate-500">
+                                        Patients
+                                    </p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-primary text-2xl font-black">
+                                        ${doctor.research}
+                                    </div>
+                    
+                                    <p class="text-xs text-slate-500">
+                                        Publications
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- ABOUT -->
+                            <div class="mt-4">
+                                <h3 class="text-primary text-lg font-black mb-2">
+                                    About Doctor
+                                </h3>
+                                <p class="text-slate-600 leading-6 text-sm">
+                                    ${doctor.about}
+                                </p>
+                            </div>
+                            <!-- EDUCATION -->
+                            <div class="mt-4">
+                                <h3 class="text-primary text-lg font-black mb-2">
+                                    Education
+                                </h3>
+                                <ul class="space-y-2">
+                                    ${doctor.education
+                                        .map(
+                                            (item) => `
+                                                                <li class="flex items-start gap-2 text-sm text-slate-600">
+                                                                    <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
+                                                                    <span>${item}</span>
+                                                                </li>
+                                                            `,
+                                        )
+                                        .join("")}
+                                </ul>
+                            </div>
+                            <!-- LANGUAGES -->
+                            <div class="mt-4">
+                                <h3 class="text-primary text-lg font-black mb-2">
+                                    Languages
+                                </h3>
+                                <p class="text-slate-600 text-sm">
+                                    ${doctor.languages}
+                                </p>
+                            </div>
+                            <!-- BUTTON -->
+                            <a href="{{ url('page/bookappointment.html') }}"
+                                class="btn-primary mt-6 inline-flex">
+                                Book Appointment
+                            </a>
+                        </div>
+                    </div>
+                    `;
+                doctorModal.classList.remove("hidden");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeDoctor() {
+                doctorModal.classList.add("hidden");
+                document.body.style.overflow = "";
+
+            }
+            document
+                .getElementById("closeDoctorModal")
+                .addEventListener("click", closeDoctor);
+            document
+                .getElementById("doctorOverlay")
+                .addEventListener("click", closeDoctor);
+        </script>
+    @endpush
 @endsection

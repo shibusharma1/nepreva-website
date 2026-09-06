@@ -4,7 +4,9 @@
         <div class="container-custom">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-14">
                 <div>
-                    <img src="{{ asset('themes-assets/img/logo.png') }}" class="h-20 bg-white p-3 mb-6">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('themes-assets/img/logo.png') }}" class="h-20 bg-white p-3 mb-6">
+                    </a>
                     <p class="text-white/80 text-sm leading-7">
                         {{-- CIWEC Hospital is Nepal's leading travel medicine
                         and international healthcare provider serving
@@ -37,12 +39,13 @@
                     <ul class="space-y-3">
                         @foreach ($services->skip(1)->take(6) as $service)
                             <li>
-                            <a href="{{ url($service->uri) }}" class="text-white/80 hover:text-secondary transition">
-                                {{ $service->post_title }}
-                            </a>
-                        </li>
+                                <a href="{{ url($service->uri) }}"
+                                    class="text-white/80 hover:text-secondary transition">
+                                    {{ $service->post_title }}
+                                </a>
+                            </li>
                         @endforeach
-                    
+
                     </ul>
                 </div>
                 <div>
@@ -54,9 +57,11 @@
                     </p>
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex">
                         @csrf
+                        <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
                         <input type="email" placeholder="Email Address" name="email"
                             class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
-                        <button type="submit" class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition">
+                        <button type="submit"
+                            class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
@@ -79,7 +84,7 @@
                                 <i class="fab fa-youtube"></i>
                             </a>
                         @endif
-                       
+
                     </div>
                 </div>
             </div>
@@ -100,10 +105,12 @@
                     </a>
                 </p>
                 <div class="flex gap-5 text-sm">
-                    <a href="{{ url('page/privacy-policy.html') }}" class="text-white/60 hover:text-secondary transition">
+                    <a href="{{ url('page/privacy-policy.html') }}"
+                        class="text-white/60 hover:text-secondary transition">
                         Privacy Policy
                     </a>
-                    <a href="{{ url('page/terms-and-conditions.html') }}" class="text-white/60 hover:text-secondary transition">
+                    <a href="{{ url('page/terms-and-conditions.html') }}"
+                        class="text-white/60 hover:text-secondary transition">
                         Terms & Conditions
                     </a>
                 </div>
@@ -130,6 +137,24 @@
 <!-- Success Toast -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script src="https://www.google.com/recaptcha/api.js?render={{ env('SITE_KEY') }}"></script>
+<script>
+    grecaptcha.ready(function() {
+        function executeRecaptcha() {
+            grecaptcha.execute('<?php echo env('SITE_KEY'); ?>', {
+                action: 'homepage'
+            }).then(function(token) {
+                document.getElementById('g_recaptcha_response').value = token;
+            });
+        }
+
+        // Initial execution of reCAPTCHA
+        executeRecaptcha();
+
+        // Refresh the reCAPTCHA token every 100 seconds (less than 2 minutes)
+        setInterval(executeRecaptcha, 900000);
+    });
+</script>
 @stack('scripts')
 
 @if (session('success'))
@@ -198,4 +223,5 @@
 @endif
 
 </body>
+
 </html>

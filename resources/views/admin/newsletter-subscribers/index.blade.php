@@ -12,7 +12,7 @@
                 <div class="tab-content">
                     <div id="users" class="tab-pane active">
                         <div class="table-responsive mhn20 mvn15">
-                            <h4>Newsletter List </h4>
+                            <h4>Subscriber List </h4>
                             <table class="table admin-form theme-warning fs13" id="datatable3">
                                 <thead>
                                     <tr>

@@ -1637,3 +1637,9 @@ WHATS NEW SECTION
         font-size: 26px;
     }
 }
+/* Fix sticky CTA overlap on large desktop screens */
+@media (min-width: 1440px) {
+    #stickyBar {
+        right: 12px !important;
+    }
+}

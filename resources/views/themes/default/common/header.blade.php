@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,20 +60,38 @@
             </button>
         </div>
         <div class="p-5 border-b border-slate-200">
-            <div class="relative">
-                <input type="text" placeholder="Search..."
-                    class="w-full h-12 pl-11 pr-4
-                  border border-slate-300
-                  text-[15px]
-                  outline-none
-                  focus:border-secondary">
+            <form action="{{ route('search') }}" method="GET" class="relative w-full">
+                <input type="text" name="q" value="{{ request('q') }}" placeholder="Search..."
+                    autocomplete="off" required minlength="2"
+                    class="w-full h-12 pl-11 pr-14
+               border border-slate-300
+               text-[15px]
+               outline-none
+               focus:border-secondary">
+
+                <!-- Left Search Icon -->
                 <i
                     class="fa-solid fa-magnifying-glass
-                  absolute left-4 top-1/2
-                  -translate-y-1/2
-                  text-slate-400">
+              absolute left-4 top-1/2
+              -translate-y-1/2
+              text-slate-400
+              pointer-events-none">
                 </i>
-            </div>
+
+                <!-- Search Button -->
+                <button type="submit" aria-label="Search"
+                    class="absolute right-0 top-0
+               w-12 h-12
+               bg-primary text-white
+               flex items-center justify-center
+               hover:bg-secondary
+               transition">
+
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+
+                </button>
+
+            </form>
         </div>
         <div class="p-5">
             <!-- HOME -->
@@ -277,164 +296,164 @@
     </header>
     <!-- Searchbar -->
     @include('themes.default.common.searchbar')
-    
-@push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
 
-            /* =========================================
-               MOBILE MENU SYSTEM
-            ========================================= */
-            const menuToggle = document.getElementById("menuToggle");
-            const mobileMenu = document.getElementById("mobileMenu");
-            const mobileOverlay = document.getElementById("mobileOverlay");
-            const closeMenu = document.getElementById("closeMenu");
-            const whatsappWidget = document.querySelector(".whatsapp-widget");
+    @push('scripts')
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
 
-            function openMobileMenu() {
-                mobileMenu?.classList.add("active");
-                mobileOverlay?.classList.add("active");
-                document.body.classList.add("menu-open");
-                whatsappWidget?.classList.add("hidden");
-            }
+                /* =========================================
+                   MOBILE MENU SYSTEM
+                ========================================= */
+                const menuToggle = document.getElementById("menuToggle");
+                const mobileMenu = document.getElementById("mobileMenu");
+                const mobileOverlay = document.getElementById("mobileOverlay");
+                const closeMenu = document.getElementById("closeMenu");
+                const whatsappWidget = document.querySelector(".whatsapp-widget");
 
-            function closeMobileMenu() {
-                mobileMenu?.classList.remove("active");
-                mobileOverlay?.classList.remove("active");
-                document.body.classList.remove("menu-open");
-                whatsappWidget?.classList.remove("hidden");
+                function openMobileMenu() {
+                    mobileMenu?.classList.add("active");
+                    mobileOverlay?.classList.add("active");
+                    document.body.classList.add("menu-open");
+                    whatsappWidget?.classList.add("hidden");
+                }
 
-                // Collapse any expanded mobile accordions when the menu closes
-                mobileDropdowns.forEach(dropdown => {
-                    dropdown.classList.remove("active");
-                });
-            }
+                function closeMobileMenu() {
+                    mobileMenu?.classList.remove("active");
+                    mobileOverlay?.classList.remove("active");
+                    document.body.classList.remove("menu-open");
+                    whatsappWidget?.classList.remove("hidden");
 
-            menuToggle?.addEventListener("click", openMobileMenu);
-            closeMenu?.addEventListener("click", closeMobileMenu);
-            mobileOverlay?.addEventListener("click", closeMobileMenu);
-
-
-            /* =========================================
-               MOBILE ACCORDIONS (DROPDOWNS)
-            ========================================= */
-            const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
-
-            mobileDropdowns.forEach(dropdown => {
-                const button = dropdown.querySelector(".mobile-dropdown-btn");
-                if (!button) return;
-
-                button.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    // Close other open accordions
-                    mobileDropdowns.forEach(item => {
-                        if (item !== dropdown && item.classList.contains("active")) {
-                            item.classList.remove("active");
-                        }
+                    // Collapse any expanded mobile accordions when the menu closes
+                    mobileDropdowns.forEach(dropdown => {
+                        dropdown.classList.remove("active");
                     });
+                }
 
-                    // Toggle the clicked accordion
-                    dropdown.classList.toggle("active");
-                });
-            });
-
-            const searchToggles = document.querySelectorAll(".searchToggle, .searchToggleMobile");
-            const searchWrapper = document.getElementById("searchWrapper");
-            const searchOverlay = document.getElementById("searchOverlay");
-            const closeSearch = document.getElementById("closeSearch");
-
-            function openSearch() {
-                searchWrapper?.classList.add("search-active");
-                document.body.classList.add("menu-open");
-            }
-
-            function closeSearchModal() {
-                searchWrapper?.classList.remove("search-active");
-                document.body.classList.remove("menu-open");
-            }
-
-            /* Attach event to BOTH desktop + mobile search buttons */
-            searchToggles.forEach(btn => {
-                btn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    openSearch();
-                });
-            });
-
-            /* close actions */
-            closeSearch?.addEventListener("click", closeSearchModal);
-            searchOverlay?.addEventListener("click", closeSearchModal);
+                menuToggle?.addEventListener("click", openMobileMenu);
+                closeMenu?.addEventListener("click", closeMobileMenu);
+                mobileOverlay?.addEventListener("click", closeMobileMenu);
 
 
-            /* =========================================
-               DESKTOP DROPDOWNS (HOVER & CLICK)
-            ========================================= */
-            const dropdownParents = document.querySelectorAll(".dropdown-parent");
-            const dropdownMenus = document.querySelectorAll(".dropdown-menu");
+                /* =========================================
+                   MOBILE ACCORDIONS (DROPDOWNS)
+                ========================================= */
+                const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
 
-            function closeAllDropdowns() {
-                dropdownMenus.forEach(menu => menu.classList.remove("active"));
-                dropdownParents.forEach(parent => parent.classList.remove("active"));
-            }
+                mobileDropdowns.forEach(dropdown => {
+                    const button = dropdown.querySelector(".mobile-dropdown-btn");
+                    if (!button) return;
 
-            dropdownParents.forEach(parent => {
-                const toggle = parent.querySelector(".dropdown-toggle");
-                if (!toggle) return;
-
-                const dropdownId = toggle.dataset.dropdown;
-                const menu = document.getElementById(dropdownId);
-                if (!menu) return;
-
-                // Desktop Hover States
-                parent.addEventListener("mouseenter", () => {
-                    if (window.innerWidth >= 1024) {
-                        closeAllDropdowns();
-                        menu.classList.add("active");
-                        parent.classList.add("active");
-                    }
-                });
-
-                parent.addEventListener("mouseleave", () => {
-                    if (window.innerWidth >= 1024) {
-                        menu.classList.remove("active");
-                        parent.classList.remove("active");
-                    }
-                });
-
-                // Fallback click handle for desktop touch screens
-                toggle.addEventListener("click", (e) => {
-                    if (window.innerWidth >= 1024) {
+                    button.addEventListener("click", (e) => {
                         e.preventDefault();
-                        const isActive = menu.classList.contains("active");
-                        closeAllDropdowns();
-                        if (!isActive) {
+                        e.stopPropagation();
+
+                        // Close other open accordions
+                        mobileDropdowns.forEach(item => {
+                            if (item !== dropdown && item.classList.contains("active")) {
+                                item.classList.remove("active");
+                            }
+                        });
+
+                        // Toggle the clicked accordion
+                        dropdown.classList.toggle("active");
+                    });
+                });
+
+                const searchToggles = document.querySelectorAll(".searchToggle, .searchToggleMobile");
+                const searchWrapper = document.getElementById("searchWrapper");
+                const searchOverlay = document.getElementById("searchOverlay");
+                const closeSearch = document.getElementById("closeSearch");
+
+                function openSearch() {
+                    searchWrapper?.classList.add("search-active");
+                    document.body.classList.add("menu-open");
+                }
+
+                function closeSearchModal() {
+                    searchWrapper?.classList.remove("search-active");
+                    document.body.classList.remove("menu-open");
+                }
+
+                /* Attach event to BOTH desktop + mobile search buttons */
+                searchToggles.forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        openSearch();
+                    });
+                });
+
+                /* close actions */
+                closeSearch?.addEventListener("click", closeSearchModal);
+                searchOverlay?.addEventListener("click", closeSearchModal);
+
+
+                /* =========================================
+                   DESKTOP DROPDOWNS (HOVER & CLICK)
+                ========================================= */
+                const dropdownParents = document.querySelectorAll(".dropdown-parent");
+                const dropdownMenus = document.querySelectorAll(".dropdown-menu");
+
+                function closeAllDropdowns() {
+                    dropdownMenus.forEach(menu => menu.classList.remove("active"));
+                    dropdownParents.forEach(parent => parent.classList.remove("active"));
+                }
+
+                dropdownParents.forEach(parent => {
+                    const toggle = parent.querySelector(".dropdown-toggle");
+                    if (!toggle) return;
+
+                    const dropdownId = toggle.dataset.dropdown;
+                    const menu = document.getElementById(dropdownId);
+                    if (!menu) return;
+
+                    // Desktop Hover States
+                    parent.addEventListener("mouseenter", () => {
+                        if (window.innerWidth >= 1024) {
+                            closeAllDropdowns();
                             menu.classList.add("active");
                             parent.classList.add("active");
                         }
+                    });
+
+                    parent.addEventListener("mouseleave", () => {
+                        if (window.innerWidth >= 1024) {
+                            menu.classList.remove("active");
+                            parent.classList.remove("active");
+                        }
+                    });
+
+                    // Fallback click handle for desktop touch screens
+                    toggle.addEventListener("click", (e) => {
+                        if (window.innerWidth >= 1024) {
+                            e.preventDefault();
+                            const isActive = menu.classList.contains("active");
+                            closeAllDropdowns();
+                            if (!isActive) {
+                                menu.classList.add("active");
+                                parent.classList.add("active");
+                            }
+                        }
+                    });
+                });
+
+                // Click outside desktop dropdowns to close them
+                document.addEventListener("click", (e) => {
+                    if (!e.target.closest(".dropdown-parent")) {
+                        closeAllDropdowns();
                     }
                 });
-            });
 
-            // Click outside desktop dropdowns to close them
-            document.addEventListener("click", (e) => {
-                if (!e.target.closest(".dropdown-parent")) {
+
+                /* =========================================
+                   GLOBAL ESC KEYBOARD SHORTCUT
+                ========================================= */
+                document.addEventListener("keydown", (e) => {
+                    if (e.key !== "Escape") return;
                     closeAllDropdowns();
-                }
+                    closeMobileMenu();
+                    closeSearchModal();
+                });
+
             });
-
-
-            /* =========================================
-               GLOBAL ESC KEYBOARD SHORTCUT
-            ========================================= */
-            document.addEventListener("keydown", (e) => {
-                if (e.key !== "Escape") return;
-                closeAllDropdowns();
-                closeMobileMenu();
-                closeSearchModal();
-            });
-
-        });
-    </script>
-@endpush
+        </script>
+    @endpush

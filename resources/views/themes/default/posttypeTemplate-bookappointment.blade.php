@@ -173,9 +173,7 @@
                                 </label>
                                 <textarea name="message" rows="4"
                                     class="w-full border border-slate-300 p-5 resize-none focus:border-secondary outline-none"
-                                    placeholder="Describe your symptoms, appointment request, inquiry or healthcare requirement...">
-                                    {{ old('message') }}
-                                    </textarea>
+                                    placeholder="Describe your symptoms, appointment request, inquiry or healthcare requirement...">{{ old('message', '') }}</textarea>
                             </div>
                             <!-- TERMS -->
                             <div class="mt-6 flex items-start gap-3">
@@ -486,7 +484,7 @@
                         grid-cols-2
                         gap-4
                         mt-4">
-                            <a href="tel:+977XXXXXXXX"
+                            <a href="tel:{{ $setting->phone }}"
                                 class="border
                             border-slate-200
                             py-4
@@ -498,7 +496,7 @@
                             transition">
                                 Call Now
                             </a>
-                            <a href="./bookappointment.html"
+                            <a href="{{ url('page/bookappointment.html') }}"
                                 class="bg-primary
                             text-white
                             py-4
@@ -536,27 +534,9 @@
             disableMobile: true
         });
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?render={{ env('SITE_KEY') }}"></script>
-    <script>
-        grecaptcha.ready(function() {
-            function executeRecaptcha() {
-                grecaptcha.execute('<?php echo env('SITE_KEY'); ?>', {
-                    action: 'homepage'
-                }).then(function(token) {
-                    document.getElementById('g_recaptcha_response').value = token;
-                });
-            }
-
-            // Initial execution of reCAPTCHA
-            executeRecaptcha();
-
-            // Refresh the reCAPTCHA token every 100 seconds (less than 2 minutes)
-            setInterval(executeRecaptcha, 900000);
-        });
-    </script>
+   
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
             const dateInput = document.getElementById('appointment_date');
             const timeSelect = document.getElementById('appointment_time');
 
@@ -565,22 +545,15 @@
             }
 
             function populateTimes() {
-
                 timeSelect.innerHTML = '';
-
                 const selectedDate = dateInput.value;
                 const today = formatDate(new Date());
                 const now = new Date();
-
                 let slotsAdded = 0;
-
                 for (let hour = 9; hour <= 17; hour++) {
-
                     for (let minute = 0; minute < 60; minute += 30) {
-
                         const hh = String(hour).padStart(2, '0');
                         const mm = String(minute).padStart(2, '0');
-
                         // Skip past times if today
                         if (selectedDate === today) {
                             if (
@@ -590,20 +563,15 @@
                                 continue;
                             }
                         }
-
                         const option = document.createElement('option');
                         option.value = `${hh}:${mm}`;
-
                         const displayHour = hour > 12 ? hour - 12 : hour;
                         const ampm = hour >= 12 ? 'PM' : 'AM';
-
                         option.text = `${displayHour}:${mm} ${ampm}`;
-
                         timeSelect.appendChild(option);
                         slotsAdded++;
                     }
                 }
-
                 // No slots available
                 if (slotsAdded === 0) {
                     const option = document.createElement('option');
@@ -614,11 +582,8 @@
                     timeSelect.appendChild(option);
                 }
             }
-
             dateInput.addEventListener('change', populateTimes);
-
             populateTimes();
-
         });
     </script>
 @endsection

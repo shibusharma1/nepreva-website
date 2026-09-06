@@ -41,7 +41,7 @@
         <div class="max-w-5xl mx-auto mt-20">
             <div class="bg-white border border-slate-200 shadow-lg">
                 <div class="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
-                    <a href="{{ url('/page/about') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                    <a href="{{ url('/about-us.html') }}" class="group p-8 text-center hover:bg-slate-50 transition">
                         <div
                             class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
                         >
@@ -49,7 +49,7 @@
                         </div>
                         <h3 class="font-bold text-primary">About Us</h3>
                     </a>
-                    <a href="{{ url('/page/services') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                    <a href="{{ url('/services.html') }}" class="group p-8 text-center hover:bg-slate-50 transition">
                         <div
                             class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
                         >
@@ -57,7 +57,7 @@
                         </div>
                         <h3 class="font-bold text-primary">Services</h3>
                     </a>
-                    <a href="{{ url('/page/doctors') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                    <a href="{{ url('/doctors-at-ciwec.html') }}" class="group p-8 text-center hover:bg-slate-50 transition">
                         <div
                             class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
                         >
@@ -65,7 +65,7 @@
                         </div>
                         <h3 class="font-bold text-primary">Doctors</h3>
                     </a>
-                    <a href="{{ url('/bookappointment') }}" class="group p-8 text-center hover:bg-slate-50 transition">
+                    <a href="{{ url('page/bookappointment.html') }}" class="group p-8 text-center hover:bg-slate-50 transition">
                         <div
                             class="w-16 h-16 mx-auto mb-5 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition"
                         >

@@ -19,7 +19,7 @@
                     </button>
                 </div>
                 <div class="p-6 md:p-8">
-                    <form action="{{ route('search') }}" method="GET" class="flex">
+                    {{-- <form action="{{ route('search') }}" method="GET" class="flex">
                         <input type="text" name="q" value="{{ request('q') }}"
                             placeholder="Search doctors, services, articles..." autocomplete="off" required
                             minlength="2"
@@ -27,6 +27,15 @@
                         <button type="submit" aria-label="Search"
                             class="w-[70px] h-[58px] bg-primary text-white hover:bg-secondary transition">
                             <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form> --}}
+                    <form action="{{ route('search') }}" method="GET" class="flex w-full">
+                        <input type="text" name="q" value="{{ request('q') }}"
+                            placeholder="Search doctors, services..." autocomplete="off" required minlength="2"
+                            class="min-w-0 flex-1 h-[52px] sm:h-[58px] px-4 sm:px-6 border border-slate-300 border-r-0 text-sm sm:text-base outline-none focus:border-secondary">
+                        <button type="submit" aria-label="Search"
+                            class="shrink-0 w-[52px] sm:w-[70px] h-[52px] sm:h-[58px] bg-primary text-white flex items-center justify-center hover:bg-secondary transition">
+                            <i class="fa-solid fa-magnifying-glass text-sm sm:text-base"></i>
                         </button>
                     </form>
                     <div class="mt-8">

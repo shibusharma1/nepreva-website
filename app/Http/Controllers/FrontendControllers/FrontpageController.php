@@ -25,6 +25,7 @@ use App\Mail\SendMailContact;
 use App\Mail\SendResume;
 use App\Mail\CareerApply;
 use App\Mail\CareerMail;
+use App\Mail\PatientAppointmentMail;
 use App\Models\Galleries\VideoGalleryCategoryModel;
 use App\Models\Inquiry\AppointmentModel;
 use App\Models\NewsLetters\NewsletterSubscriber;
@@ -78,8 +79,8 @@ class FrontpageController extends Controller
 
     $results = PostModel::query()
       ->with('documents')
-      ->where('post_type',2)
-      ->whereIn('post_parent',[26,27,28,29,45])
+      ->where('post_type', 2)
+      ->whereIn('post_parent', [26, 27, 28, 29, 45])
       ->where('status', '1')
       ->where('published', '1')
       ->where('is_active', '1')
@@ -111,7 +112,7 @@ class FrontpageController extends Controller
       ->orderBy('post_order')
       ->paginate(10)
       ->withQueryString();
-    return view('themes.default.search-results', compact('results','search'));
+    return view('themes.default.search-results', compact('results', 'search'));
   }
 
   public function posttype($uri)
@@ -359,120 +360,125 @@ class FrontpageController extends Controller
 
   public function sendmail_contact_appointment(Request $request)
   {
-    dd($request->all());
+    // dd($request->all());
     $g_recaptcha_response = $request->input('g_recaptcha_response');
     $result = $this->getCaptcha($g_recaptcha_response);
     if ($result->success == true && $result->score > 0.5) {
-    try {
-      $request->validate([
-        'request_type'      => 'required|string|max:100',
-        'name'              => 'required|string|max:255',
-        'email'             => 'required|email:rfc,dns|max:255',
-        'phone'             => 'required|string|max:30',
-        'nationality'       => 'nullable|string|max:100',
-        'location'          => 'required|in:Kathmandu,Pokhara',
-        'department'        => 'nullable|string|max:255',
-        'appointment_date'  => 'required|date|after_or_equal:today',
-        'appointment_time'  => 'required|date_format:H:i',
-        'message'           => 'nullable|string|max:2000',
-        'terms'             => 'accepted',
-      ]);
+      try {
+        $request->validate([
+          'request_type'      => 'required|string|max:100',
+          'name'              => 'required|string|max:255',
+          'email'             => 'required|email:rfc,dns|max:255',
+          'phone'             => 'required|string|max:30',
+          'nationality'       => 'nullable|string|max:100',
+          'location'          => 'required|in:Kathmandu,Pokhara',
+          'department'        => 'nullable|string|max:255',
+          'appointment_date'  => 'required|date|after_or_equal:today',
+          'appointment_time'  => 'required|date_format:H:i',
+          'message'           => 'nullable|string|max:2000',
+          'terms'             => 'accepted',
+        ]);
 
 
-      if ($request->appointment_date === now()->toDateString()) {
+        if ($request->appointment_date === now()->toDateString()) {
 
-        $selectedDateTime = Carbon::parse(
-          $request->appointment_date . ' ' . $request->appointment_time
-        );
+          $selectedDateTime = Carbon::parse(
+            $request->appointment_date . ' ' . $request->appointment_time
+          );
 
-        if ($selectedDateTime->isPast()) {
+          if ($selectedDateTime->isPast()) {
+
+            return back()
+              ->withInput()
+              ->with([
+                'error' => true,
+                'message' => 'Please choose a future time.'
+              ]);
+          }
+        }
+
+        $opening = Carbon::createFromTime(9, 0);
+        $closing = Carbon::createFromTime(19, 0);
+
+        $selectedTime = Carbon::createFromFormat('H:i', $request->appointment_time);
+
+        if ($selectedTime->lt($opening) || $selectedTime->gt($closing)) {
 
           return back()
             ->withInput()
             ->with([
               'error' => true,
-              'message' => 'Please choose a future time.'
+              'message' => 'Appointments are available only between 9:00 AM and 7:00 PM.'
             ]);
         }
-      }
 
-      $opening = Carbon::createFromTime(9, 0);
-      $closing = Carbon::createFromTime(19, 0);
+        $appointmentExists = AppointmentModel::whereDate('appointment_date', $request->appointment_date)
+          ->whereTime('appointment_time', $request->appointment_time)
+          ->where('location', $request->location)
+          ->exists();
 
-      $selectedTime = Carbon::createFromFormat('H:i', $request->appointment_time);
+        if ($appointmentExists) {
+          return back()
+            ->withInput()
+            ->with([
+              'error' => true,
+              'message' => 'This time slot has already been booked for the selected location.'
+            ]);
+        }
 
-      if ($selectedTime->lt($opening) || $selectedTime->gt($closing)) {
-
-        return back()
-          ->withInput()
-          ->with([
-            'error' => true,
-            'message' => 'Appointments are available only between 9:00 AM and 7:00 PM.'
+        if ($request->isMethod('post')) {
+          $appointment = AppointmentModel::create([
+            'request_type'      => $request->request_type,
+            'full_name'         => $request->name,
+            'email'             => $request->email,
+            'phone'             => $request->phone,
+            'country'           => $request->nationality,
+            'location'          => $request->location,
+            'service'           => $request->department,
+            'appointment_date'  => $request->appointment_date,
+            'appointment_time'  => $request->appointment_time,
+            'message'           => $request->message,
+            'status'            => 'Pending',
           ]);
-      }
 
-      $appointmentExists = AppointmentModel::whereDate('appointment_date', $request->appointment_date)
-        ->whereTime('appointment_time', $request->appointment_time)
-        ->where('location', $request->location)
-        ->exists();
+          Mail::to($appointment->email)
+            ->queue(new PatientAppointmentMail($appointment));
+          $setting = SettingModel::where('id', 1)->first();
+          $adminEmail = $request->location === 'Kathmandu'
+            ? $setting->email_primary
+            : $setting->email_secondary;
 
-      if ($appointmentExists) {
-        return back()
-          ->withInput()
-          ->with([
-            'error' => true,
-            'message' => 'This time slot has already been booked for the selected location.'
-          ]);
-      }
+          Log::info('admin email as per lovation is :', [$adminEmail]);
 
-      if ($request->isMethod('post')) {
-        $appointment = AppointmentModel::create([
-          'request_type'      => $request->request_type,
-          'full_name'         => $request->name,
-          'email'             => $request->email,
-          'phone'             => $request->phone,
-          'country'           => $request->nationality,
-          'location'          => $request->location,
-          'service'           => $request->department,
-          'appointment_date'  => $request->appointment_date,
-          'appointment_time'  => $request->appointment_time,
-          'message'           => $request->message,
-          'status'            => 'Pending',
+          Mail::to($adminEmail)
+            ->queue(new PatientAppointmentMail($appointment));
+          // Log:info([]);
+          $adminEmail = "ss02001135@gmail.com";
+
+          Mail::to($adminEmail)
+            ->queue(new AdminAppointmentMail($appointment));
+          // }
+
+          $message = "Thank you for your appointment request. Our healthcare team will review your request and contact you shortly.";
+          return view(
+            'themes.default.inquiry-success',
+            [
+              'message' => $message,
+              'name' => $appointment->full_name,
+            ]
+          );
+        }
+      } catch (ValidationException $e) {
+        return redirect()->back()->with([
+          'error' => true,
+          'message' => $e->validator->errors()->all()
         ]);
-
-        Mail::to($appointment->email)
-          ->queue(new ContactMail($appointment));
-
-        // $adminEmail = $request->location === 'Kathmandu'
-        //   ? $setting->email_primary
-        //   : $setting->email_secondary;
-
-        $adminEmail = "ss02001135@gmail.com";
-
-        Mail::to($adminEmail)
-          ->queue(new AdminAppointmentMail($appointment));
-        // }
-
-        $message = "Thank you for your appointment request. Our healthcare team will review your request and contact you shortly.";
-        return view(
-          'themes.default.inquiry-success',
-          [
-            'message' => $message,
-            'name' => $appointment->full_name,
-          ]
-        );
+      } catch (Exception $e) {
+        return redirect()->back()->with([
+          'error' => true,
+          'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
+        ]);
       }
-    } catch (ValidationException $e) {
-      return redirect()->back()->with([
-        'error' => true,
-        'message' => $e->validator->errors()->all()
-      ]);
-    } catch (Exception $e) {
-      return redirect()->back()->with([
-        'error' => true,
-        'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
-      ]);
-    }
     } else {
       return redirect()->back()->with([
         'error' => true,
@@ -487,47 +493,49 @@ class FrontpageController extends Controller
     $g_recaptcha_response = $request->input('g_recaptcha_response');
     $result = $this->getCaptcha($g_recaptcha_response);
     if ($result->success == true) {
-    try {
-      $request->validate([
-        'full_name' => 'required|string|max:255',
-        // 'lname' => 'required|string|max:255',
-        'phone' => 'required|string|max:255',
-        'email' => 'required|email',
-        'subject' => 'nullable|string|max:255',
-        'message' => 'nullable|string|max:255',
-      ]);
-
-      if ($request->isMethod('post')) {
-        $contact = ContactModel::create([
-          'full_name' => $request->full_name,
-          'email' => $request->email,
-          'number' => $request->phone,
-          'subject' => $request->subject,
-          'message' => $request->message,
-          // 'country' => $request->lname,
+      try {
+        $request->validate([
+          'full_name' => 'required|string|max:255',
+          // 'lname' => 'required|string|max:255',
+          'phone' => 'required|string|max:255',
+          'email' => 'required|email',
+          'subject' => 'nullable|string|max:255',
+          'message' => 'nullable|string|max:255',
         ]);
-        // return new ContactMail();
-        // Mail::to($request->email)->send(new ContactMail());
-        $adminEmail = "ss02001135@gmail.com";
 
-        Mail::to($adminEmail)
-          ->queue(new ContactMail($contact));
+        if ($request->isMethod('post')) {
+          $contact = ContactModel::create([
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'number' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            // 'country' => $request->lname,
+          ]);
+          // return new ContactMail();
+          // Mail::to($request->email)->send(new ContactMail());
+          $setting = SettingModel::where('id', 1)->first();
+          Log::info('Setting email', [$setting->email_primary]);
+          $adminEmail = "ss02001135@gmail.com";
 
-        $name = $request->full_name;
-        $message = "<p>Thank you for contacting us. One of our team will be in touch with you soon.</p>";
-        return view('themes.default.inquiry-success', compact('message', 'name'));
+          Mail::to($adminEmail)
+            ->queue(new ContactMail($contact));
+
+          $name = $request->full_name;
+          $message = "<p>Thank you for contacting us. One of our team will be in touch with you soon.</p>";
+          return view('themes.default.inquiry-success', compact('message', 'name'));
+        }
+      } catch (ValidationException $e) {
+        return redirect()->back()->with([
+          'error' => true,
+          'message' => $e->validator->errors()->all()
+        ]);
+      } catch (Exception $e) {
+        return redirect()->back()->with([
+          'error' => true,
+          'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
+        ]);
       }
-    } catch (ValidationException $e) {
-      return redirect()->back()->with([
-        'error' => true,
-        'message' => $e->validator->errors()->all()
-      ]);
-    } catch (Exception $e) {
-      return redirect()->back()->with([
-        'error' => true,
-        'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
-      ]);
-    }
     } else {
       return redirect()->back()->with([
         'error' => true,
@@ -711,37 +719,46 @@ class FrontpageController extends Controller
   //News letter subscriber
   public function newsletter(Request $request)
   {
-    try {
-      $validator = Validator::make($request->all(), [
-        // 'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-      ]);
-      if ($validator->fails()) {
+    $g_recaptcha_response = $request->input('g_recaptcha_response');
+    $result = $this->getCaptcha($g_recaptcha_response);
+    if ($result->success == true && $result->score > 0.5) {
+      try {
+        $validator = Validator::make($request->all(), [
+          // 'name' => 'required|string|max:255',
+          'email' => 'required|email|max:255',
+        ]);
+        if ($validator->fails()) {
 
+          return back()
+            ->withErrors($validator)
+            ->withInput()
+            ->with('error', 'Please check the form fields.');
+        }
+        $existingSubscriber = NewsletterSubscriber::where('email', $request->email)
+          ->first();
+        Log::info($existingSubscriber);
+        if ($existingSubscriber) {
+          return back()
+            ->withInput()
+            ->with('message', 'You are already subscribed.');
+        }
+        $newslettersubscriber = new NewsletterSubscriber();
+        // $newslettersubscriber->name = $request->name;
+        $newslettersubscriber->email = $request->email;
+        $newslettersubscriber->subscribed_at = now();
+        $newslettersubscriber->save();
+        return back()->with('success', 'Successfully subscribed to our newsletter.');
+      } catch (\Exception $e) {
+        Log::info($e);
         return back()
-          ->withErrors($validator)
           ->withInput()
-          ->with('error', 'Please check the form fields.');
+          ->with('error', 'Unable to process your request right now.');
       }
-      $existingSubscriber = NewsletterSubscriber::where('email', $request->email)
-        ->first();
-      Log::info($existingSubscriber);
-      if ($existingSubscriber) {
-        return back()
-          ->withInput()
-          ->with('message', 'You are already subscribed.');
-      }
-      $newslettersubscriber = new NewsletterSubscriber();
-      // $newslettersubscriber->name = $request->name;
-      $newslettersubscriber->email = $request->email;
-      $newslettersubscriber->subscribed_at = now();
-      $newslettersubscriber->save();
-      return back()->with('success', 'Successfully subscribed to our newsletter.');
-    } catch (\Exception $e) {
-      Log::info($e);
-      return back()
-        ->withInput()
-        ->with('error', 'Unable to process your request right now.');
+    } else {
+      return redirect()->back()->with([
+        'error' => true,
+        'message' => 'You are Robot.'
+      ]);
     }
   }
 }
