@@ -53,24 +53,39 @@
                                     </span>
                                     <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center">
                                         <i
-                                            class="{{ $service->sub_title ?: 'fa-solid fa-stethoscope' }} text-secondary text-2xl">
+                                            class="{{ $service->associated_title ?: 'fa-solid fa-stethoscope' }} text-secondary text-2xl">
                                         </i>
                                     </div>
                                 </div>
                                 <h3 class="text-primary text-2xl font-black">
                                     {{ $service->post_title }}
                                 </h3>
-                                <p class="text-slate-600 mt-4 leading-7 flex-grow">
-                                    {{ $service->post_excerpt }}
+                                <!-- LIMITED DESCRIPTION -->
+                                <p class="text-slate-600 mt-4 leading-7 line-clamp-2">
+                                    {{ Str::limit(strip_tags($service->post_excerpt), 150) }}
                                 </p>
                                 <div class="mt-6 pt-6 border-t">
-                                    <a href="{{ url('page/' . $service->uri) }}"
+                                    {{-- <a href="{{ url('page/' . $service->uri) }}"
                                         class="inline-flex items-center gap-2 font-semibold text-primary hover:text-secondary transition">
                                         Learn More
                                         <i
                                             class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-1">
                                         </i>
-                                    </a>
+                                    </a> --}}
+                                    <button type="button"
+                                        class="service-modal-trigger inline-flex items-center gap-2 font-semibold text-primary hover:text-secondary transition"
+                                        data-title="{{ $service->post_title }}" data-subtitle="{{ $service->sub_title }}"
+                                        data-associated-title="{{ $service->associated_title ?: 'fa-solid fa-stethoscope' }}"
+                                        data-description="{{ e(strip_tags($service->post_excerpt)) }}"
+                                        aria-label="View details about {{ $service->post_title }}">
+
+                                        Learn More
+
+                                        <i class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-1"
+                                            aria-hidden="true">
+                                        </i>
+
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -80,21 +95,308 @@
         </div>
     </section>
 
+    <!-- SERVICE DETAILS MODAL -->
+    <!-- SERVICE DETAILS MODAL -->
+<div
+    id="serviceModal"
+    class="fixed inset-0 z-[9999] hidden items-center justify-center p-3 sm:p-4 md:p-6"
+    aria-hidden="true"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="serviceModalTitle">
+
+    <!-- BACKDROP -->
+    <div
+        id="serviceModalBackdrop"
+        class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm">
+    </div>
+
+    <!-- MODAL -->
+    <div
+        id="serviceModalContent"
+        class="relative flex w-full max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl max-h-[94vh] sm:max-h-[90vh] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+
+        <!-- MODAL HEADER -->
+        <div
+            class="flex shrink-0 items-start justify-between gap-4 border-b border-slate-200 px-4 py-4 sm:gap-6 sm:px-6 sm:py-5 md:px-8 md:py-6">
+
+            <div class="min-w-0 flex-1">
+
+                <span
+                    id="serviceModalSubtitle"
+                    class="mb-1 block truncate text-xs font-bold uppercase tracking-[1.5px] text-secondary sm:mb-2 sm:text-sm sm:tracking-[2px]">
+                </span>
+
+                <h2
+                    id="serviceModalTitle"
+                    class="break-words text-xl font-black leading-tight text-primary sm:text-2xl md:text-3xl">
+                </h2>
+
+            </div>
+
+            <!-- CLOSE BUTTON -->
+            <button
+                type="button"
+                id="serviceModalClose"
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-all duration-300 hover:bg-secondary hover:text-white sm:h-10 sm:w-10"
+                aria-label="Close service details">
+
+                <i
+                    class="fa-solid fa-xmark text-base sm:text-lg"
+                    aria-hidden="true">
+                </i>
+
+            </button>
+
+        </div>
+
+        <!-- MODAL BODY -->
+        <div
+            class="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6 md:px-8 md:py-8">
+
+            <!-- SERVICE INFO -->
+            <div class="mb-5 flex items-start gap-3 sm:mb-6 sm:gap-4">
+
+                <div
+                    class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-secondary/10 text-secondary sm:h-12 sm:w-12">
+
+                    <i
+                        id="serviceModalIcon"
+                        class="fa-solid fa-stethoscope text-lg sm:text-xl"
+                        aria-hidden="true">
+                    </i>
+
+                </div>
+
+                <div class="min-w-0">
+
+                    <p class="text-sm font-semibold text-slate-500 sm:text-base">
+                        Service Details
+                    </p>
+
+                    <p class="mt-1 text-xs leading-5 text-slate-600 sm:text-sm sm:leading-6">
+                        Learn more about this healthcare service.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div
+                id="serviceModalDescription"
+                class="break-words text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
+            </div>
+
+        </div>
+
+        <!-- MODAL FOOTER -->
+        {{-- <div
+            class="flex shrink-0 justify-end border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 sm:py-4 md:px-8">
+
+            <button
+                type="button"
+                id="serviceModalDone"
+                class="btn-primary text-sm sm:text-base">
+
+                Close
+
+                <i
+                    class="fa-solid fa-xmark ml-2"
+                    aria-hidden="true">
+                </i>
+
+            </button>
+
+        </div> --}}
+
+    </div>
+
+</div>
+
     <script>
-        const buttons = document.querySelectorAll(".location-btn");
-        const wrappers = document.querySelectorAll(".service-wrapper");
-        buttons.forEach(button => {
-            button.addEventListener("click", function() {
-                buttons.forEach(btn =>
-                    btn.classList.remove("active-location")
+        document.addEventListener('DOMContentLoaded', function() {
+
+            /*
+            |--------------------------------------------------------------------------
+            | LOCATION TOGGLE
+            |--------------------------------------------------------------------------
+            */
+
+            const buttons = document.querySelectorAll('.location-btn');
+            const wrappers = document.querySelectorAll('.service-wrapper');
+
+            buttons.forEach(button => {
+
+                button.addEventListener('click', function() {
+
+                    buttons.forEach(btn => {
+                        btn.classList.remove('active-location');
+                    });
+
+                    this.classList.add('active-location');
+
+                    wrappers.forEach(wrapper => {
+                        wrapper.classList.add('hidden');
+                    });
+
+                    const locationId = this.dataset.location;
+                    const activeWrapper = document.getElementById(
+                        'location-' + locationId
+                    );
+
+                    if (activeWrapper) {
+                        activeWrapper.classList.remove('hidden');
+                    }
+
+                });
+
+            });
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | SERVICE DETAILS MODAL
+            |--------------------------------------------------------------------------
+            */
+
+            const modal = document.getElementById('serviceModal');
+            const modalContent = document.getElementById('serviceModalContent');
+            const modalBackdrop = document.getElementById('serviceModalBackdrop');
+            const modalClose = document.getElementById('serviceModalClose');
+            const modalDone = document.getElementById('serviceModalDone');
+
+            const modalTitle = document.getElementById('serviceModalTitle');
+            const modalSubtitle = document.getElementById('serviceModalSubtitle');
+            const modalDescription = document.getElementById(
+                'serviceModalDescription'
+            );
+            const modalIcon = document.getElementById('serviceModalIcon');
+
+            const serviceTriggers = document.querySelectorAll(
+                '.service-modal-trigger'
+            );
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | OPEN MODAL
+            |--------------------------------------------------------------------------
+            */
+
+            function openServiceModal(button) {
+
+                const title = button.dataset.title || '';
+                const subtitle = button.dataset.subtitle || '';
+                const associatedTitle = button.dataset.associatedTitle ||
+                    'fa-solid fa-stethoscope';
+                const description = button.dataset.description || '';
+
+                modalTitle.textContent = title;
+                modalSubtitle.textContent = subtitle;
+                modalDescription.textContent = description;
+
+                modalIcon.className = associatedTitle + ' text-xl';
+
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+
+                modal.setAttribute('aria-hidden', 'false');
+
+                document.body.classList.add('overflow-hidden');
+
+                requestAnimationFrame(() => {
+                    modalContent.classList.remove('opacity-0', 'scale-95');
+                    modalContent.classList.add('opacity-100', 'scale-100');
+                });
+
+                modalClose.focus();
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | CLOSE MODAL
+            |--------------------------------------------------------------------------
+            */
+
+            function closeServiceModal() {
+
+                modalContent.classList.remove(
+                    'opacity-100',
+                    'scale-100'
                 );
-                this.classList.add("active-location");
-                wrappers.forEach(wrapper =>
-                    wrapper.classList.add("hidden")
+
+                modalContent.classList.add(
+                    'opacity-0',
+                    'scale-95'
                 );
-                document
-                    .getElementById("location-" + this.dataset.location)
-                    .classList.remove("hidden");
+
+                setTimeout(() => {
+
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+
+                    modal.setAttribute('aria-hidden', 'true');
+
+                    document.body.classList.remove('overflow-hidden');
+
+                }, 200);
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | SERVICE BUTTON CLICK
+            |--------------------------------------------------------------------------
+            */
+
+            serviceTriggers.forEach(button => {
+
+                button.addEventListener('click', function() {
+                    openServiceModal(this);
+                });
+
+            });
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | CLOSE BUTTON
+            |--------------------------------------------------------------------------
+            */
+
+            modalClose.addEventListener('click', closeServiceModal);
+
+            modalDone.addEventListener('click', closeServiceModal);
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | CLOSE WHEN CLICKING BACKDROP
+            |--------------------------------------------------------------------------
+            */
+
+            modalBackdrop.addEventListener('click', closeServiceModal);
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | CLOSE WITH ESCAPE KEY
+            |--------------------------------------------------------------------------
+            */
+
+            document.addEventListener('keydown', function(event) {
+
+                if (
+                    event.key === 'Escape' &&
+                    !modal.classList.contains('hidden')
+                ) {
+                    closeServiceModal();
+                }
+
             });
 
         });
@@ -269,8 +571,7 @@
                             {{ $featuredFacility->post_excerpt }}
                         </p>
                         <div class="mt-8">
-                            <a href="#facilities"
-                                class="btn-primary transition">
+                            <a href="#facilities" class="btn-primary transition">
                                 Learn More
                                 <i class="fa-solid fa-arrow-right-long">
                                 </i>
