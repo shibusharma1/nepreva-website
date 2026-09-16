@@ -410,7 +410,7 @@
     </section>
 
     {{-- Doctor modal --}}
-    {{-- <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
+    <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
         <div id="doctorOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
         </div>
         <div class="relative h-screen flex items-center justify-center p-4">
@@ -422,7 +422,7 @@
                 <div id="doctorModalContent"></div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     @if ($patientStoriesHeading && $patientStories->isNotEmpty())
         @php
@@ -810,9 +810,7 @@
             });
 
         });
-    </script>
 
-    <script>
         const videoModal = document.getElementById("videoModal");
         const storyVideo = document.getElementById("storyVideo");
         const closeVideoModal = document.getElementById("closeVideoModal");
@@ -826,8 +824,7 @@
                     const video = card.dataset.video;
                     if (!video) return;
                     const separator = video.includes("?") ? "&" : "?";
-                    storyVideo.src =
-                        `${video}${separator}autoplay=1&rel=0&modestbranding=1`;
+                    storyVideo.src = `${video}${separator}autoplay=1&rel=0&modestbranding=1`;
                     videoModal.classList.remove("hidden");
                     videoModal.classList.add("flex");
                     document.body.style.overflow = "hidden";
@@ -847,8 +844,7 @@
             });
             document.addEventListener("keydown", (e) => {
                 if (
-                    e.key === "Escape" &&
-                    !videoModal.classList.contains("hidden")
+                    e.key === "Escape" && !videoModal.classList.contains("hidden")
                 ) {
                     closeModal();
                 }
