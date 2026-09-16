@@ -410,7 +410,7 @@
     </section>
 
     {{-- Doctor modal --}}
-    <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
+    {{-- <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
         <div id="doctorOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
         </div>
         <div class="relative h-screen flex items-center justify-center p-4">
@@ -422,7 +422,7 @@
                 <div id="doctorModalContent"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @if ($patientStoriesHeading && $patientStories->isNotEmpty())
         @php
