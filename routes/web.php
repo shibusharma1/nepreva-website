@@ -9,7 +9,9 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-
+Route::get('/test-deployment',function(){
+    return "working";
+});
 Route::get('/', 'FrontendControllers\FrontpageController@index');
 Route::get('/search','FrontendControllers\FrontpageController@search')->name('search');
 
