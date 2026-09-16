@@ -14,7 +14,7 @@
                         <span class="w-2 h-2 bg-secondary"></span>
                         Research Health Information
                     </span>
-                    <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
+                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
                         Health Informations
 
                     </h2>

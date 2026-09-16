@@ -17,10 +17,12 @@
                     <div class="max-w-3xl">
                         <span
                             class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
-                            <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span> {{-- Trusted Since 1982 --}}
-                            {{ $banner->caption }} </span>
-                        <h1 class="text-white font-black leading-tight text-[34px] md:text-[52px] xl:text-[70px]">
-                            {{-- International Standard Healthcare in Nepal --}} {{ $banner->title }}
+                            <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                            {{ $banner->caption }}
+                        </span>
+                        <h1
+                            class="text-white font-black text-[30px] sm:text-[38px] md:text-[46px] xl:text-[56px] leading-[1.08]">
+                            {{ $banner->title }}
                         </h1>
                         <p class="mt-6 text-white/90 text-base md:text-lg xl:text-xl leading-relaxed max-w-2xl">
                             {{-- Providing world-class travel medicine, family medicine, specialist care and emergency services from Kathmandu and Pokhara for over 40 years. --}} {{ $banner->content }}
@@ -34,7 +36,7 @@
 
     <section class="relative z-20 -mt-10 md:-mt-12 xl:-mt-16">
         <div class="container-custom">
-            <div class="bg-white border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
+            <div class="border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
                 <div class="grid grid-cols-1 md:grid-cols-3">
                     <!-- FIND DOCTOR (Hidden on Mobile) -->
                     <a href="{{ url('doctors-at-ciwec.html') }}"
@@ -79,7 +81,7 @@
         </div>
     </section>
 
-    <section class="speciality-section section-padding bg-white">
+    <section class="speciality-section section-padding">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="flex items-end justify-between mb-10">
@@ -118,7 +120,7 @@
     </section>
 
     <!-- #currently working -->
-    <section class="relative section-padding bg-slate-100 overflow-hidden">
+    <section class="relative py-12 md:py-16 bg-slate-100 overflow-hidden">
         <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
             <img src="{{ asset('uploads/medium/' . $whyciwecheading->banner) }}"
                 class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-contain opacity-[0.4]">
@@ -128,7 +130,7 @@
                 <span
                     class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                     <span class="w-2 h-2 bg-secondary"></span> {{ $whyciwecheading->sub_title }} </span>
-                <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-6" data-aos="fade-up">
+                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
                     {{ $whyciwecheading->post_title }}
                 </h2>
                 <p class="text-slate-600 text-base md:text-lg leading-8">
@@ -190,7 +192,7 @@
                     <span
                         class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                         <span class="w-2 h-2 bg-secondary"></span> {{ $trustedworldwide->sub_title }} </span>
-                    <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-6">
+                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
                         {{ $trustedworldwide->post_title }}
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8 mb-8 max-w-2xl">
@@ -208,20 +210,24 @@
                 <div class="relative">
                     <!-- GLOW -->
                     <div class="absolute inset-0 bg-primary/5 blur-3xl"></div>
-                    <img src="{{ asset('themes-assets/img/world-map.svg') }}" alt="World Map"
-                        class="relative z-10 w-full max-w-[700px] mx-auto"> <!-- NEPAL -->
-                    <div class="absolute top-[37%] left-[71%] z-20">
-                        <span class="absolute inset-0 w-5 h-5 bg-secondary rounded-full animate-ping"> </span> <span
-                            class="relative block w-5 h-5 bg-secondary rounded-full shadow-[0_0_20px_rgba(220,38,38,.6)]">
-                        </span>
+                    <img src="{{ asset('themes-assets/img/world-map.svg') }}" alt="World Map" class="relative z-10 w-full max-w-[700px] mx-auto">
+                    <div class="absolute top-[38%] left-[73%] z-20">
+                        <div class="map-pin-marker relative h-8 w-8 -translate-x-1/2 -translate-y-full">
+                            <!-- Soft pulse beneath the pin -->
+                            <span class="map-pin-pulse" aria-hidden="true"></span>
+                            <!-- Pin -->
+                            <svg viewBox="0 0 32 40" class="map-pin-icon relative z-10 h-full w-full drop-shadow-md" aria-label="Map location marker" role="img">
+                                <path d="M16 39 C12 32 2 22 2 14 A14 14 0 1 1 30 14 C30 22 20 32 16 39Z" fill="#EA4335" stroke="#FFFFFF" stroke-width="1.5" />
+                                <circle cx="16" cy="14" r="5" fill="#FFFFFF" />
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- STATS -->
             <div class="grid grid-cols-2 xl:grid-cols-4 gap-5 mt-16 xl:mt-20">
                 <!-- ITEM -->
-                <div
-                    class="border border-slate-200 bg-white p-6 md:p-8 text-center hover:border-secondary transition-all duration-300">
+                <div class="border border-slate-200 bg-white p-6 md:p-8 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-3xl md:text-4xl font-black" data-target="20000">
                         0
                     </h3>
@@ -265,7 +271,7 @@
                     <span
                         class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                         <span class="w-2 h-2 bg-secondary"></span> {{ $whatsnewheading->sub_title }} </span>
-                    <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
+                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
                         {{ $whatsnewheading->post_title }}
                     </h2>
                     <p class="text-gray-600 text-base md:text-lg leading-8">
@@ -394,7 +400,7 @@
                     <span
                         class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-5">
                         <span class="w-2 h-2 bg-secondary"></span> {{ $doctorssection->sub_title }} </span>
-                    <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-6">
+                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
                         {{ $doctorssection->post_title }}
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8 mb-8">
@@ -428,7 +434,7 @@
             $featuredStory = $patientStories->first();
             $otherStories = $patientStories->skip(1)->take(4);
         @endphp
-        <section class="section-padding relative bg-white overflow-hidden">
+        <section class="section-padding relative overflow-hidden">
             <div class="container-custom">
                 <!-- HEADING -->
                 <div class="text-center mb-8 md:mb-10">
@@ -437,7 +443,7 @@
                             class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                             <span class="w-2 h-2 bg-secondary"></span> {{ $patientStoriesHeading->sub_title }} </span>
                         @endif @if ($patientStoriesHeading->post_title)
-                            <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-6">
+                            <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
                                 {{ $patientStoriesHeading->post_title }}
                             </h2>
                             @endif @if ($patientStoriesHeading->post_excerpt)
@@ -581,7 +587,7 @@
                         class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                         <span class="w-2 h-2 bg-secondary"></span>
                         {{ $testimonialheading->sub_title ?? 'Patient Feedback' }} </span>
-                    <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
+                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
                         {{ $testimonialheading->post_title }}
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8">
@@ -658,7 +664,7 @@
     </section>
 
     @if ($awardheading && $awards->isNotEmpty())
-        <section class="relative section-padding bg-slate-100 overflow-hidden">
+        <section class="relative py-12 md:py-16 bg-slate-100 overflow-hidden">
             <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
                 <img src="{{ asset('uploads/medium/' . $awardheading->banner) }}" alt="{{ $awardheading->post_title }}"
                     loading="lazy"
@@ -672,7 +678,7 @@
                             class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                             <span class="w-2 h-2 bg-secondary"></span> {{ $awardheading->sub_title }} </span>
                         @endif @if ($awardheading->post_title)
-                            <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
+                            <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
                                 {{ $awardheading->post_title }}
                             </h2>
                             @endif @if ($awardheading->post_excerpt)
@@ -706,7 +712,7 @@
     @endif
 
     @if ($publications)
-        <section class="section-padding bg-white overflow-hidden relative">
+        <section class="section-padding overflow-hidden relative">
             <div class="container-custom z-10 relative">
                 <!-- HEADER -->
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
@@ -716,7 +722,7 @@
                                 class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                                 <span class="w-2 h-2 bg-secondary"></span> {{ $publications->sub_title }} </span>
                             @endif @if ($publications->post_title)
-                                <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
+                                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
                                     {{ $publications->post_title }}
                                 </h2>
                                 @endif @if ($publications->post_excerpt)
@@ -1145,11 +1151,11 @@
                                     ${doctor.education
                                         .map(
                                             (item) => `
-                                                                <li class="flex items-start gap-2 text-sm text-slate-600">
-                                                                    <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
-                                                                    <span>${item}</span>
-                                                                </li>
-                                                            `,
+                                                                                                <li class="flex items-start gap-2 text-sm text-slate-600">
+                                                                                                    <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
+                                                                                                    <span>${item}</span>
+                                                                                                </li>
+                                                                                            `,
                                         )
                                         .join("")}
                                 </ul>

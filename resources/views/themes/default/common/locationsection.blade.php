@@ -8,7 +8,7 @@
                 Our Locations
             </span>
             <h2
-                class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-4">
+                class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
                 Visit CIWEC Hospital
             </h2>
             <p

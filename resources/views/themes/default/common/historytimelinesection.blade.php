@@ -27,7 +27,7 @@
         </span>
         Our Journey
       </span>
-      <h2 class="text-primary text-3xl md:text-4xl xl:text-4xl font-black leading-tight mb-6">
+      <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
         Over Four Decades of Healthcare Excellence
       </h2>
       <p class="text-slate-600 mt-5 text-base md:text-lg leading-8">

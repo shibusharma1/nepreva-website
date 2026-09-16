@@ -29,7 +29,7 @@ body {
     font-size: 16px;
     line-height: 1.7;
     color: var(--text-body);
-    background: #ffffff;
+    background: #f8fafc;
     overflow-x: hidden;
 }
 .container-custom {
@@ -692,7 +692,8 @@ color:var(--primary);
     color: white;
 }
 .speciality-section {
-    background: #ebf0f5;
+    /* background: #ebf0f5; */
+    background: #f1f5f9;
     position: relative;
     overflow-x: hidden;
 }
@@ -700,7 +701,7 @@ color:var(--primary);
 .speciality-card {
     position: relative;
     display: block;
-    height: 520px;
+    height: 420px;
     overflow: hidden;
 }
 /* IMAGE */
@@ -775,7 +776,7 @@ color:var(--primary);
 /* MOBILE */
 @media (max-width: 768px) {
     .speciality-card {
-        height: 420px;
+        height: 340px;
     }
     .speciality-content {
         padding: 22px;
@@ -1641,5 +1642,50 @@ WHATS NEW SECTION
 @media (min-width: 1440px) {
     #stickyBar {
         right: 12px !important;
+    }
+}
+.map-pin-marker {
+    transform-origin: 50% 100%;
+    animation: mapPinBob 2.2s ease-in-out infinite;
+}
+
+.map-pin-pulse {
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    bottom: -5px;
+    width: 14px;
+    height: 14px;
+    border: 2px solid #EA4335;
+    border-radius: 50%;
+    background: rgba(234, 67, 53, 0.16);
+    transform: translateX(-50%);
+    animation: mapPinPulse 2.2s ease-out infinite;
+}
+
+@keyframes mapPinBob {
+    0%, 100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -5px;
+    }
+}
+
+@keyframes mapPinPulse {
+    0% {
+        opacity: 0.75;
+        scale: 0.6;
+    }
+    75%, 100% {
+        opacity: 0;
+        scale: 2.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .map-pin-marker,
+    .map-pin-pulse {
+        animation: none;
     }
 }
