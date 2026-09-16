@@ -258,7 +258,7 @@
 
     @include('themes.default.common.historytimelinesection')
 
-    <section class="section-padding bg-white">
+    {{-- <section class="section-padding bg-white">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
@@ -295,7 +295,7 @@
                                 <p class="text-gray-600 leading-8 mb-8">
                                     {{ $featuredCard->post_excerpt }}
                                 </p>
-                                <a href="{{ url($featuredCard->uri) }}"
+                                <a href="{{ url('page/bookappointment.html') }}"
                                     class="inline-flex items-center gap-3 text-primary font-bold group"> Learn More <span
                                         class="w-9 h-9 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
                                         <i class="fa-solid fa-arrow-right text-xs"></i> </span> </a>
@@ -316,7 +316,7 @@
                                     {{ $card->post_title }}
                                 </h3>
                                 <p class="text-gray-600 leading-7 flex-grow">{{ $card->post_excerpt }}</p>
-                                <a href="{{ url($card->uri) }}"
+                                <a href="{{ url('page/health-information.html') }}"
                                     class="inline-flex items-center gap-3 text-primary font-bold mt-6"> Learn More <i
                                         class="fa-solid fa-arrow-right text-secondary"></i> </a>
                             </article>
@@ -325,7 +325,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="section-padding relative bg-slate-100 overflow-hidden">
         <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
@@ -784,7 +784,6 @@
             </div>
         </section>
     @endif
-
 
     <script>
         const items = document.querySelectorAll('.model-item');

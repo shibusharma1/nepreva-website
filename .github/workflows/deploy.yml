@@ -1,0 +1,43 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ciwec-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to cPanel
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Deploy through SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          timeout: 30s
+          command_timeout: 5m
+          script: |
+            set -e
+            cd /home/ukeshcom/demo2
+
+            git fetch origin main
+
+            if [ -n "$(git status --porcelain)" ]; then
+              echo "ERROR: Server working tree has local changes."
+              git status --short
+              exit 1
+            fi
+
+            git reset --hard origin/main
+
+            echo "Deployment completed:"
+            git log -1 --oneline
