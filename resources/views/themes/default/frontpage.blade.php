@@ -260,75 +260,6 @@
 
     @include('themes.default.common.historytimelinesection')
 
-    {{-- <section class="section-padding bg-white">
-        <div class="container-custom">
-            <!-- HEADER -->
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
-                <div class="max-w-3xl">
-                    <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
-                        <span class="w-2 h-2 bg-secondary"></span> {{ $whatsnewheading->sub_title }} </span>
-                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
-                        {{ $whatsnewheading->post_title }}
-                    </h2>
-                    <p class="text-gray-600 text-base md:text-lg leading-8">
-                        {{ $whatsnewheading->post_excerpt }}
-                    </p>
-                </div>
-            </div>
-            <!-- GRID -->
-            <div class="grid lg:grid-cols-12 gap-6">
-                <!-- FEATURED CARD -->
-                <div class="lg:col-span-5">
-                    @if ($featuredCard)
-                        <article
-                            class="group border border-slate-200 bg-white h-full hover:border-secondary transition-all duration-500">
-                            <div class="overflow-hidden">
-                                <img src="{{ asset('uploads/medium/' . $featuredCard->banner) }}"
-                                    alt="{{ $featuredCard->post_title }}"
-                                    class="w-full h-[260px] md:h-[340px] object-cover transition duration-700 group-hover:scale-105">
-                            </div>
-                            <div class="p-6 md:p-8">
-                                <span class="text-secondary text-xs uppercase tracking-[2px] font-bold">
-                                    {{ $featuredCard->sub_title }} </span>
-                                <h3 class="text-primary text-2xl md:text-3xl font-black leading-tight mt-3 mb-4">
-                                    {{ $featuredCard->post_title }}
-                                </h3>
-                                <p class="text-gray-600 leading-8 mb-8">
-                                    {{ $featuredCard->post_excerpt }}
-                                </p>
-                                <a href="{{ url('page/bookappointment.html') }}"
-                                    class="inline-flex items-center gap-3 text-primary font-bold group"> Learn More <span
-                                        class="w-9 h-9 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
-                                        <i class="fa-solid fa-arrow-right text-xs"></i> </span> </a>
-                            </div>
-                        </article>
-                    @endif
-                </div>
-                <!-- RIGHT COLUMN -->
-                <div class="lg:col-span-7">
-                    <div class="grid md:grid-cols-2 gap-6 h-full">
-                        @foreach ($smallCards as $card)
-                            <article
-                                class="border border-slate-200 p-6 md:p-8 hover:border-secondary transition-all duration-500 flex flex-col">
-                                <div class="w-14 h-14 bg-primary/5 text-primary flex items-center justify-center mb-6">
-                                    <i class="{{ $card->associated_title }} text-xl"></i>
-                                </div>
-                                <h3 class="text-primary text-xl md:text-2xl font-black mb-4">
-                                    {{ $card->post_title }}
-                                </h3>
-                                <p class="text-gray-600 leading-7 flex-grow">{{ $card->post_excerpt }}</p>
-                                <a href="{{ url('page/health-information.html') }}"
-                                    class="inline-flex items-center gap-3 text-primary font-bold mt-6"> Learn More <i
-                                        class="fa-solid fa-arrow-right text-secondary"></i> </a>
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <section class="section-padding relative bg-slate-100 overflow-hidden">
         <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
             <img src="{{ asset('uploads/medium/' . $doctorssection->banner) }}" alt="Doctor Background" loading="lazy"
@@ -583,7 +514,7 @@
                     <span
                         class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                         <span class="w-2 h-2 bg-secondary"></span>
-                        {{ $testimonialheading->sub_title ?? 'Patient Feedback' }} </span>
+                        {{ $testimonialheading->sub_title ?? 'PATIENT FEEDBACK' }} </span>
                     <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
                         {{ $testimonialheading->post_title }}
                     </h2>
@@ -663,9 +594,9 @@
     @if ($awardheading && $awards->isNotEmpty())
         <section class="relative py-12 md:py-16 bg-slate-100 overflow-hidden">
             <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-                <img src="{{ asset('uploads/medium/' . $awardheading->banner) }}" alt="{{ $awardheading->post_title }}"
+                {{-- <img src="{{ asset('uploads/medium/' . $awardheading->banner) }}" alt="{{ $awardheading->post_title }}"
                     loading="lazy"
-                    class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-fill opacity-[0.4]">
+                    class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-fill opacity-[0.4]"> --}}
             </div>
             <div class="relative z-10 container-custom">
                 <!-- HEADER -->
