@@ -4,39 +4,36 @@
     <!-- HERO -->
     <section id="hero-section" class="relative">
         <!-- VIDEO HERO -->
-        <div class="relative h-[440px] sm:h-[480px] lg:h-[520px] xl:h-[560px] overflow-hidden">
+        <div class="relative h-[440px] sm:h-[480px] lg:h-[520px] xl:h-[520px] overflow-hidden">
             <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto">
                 <source src="{{ asset('themes-assets/vdo/banner.webm') }}" type="video/mp4">
             </video>
             <!-- Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-black/20">
-            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-black/20"></div>
             <!-- Content -->
             <div class="absolute inset-0 flex items-center">
                 <div class="container-custom">
                     <div class="max-w-3xl">
-                        <span
-                            class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
+                        <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
                             <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
                             {{ $banner->caption }}
                         </span>
-                        <h1
-                            class="text-white font-black text-[30px] sm:text-[38px] md:text-[46px] xl:text-[56px] leading-[1.08]">
+                        <h1 class="text-white font-black text-[30px] sm:text-[38px] md:text-[46px] xl:text-[56px] leading-[1.08]">
                             {{ $banner->title }}
                         </h1>
                         <p class="mt-6 text-white/90 text-base md:text-lg xl:text-xl leading-relaxed max-w-2xl">
-                            {{-- Providing world-class travel medicine, family medicine, specialist care and emergency services from Kathmandu and Pokhara for over 40 years. --}} {{ $banner->content }}
+                          {{ $banner->content }}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+        {{-- </div> --}}
     </section>
 
     <section class="relative z-20 -mt-10 md:-mt-12 xl:-mt-16">
         <div class="container-custom">
-            <div class="border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
+            <div class="border bg-white border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
                 <div class="grid grid-cols-1 md:grid-cols-3">
                     <!-- FIND DOCTOR (Hidden on Mobile) -->
                     <a href="{{ url('doctors-at-ciwec.html') }}"
@@ -225,37 +222,37 @@
                 </div>
             </div>
             <!-- STATS -->
-            <div class="grid grid-cols-2 xl:grid-cols-4 gap-5 mt-16 xl:mt-20">
+            <div class="grid grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4 mt-10 xl:mt-12">
                 <!-- ITEM -->
-                <div class="border border-slate-200 bg-white p-6 md:p-8 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-3xl md:text-4xl font-black" data-target="20000">
+                <div class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="20000">
                         0
                     </h3>
-                    <p class="text-slate-600 mt-3 text-sm md:text-base">International Patients</p>
+                    <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">International Patients</p>
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-white p-6 md:p-8 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-3xl md:text-4xl font-black" data-target="130">
+                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="130">
                         0
                     </h3>
-                    <p class="text-slate-600 mt-3 text-sm md:text-base">Countries Served</p>
+                    <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Countries Served</p>
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-white p-6 md:p-8 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-3xl md:text-4xl font-black" data-target="40">
+                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="40">
                         0
                     </h3>
-                    <p class="text-slate-600 mt-3 text-sm md:text-base">Years Of Excellence</p>
+                    <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Years Of Excellence</p>
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-white p-6 md:p-8 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-3xl md:text-4xl font-black" data-target="2">
+                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="2">
                         0
                     </h3>
-                    <p class="text-slate-600 mt-3 text-sm md:text-base">Hospital Locations</p>
+                    <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Hospital Locations</p>
                 </div>
             </div>
         </div>
