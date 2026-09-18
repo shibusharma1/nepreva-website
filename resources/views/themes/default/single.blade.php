@@ -28,7 +28,6 @@
                 </ol>
             </nav>
             <!-- Main service panel -->
-
             <!-- Main service panel -->
             <div class="grid items-start border border-slate-200 bg-white lg:grid-cols-12">
                 <!-- Sticky Service Image -->
@@ -42,8 +41,7 @@
                 <div class="lg:col-span-7">
                     <div class="w-full p-5 sm:p-7 lg:p-10">
                         @if ($serviceSubtitle)
-                            <span
-                                class="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
+                            <span class="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
                                 <span class="h-1.5 w-1.5 bg-secondary"></span>
                                 {{ $serviceSubtitle }}
                             </span>
@@ -93,9 +91,7 @@
                                 </span>
                                 {{-- Update this URL if your PostDocModel uses a different file field. --}}
                                 @if (!empty($document->file))
-                                    <a href="{{ asset('uploads/documents/' . $document->file) }}" target="_blank"
-                                        rel="noopener"
-                                        class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-secondary">
+                                    <a href="{{ asset('uploads/documents/' . $document->file) }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-secondary">
                                         View document
                                         <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                                     </a>
@@ -107,10 +103,9 @@
             @endif
             <!-- Back to services -->
             <div class="mt-6">
-                <a href="{{ url('/') }}"
-                    class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-secondary">
+                <a href="{{ url('/') }}" class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-secondary">
                     <i class="fa-solid fa-arrow-left text-xs"></i>
-                    Back to {{ $parentTitle }}
+                    Back
                 </a>
             </div>
         </div>

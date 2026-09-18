@@ -118,68 +118,83 @@
     </section>
 
     <!-- #currently working -->
-    <section class="relative py-12 md:py-16 bg-slate-100 overflow-hidden">
-        <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-            <img src="{{ asset('uploads/medium/' . $whyciwecheading->banner) }}"
-                class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-contain opacity-[0.4]">
+  <section class="relative overflow-hidden bg-slate-100 py-8 md:py-12 lg:py-14">
+    <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
+        {{-- <img src="{{ asset('uploads/medium/' . $whyciwecheading->banner) }}"
+            class="mx-auto h-auto w-[120%] object-contain opacity-[0.25] lg:w-full"> --}}
+    </div>
+    <div class="relative z-10 container-custom">
+        <div class="mb-6 max-w-3xl lg:mb-8">
+            <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                <span class="h-1.5 w-1.5 bg-secondary"></span>
+                {{ $whyciwecheading->sub_title }}
+            </span>
+
+            <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
+                {{ $whyciwecheading->post_title }}
+            </h2>
+
+            <p class="text-slate-600 text-base md:text-lg leading-8 mb-8 max-w-2xl">
+                {{ $whyciwecheading->post_excerpt }}
+            </p>
         </div>
-        <div class="relative z-10 container-custom">
-            <div class="max-w-3xl mb-8 lg:mb-10">
-                <span
-                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
-                    <span class="w-2 h-2 bg-secondary"></span> {{ $whyciwecheading->sub_title }} </span>
-                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
-                    {{ $whyciwecheading->post_title }}
-                </h2>
-                <p class="text-slate-600 text-base md:text-lg leading-8">
-                    {{ $whyciwecheading->post_excerpt }}
-                </p>
-            </div>
-            <div id="ciwecModelSection">
-                <div class="relative mt-8 lg:mt-10 mb-4">
-                    <div class="grid lg:grid-cols-3 gap-6 lg:gap-8 items-center">
-                        <!-- LEFT -->
-                        <div class="space-y-3 lg:space-y-5 order-2 lg:order-1">
-                            @foreach ($leftCards as $index => $item)
-                                <button class="left-card model-item {{ $index == 0 ? 'active' : '' }}"
-                                    data-image="{{ asset('uploads/medium/' . $item->banner) }}"> <i
-                                        class="{{ $item->associated_title }} text-2xl sm:text-3xl lg:text-4xl text-secondary flex-shrink-0 lg:mb-4 mb-0"></i>
-                                    <div>
-                                        <h3 class="text-base sm:text-lg font-bold text-primary">
-                                            {{ $item->post_title }}
-                                        </h3>
-                                    </div>
-                                </button>
-                            @endforeach
-                        </div>
-                        <!-- CENTER IMAGE -->
-                        <div class="relative order-1 lg:order-2 flex justify-center">
-                            <div class="ciwec-ring"></div>
-                            <div class="ciwec-image-wrapper">
-                                <img id="centerImage"
-                                    src="{{ $whyciwec->count() ? asset('uploads/medium/' . $whyciwec->first()->banner) : '' }}"
-                                    class="ciwec-image">
-                            </div>
-                        </div>
-                        <!-- RIGHT -->
-                        <div class="space-y-3 lg:space-y-5 order-3">
-                            @foreach ($rightCards as $item)
-                                <button class="right-card model-item"
-                                    data-image="{{ asset('uploads/medium/' . $item->banner) }}"> <i
-                                        class="{{ $item->associated_title }} text-2xl sm:text-3xl lg:text-4xl text-secondary flex-shrink-0 lg:mb-4 mb-0"></i>
-                                    <div>
-                                        <h3 class="text-base sm:text-lg font-bold text-primary">
-                                            {{ $item->post_title }}
-                                        </h3>
-                                    </div>
-                                </button>
-                            @endforeach
+
+        <div id="ciwecModelSection">
+            <div class="relative mt-6 lg:mt-8">
+                <div class="grid items-center gap-5 lg:grid-cols-3 lg:gap-6">
+
+                    <!-- LEFT -->
+                    <div class="order-2 space-y-3 lg:order-1 lg:space-y-4">
+                        @foreach ($leftCards as $index => $item)
+                            <button
+                                class="left-card model-item {{ $index == 0 ? 'active' : '' }}"
+                                data-image="{{ asset('uploads/medium/' . $item->banner) }}">
+                                <i class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
+
+                                <div>
+                                    <h3 class="text-sm font-bold text-primary sm:text-base">
+                                        {{ $item->post_title }}
+                                    </h3>
+                                </div>
+                            </button>
+                        @endforeach
+                    </div>
+
+                    <!-- CENTER IMAGE -->
+                    <div class="relative order-1 flex justify-center lg:order-2">
+                        <div class="ciwec-ring"></div>
+
+                        <div class="ciwec-image-wrapper">
+                            <img
+                                id="centerImage"
+                                src="{{ $whyciwec->count() ? asset('uploads/medium/' . $whyciwec->first()->banner) : '' }}"
+                                class="ciwec-image"
+                                alt="{{ $whyciwecheading->post_title }}">
                         </div>
                     </div>
+
+                    <!-- RIGHT -->
+                    <div class="order-3 space-y-3 lg:space-y-4">
+                        @foreach ($rightCards as $item)
+                            <button
+                                class="right-card model-item"
+                                data-image="{{ asset('uploads/medium/' . $item->banner) }}">
+                                <i class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
+
+                                <div>
+                                    <h3 class="text-sm font-bold text-primary sm:text-base">
+                                        {{ $item->post_title }}
+                                    </h3>
+                                </div>
+                            </button>
+                        @endforeach
+                    </div>
+
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Statistics section -->
     <section class="relative section-padding bg-slate-200 overflow-hidden">
@@ -187,8 +202,7 @@
             <div class="grid xl:grid-cols-2 gap-12 xl:gap-20 items-center">
                 <!-- LEFT -->
                 <div>
-                    <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                    <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                         <span class="w-2 h-2 bg-secondary"></span> {{ $trustedworldwide->sub_title }} </span>
                     <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
                         {{ $trustedworldwide->post_title }}
@@ -535,7 +549,7 @@
     @endif
 
     <!-- TESTIMONIAL -->
-    <section class="section-padding bg-slate-200 overflow-hidden">
+    {{-- <section class="section-padding bg-slate-200 overflow-hidden">
         <div class="container-custom">
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
                 <div class="max-w-3xl">
@@ -617,7 +631,354 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
+{{-- =========================================================
+     TESTIMONIAL / PATIENT FEEDBACK SECTION
+     ========================================================= --}}
+
+<section class="section-padding bg-slate-200 overflow-hidden">
+
+    <div class="container-custom">
+
+        {{-- =====================================================
+             HEADER
+             ===================================================== --}}
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10">
+
+            <div class="max-w-3xl">
+
+                <span
+                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+
+                    <span class="w-2 h-2 bg-secondary"></span>
+
+                    {{ $testimonialheading->sub_title ?? 'PATIENT FEEDBACK' }}
+
+                </span>
+
+
+                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
+
+                    {{ $testimonialheading->post_title }}
+
+                </h2>
+
+
+                <p class="text-slate-600 text-base md:text-lg leading-8">
+
+                    {{ $testimonialheading->post_excerpt }}
+
+                </p>
+
+            </div>
+
+
+            {{-- =================================================
+                 GOOGLE RATING
+                 ================================================= --}}
+            <div class="border border-slate-200 bg-white px-6 py-5 shrink-0">
+
+                <div class="flex items-center gap-4">
+
+                    {{-- GOOGLE ICON --}}
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 48 48"
+                        class="w-10 h-10 shrink-0">
+
+                        <path fill="#FFC107"
+                            d="M43.611 20.083H42V20H24v8h11.303C33.655 32.657 29.203 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+
+                        <path fill="#FF3D00"
+                            d="M6.306 14.691l6.571 4.819C14.655 16.108 18.961 13 24 13c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+
+                        <path fill="#4CAF50"
+                            d="M24 44c5.176 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.143 35.091 26.715 36 24 36c-5.181 0-9.625-3.327-11.287-7.946l-6.522 5.025C9.507 39.556 16.227 44 24 44z" />
+
+                        <path fill="#1976D2"
+                            d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.084 5.57l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
+
+                    </svg>
+
+
+                    <div>
+
+                        <div class="flex text-[#f59e0b] text-lg mb-1">
+                            ★★★★★
+                        </div>
+
+                        <div class="text-primary font-black text-xl">
+                            {{ $testimonialheading->associated_title ?? '4.9/5 Rating' }}
+                        </div>
+
+                        <div class="text-slate-500 text-sm">
+                            Based on Google Reviews
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- =====================================================
+             REVIEWS
+             ===================================================== --}}
+        <div class="swiper reviewSwiper">
+
+            <div class="swiper-wrapper">
+
+             @forelse($testimonials as $testimonial)
+    <div class="swiper-slide h-auto">
+        <a href="#testimonial-lightbox-{{ $testimonial->id }}"
+            data-glightbox="type: inline"
+            class="testimonial-lightbox group block h-full bg-white border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
+
+            <!-- USER -->
+            <div class="flex items-center gap-4 mb-6">
+                <div class="relative shrink-0">
+                    <img src="{{ $testimonial->banner
+                        ? asset('uploads/medium/' . $testimonial->banner)
+                        : asset('assets/img/no-image.jpg') }}"
+                        class="w-16 h-16 object-cover rounded-full"
+                        alt="{{ $testimonial->post_title }}">
+
+                    <span
+                        class="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary text-white rounded-full flex items-center justify-center border-2 border-white">
+                        <i class="fa-solid fa-quote-left text-[9px]"></i>
+                    </span>
+                </div>
+
+                <div class="min-w-0">
+                    <h3 class="text-primary text-lg font-bold truncate">
+                        {{ $testimonial->post_title }}
+                    </h3>
+
+                    @if ($testimonial->sub_title)
+                        <p class="text-slate-500 text-xs mt-0.5">
+                            {{ $testimonial->sub_title }}
+                        </p>
+                    @endif
+
+                    <div class="text-[#f59e0b] text-sm mt-1">
+                        @php
+                            $rating = min(5, max(0, (int) $testimonial->associated_title));
+                        @endphp
+
+                        @for ($i = 0; $i < $rating; $i++)
+                            ★
+                        @endfor
+                    </div>
+                </div>
+            </div>
+
+            <!-- REVIEW TEXT -->
+            <div class="relative mb-6">
+                <i class="fa-solid fa-quote-left absolute -top-2 -left-1 text-primary/10 text-3xl"></i>
+
+                <p class="relative pl-5 text-slate-600 leading-8">
+                    {{ strip_tags($testimonial->post_excerpt) }}
+                </p>
+            </div>
+
+            <!-- READ FULL STORY -->
+            <div class="inline-flex items-center gap-2 text-primary font-semibold text-sm">
+                Read Full Story
+                <i class="fa-solid fa-arrow-right text-secondary transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+
+        </a>
+    </div>
+@empty
+
+                    {{-- =================================================
+                         EMPTY STATE
+                         ================================================= --}}
+                    <div class="swiper-slide">
+
+                        <div class="bg-white border border-slate-200 p-10 text-center">
+
+                            <h3 class="text-primary text-xl font-bold">
+
+                                No Testimonials Available
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                @endforelse
+
+            </div>
+
+        </div>
+
+
+        {{-- =====================================================
+             OPTIONAL SWIPER PAGINATION
+             ===================================================== --}}
+        <div class="review-pagination mt-7 text-center"></div>
+
+    </div>
+
+</section>
+
+
+
+{{-- =========================================================
+     TESTIMONIAL GLIGHTBOX CONTENT
+     ========================================================= --}}
+
+@foreach ($testimonials as $testimonial)
+
+    <div
+        id="testimonial-lightbox-{{ $testimonial->id }}"
+        class="hidden">
+
+        <div class="testimonial-lightbox-content">
+
+            {{-- =================================================
+                 IMAGE
+                 ================================================= --}}
+            <div class="testimonial-lightbox-image">
+
+                <img
+                    src="{{ $testimonial->banner
+                        ? asset('uploads/medium/' . $testimonial->banner)
+                        : asset('assets/img/no-image.jpg') }}"
+                    alt="{{ $testimonial->post_title }}">
+
+            </div>
+
+
+            {{-- =================================================
+                 CONTENT
+                 ================================================= --}}
+            <div class="testimonial-lightbox-body">
+
+                {{-- TOP LABEL --}}
+                <span
+                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[2px] mb-3">
+
+                    <span class="w-1.5 h-1.5 bg-secondary"></span>
+
+                    Patient Experience
+
+                </span>
+
+
+                {{-- NAME --}}
+                <h2
+                    class="text-primary text-2xl md:text-3xl font-black leading-tight break-words">
+
+                    {{ $testimonial->post_title }}
+
+                </h2>
+
+
+                {{-- SUBTITLE --}}
+                @if ($testimonial->sub_title)
+
+                    <p class="mt-1 text-slate-500 text-sm break-words">
+
+                        {{ $testimonial->sub_title }}
+
+                    </p>
+
+                @endif
+
+
+                {{-- RATING --}}
+                <div class="flex flex-wrap items-center gap-3 mt-4">
+
+                    <div class="flex text-[#f59e0b] text-lg">
+
+                        @php
+                            $rating = min(
+                                5,
+                                max(
+                                    0,
+                                    (int) $testimonial->associated_title
+                                )
+                            );
+                        @endphp
+
+
+                        @for ($i = 0; $i < $rating; $i++)
+
+                            ★
+
+                        @endfor
+
+                    </div>
+
+
+                    <span class="text-slate-400 text-sm">
+
+                        Verified Patient Experience
+
+                    </span>
+
+                </div>
+
+
+                {{-- DIVIDER --}}
+                <div class="w-12 h-[3px] bg-secondary my-6"></div>
+
+
+                {{-- FULL CONTENT --}}
+                <div class="testimonial-full-content">
+
+                    @if (
+                        trim(
+                            strip_tags(
+                                $testimonial->post_content ?? ''
+                            )
+                        ) !== ''
+                    )
+
+                        {!! $testimonial->post_content !!}
+
+                    @else
+
+                        <p>
+
+                            {{ $testimonial->post_excerpt }}
+
+                        </p>
+
+                    @endif
+
+                </div>
+
+
+                {{-- DATE --}}
+                @if ($testimonial->post_date)
+
+                    <div
+                        class="mt-7 pt-5 border-t border-slate-200 flex items-center gap-2 text-slate-400 text-xs">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <span>
+                            {{ \Carbon\Carbon::parse($testimonial->post_date)->format('d F, Y') }}
+                        </span>
+
+                    </div>
+
+                @endif
+
+            </div>
+
+        </div>
+
+    </div>
+
+@endforeach
+
 
     @if ($awardheading && $awards->isNotEmpty())
         <section class="relative py-12 md:py-16 bg-slate-100 overflow-hidden">

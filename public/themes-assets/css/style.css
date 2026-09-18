@@ -493,14 +493,14 @@ color:var(--primary);
     color: white;
     border-color: #0a3c69;
 }
-.faq-content {
+/* .faq-content {
     max-height: 0;
     overflow: hidden;
     transition: all 0.35s ease;
 }
 .faq-item.active .faq-content {
     max-height: 300px;
-}
+} */
 .faq-item.active .faq-btn {
     border-color: var(--secondary);
 }
@@ -935,51 +935,49 @@ WHATS NEW SECTION
     transform: rotate(45deg);
 }
 
-.model-item {
+ .model-item {
     width: 100%;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
     text-align: left;
     background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 20px;
-    transition: all 0.4s ease;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    transition: all 0.35s ease;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     cursor: pointer;
 }
+
 .model-item:hover {
-    transform: translateY(-8px);
-    border-color: #11497b;
-    box-shadow: 0 20px 40px rgba(17, 73, 123, 0.12);
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 28px rgba(17, 73, 123, 0.10);
 }
+
 .model-item h3 {
-    font-size: 22px;
-    font-weight: 800;
-    color: #11497b;
-    margin-bottom: 8px;
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0;
 }
+
 .model-item p {
-    color: #64748b;
-    line-height: 1.7;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
 }
-/* .model-item.active {
-    background: linear-gradient(135deg, #11497b, #1d5e95);
-    border-color: #11497b;
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 25px 60px rgba(17, 73, 123, 0.28);
-}
-.model-item.active h3,
-.model-item.active p,
-.model-item.active i {
-    color: white;
-} */
 .ciwec-image-wrapper {
-    width: 420px;
-    height: 420px;
-    border-radius: 20px;
+    width: 340px;
+    height: 340px;
+    border-radius: 16px;
     overflow: hidden;
-    border: 10px solid white;
-    box-shadow: 0 30px 80px rgba(17, 73, 123, 0.15);
+    border: 8px solid white;
+    box-shadow: 0 20px 50px rgba(17, 73, 123, 0.15);
     position: relative;
     z-index: 5;
 }
@@ -991,28 +989,33 @@ WHATS NEW SECTION
 }
 .ciwec-ring {
     position: absolute;
-    width: 560px;
-    height: 560px;
+    width: 440px;
+    height: 440px;
     left: 50%;
     top: 50%;
     border-radius: 50%;
-    border: 3px dashed rgba(17, 73, 123, 0.12);
+    border: 2px dashed rgba(17, 73, 123, 0.12);
     transform: translate(-50%, -50%);
     animation: rotateRing 60s linear infinite;
-}
-
+}   
 .ciwec-ring::before,
 .ciwec-ring::after {
     content: "";
     position: absolute;
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    background: #e53935;
+    background: var(--secondary);
 }
 
 .ciwec-ring::before {
-    top: -9px;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ciwec-ring::after {
+    bottom: -7px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -1024,12 +1027,6 @@ WHATS NEW SECTION
     border-radius: 50px;
     border: 1px solid rgba(17, 73, 123, 0.08);
     z-index: -1;
-}
-
-.ciwec-ring::after {
-    bottom: -9px;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 #centerImage {
@@ -1107,22 +1104,8 @@ WHATS NEW SECTION
     }
 
     .model-item h3 {
-        font-size: 18px;
+        font-size: 16px;
     }
-}
-
-.model-item::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    border: 2px solid #11497b;
-    /* border-radius: 999px; */
-    border-radius: 40px;
-    transform: translateY(-50%);
-    z-index: 5;
 }
 
 .model-item::before {
@@ -1144,41 +1127,27 @@ WHATS NEW SECTION
 .model-item:hover::before {
     left: 120%;
 }
-
-.left-card::after {
-    right: -38px;
-}
-
-.right-card::after {
-    left: -38px;
-}
-
-.left-card::after {
-    content: "";
-    position: absolute;
-    right: -35px;
-    top: 50%;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border: 2px solid #11497b;
-    border-radius: 50%;
-    transform: translateY(-50%);
-}
-
+/* .left-card::after,
 .right-card::after {
     content: "";
     position: absolute;
-    left: -35px;
     top: 50%;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border: 2px solid #11497b;
+    width: 10px;
+    height: 10px;
+    background: var(--white);
+    border: 2px solid var(--primary);
     border-radius: 50%;
     transform: translateY(-50%);
+    z-index: 5;
+} */
+
+.left-card::after {
+    right: -15px;
 }
 
+.right-card::after {
+    left: -15px;
+}
 @keyframes floatUp {
     0%,
     100% {
@@ -1186,7 +1155,7 @@ WHATS NEW SECTION
     }
 
     50% {
-        transform: translateY(-8px);
+        transform: translateY(-4px);
     }
 }
 
@@ -1197,7 +1166,7 @@ WHATS NEW SECTION
     }
 
     50% {
-        transform: translateY(8px);
+        transform: translateY(4px);
     }
 }
 
@@ -1693,3 +1662,373 @@ WHATS NEW SECTION
         animation: none;
     }
 }
+
+    /* =========================================================
+       GLIGHTBOX CONTENT
+       ========================================================= */
+
+    .testimonial-lightbox-content {
+
+        width: min(920px, calc(100vw - 32px));
+
+        max-width: 920px;
+
+        max-height: calc(100vh - 80px);
+
+        display: grid;
+
+        grid-template-columns:
+            minmax(280px, 38%)
+            minmax(0, 1fr);
+
+        background: #ffffff;
+
+        overflow: hidden;
+
+    }
+
+
+    /* =========================================================
+       IMAGE
+       ========================================================= */
+
+    .testimonial-lightbox-image {
+
+        width: 100%;
+
+        height: 100%;
+
+        min-height: 420px;
+
+        overflow: hidden;
+
+    }
+
+
+    .testimonial-lightbox-image img {
+
+        display: block;
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+    }
+
+
+    /* =========================================================
+       BODY
+       ========================================================= */
+
+    .testimonial-lightbox-body {
+
+        min-width: 0;
+
+        max-height: calc(100vh - 80px);
+
+        padding: 40px;
+
+        overflow-y: auto;
+
+        overflow-x: hidden;
+
+        word-break: break-word;
+
+        overflow-wrap: anywhere;
+
+        scrollbar-width: thin;
+
+    }
+
+
+    /* =========================================================
+       FULL CONTENT
+       ========================================================= */
+
+    .testimonial-full-content {
+
+        min-width: 0;
+
+        color: var(--slate-600);
+
+        font-size: 15px;
+
+        line-height: 1.9;
+
+        overflow-wrap: anywhere;
+
+        word-break: break-word;
+
+    }
+
+
+    .testimonial-full-content p {
+
+        margin-bottom: 1rem;
+
+    }
+
+
+    .testimonial-full-content p:last-child {
+
+        margin-bottom: 0;
+
+    }
+
+
+    .testimonial-full-content img {
+
+        display: block;
+
+        max-width: 100%;
+
+        height: auto;
+
+    }
+
+
+    .testimonial-full-content video {
+
+        display: block;
+
+        max-width: 100%;
+
+        height: auto;
+
+    }
+
+
+    .testimonial-full-content iframe {
+
+        display: block;
+
+        width: 100%;
+
+        max-width: 100%;
+
+        height: auto;
+
+    }
+
+
+    .testimonial-full-content table {
+
+        display: block;
+
+        width: 100%;
+
+        max-width: 100%;
+
+        overflow-x: auto;
+
+    }
+
+
+    .testimonial-full-content pre {
+
+        max-width: 100%;
+
+        white-space: pre-wrap;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+    .testimonial-full-content code {
+
+        max-width: 100%;
+
+        white-space: pre-wrap;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+    /* =========================================================
+       GLIGHTBOX INLINE WRAPPER
+       ========================================================= */
+
+    .glightbox-container .ginner-container {
+
+        width: auto;
+
+        max-width: 100%;
+
+        max-height: 100%;
+
+    }
+
+
+    .glightbox-container .gslide-inline {
+
+        width: auto !important;
+
+        max-width: 100%;
+
+    }
+
+
+    .glightbox-container .gslide-inline .ginlined-content {
+
+        width: auto !important;
+
+        max-width: 100%;
+
+        max-height: 100%;
+
+        padding: 0 !important;
+
+        overflow: visible;
+
+    }
+
+
+    /* =========================================================
+       TABLET
+       ========================================================= */
+
+    @media (max-width: 768px) {
+
+        .testimonial-lightbox-content {
+
+            width: calc(100vw - 24px);
+
+            max-width: calc(100vw - 24px);
+
+            max-height: calc(100vh - 40px);
+
+            grid-template-columns: 1fr;
+
+            grid-template-rows:
+                220px
+                minmax(0, 1fr);
+
+        }
+
+
+        .testimonial-lightbox-image {
+
+            min-height: 0;
+
+            height: 220px;
+
+        }
+
+
+        .testimonial-lightbox-body {
+
+            max-height: calc(100vh - 260px);
+
+            padding: 28px 24px;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 480px) {
+
+        .testimonial-lightbox-content {
+
+            width: calc(100vw - 16px);
+
+            max-width: calc(100vw - 16px);
+
+            max-height: calc(100vh - 24px);
+
+            grid-template-rows:
+                180px
+                minmax(0, 1fr);
+
+        }
+
+
+        .testimonial-lightbox-image {
+
+            height: 180px;
+
+        }
+
+
+        .testimonial-lightbox-body {
+
+            max-height: calc(100vh - 204px);
+
+            padding: 22px 18px;
+
+        }
+
+
+        .testimonial-lightbox-body h2 {
+
+            font-size: 1.5rem;
+
+            line-height: 1.25;
+
+        }
+
+
+        .testimonial-lightbox-body .testimonial-full-content {
+
+            font-size: 14px;
+
+            line-height: 1.75;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       VERY SMALL MOBILE
+       ========================================================= */
+
+    @media (max-width: 360px) {
+
+        .testimonial-lightbox-content {
+
+            grid-template-rows:
+                150px
+                minmax(0, 1fr);
+
+        }
+
+
+        .testimonial-lightbox-image {
+
+            height: 150px;
+
+        }
+
+
+        .testimonial-lightbox-body {
+
+            max-height: calc(100vh - 174px);
+
+            padding: 18px 15px;
+
+        }
+
+
+        .testimonial-lightbox-body h2 {
+
+            font-size: 1.35rem;
+
+        }
+
+
+        .testimonial-lightbox-body .testimonial-full-content {
+
+            font-size: 13px;
+
+        }
+
+    }

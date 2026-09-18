@@ -141,40 +141,32 @@
 
             <!-- Documents -->
             <div class="mt-6 border border-slate-200 bg-white p-5 sm:p-7">
-
                 <h2 class="text-lg font-bold text-primary">
                     Related Documents
                 </h2>
-
                 <div class="mt-4 divide-y divide-slate-200">
-
                     <div class="flex flex-wrap items-center justify-between gap-3 py-3">
                         <span class="text-sm font-medium text-slate-700">
                             Patient Information Guide
                         </span>
-
                         <a href="#" target="_blank" rel="noopener"
                             class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-secondary">
                             View document
                             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                         </a>
                     </div>
-
                     <div class="flex flex-wrap items-center justify-between gap-3 py-3">
                         <span class="text-sm font-medium text-slate-700">
                             Appointment Information
                         </span>
-
                         <a href="#" target="_blank" rel="noopener"
                             class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-secondary">
                             View document
                             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                         </a>
                     </div>
-
                 </div>
             </div>
-
             <!-- Back to services -->
             <div class="mt-6">
                 <a href="{{ url('/') }}"
@@ -183,7 +175,6 @@
                     Back to Services
                 </a>
             </div>
-
         </div>
     </section>
 @endsection

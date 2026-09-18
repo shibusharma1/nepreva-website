@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //     whyCards.forEach((card) => whyObserver.observe(card));
   //   }
   /*
+  
 |--------------------------------------------------------------------------
 | Award Slider
 |--------------------------------------------------------------------------
@@ -456,6 +457,38 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       },
     });
+    /*
+|--------------------------------------------------------------------------
+| TESTIMONIAL GLIGHTBOX
+|--------------------------------------------------------------------------
+*/
+
+if (typeof GLightbox !== "undefined") {
+
+    const testimonialLightbox = GLightbox({
+        selector: ".testimonial-lightbox",
+
+        touchNavigation: true,
+        keyboardNavigation: true,
+
+        closeButton: true,
+        closeOnOutsideClick: true,
+
+        loop: false,
+
+        draggable: true,
+        preload: true,
+
+        width: "920px",
+        height: "auto",
+
+        openEffect: "fade",
+        closeEffect: "fade",
+        slideEffect: "slide"
+    });
+
+}
   }
+  
 
 });

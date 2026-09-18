@@ -22,7 +22,8 @@
                             </a>
                             @foreach ($navigations as $row)
                         <li>
-                            <a href="{{ url('page/' . posttype_url($row->uri)) }}" class="text-white/80 hover:text-secondary transition">{{ $row->post_type }}</a>
+                            <a href="{{ url('page/' . posttype_url($row->uri)) }}"
+                                class="text-white/80 hover:text-secondary transition">{{ $row->post_type }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -34,7 +35,8 @@
                     <ul class="space-y-3">
                         @foreach ($services->skip(1)->take(6) as $service)
                             <li>
-                                <a href="{{ url($service->uri) }}" class="text-white/80 hover:text-secondary transition">
+                                <a href="{{ url($service->uri) }}"
+                                    class="text-white/80 hover:text-secondary transition">
                                     {{ $service->post_title }}
                                 </a>
                             </li>
@@ -54,13 +56,15 @@
                         <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
                         <input type="email" placeholder="Email Address" name="email"
                             class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
-                        <button type="submit" class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition hover:border-2 hover:border-secondary">
+                        <button type="submit"
+                            class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition hover:border-2 hover:border-secondary">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
                     <div class="flex gap-3 mt-6">
                         @if ($setting->facebook_link)
-                            <a href="{{ $setting->facebook_link }}" class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                            <a href="{{ $setting->facebook_link }}"
+                                class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         @endif
@@ -123,6 +127,7 @@
 @include('themes.default.common.stickyfooterbar')
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 <script src="{{ asset('themes-assets/js/scripts.js') }}"></script>
 <!-- Success Toast -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -211,4 +216,5 @@
 @endif
 
 </body>
+
 </html>
