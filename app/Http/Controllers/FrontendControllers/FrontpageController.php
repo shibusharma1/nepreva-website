@@ -289,7 +289,7 @@ class FrontpageController extends Controller
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
     $pos_type = PostTypeModel::where('id', $data->post_type)->first();
 
-    dd($data);
+    dd($data['template']);
     return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type'));
   }
 
