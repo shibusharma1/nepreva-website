@@ -30,7 +30,7 @@
         </div>
         {{-- </div> --}}
     </section>
-
+    
     <section class="relative z-20 -mt-10 md:-mt-12 xl:-mt-16">
         <div class="container-custom">
             <div class="border bg-white border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
@@ -96,7 +96,8 @@
             <div class="swiper-wrapper">
                 @foreach ($specialities as $speciality)
                     <div class="swiper-slide">
-                        {{-- <a href="{{ url($speciality->uri) }}" class="speciality-card group"> --}} <a href="{{ url('services.html') }}" class="speciality-card group"> <img
+                            <a href="{{ url('services/' . $speciality->uri . '.html') }}" class="speciality-card group"> 
+                                <img
                                 src="{{ $speciality->banner ? asset('uploads/medium/' . $speciality->banner) : asset('assets/img/no-image.jpg') }}"
                                 alt="{{ $speciality->post_title }}" class="speciality-image">
                             <div class="speciality-overlay"></div>
@@ -260,103 +261,130 @@
 
     @include('themes.default.common.historytimelinesection')
 
-    <section class="section-padding relative bg-slate-100 overflow-hidden">
-        <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-            <img src="{{ asset('uploads/medium/' . $doctorssection->banner) }}" alt="Doctor Background" loading="lazy"
-                class="mx-auto w-[140%] sm:w-[125%] md:w-[110%] lg:w-full h-auto object-contain opacity-[0.4]">
-        </div>
-        <div class="relative z-10 container-custom">
-            <div class="grid xl:grid-cols-[1fr_1fr_1.2fr] gap-6 xl:gap-8 items-stretch">
-                <!-- ========================= DOCTOR 1 ========================= -->
-                <article
-                    class="group border border-slate-200 bg-white overflow-hidden transition-all duration-500 hover:border-secondary">
-                    <!-- IMAGE -->
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
-                            alt="{{ $ktmdoctors->post_title }}" loading="lazy"
-                            class="w-full h-[320px] md:h-[420px] object-cover transition duration-700 group-hover:scale-105">
-                        <!-- BRANCH -->
-                        <div class="absolute left-5 top-5 bg-primary px-4 py-2 border border-slate-200">
-                            <span class="text-white text-xs font-bold uppercase tracking-[1px]"> {{ $ktmdoctors->icon }}
-                            </span>
-                        </div>
-                    </div>
-                    <!-- CONTENT -->
-                    <div class="p-6">
-                        <h3 class="text-primary text-[24px] font-black leading-tight mb-2">
-                            {{-- Dr. Sarah Sharma --}} {{ $ktmdoctors->post_title }}
-                        </h3>
-                        <p class="text-secondary font-semibold mb-5">{{ $ktmdoctors->sub_title }}</p>
-                        <button type="button" onclick="openHomeDoctor('ktm')"
-                            class="inline-flex items-center gap-3 text-primary font-bold text-sm group">
-                            View Profile
-                            <span
-                                class="w-8 h-8 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
-                                <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                            </span>
-                        </button>
-                    </div>
-                </article>
-                <!-- ========================= DOCTOR 2 ========================= -->
-                <article
-                    class="group border border-slate-200 bg-white overflow-hidden transition-all duration-500 hover:border-secondary">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
-                            alt="{{ $pkhdoctors->post_title }}"
-                            class="w-full h-[320px] md:h-[420px] object-cover transition duration-700 group-hover:scale-105">
-                        <div class="absolute left-5 top-5 bg-primary px-4 py-2 border border-slate-200">
-                            <span class="text-white text-xs font-bold uppercase tracking-[1px]"> {{ $pkhdoctors->icon }}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-primary text-[24px] font-black leading-tight mb-2">
-                            {{ $pkhdoctors->post_title }}
-                        </h3>
-                        <p class="text-secondary font-semibold mb-5">{{ $pkhdoctors->sub_title }}</p>
-                        <button type="button" onclick="openHomeDoctor('pkh')"
-                            class="inline-flex items-center gap-3 text-primary font-bold text-sm group">
-                            View Profile
-                            <span
-                                class="w-8 h-8 bg-secondary text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1">
-                                <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                            </span>
-                        </button>
-                    </div>
-                </article>
-                <div class="bg-slate-50 border border-slate-200 p-8 md:p-10 xl:p-12 flex flex-col justify-center">
-                    <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-5">
-                        <span class="w-2 h-2 bg-secondary"></span> {{ $doctorssection->sub_title }} </span>
-                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
-                        {{ $doctorssection->post_title }}
-                    </h2>
-                    <p class="text-slate-600 text-base md:text-lg leading-8 mb-8">
-                        {{ $doctorssection->post_excerpt }}
-                    </p>
-                    <div>
-                        <a href="{{ url('doctors-at-ciwec.html') }}" class="btn-primary"> View All Doctors </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- Doctor modal --}}
-    <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
-        <div id="doctorOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
-        </div>
-        <div class="relative h-screen flex items-center justify-center p-4">
-            <div class="bg-white max-w-6xl w-full max-h-[80vh] overflow-y-auto relative">
-                <button id="closeDoctorModal"
-                    class="absolute top-5 right-5 w-12 h-12 bg-primary text-white z-20 hover:bg-secondary transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div id="doctorModalContent"></div>
-            </div>
-        </div>
+<section class="section-padding relative isolate overflow-hidden bg-slate-100">
+    <!-- Subtle background image -->
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden lg:block">
+        {{-- <img
+            src="{{ asset('uploads/medium/' . $doctorssection->banner) }}"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            class="mx-auto h-auto w-full object-contain opacity-[0.18]"
+        > --}}
     </div>
 
+    <div class="container-custom relative z-10">
+        <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
+
+            <!-- DOCTOR 1 -->
+            <article class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
+                <div class="relative overflow-hidden">
+                    <img
+                        src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
+                        alt="{{ $ktmdoctors->post_title }}"
+                        loading="lazy"
+                        class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]"
+                    >
+
+                    <span class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+                        {{ $ktmdoctors->icon }}
+                    </span>
+                </div>
+
+                <div class="flex flex-1 flex-col p-5 sm:p-6">
+                    <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
+                        {{ $ktmdoctors->post_title }}
+                    </h3>
+
+                    <p class="mt-2 text-sm font-medium leading-6 text-secondary">
+                        {{ $ktmdoctors->sub_title }}
+                    </p>
+
+                    <div class="mt-5">
+                        <button
+                            type="button"
+                            onclick="openHomeDoctor('ktm')"
+                            class="inline-flex items-center gap-3 text-sm font-semibold text-primary"
+                        >
+                            <span>View Profile</span>
+                            <span class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
+                                <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- DOCTOR 2 -->
+            <article class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
+                <div class="relative overflow-hidden">
+                    <img
+                        src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
+                        alt="{{ $pkhdoctors->post_title }}"
+                        loading="lazy"
+                        class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]"
+                    >
+
+                    <span class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+                        {{ $pkhdoctors->icon }}
+                    </span>
+                </div>
+
+                <div class="flex flex-1 flex-col p-5 sm:p-6">
+                    <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
+                        {{ $pkhdoctors->post_title }}
+                    </h3>
+
+                    <p class="mt-2 text-sm font-medium leading-6 text-secondary">
+                        {{ $pkhdoctors->sub_title }}
+                    </p>
+
+                    <div class="mt-5">
+                        <button
+                            type="button"
+                            onclick="openHomeDoctor('pkh')"
+                            class="inline-flex items-center gap-3 text-sm font-semibold text-primary"
+                        >
+                            <span>View Profile</span>
+                            <span class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
+                                <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- INTRO / VIEW ALL -->
+            <div class="flex min-w-0 flex-col justify-center border border-slate-200 bg-white/90 p-6 sm:p-8 xl:p-9">
+                <span class="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+                    <span class="h-1.5 w-1.5 flex-shrink-0 bg-secondary"></span>
+                    {{ $doctorssection->sub_title }}
+                </span>
+
+                <h2 class="text-[clamp(1.5rem,2.2vw,2rem)] font-bold leading-tight text-primary">
+                    {{ $doctorssection->post_title }}
+                </h2>
+
+                <div class="my-5 h-1 w-10 bg-secondary"></div>
+
+                <p class="text-sm leading-7 text-slate-600 sm:text-base">
+                    {{ $doctorssection->post_excerpt }}
+                </p>
+
+                <div class="mt-7">
+                    <a
+                        href="{{ url('doctors-at-ciwec.html') }}"
+                        class="btn-primary inline-flex items-center gap-3"
+                    >
+                        View All Doctors
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
     @if ($patientStoriesHeading && $patientStories->isNotEmpty())
         @php
             $featuredStory = $patientStories->first();

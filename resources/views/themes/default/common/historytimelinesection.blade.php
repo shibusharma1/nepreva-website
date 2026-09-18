@@ -16,12 +16,12 @@
     @endphp
     <section id="history-section" class="section-padding bg-slate-100 relative overflow-clip">
         <!-- BACKGROUND -->
-        {{-- <div class="absolute inset-0 z-0 pointer-events-none hidden lg:block">
-            <img src="{{ asset('themes-assets/img/bg-img4.webp') }}" class="sticky top-0 w-full h-screen object-cover opacity-40" alt="" aria-hidden="true" >
-        </div> --}}
-
+        <div class="absolute inset-0 z-0 pointer-events-none hidden lg:block">
+            <img src="{{ asset('themes-assets/img/history-bg.png') }}"
+                class="sticky top-0 w-full h-screen object-contain opacity-40" alt="" aria-hidden="true">
+        </div>
         <!-- RESPONSIVE MEDICAL + TRAVEL BACKGROUND -->
-        <div class="absolute inset-0 z-0 pointer-events-none hidden lg:block overflow-hidden" aria-hidden="true">
+        {{-- <div class="absolute inset-0 z-0 pointer-events-none hidden lg:block overflow-hidden" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
                 class="sticky top-0 w-full h-screen opacity-[0.12]" fill="none">
                 <defs>
@@ -100,7 +100,7 @@
                     <circle cx="1360" cy="530" r="4" />
                 </g>
             </svg>
-        </div>
+        </div> --}}
         <div class="relative z-10 container-custom">
             <!-- DESKTOP SCROLL AREA -->
             <div id="history-scroll-container" class="hidden lg:block relative">
@@ -159,7 +159,7 @@
                                     {{ $firstHistory->sub_title }}
                                 </span>
                                 <h3 id="historyTitle"
-                                    class="text-xl md:text-2xl lg:text-3xl font-black leading-tight mb-3">
+                                    class="text-xl md:text-2xl lg:text-3xl text-primary font-black leading-tight mb-3">
                                     {{ $firstHistory->post_title }}
                                 </h3>
                                 <div class="w-16 h-[3px] bg-secondary mb-5"></div>
@@ -172,8 +172,7 @@
                     </div>
                 </div>
                 <!-- INVISIBLE SCROLL SPACE -->
-                <div id="history-scroll-space" class="absolute inset-x-0 top-0 pointer-events-none"
-                    aria-hidden="true">
+                <div id="history-scroll-space" class="absolute inset-x-0 top-0 pointer-events-none" aria-hidden="true">
                 </div>
             </div>
             <!-- MOBILE LAYOUT -->

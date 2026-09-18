@@ -150,6 +150,7 @@ class FrontpageController extends Controller
 
   public function pagedetail($uri)
   {
+    
     if (!check_uri($uri)) {
       abort(404);
     }
@@ -278,7 +279,6 @@ class FrontpageController extends Controller
 
     $data_child = PostModel::where('id', $data['post_parent'])->first();
     if ($data_child) {
-
       $data['template'] = $data_child['template_child'];
     }
     $associated_posts = array();
@@ -289,6 +289,7 @@ class FrontpageController extends Controller
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
     $pos_type = PostTypeModel::where('id', $data->post_type)->first();
 
+    // dd($data);
     return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type'));
   }
 

@@ -1,73 +1,70 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /*
-|--------------------------------------------------------------------------
-| CIWEC Model Auto Switch
-|--------------------------------------------------------------------------
-*/
+
   /*
 |--------------------------------------------------------------------------
 | CIWEC Model Auto Active System
 |--------------------------------------------------------------------------
 */
-  const modelItems = document.querySelectorAll(".model-item");
-  const centerImage = document.getElementById("centerImage");
-  if (modelItems.length && centerImage) {
-    let activeIndex = 0;
-    let interval;
-    const duration = 4000;
-    function changeModel(index) {
-      modelItems.forEach((item) => {
-        item.classList.remove("active");
-      });
-      const activeItem = modelItems[index];
-      if (!activeItem) return;
-      activeItem.classList.add("active");
-      const newImage = activeItem.dataset.image;
-      if (centerImage.src.includes(newImage)) {
-        return;
-      }
-      centerImage.classList.add("changing");
-      setTimeout(() => {
-        centerImage.src = newImage;
-        centerImage.onload = () => {
-          centerImage.classList.remove("changing");
-        };
-      }, 250);
-    }
-    function startAutoPlay() {
-      interval = setInterval(() => {
-        activeIndex++;
-        if (activeIndex >= modelItems.length) {
-          activeIndex = 0;
-        }
-        changeModel(activeIndex);
-      }, duration);
-    }
-    function stopAutoPlay() {
-      clearInterval(interval);
-    }
-    // initial
-    changeModel(activeIndex);
-    startAutoPlay();
-    // click support
-    modelItems.forEach((item, index) => {
-      item.addEventListener("click", () => {
-        activeIndex = index;
-        changeModel(activeIndex);
-        stopAutoPlay();
-        startAutoPlay();
-      });
-    });
-    // Better UX
-    modelItems.forEach((item) => {
-      item.addEventListener("mouseenter", () => {
-        stopAutoPlay();
-      });
-      item.addEventListener("mouseleave", () => {
-        startAutoPlay();
-      });
-    });
-  }
+
+  // const modelItems = document.querySelectorAll(".model-item");
+  // const centerImage = document.getElementById("centerImage");
+  // if (modelItems.length && centerImage) {
+  //   let activeIndex = 0;
+  //   let interval;
+  //   const duration = 4000;
+  //   function changeModel(index) {
+  //     modelItems.forEach((item) => {
+  //       item.classList.remove("active");
+  //     });
+  //     const activeItem = modelItems[index];
+  //     if (!activeItem) return;
+  //     activeItem.classList.add("active");
+  //     const newImage = activeItem.dataset.image;
+  //     if (centerImage.src.includes(newImage)) {
+  //       return;
+  //     }
+  //     centerImage.classList.add("changing");
+  //     setTimeout(() => {
+  //       centerImage.src = newImage;
+  //       centerImage.onload = () => {
+  //         centerImage.classList.remove("changing");
+  //       };
+  //     }, 250);
+  //   }
+  //   function startAutoPlay() {
+  //     interval = setInterval(() => {
+  //       activeIndex++;
+  //       if (activeIndex >= modelItems.length) {
+  //         activeIndex = 0;
+  //       }
+  //       changeModel(activeIndex);
+  //     }, duration);
+  //   }
+  //   function stopAutoPlay() {
+  //     clearInterval(interval);
+  //   }
+  //   // initial
+  //   changeModel(activeIndex);
+  //   startAutoPlay();
+  //   // click support
+  //   modelItems.forEach((item, index) => {
+  //     item.addEventListener("click", () => {
+  //       activeIndex = index;
+  //       changeModel(activeIndex);
+  //       stopAutoPlay();
+  //       startAutoPlay();
+  //     });
+  //   });
+  //   // Better UX
+  //   modelItems.forEach((item) => {
+  //     item.addEventListener("mouseenter", () => {
+  //       stopAutoPlay();
+  //     });
+  //     item.addEventListener("mouseleave", () => {
+  //       startAutoPlay();
+  //     });
+  //   });
+  // }
   /*
 |--------------------------------------------------------------------------
 | Why Cards Animation

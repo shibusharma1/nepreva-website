@@ -962,7 +962,7 @@ WHATS NEW SECTION
     color: #64748b;
     line-height: 1.7;
 }
-.model-item.active {
+/* .model-item.active {
     background: linear-gradient(135deg, #11497b, #1d5e95);
     border-color: #11497b;
     transform: translateY(-8px) scale(1.03);
@@ -972,7 +972,7 @@ WHATS NEW SECTION
 .model-item.active p,
 .model-item.active i {
     color: white;
-}
+} */
 .ciwec-image-wrapper {
     width: 420px;
     height: 420px;
