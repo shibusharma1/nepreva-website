@@ -14,15 +14,17 @@
             <div class="absolute inset-0 flex items-center">
                 <div class="container-custom">
                     <div class="max-w-3xl">
-                        <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
+                        <span
+                            class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
                             <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
                             {{ $banner->caption }}
                         </span>
-                        <h1 class="text-white font-black text-[30px] sm:text-[38px] md:text-[46px] xl:text-[56px] leading-[1.08]">
+                        <h1
+                            class="text-white font-black text-[30px] sm:text-[38px] md:text-[46px] xl:text-[56px] leading-[1.08]">
                             {{ $banner->title }}
                         </h1>
                         <p class="mt-6 text-white/90 text-base md:text-lg xl:text-xl leading-relaxed max-w-2xl">
-                          {{ $banner->content }}
+                            {{ $banner->content }}
                         </p>
                     </div>
                 </div>
@@ -30,7 +32,7 @@
         </div>
         {{-- </div> --}}
     </section>
-    
+
     <section class="relative z-20 -mt-10 md:-mt-12 xl:-mt-16">
         <div class="container-custom">
             <div class="border bg-white border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
@@ -96,9 +98,8 @@
             <div class="swiper-wrapper">
                 @foreach ($specialities as $speciality)
                     <div class="swiper-slide">
-                            <a href="{{ url('services/' . $speciality->uri . '.html') }}" class="speciality-card group"> 
-                                <img
-                                src="{{ $speciality->banner ? asset('uploads/medium/' . $speciality->banner) : asset('assets/img/no-image.jpg') }}"
+                        <a href="{{ url('services/' . $speciality->uri . '.html') }}" class="speciality-card group">
+                            <img src="{{ $speciality->banner ? asset('uploads/medium/' . $speciality->banner) : asset('assets/img/no-image.jpg') }}"
                                 alt="{{ $speciality->post_title }}" class="speciality-image">
                             <div class="speciality-overlay"></div>
                             <div class="speciality-content">
@@ -118,83 +119,82 @@
     </section>
 
     <!-- #currently working -->
-  <section class="relative overflow-hidden bg-slate-100 py-8 md:py-12 lg:py-14">
-    <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-        {{-- <img src="{{ asset('uploads/medium/' . $whyciwecheading->banner) }}"
+    <section class="relative overflow-hidden bg-slate-100 py-8 md:py-12 lg:py-14">
+        <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
+            {{-- <img src="{{ asset('uploads/medium/' . $whyciwecheading->banner) }}"
             class="mx-auto h-auto w-[120%] object-contain opacity-[0.25] lg:w-full"> --}}
-    </div>
-    <div class="relative z-10 container-custom">
-        <div class="mb-6 max-w-3xl lg:mb-8">
-            <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
-                <span class="h-1.5 w-1.5 bg-secondary"></span>
-                {{ $whyciwecheading->sub_title }}
-            </span>
-
-            <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
-                {{ $whyciwecheading->post_title }}
-            </h2>
-
-            <p class="text-slate-600 text-base md:text-lg leading-8 mb-8 max-w-2xl">
-                {{ $whyciwecheading->post_excerpt }}
-            </p>
         </div>
+        <div class="relative z-10 container-custom">
+            <div class="mb-6 max-w-3xl lg:mb-8">
+                <span
+                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                    <span class="h-1.5 w-1.5 bg-secondary"></span>
+                    {{ $whyciwecheading->sub_title }}
+                </span>
 
-        <div id="ciwecModelSection">
-            <div class="relative mt-6 lg:mt-8">
-                <div class="grid items-center gap-5 lg:grid-cols-3 lg:gap-6">
+                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
+                    {{ $whyciwecheading->post_title }}
+                </h2>
 
-                    <!-- LEFT -->
-                    <div class="order-2 space-y-3 lg:order-1 lg:space-y-4">
-                        @foreach ($leftCards as $index => $item)
-                            <button
-                                class="left-card model-item {{ $index == 0 ? 'active' : '' }}"
-                                data-image="{{ asset('uploads/medium/' . $item->banner) }}">
-                                <i class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
+                <p class="text-slate-600 text-base md:text-lg leading-8 mb-8 max-w-2xl">
+                    {{ $whyciwecheading->post_excerpt }}
+                </p>
+            </div>
 
-                                <div>
-                                    <h3 class="text-sm font-bold text-primary sm:text-base">
-                                        {{ $item->post_title }}
-                                    </h3>
-                                </div>
-                            </button>
-                        @endforeach
-                    </div>
+            <div id="ciwecModelSection">
+                <div class="relative mt-6 lg:mt-8">
+                    <div class="grid items-center gap-5 lg:grid-cols-3 lg:gap-6">
 
-                    <!-- CENTER IMAGE -->
-                    <div class="relative order-1 flex justify-center lg:order-2">
-                        <div class="ciwec-ring"></div>
+                        <!-- LEFT -->
+                        <div class="order-2 space-y-3 lg:order-1 lg:space-y-4">
+                            @foreach ($leftCards as $index => $item)
+                                <button class="left-card model-item {{ $index == 0 ? 'active' : '' }}"
+                                    data-image="{{ asset('uploads/medium/' . $item->banner) }}">
+                                    <i
+                                        class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
 
-                        <div class="ciwec-image-wrapper">
-                            <img
-                                id="centerImage"
-                                src="{{ $whyciwec->count() ? asset('uploads/medium/' . $whyciwec->first()->banner) : '' }}"
-                                class="ciwec-image"
-                                alt="{{ $whyciwecheading->post_title }}">
+                                    <div>
+                                        <h3 class="text-sm font-bold text-primary sm:text-base">
+                                            {{ $item->post_title }}
+                                        </h3>
+                                    </div>
+                                </button>
+                            @endforeach
                         </div>
+
+                        <!-- CENTER IMAGE -->
+                        <div class="relative order-1 flex justify-center lg:order-2">
+                            <div class="ciwec-ring"></div>
+
+                            <div class="ciwec-image-wrapper">
+                                <img id="centerImage"
+                                    src="{{ $whyciwec->count() ? asset('uploads/medium/' . $whyciwec->first()->banner) : '' }}"
+                                    class="ciwec-image" alt="{{ $whyciwecheading->post_title }}">
+                            </div>
+                        </div>
+
+                        <!-- RIGHT -->
+                        <div class="order-3 space-y-3 lg:space-y-4">
+                            @foreach ($rightCards as $item)
+                                <button class="right-card model-item"
+                                    data-image="{{ asset('uploads/medium/' . $item->banner) }}">
+                                    <i
+                                        class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
+
+                                    <div>
+                                        <h3 class="text-sm font-bold text-primary sm:text-base">
+                                            {{ $item->post_title }}
+                                        </h3>
+                                    </div>
+                                </button>
+                            @endforeach
+                        </div>
+
                     </div>
-
-                    <!-- RIGHT -->
-                    <div class="order-3 space-y-3 lg:space-y-4">
-                        @foreach ($rightCards as $item)
-                            <button
-                                class="right-card model-item"
-                                data-image="{{ asset('uploads/medium/' . $item->banner) }}">
-                                <i class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
-
-                                <div>
-                                    <h3 class="text-sm font-bold text-primary sm:text-base">
-                                        {{ $item->post_title }}
-                                    </h3>
-                                </div>
-                            </button>
-                        @endforeach
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Statistics section -->
     <section class="relative section-padding bg-slate-200 overflow-hidden">
@@ -202,7 +202,8 @@
             <div class="grid xl:grid-cols-2 gap-12 xl:gap-20 items-center">
                 <!-- LEFT -->
                 <div>
-                    <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                    <span
+                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                         <span class="w-2 h-2 bg-secondary"></span> {{ $trustedworldwide->sub_title }} </span>
                     <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
                         {{ $trustedworldwide->post_title }}
@@ -222,14 +223,17 @@
                 <div class="relative">
                     <!-- GLOW -->
                     <div class="absolute inset-0 bg-primary/5 blur-3xl"></div>
-                    <img src="{{ asset('themes-assets/img/world-map.svg') }}" alt="World Map" class="relative z-10 w-full max-w-[700px] mx-auto">
+                    <img src="{{ asset('themes-assets/img/world-map.svg') }}" alt="World Map"
+                        class="relative z-10 w-full max-w-[700px] mx-auto">
                     <div class="absolute top-[38%] left-[73%] z-20">
                         <div class="map-pin-marker relative h-8 w-8 -translate-x-1/2 -translate-y-full">
                             <!-- Soft pulse beneath the pin -->
                             <span class="map-pin-pulse" aria-hidden="true"></span>
                             <!-- Pin -->
-                            <svg viewBox="0 0 32 40" class="map-pin-icon relative z-10 h-full w-full drop-shadow-md" aria-label="Map location marker" role="img">
-                                <path d="M16 39 C12 32 2 22 2 14 A14 14 0 1 1 30 14 C30 22 20 32 16 39Z" fill="#EA4335" stroke="#FFFFFF" stroke-width="1.5" />
+                            <svg viewBox="0 0 32 40" class="map-pin-icon relative z-10 h-full w-full drop-shadow-md"
+                                aria-label="Map location marker" role="img">
+                                <path d="M16 39 C12 32 2 22 2 14 A14 14 0 1 1 30 14 C30 22 20 32 16 39Z" fill="#EA4335"
+                                    stroke="#FFFFFF" stroke-width="1.5" />
                                 <circle cx="16" cy="14" r="5" fill="#FFFFFF" />
                             </svg>
                         </div>
@@ -239,16 +243,20 @@
             <!-- STATS -->
             <div class="grid grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4 mt-10 xl:mt-12">
                 <!-- ITEM -->
-                <div class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="20000">
+                <div
+                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
+                        data-target="20000">
                         0
                     </h3>
-                    <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">International Patients</p>
+                    <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">International Patients
+                    </p>
                 </div>
                 <!-- ITEM -->
                 <div
                     class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="130">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
+                        data-target="130">
                         0
                     </h3>
                     <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Countries Served</p>
@@ -256,7 +264,8 @@
                 <!-- ITEM -->
                 <div
                     class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="40">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
+                        data-target="40">
                         0
                     </h3>
                     <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Years Of Excellence</p>
@@ -264,7 +273,8 @@
                 <!-- ITEM -->
                 <div
                     class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
-                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight" data-target="2">
+                    <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
+                        data-target="2">
                         0
                     </h3>
                     <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Hospital Locations</p>
@@ -275,130 +285,122 @@
 
     @include('themes.default.common.historytimelinesection')
 
-<section class="section-padding relative isolate overflow-hidden bg-slate-100">
-    <!-- Subtle background image -->
-    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden lg:block">
-        {{-- <img
+    <section class="section-padding relative isolate overflow-hidden bg-slate-100">
+        <!-- Subtle background image -->
+        <div class="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden lg:block">
+            {{-- <img
             src="{{ asset('uploads/medium/' . $doctorssection->banner) }}"
             alt=""
             aria-hidden="true"
             loading="lazy"
             class="mx-auto h-auto w-full object-contain opacity-[0.18]"
         > --}}
-    </div>
-
-    <div class="container-custom relative z-10">
-        <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
-
-            <!-- DOCTOR 1 -->
-            <article class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
-                <div class="relative overflow-hidden">
-                    <img
-                        src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
-                        alt="{{ $ktmdoctors->post_title }}"
-                        loading="lazy"
-                        class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]"
-                    >
-
-                    <span class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
-                        {{ $ktmdoctors->icon }}
-                    </span>
-                </div>
-
-                <div class="flex flex-1 flex-col p-5 sm:p-6">
-                    <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
-                        {{ $ktmdoctors->post_title }}
-                    </h3>
-
-                    <p class="mt-2 text-sm font-medium leading-6 text-secondary">
-                        {{ $ktmdoctors->sub_title }}
-                    </p>
-
-                    <div class="mt-5">
-                        <button
-                            type="button"
-                            onclick="openHomeDoctor('ktm')"
-                            class="inline-flex items-center gap-3 text-sm font-semibold text-primary"
-                        >
-                            <span>View Profile</span>
-                            <span class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
-                                <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- DOCTOR 2 -->
-            <article class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
-                <div class="relative overflow-hidden">
-                    <img
-                        src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
-                        alt="{{ $pkhdoctors->post_title }}"
-                        loading="lazy"
-                        class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]"
-                    >
-
-                    <span class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
-                        {{ $pkhdoctors->icon }}
-                    </span>
-                </div>
-
-                <div class="flex flex-1 flex-col p-5 sm:p-6">
-                    <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
-                        {{ $pkhdoctors->post_title }}
-                    </h3>
-
-                    <p class="mt-2 text-sm font-medium leading-6 text-secondary">
-                        {{ $pkhdoctors->sub_title }}
-                    </p>
-
-                    <div class="mt-5">
-                        <button
-                            type="button"
-                            onclick="openHomeDoctor('pkh')"
-                            class="inline-flex items-center gap-3 text-sm font-semibold text-primary"
-                        >
-                            <span>View Profile</span>
-                            <span class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
-                                <i class="fa-solid fa-arrow-right text-[11px]"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- INTRO / VIEW ALL -->
-            <div class="flex min-w-0 flex-col justify-center border border-slate-200 bg-white/90 p-6 sm:p-8 xl:p-9">
-                <span class="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                    <span class="h-1.5 w-1.5 flex-shrink-0 bg-secondary"></span>
-                    {{ $doctorssection->sub_title }}
-                </span>
-
-                <h2 class="text-[clamp(1.5rem,2.2vw,2rem)] font-bold leading-tight text-primary">
-                    {{ $doctorssection->post_title }}
-                </h2>
-
-                <div class="my-5 h-1 w-10 bg-secondary"></div>
-
-                <p class="text-sm leading-7 text-slate-600 sm:text-base">
-                    {{ $doctorssection->post_excerpt }}
-                </p>
-
-                <div class="mt-7">
-                    <a
-                        href="{{ url('doctors-at-ciwec.html') }}"
-                        class="btn-primary inline-flex items-center gap-3"
-                    >
-                        View All Doctors
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+
+        <div class="container-custom relative z-10">
+            <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
+
+                <!-- DOCTOR 1 -->
+                <article
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
+                    <div class="relative overflow-hidden">
+                        <img src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
+                            alt="{{ $ktmdoctors->post_title }}" loading="lazy"
+                            class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]">
+
+                        <span
+                            class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+                            {{ $ktmdoctors->icon }}
+                        </span>
+                    </div>
+
+                    <div class="flex flex-1 flex-col p-5 sm:p-6">
+                        <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
+                            {{ $ktmdoctors->post_title }}
+                        </h3>
+
+                        <p class="mt-2 text-sm font-medium leading-6 text-secondary">
+                            {{ $ktmdoctors->sub_title }}
+                        </p>
+
+                        <div class="mt-5">
+                            <button type="button" onclick="openHomeDoctor('ktm')"
+                                class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
+                                <span>View Profile</span>
+                                <span
+                                    class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- DOCTOR 2 -->
+                <article
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
+                    <div class="relative overflow-hidden">
+                        <img src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
+                            alt="{{ $pkhdoctors->post_title }}" loading="lazy"
+                            class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]">
+
+                        <span
+                            class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+                            {{ $pkhdoctors->icon }}
+                        </span>
+                    </div>
+
+                    <div class="flex flex-1 flex-col p-5 sm:p-6">
+                        <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
+                            {{ $pkhdoctors->post_title }}
+                        </h3>
+
+                        <p class="mt-2 text-sm font-medium leading-6 text-secondary">
+                            {{ $pkhdoctors->sub_title }}
+                        </p>
+
+                        <div class="mt-5">
+                            <button type="button" onclick="openHomeDoctor('pkh')"
+                                class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
+                                <span>View Profile</span>
+                                <span
+                                    class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- INTRO / VIEW ALL -->
+                <div class="flex min-w-0 flex-col justify-center border border-slate-200 bg-white/90 p-6 sm:p-8 xl:p-9">
+                    <span
+                        class="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+                        <span class="h-1.5 w-1.5 flex-shrink-0 bg-secondary"></span>
+                        {{ $doctorssection->sub_title }}
+                    </span>
+
+                    <h2 class="text-[clamp(1.5rem,2.2vw,2rem)] font-bold leading-tight text-primary">
+                        {{ $doctorssection->post_title }}
+                    </h2>
+
+                    <div class="my-5 h-1 w-10 bg-secondary"></div>
+
+                    <p class="text-sm leading-7 text-slate-600 sm:text-base">
+                        {{ $doctorssection->post_excerpt }}
+                    </p>
+
+                    <div class="mt-7">
+                        <a href="{{ url('doctors-at-ciwec.html') }}" class="btn-primary inline-flex items-center gap-3">
+                            View All Doctors
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
     @if ($patientStoriesHeading && $patientStories->isNotEmpty())
         @php
             $featuredStory = $patientStories->first();
@@ -632,352 +634,311 @@
             </div>
         </div>
     </section> --}}
-{{-- =========================================================
+    {{-- =========================================================
      TESTIMONIAL / PATIENT FEEDBACK SECTION
      ========================================================= --}}
 
-<section class="section-padding bg-slate-200 overflow-hidden">
+    <section class="section-padding bg-slate-200 overflow-hidden">
 
-    <div class="container-custom">
+        <div class="container-custom">
 
-        {{-- =====================================================
+            {{-- =====================================================
              HEADER
              ===================================================== --}}
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10">
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10">
 
-            <div class="max-w-3xl">
-
-                <span
-                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
-
-                    <span class="w-2 h-2 bg-secondary"></span>
-
-                    {{ $testimonialheading->sub_title ?? 'PATIENT FEEDBACK' }}
-
-                </span>
-
-
-                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
-
-                    {{ $testimonialheading->post_title }}
-
-                </h2>
-
-
-                <p class="text-slate-600 text-base md:text-lg leading-8">
-
-                    {{ $testimonialheading->post_excerpt }}
-
-                </p>
-
-            </div>
-
-
-            {{-- =================================================
-                 GOOGLE RATING
-                 ================================================= --}}
-            <div class="border border-slate-200 bg-white px-6 py-5 shrink-0">
-
-                <div class="flex items-center gap-4">
-
-                    {{-- GOOGLE ICON --}}
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 48 48"
-                        class="w-10 h-10 shrink-0">
-
-                        <path fill="#FFC107"
-                            d="M43.611 20.083H42V20H24v8h11.303C33.655 32.657 29.203 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
-
-                        <path fill="#FF3D00"
-                            d="M6.306 14.691l6.571 4.819C14.655 16.108 18.961 13 24 13c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
-
-                        <path fill="#4CAF50"
-                            d="M24 44c5.176 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.143 35.091 26.715 36 24 36c-5.181 0-9.625-3.327-11.287-7.946l-6.522 5.025C9.507 39.556 16.227 44 24 44z" />
-
-                        <path fill="#1976D2"
-                            d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.084 5.57l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
-
-                    </svg>
-
-
-                    <div>
-
-                        <div class="flex text-[#f59e0b] text-lg mb-1">
-                            ★★★★★
-                        </div>
-
-                        <div class="text-primary font-black text-xl">
-                            {{ $testimonialheading->associated_title ?? '4.9/5 Rating' }}
-                        </div>
-
-                        <div class="text-slate-500 text-sm">
-                            Based on Google Reviews
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        {{-- =====================================================
-             REVIEWS
-             ===================================================== --}}
-        <div class="swiper reviewSwiper">
-
-            <div class="swiper-wrapper">
-
-             @forelse($testimonials as $testimonial)
-    <div class="swiper-slide h-auto">
-        <a href="#testimonial-lightbox-{{ $testimonial->id }}"
-            data-glightbox="type: inline"
-            class="testimonial-lightbox group block h-full bg-white border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
-
-            <!-- USER -->
-            <div class="flex items-center gap-4 mb-6">
-                <div class="relative shrink-0">
-                    <img src="{{ $testimonial->banner
-                        ? asset('uploads/medium/' . $testimonial->banner)
-                        : asset('assets/img/no-image.jpg') }}"
-                        class="w-16 h-16 object-cover rounded-full"
-                        alt="{{ $testimonial->post_title }}">
+                <div class="max-w-3xl">
 
                     <span
-                        class="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary text-white rounded-full flex items-center justify-center border-2 border-white">
-                        <i class="fa-solid fa-quote-left text-[9px]"></i>
+                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+
+                        <span class="w-2 h-2 bg-secondary"></span>
+
+                        {{ $testimonialheading->sub_title ?? 'PATIENT FEEDBACK' }}
+
                     </span>
-                </div>
-
-                <div class="min-w-0">
-                    <h3 class="text-primary text-lg font-bold truncate">
-                        {{ $testimonial->post_title }}
-                    </h3>
-
-                    @if ($testimonial->sub_title)
-                        <p class="text-slate-500 text-xs mt-0.5">
-                            {{ $testimonial->sub_title }}
-                        </p>
-                    @endif
-
-                    <div class="text-[#f59e0b] text-sm mt-1">
-                        @php
-                            $rating = min(5, max(0, (int) $testimonial->associated_title));
-                        @endphp
-
-                        @for ($i = 0; $i < $rating; $i++)
-                            ★
-                        @endfor
-                    </div>
-                </div>
-            </div>
-
-            <!-- REVIEW TEXT -->
-            <div class="relative mb-6">
-                <i class="fa-solid fa-quote-left absolute -top-2 -left-1 text-primary/10 text-3xl"></i>
-
-                <p class="relative pl-5 text-slate-600 leading-8">
-                    {{ strip_tags($testimonial->post_excerpt) }}
-                </p>
-            </div>
-
-            <!-- READ FULL STORY -->
-            <div class="inline-flex items-center gap-2 text-primary font-semibold text-sm">
-                Read Full Story
-                <i class="fa-solid fa-arrow-right text-secondary transition-transform duration-300 group-hover:translate-x-1"></i>
-            </div>
-
-        </a>
-    </div>
-@empty
-
-                    {{-- =================================================
-                         EMPTY STATE
-                         ================================================= --}}
-                    <div class="swiper-slide">
-
-                        <div class="bg-white border border-slate-200 p-10 text-center">
-
-                            <h3 class="text-primary text-xl font-bold">
-
-                                No Testimonials Available
-
-                            </h3>
-
-                        </div>
-
-                    </div>
-
-                @endforelse
-
-            </div>
-
-        </div>
 
 
-        {{-- =====================================================
-             OPTIONAL SWIPER PAGINATION
-             ===================================================== --}}
-        <div class="review-pagination mt-7 text-center"></div>
+                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
 
-    </div>
+                        {{ $testimonialheading->post_title }}
 
-</section>
+                    </h2>
 
 
+                    <p class="text-slate-600 text-base md:text-lg leading-8">
 
-{{-- =========================================================
-     TESTIMONIAL GLIGHTBOX CONTENT
-     ========================================================= --}}
-
-@foreach ($testimonials as $testimonial)
-
-    <div
-        id="testimonial-lightbox-{{ $testimonial->id }}"
-        class="hidden">
-
-        <div class="testimonial-lightbox-content">
-
-            {{-- =================================================
-                 IMAGE
-                 ================================================= --}}
-            <div class="testimonial-lightbox-image">
-
-                <img
-                    src="{{ $testimonial->banner
-                        ? asset('uploads/medium/' . $testimonial->banner)
-                        : asset('assets/img/no-image.jpg') }}"
-                    alt="{{ $testimonial->post_title }}">
-
-            </div>
-
-
-            {{-- =================================================
-                 CONTENT
-                 ================================================= --}}
-            <div class="testimonial-lightbox-body">
-
-                {{-- TOP LABEL --}}
-                <span
-                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[2px] mb-3">
-
-                    <span class="w-1.5 h-1.5 bg-secondary"></span>
-
-                    Patient Experience
-
-                </span>
-
-
-                {{-- NAME --}}
-                <h2
-                    class="text-primary text-2xl md:text-3xl font-black leading-tight break-words">
-
-                    {{ $testimonial->post_title }}
-
-                </h2>
-
-
-                {{-- SUBTITLE --}}
-                @if ($testimonial->sub_title)
-
-                    <p class="mt-1 text-slate-500 text-sm break-words">
-
-                        {{ $testimonial->sub_title }}
+                        {{ $testimonialheading->post_excerpt }}
 
                     </p>
 
-                @endif
+                </div>
 
 
-                {{-- RATING --}}
-                <div class="flex flex-wrap items-center gap-3 mt-4">
+                {{-- =================================================
+                 GOOGLE RATING
+                 ================================================= --}}
+                <div class="border border-slate-200 bg-white px-6 py-5 shrink-0">
 
-                    <div class="flex text-[#f59e0b] text-lg">
+                    <div class="flex items-center gap-4">
 
-                        @php
-                            $rating = min(
-                                5,
-                                max(
-                                    0,
-                                    (int) $testimonial->associated_title
-                                )
-                            );
-                        @endphp
+                        {{-- GOOGLE ICON --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-10 h-10 shrink-0">
+
+                            <path fill="#FFC107"
+                                d="M43.611 20.083H42V20H24v8h11.303C33.655 32.657 29.203 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
+
+                            <path fill="#FF3D00"
+                                d="M6.306 14.691l6.571 4.819C14.655 16.108 18.961 13 24 13c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
+
+                            <path fill="#4CAF50"
+                                d="M24 44c5.176 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.143 35.091 26.715 36 24 36c-5.181 0-9.625-3.327-11.287-7.946l-6.522 5.025C9.507 39.556 16.227 44 24 44z" />
+
+                            <path fill="#1976D2"
+                                d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.084 5.57l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
+
+                        </svg>
 
 
-                        @for ($i = 0; $i < $rating; $i++)
+                        <div>
 
-                            ★
+                            <div class="flex text-[#f59e0b] text-lg mb-1">
+                                ★★★★★
+                            </div>
 
-                        @endfor
+                            <div class="text-primary font-black text-xl">
+                                {{ $testimonialheading->associated_title ?? '4.9/5 Rating' }}
+                            </div>
+
+                            <div class="text-slate-500 text-sm">
+                                Based on Google Reviews
+                            </div>
+
+                        </div>
 
                     </div>
 
+                </div>
 
-                    <span class="text-slate-400 text-sm">
+            </div>
+            <div class="swiper reviewSwiper">
 
-                        Verified Patient Experience
+                <div class="swiper-wrapper">
+
+                    @forelse($testimonials as $testimonial)
+                        <div class="swiper-slide h-auto">
+                            <a href="#testimonial-lightbox-{{ $testimonial->id }}" data-glightbox="type: inline"
+                                class="testimonial-lightbox group block h-full bg-white border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
+
+                                <!-- USER -->
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="relative shrink-0">
+                                        <img src="{{ $testimonial->banner ? asset('uploads/medium/' . $testimonial->banner) : asset('assets/img/no-image.jpg') }}"
+                                            class="w-16 h-16 object-cover rounded-full"
+                                            alt="{{ $testimonial->post_title }}">
+
+                                        <span
+                                            class="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary text-white rounded-full flex items-center justify-center border-2 border-white">
+                                            <i class="fa-solid fa-quote-left text-[9px]"></i>
+                                        </span>
+                                    </div>
+
+                                    <div class="min-w-0">
+                                        <h3 class="text-primary text-lg font-bold truncate">
+                                            {{ $testimonial->post_title }}
+                                        </h3>
+
+                                        @if ($testimonial->sub_title)
+                                            <p class="text-slate-500 text-xs mt-0.5">
+                                                {{ $testimonial->sub_title }}
+                                            </p>
+                                        @endif
+
+                                        <div class="text-[#f59e0b] text-sm mt-1">
+                                            @php
+                                                $rating = min(5, max(0, (int) $testimonial->associated_title));
+                                            @endphp
+
+                                            @for ($i = 0; $i < $rating; $i++)
+                                                ★
+                                            @endfor
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- REVIEW TEXT -->
+                                <div class="relative mb-6">
+                                    <i class="fa-solid fa-quote-left absolute -top-2 -left-1 text-primary/10 text-3xl"></i>
+
+                                    <p class="relative pl-5 text-slate-600 leading-8">
+                                        {{ strip_tags($testimonial->post_excerpt) }}
+                                    </p>
+                                </div>
+
+                                <!-- READ FULL STORY -->
+                                <div class="inline-flex items-center gap-2 text-primary font-semibold text-sm">
+                                    Read Full Story
+                                    <i
+                                        class="fa-solid fa-arrow-right text-secondary transition-transform duration-300 group-hover:translate-x-1"></i>
+                                </div>
+
+                            </a>
+                        </div>
+                    @empty
+
+                        {{-- =================================================
+                         EMPTY STATE
+                         ================================================= --}}
+                        <div class="swiper-slide">
+
+                            <div class="bg-white border border-slate-200 p-10 text-center">
+
+                                <h3 class="text-primary text-xl font-bold">
+
+                                    No Testimonials Available
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+                    @endforelse
+
+                </div>
+
+            </div>
+
+
+            {{-- =====================================================
+             OPTIONAL SWIPER PAGINATION
+             ===================================================== --}}
+            <div class="review-pagination mt-7 text-center"></div>
+
+        </div>
+
+    </section>
+
+
+
+    {{-- =========================================================
+     TESTIMONIAL GLIGHTBOX CONTENT
+     ========================================================= --}}
+
+    @foreach ($testimonials as $testimonial)
+        <div id="testimonial-lightbox-{{ $testimonial->id }}" class="hidden">
+
+            <div class="testimonial-lightbox-content">
+
+                {{-- =================================================
+                 IMAGE
+                 ================================================= --}}
+                <div class="testimonial-lightbox-image">
+
+                    <img src="{{ $testimonial->banner ? asset('uploads/medium/' . $testimonial->banner) : asset('assets/img/no-image.jpg') }}"
+                        alt="{{ $testimonial->post_title }}">
+
+                </div>
+
+
+                {{-- =================================================
+                 CONTENT
+                 ================================================= --}}
+                <div class="testimonial-lightbox-body">
+
+                    {{-- TOP LABEL --}}
+                    <span
+                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[2px] mb-3">
+
+                        <span class="w-1.5 h-1.5 bg-secondary"></span>
+
+                        Patient Experience
 
                     </span>
 
-                </div>
+
+                    {{-- NAME --}}
+                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight break-words">
+
+                        {{ $testimonial->post_title }}
+
+                    </h2>
 
 
-                {{-- DIVIDER --}}
-                <div class="w-12 h-[3px] bg-secondary my-6"></div>
+                    {{-- SUBTITLE --}}
+                    @if ($testimonial->sub_title)
+                        <p class="mt-1 text-slate-500 text-sm break-words">
 
-
-                {{-- FULL CONTENT --}}
-                <div class="testimonial-full-content">
-
-                    @if (
-                        trim(
-                            strip_tags(
-                                $testimonial->post_content ?? ''
-                            )
-                        ) !== ''
-                    )
-
-                        {!! $testimonial->post_content !!}
-
-                    @else
-
-                        <p>
-
-                            {{ $testimonial->post_excerpt }}
+                            {{ $testimonial->sub_title }}
 
                         </p>
-
                     @endif
 
-                </div>
+
+                    {{-- RATING --}}
+                    <div class="flex flex-wrap items-center gap-3 mt-4">
+
+                        <div class="flex text-[#f59e0b] text-lg">
+
+                            @php
+                                $rating = min(5, max(0, (int) $testimonial->associated_title));
+                            @endphp
 
 
-                {{-- DATE --}}
-                @if ($testimonial->post_date)
+                            @for ($i = 0; $i < $rating; $i++)
+                                ★
+                            @endfor
 
-                    <div
-                        class="mt-7 pt-5 border-t border-slate-200 flex items-center gap-2 text-slate-400 text-xs">
+                        </div>
 
-                        <i class="fa-regular fa-calendar"></i>
 
-                        <span>
-                            {{ \Carbon\Carbon::parse($testimonial->post_date)->format('d F, Y') }}
+                        <span class="text-slate-400 text-sm">
+
+                            Verified Patient Experience
+
                         </span>
 
                     </div>
 
-                @endif
+
+                    {{-- DIVIDER --}}
+                    <div class="w-12 h-[3px] bg-secondary my-6"></div>
+
+
+                    {{-- FULL CONTENT --}}
+                    <div class="testimonial-full-content">
+
+                        @if (trim(strip_tags($testimonial->post_content ?? '')) !== '')
+                            {!! $testimonial->post_content !!}
+                        @else
+                            <p>
+
+                                {{ $testimonial->post_excerpt }}
+
+                            </p>
+                        @endif
+
+                    </div>
+
+
+                    {{-- DATE --}}
+                    @if ($testimonial->post_date)
+                        <div class="mt-7 pt-5 border-t border-slate-200 flex items-center gap-2 text-slate-400 text-xs">
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            <span>
+                                {{ \Carbon\Carbon::parse($testimonial->post_date)->format('d F, Y') }}
+                            </span>
+
+                        </div>
+                    @endif
+
+                </div>
 
             </div>
 
         </div>
-
-    </div>
-
-@endforeach
+    @endforeach
 
 
     @if ($awardheading && $awards->isNotEmpty())
@@ -1468,11 +1429,11 @@
                                     ${doctor.education
                                         .map(
                                             (item) => `
-                                                                                                <li class="flex items-start gap-2 text-sm text-slate-600">
-                                                                                                    <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
-                                                                                                    <span>${item}</span>
-                                                                                                </li>
-                                                                                            `,
+                                                                                                                <li class="flex items-start gap-2 text-sm text-slate-600">
+                                                                                                                    <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
+                                                                                                                    <span>${item}</span>
+                                                                                                                </li>
+                                                                                                            `,
                                         )
                                         .join("")}
                                 </ul>
