@@ -271,8 +271,7 @@
                     <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Years Of Excellence</p>
                 </div>
                 <!-- ITEM -->
-                <div
-                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                <div class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="2">
                         0
@@ -411,8 +410,7 @@
                 <!-- HEADING -->
                 <div class="text-center mb-8 md:mb-10">
                     @if ($patientStoriesHeading->sub_title)
-                        <span
-                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                        <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
                             <span class="w-2 h-2 bg-secondary"></span> {{ $patientStoriesHeading->sub_title }} </span>
                         @endif @if ($patientStoriesHeading->post_title)
                             <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
@@ -437,20 +435,16 @@
                             <div class="story-card h-[620px]"
                                 @if ($featuredEmbed) data-video="{{ $featuredEmbed }}" @endif>
                                 @if ($featuredThumbnail)
-                                    <img src="{{ $featuredThumbnail }}" alt="{{ $featuredStory->post_title }}"
-                                        class="story-image" loading="lazy"
-                                        onerror="this.src='https://i.ytimg.com/vi/{{ $featuredVideoId }}/hqdefault.jpg'">
+                                    <img src="{{ $featuredThumbnail }}" alt="{{ $featuredStory->post_title }}" class="story-image" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/{{ $featuredVideoId }}/hqdefault.jpg'">
                                 @endif
                                 <div class="story-overlay"></div>
                                 @if ($featuredEmbed)
-                                    <button type="button" class="story-play-btn"
-                                        aria-label="Play {{ $featuredStory->post_title }} video">
+                                    <button type="button" class="story-play-btn" aria-label="Play {{ $featuredStory->post_title }} video">
                                         <i class="fa-solid fa-play"></i> </button>
                                 @endif
                                 <div class="story-content">
                                     @if ($featuredStory->associated_title)
-                                        <span
-                                            class="inline-block px-3 py-1 bg-secondary text-white text-xs font-semibold uppercase tracking-[1px] mb-4">
+                                        <span class="inline-block px-3 py-1 bg-secondary text-white text-xs font-semibold uppercase tracking-[1px] mb-4">
                                             {{ $featuredStory->associated_title }} </span>
                                     @endif
                                     <h3 class="story-title !text-[34px]">{{ $featuredStory->post_title }}</h3>
