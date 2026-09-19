@@ -105,24 +105,24 @@
             <!-- DESKTOP SCROLL AREA -->
             <div id="history-scroll-container" class="hidden lg:block relative">
                 <!-- COMPLETE STICKY CONTENT - HEADER + TIMELINE + CARD -->
-                <div id="history-sticky" class="sticky top-24 z-20">
+                <div id="history-sticky" class="sticky top-16 xl:top-20 z-20">
                     <!-- HEADER -->
-                    <div class="max-w-3xl mb-5 lg:mb-6">
+                    <div class="max-w-3xl mb-4 lg:mb-5">
                         <span
-                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                             <span class="w-2 h-2 bg-secondary"></span>
                             Our Journey
                         </span>
-                        <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
+                        <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-3 lg:mb-4">
                             Over Four Decades of Healthcare Excellence
                         </h2>
-                        <p class="text-slate-600 mt-5 text-base md:text-lg leading-8">
+                        <p class="text-slate-600 text-base md:text-lg leading-8">
                             Since 1982, CIWEC has evolved from a travel medicine clinic into
                             one of Nepal's most trusted international healthcare providers.
                         </p>
                     </div>
                     <!-- DESKTOP TIMELINE -->
-                    <div class="mb-5 lg:mb-6">
+                    <div class="mb-4 lg:mb-5">
                         <div class="relative">
                             <div class="absolute left-0 right-0 top-1/2 h-px bg-slate-300"></div>
                             <div class="flex justify-between">
@@ -149,7 +149,7 @@
                             <img id="historyImage"
                                 src="{{ !empty($firstHistory->banner) ? asset('uploads/medium/' . $firstHistory->banner) : asset('themes-assets/img/ciwec.webp') }}"
                                 alt="{{ $firstHistory->post_title }}"
-                                class="w-full h-[300px] sm:h-[320px] md:h-[360px] lg:h-[400px] object-cover">
+                                class="w-full h-[clamp(300px,40vh,400px)] object-cover">
                         </div>
                         <!-- CONTENT -->
                         <div class="lg:col-span-7 flex items-center">

@@ -5,7 +5,7 @@
     @include('themes.default.common.herobanner')
     <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
-            <div class="max-w-4xl mx-auto text-center mb-14">
+            <div class="max-w-4xl mx-auto text-center mb-8">
                 <span class="section-subtitle">
                     Medical Specialists
                 </span>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-wrap items-center justify-between gap-4 my-12">
+            <div class="flex flex-wrap items-center justify-between gap-4 my-8">
                 <div>
                     <span class="text-secondary font-semibold uppercase tracking-[3px]">
                         Our Medical Team
@@ -465,7 +465,7 @@
                                 </p>
                                 <button
                                     onclick="openDoctor(${index})"
-                                    class="btn-primary w-full mt-3">
+                                    class="btn-primary w-full mt-2">
                                     View Profile
                                 </button>
                             </div>

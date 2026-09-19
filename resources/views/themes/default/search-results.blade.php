@@ -7,7 +7,7 @@
             <!-- HEADER -->
             <div class="max-w-3xl mb-10">
                 <span
-                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                     <span class="w-2 h-2 bg-secondary"></span>
                     Search CIWEC
                 </span>

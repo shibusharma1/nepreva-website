@@ -1,10 +1,9 @@
 @extends('themes.default.common.master')
 @section('content')
-
     <!-- HERO -->
     <section id="hero-section" class="relative">
         <!-- VIDEO HERO -->
-        <div class="relative h-[440px] sm:h-[480px] lg:h-[520px] xl:h-[520px] overflow-hidden">
+        <div class="relative h-[70vh] sm:h-[70vh] lg:h-[70vh] xl:h-[70vh] overflow-hidden">
             <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto">
                 <source src="{{ asset('themes-assets/vdo/banner.webm') }}" type="video/mp4">
             </video>
@@ -30,9 +29,7 @@
                 </div>
             </div>
         </div>
-        {{-- </div> --}}
     </section>
-
     <section class="relative z-20 -mt-10 md:-mt-12 xl:-mt-16">
         <div class="container-custom">
             <div class="border bg-white border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
@@ -50,7 +47,8 @@
                         </div>
                         <i
                             class="fa-solid fa-arrow-right text-secondary text-sm transition-all duration-300 group-hover:translate-x-1"></i>
-                    </a> <!-- INQUIRY (Hidden on Mobile) --> <a href="{{ url('page/contact.html') }}"
+                    </a> <!-- INQUIRY (Hidden on Mobile) -->
+                    <a href="{{ url('page/contact.html') }}"
                         class="hidden md:flex group items-center gap-4 p-5 md:p-7 border-r border-slate-200 hover:bg-slate-100 transition-all duration-300">
                         <div
                             class="w-14 h-14 bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-primary group-hover:text-white">
@@ -62,7 +60,8 @@
                         </div>
                         <i
                             class="fa-solid fa-arrow-right text-secondary text-sm transition-all duration-300 group-hover:translate-x-1"></i>
-                    </a> <!-- APPOINTMENT (Visible on All Devices) --> <a href="{{ url('page/bookappointment.html') }}"
+                    </a> <!-- APPOINTMENT (Visible on All Devices) -->
+                    <a href="{{ url('page/bookappointment.html') }}"
                         class="group flex items-center gap-4 p-5 md:p-7 bg-primary text-white hover:bg-secondary transition-all duration-300 w-full">
                         <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 flex items-center justify-center flex-shrink-0">
                             <i class="fa-solid fa-calendar-check text-lg md:text-xl"></i>
@@ -90,7 +89,8 @@
                 </div>
                 <a href="{{ url('services.html') }}"
                     class="hidden lg:inline-flex items-center gap-2 text-primary font-semibold hover:text-secondary transition">
-                    View All <i class="fa-solid fa-arrow-right"></i> </a>
+                    View All <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
         </div>
         <!-- SWIPER -->
@@ -119,7 +119,8 @@
     </section>
 
     <!-- #currently working -->
-    <section class="relative overflow-hidden bg-slate-100 py-8 md:py-12 lg:py-14">
+    {{-- <section class="relative overflow-hidden bg-slate-100 py-8 md:py-12 lg:py-14"> --}}
+    <section class="relative overflow-hidden bg-slate-100 section-padding">
         <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
             {{-- <img src="{{ asset('uploads/medium/' . $whyciwecheading->banner) }}"
             class="mx-auto h-auto w-[120%] object-contain opacity-[0.25] lg:w-full"> --}}
@@ -127,24 +128,20 @@
         <div class="relative z-10 container-custom">
             <div class="mb-6 max-w-3xl lg:mb-8">
                 <span
-                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                     <span class="h-1.5 w-1.5 bg-secondary"></span>
                     {{ $whyciwecheading->sub_title }}
                 </span>
-
                 <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
                     {{ $whyciwecheading->post_title }}
                 </h2>
-
                 <p class="text-slate-600 text-base md:text-lg leading-8 mb-8 max-w-2xl">
                     {{ $whyciwecheading->post_excerpt }}
                 </p>
             </div>
-
             <div id="ciwecModelSection">
                 <div class="relative mt-6 lg:mt-8">
                     <div class="grid items-center gap-5 lg:grid-cols-3 lg:gap-6">
-
                         <!-- LEFT -->
                         <div class="order-2 space-y-3 lg:order-1 lg:space-y-4">
                             @foreach ($leftCards as $index => $item)
@@ -152,7 +149,6 @@
                                     data-image="{{ asset('uploads/medium/' . $item->banner) }}">
                                     <i
                                         class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
-
                                     <div>
                                         <h3 class="text-sm font-bold text-primary sm:text-base">
                                             {{ $item->post_title }}
@@ -161,18 +157,15 @@
                                 </button>
                             @endforeach
                         </div>
-
                         <!-- CENTER IMAGE -->
                         <div class="relative order-1 flex justify-center lg:order-2">
                             <div class="ciwec-ring"></div>
-
                             <div class="ciwec-image-wrapper">
                                 <img id="centerImage"
                                     src="{{ $whyciwec->count() ? asset('uploads/medium/' . $whyciwec->first()->banner) : '' }}"
                                     class="ciwec-image" alt="{{ $whyciwecheading->post_title }}">
                             </div>
                         </div>
-
                         <!-- RIGHT -->
                         <div class="order-3 space-y-3 lg:space-y-4">
                             @foreach ($rightCards as $item)
@@ -180,7 +173,6 @@
                                     data-image="{{ asset('uploads/medium/' . $item->banner) }}">
                                     <i
                                         class="{{ $item->associated_title }} flex-shrink-0 text-2xl text-secondary sm:text-3xl"></i>
-
                                     <div>
                                         <h3 class="text-sm font-bold text-primary sm:text-base">
                                             {{ $item->post_title }}
@@ -189,7 +181,6 @@
                                 </button>
                             @endforeach
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -203,7 +194,7 @@
                 <!-- LEFT -->
                 <div>
                     <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                         <span class="w-2 h-2 bg-secondary"></span> {{ $trustedworldwide->sub_title }} </span>
                     <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
                         {{ $trustedworldwide->post_title }}
@@ -214,9 +205,12 @@
                     <div class="flex flex-wrap gap-4">
                         <a href="{{ url('about-us.html') }}"
                             class="border border-primary text-white font-bold px-7 py-4 bg-primary hover:bg-secondary hover:text-white transition-all duration-300">
-                            Learn More </a> <a href="{{ url('page/contact.html') }}"
+                            Learn More
+                        </a>
+                        <a href="{{ url('page/contact.html') }}"
                             class="border border-primary text-primary font-bold px-7 py-4 hover:bg-primary hover:text-white transition-all duration-300">
-                            Contact Us </a>
+                            Contact Us
+                        </a>
                     </div>
                 </div>
                 <!-- RIGHT -->
@@ -271,7 +265,8 @@
                     <p class="text-slate-600 mt-2 text-[clamp(0.75rem,1vw,0.875rem)] leading-snug">Years Of Excellence</p>
                 </div>
                 <!-- ITEM -->
-                <div class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                <div
+                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="2">
                         0
@@ -298,7 +293,6 @@
 
         <div class="container-custom relative z-10">
             <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
-
                 <!-- DOCTOR 1 -->
                 <article
                     class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
@@ -306,35 +300,36 @@
                         <img src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
                             alt="{{ $ktmdoctors->post_title }}" loading="lazy"
                             class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]">
-
                         <span
                             class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
                             {{ $ktmdoctors->icon }}
                         </span>
                     </div>
-
                     <div class="flex flex-1 flex-col p-5 sm:p-6">
                         <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
                             {{ $ktmdoctors->post_title }}
                         </h3>
-
-                        <p class="mt-2 text-sm font-medium leading-6 text-secondary">
+                        <p class="mt-1 text-sm font-medium leading-6 text-secondary">
                             {{ $ktmdoctors->sub_title }}
                         </p>
-
-                        <div class="mt-5">
+                        <div class="mt-2 border-t border-slate-100 pt-3">
+                            <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                                <i class="fa-solid fa-user-doctor text-secondary"></i>
+                                <span>{{ $ktmdoctors->post_excerpt }}</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
                             <button type="button" onclick="openHomeDoctor('ktm')"
                                 class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
                                 <span>View Profile</span>
                                 <span
-                                    class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
+                                    class="flex h-6 w-6 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
                                     <i class="fa-solid fa-arrow-right text-[11px]"></i>
                                 </span>
                             </button>
                         </div>
                     </div>
                 </article>
-
                 <!-- DOCTOR 2 -->
                 <article
                     class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
@@ -342,35 +337,36 @@
                         <img src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
                             alt="{{ $pkhdoctors->post_title }}" loading="lazy"
                             class="h-[280px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-[320px] xl:h-[300px]">
-
                         <span
                             class="absolute left-4 top-4 border border-white/20 bg-primary px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
                             {{ $pkhdoctors->icon }}
                         </span>
                     </div>
-
                     <div class="flex flex-1 flex-col p-5 sm:p-6">
                         <h3 class="text-[clamp(1.125rem,1.5vw,1.375rem)] font-bold leading-snug text-primary">
                             {{ $pkhdoctors->post_title }}
                         </h3>
-
-                        <p class="mt-2 text-sm font-medium leading-6 text-secondary">
+                        <p class="mt-1 text-sm font-medium leading-6 text-secondary">
                             {{ $pkhdoctors->sub_title }}
                         </p>
-
-                        <div class="mt-5">
+                        <div class="mt-2 border-t border-slate-100 pt-3">
+                            <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                                <i class="fa-solid fa-user-doctor text-secondary"></i>
+                                <span>{{ $ktmdoctors->post_excerpt }}</span>
+                            </div>
+                        </div>
+                        <div class="mt-4">
                             <button type="button" onclick="openHomeDoctor('pkh')"
                                 class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
                                 <span>View Profile</span>
                                 <span
-                                    class="flex h-8 w-8 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
+                                    class="flex h-6 w-6 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
                                     <i class="fa-solid fa-arrow-right text-[11px]"></i>
                                 </span>
                             </button>
                         </div>
                     </div>
                 </article>
-
                 <!-- INTRO / VIEW ALL -->
                 <div class="flex min-w-0 flex-col justify-center border border-slate-200 bg-white/90 p-6 sm:p-8 xl:p-9">
                     <span
@@ -378,28 +374,49 @@
                         <span class="h-1.5 w-1.5 flex-shrink-0 bg-secondary"></span>
                         {{ $doctorssection->sub_title }}
                     </span>
-
                     <h2 class="text-[clamp(1.5rem,2.2vw,2rem)] font-bold leading-tight text-primary">
                         {{ $doctorssection->post_title }}
                     </h2>
-
                     <div class="my-5 h-1 w-10 bg-secondary"></div>
-
                     <p class="text-sm leading-7 text-slate-600 sm:text-base">
                         {{ $doctorssection->post_excerpt }}
                     </p>
-
-                    <div class="mt-7">
+                    <div class="mt-6">
                         <a href="{{ url('doctors-at-ciwec.html') }}" class="btn-primary inline-flex items-center gap-3">
                             View All Doctors
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
+    <!-- =========================================================
+         DOCTOR PROFILE MODAL
+         ========================================================= -->
+    <div id="doctorModal"
+        class="fixed inset-0 z-[99999] hidden items-center justify-center bg-primary/80 backdrop-blur-sm p-4 sm:p-6">
+
+        <!-- Overlay -->
+        <div id="doctorOverlay" class="absolute inset-0">
+        </div>
+
+        <!-- Modal -->
+        <div class="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-hidden bg-white shadow-2xl">
+
+            <!-- Close Button -->
+            <button id="closeDoctorModal" type="button" aria-label="Close doctor profile"
+                class="absolute right-4 top-4 z-30 flex h-10 w-10 items-center justify-center bg-primary text-white transition-all duration-300 hover:bg-secondary">
+
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Dynamic Content -->
+            <div id="doctorModalContent" class="max-h-[90vh] overflow-y-auto">
+            </div>
+
+        </div>
+    </div>
     @if ($patientStoriesHeading && $patientStories->isNotEmpty())
         @php
             $featuredStory = $patientStories->first();
@@ -408,9 +425,10 @@
         <section class="section-padding relative overflow-hidden">
             <div class="container-custom">
                 <!-- HEADING -->
-                <div class="text-center mb-8 md:mb-10">
+                <div class="text-center mb-6 md:mb-8">
                     @if ($patientStoriesHeading->sub_title)
-                        <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                        <span
+                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                             <span class="w-2 h-2 bg-secondary"></span> {{ $patientStoriesHeading->sub_title }} </span>
                         @endif @if ($patientStoriesHeading->post_title)
                             <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
@@ -431,20 +449,25 @@
                             $featuredThumbnail = youtubeThumbnail($featuredStory->post_excerpt);
                             $featuredEmbed = youtubeEmbed($featuredStory->post_excerpt);
                         @endphp
+
                         <div class="col-span-6">
-                            <div class="story-card h-[620px]"
+                            <div class="story-card h-[480px] 2xl:h-[540px]"
                                 @if ($featuredEmbed) data-video="{{ $featuredEmbed }}" @endif>
                                 @if ($featuredThumbnail)
-                                    <img src="{{ $featuredThumbnail }}" alt="{{ $featuredStory->post_title }}" class="story-image" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/{{ $featuredVideoId }}/hqdefault.jpg'">
+                                    <img src="{{ $featuredThumbnail }}" alt="{{ $featuredStory->post_title }}"
+                                        class="story-image" loading="lazy"
+                                        onerror="this.src='https://i.ytimg.com/vi/{{ $featuredVideoId }}/hqdefault.jpg'">
                                 @endif
                                 <div class="story-overlay"></div>
                                 @if ($featuredEmbed)
-                                    <button type="button" class="story-play-btn" aria-label="Play {{ $featuredStory->post_title }} video">
+                                    <button type="button" class="story-play-btn"
+                                        aria-label="Play {{ $featuredStory->post_title }} video">
                                         <i class="fa-solid fa-play"></i> </button>
                                 @endif
                                 <div class="story-content">
                                     @if ($featuredStory->associated_title)
-                                        <span class="inline-block px-3 py-1 bg-secondary text-white text-xs font-semibold uppercase tracking-[1px] mb-4">
+                                        <span
+                                            class="inline-block px-3 py-1 bg-secondary text-white text-xs font-semibold uppercase tracking-[1px] mb-4">
                                             {{ $featuredStory->associated_title }} </span>
                                     @endif
                                     <h3 class="story-title !text-[34px]">{{ $featuredStory->post_title }}</h3>
@@ -463,7 +486,8 @@
                                     $thumbnail = youtubeThumbnail($story->post_excerpt);
                                     $embed = youtubeEmbed($story->post_excerpt);
                                 @endphp
-                                <div class="story-card h-[300px]"
+
+                                <div class="story-card h-[232px] 2xl:h-[260px]"
                                     @if ($embed) data-video="{{ $embed }}" @endif>
                                     @if ($thumbnail)
                                         <img src="{{ $thumbnail }}" alt="{{ $story->post_title }}"
@@ -550,7 +574,7 @@
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
                 <div class="max-w-3xl">
                     <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                         <span class="w-2 h-2 bg-secondary"></span>
                         {{ $testimonialheading->sub_title ?? 'PATIENT FEEDBACK' }} </span>
                     <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
@@ -644,7 +668,7 @@
                 <div class="max-w-3xl">
 
                     <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
 
                         <span class="w-2 h-2 bg-secondary"></span>
 
@@ -947,7 +971,7 @@
                 <div class="max-w-3xl mb-12">
                     @if ($awardheading->sub_title)
                         <span
-                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                             <span class="w-2 h-2 bg-secondary"></span> {{ $awardheading->sub_title }} </span>
                         @endif @if ($awardheading->post_title)
                             <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
@@ -991,7 +1015,7 @@
                     <div class="max-w-3xl">
                         @if ($publications->sub_title)
                             <span
-                                class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-4">
+                                class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                                 <span class="w-2 h-2 bg-secondary"></span> {{ $publications->sub_title }} </span>
                             @endif @if ($publications->post_title)
                                 <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
@@ -1344,126 +1368,196 @@
             ],
         ];
     @endphp
-    @push('scripts')
-        <script>
-            const homeDoctors = @json($homeDoctors);
-            const doctorModal = document.getElementById("doctorModal");
-            const doctorModalContent = document.getElementById("doctorModalContent");
+  @push('scripts')
+<script>
+    const homeDoctors = @json($homeDoctors);
 
-            function openHomeDoctor(key) {
-                const doctor = homeDoctors[key];
-                if (!doctor) return;
-                doctorModalContent.innerHTML = `
-                    <div class="grid lg:grid-cols-12">
-                        <!-- IMAGE -->
-                        <div class="lg:col-span-5">
-                            <img
-                                src="${doctor.image || "./assets/img/doctor-placeholder.jpg"}"
-                                class="w-full h-[280px] lg:h-full object-cover">
-                        </div>
-                    
-                        <!-- DETAILS -->
-                        <div class="lg:col-span-7 p-3 lg:p-4">
-                            <span
-                                class="inline-block bg-secondary/10 text-secondary px-3 py-1 text-sm font-semibold">
-                                ${doctor.department}
-                            </span>
-                    
-                            <h2 class="text-primary text-3xl font-black mt-3">
-                                ${doctor.name}
-                            </h2>
-                    
-                            <p class="text-slate-600 mt-2 text-sm">
-                                ${doctor.qualification}
+    function openHomeDoctor(key) {
+
+        const doctor = homeDoctors[key];
+
+        if (!doctor) {
+            console.error('Doctor not found:', key);
+            return;
+        }
+
+        const doctorModal = document.getElementById('doctorModal');
+        const doctorModalContent = document.getElementById('doctorModalContent');
+
+        if (!doctorModal || !doctorModalContent) {
+            console.error('Doctor modal elements are missing.');
+            return;
+        }
+
+        doctorModalContent.innerHTML = `
+            <div class="grid lg:grid-cols-12">
+
+                <!-- IMAGE -->
+                <div class="lg:col-span-5">
+                    <img
+                        src="${doctor.image || '/assets/img/doctor-placeholder.jpg'}"
+                        alt="${doctor.name}"
+                        class="h-[280px] w-full object-cover sm:h-[350px] lg:h-full">
+                </div>
+
+                <!-- DETAILS -->
+                <div class="lg:col-span-7 p-6 sm:p-8 lg:p-10">
+
+                    <!-- Department -->
+                    <span
+                        class="inline-flex items-center gap-2 bg-secondary/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-secondary">
+
+                        <span class="h-1.5 w-1.5 bg-secondary"></span>
+
+                        ${doctor.department || ''}
+                    </span>
+
+                    <!-- Doctor Name -->
+                    <h2 class="mt-4 text-2xl font-black leading-tight text-primary sm:text-3xl">
+                        ${doctor.name || ''}
+                    </h2>
+
+                    <!-- Qualification -->
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        ${doctor.qualification || ''}
+                    </p>
+
+                    <!-- Divider -->
+                    <div class="my-5 h-1 w-10 bg-secondary"></div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-3 border-y border-slate-100 py-5">
+
+                        <div class="text-center">
+                            <div class="text-xl font-black text-primary">
+                                ${doctor.experience || '-'}
+                            </div>
+
+                            <p class="mt-1 text-xs text-slate-500">
+                                Experience
                             </p>
-                            <!-- STATS -->
-                            <div class="grid grid-cols-3 gap-3 mt-4">
-                                <div class="text-center">
-                                    <div class="text-primary text-2xl font-black">
-                                        ${doctor.experience}
-                                    </div>
-                    
-                                    <p class="text-xs text-slate-500">
-                                        Experience
-                                    </p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-primary text-2xl font-black">
-                                        ${doctor.patients}
-                                    </div>
-                                    <p class="text-xs text-slate-500">
-                                        Patients
-                                    </p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-primary text-2xl font-black">
-                                        ${doctor.research}
-                                    </div>
-                    
-                                    <p class="text-xs text-slate-500">
-                                        Publications
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- ABOUT -->
-                            <div class="mt-4">
-                                <h3 class="text-primary text-lg font-black mb-2">
-                                    About Doctor
-                                </h3>
-                                <p class="text-slate-600 leading-6 text-sm">
-                                    ${doctor.about}
-                                </p>
-                            </div>
-                            <!-- EDUCATION -->
-                            <div class="mt-4">
-                                <h3 class="text-primary text-lg font-black mb-2">
-                                    Education
-                                </h3>
-                                <ul class="space-y-2">
-                                    ${doctor.education
-                                        .map(
-                                            (item) => `
-                                                                                                                <li class="flex items-start gap-2 text-sm text-slate-600">
-                                                                                                                    <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
-                                                                                                                    <span>${item}</span>
-                                                                                                                </li>
-                                                                                                            `,
-                                        )
-                                        .join("")}
-                                </ul>
-                            </div>
-                            <!-- LANGUAGES -->
-                            <div class="mt-4">
-                                <h3 class="text-primary text-lg font-black mb-2">
-                                    Languages
-                                </h3>
-                                <p class="text-slate-600 text-sm">
-                                    ${doctor.languages}
-                                </p>
-                            </div>
-                            <!-- BUTTON -->
-                            <a href="{{ url('page/bookappointment.html') }}"
-                                class="btn-primary mt-6 inline-flex">
-                                Book Appointment
-                            </a>
                         </div>
+
+                        <div class="border-x border-slate-100 text-center">
+                            <div class="text-xl font-black text-primary">
+                                ${doctor.patients || '-'}
+                            </div>
+
+                            <p class="mt-1 text-xs text-slate-500">
+                                Patients
+                            </p>
+                        </div>
+
+                        <div class="text-center">
+                            <div class="text-xl font-black text-primary">
+                                ${doctor.research || '-'}
+                            </div>
+
+                            <p class="mt-1 text-xs text-slate-500">
+                                Publications
+                            </p>
+                        </div>
+
                     </div>
-                    `;
-                doctorModal.classList.remove("hidden");
-                document.body.style.overflow = "hidden";
+
+                    <!-- About -->
+                    <div class="mt-6">
+
+                        <h3 class="text-lg font-bold text-primary">
+                            About Doctor
+                        </h3>
+
+                        <p class="mt-2 text-sm leading-7 text-slate-600">
+                            ${doctor.about || 'Doctor information is currently unavailable.'}
+                        </p>
+
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="mt-5">
+
+                        <h3 class="text-lg font-bold text-primary">
+                            Languages
+                        </h3>
+
+                        <p class="mt-2 text-sm text-slate-600">
+                            ${doctor.languages || '-'}
+                        </p>
+
+                    </div>
+
+                    <!-- Appointment -->
+                    <div class="mt-7">
+
+                        <a
+                            href="{{ url('page/bookappointment.html') }}"
+                            class="btn-primary inline-flex items-center gap-3">
+
+                            Book Appointment
+
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+        // Show modal
+        doctorModal.classList.remove('hidden');
+        doctorModal.classList.add('flex');
+
+        // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
+    }
+
+
+    function closeDoctor() {
+
+        const doctorModal = document.getElementById('doctorModal');
+
+        if (!doctorModal) {
+            return;
+        }
+
+        doctorModal.classList.add('hidden');
+        doctorModal.classList.remove('flex');
+
+        document.body.style.overflow = '';
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const closeButton = document.getElementById('closeDoctorModal');
+        const overlay = document.getElementById('doctorOverlay');
+
+        // Close button
+        if (closeButton) {
+            closeButton.addEventListener('click', closeDoctor);
+        }
+
+        // Click outside modal
+        if (overlay) {
+            overlay.addEventListener('click', closeDoctor);
+        }
+
+        // ESC key
+        document.addEventListener('keydown', function (event) {
+
+            if (
+                event.key === 'Escape' &&
+                !document.getElementById('doctorModal')?.classList.contains('hidden')
+            ) {
+                closeDoctor();
             }
 
-            function closeDoctor() {
-                doctorModal.classList.add("hidden");
-                document.body.style.overflow = "";
+        });
 
-            }
-            document
-                .getElementById("closeDoctorModal")
-                .addEventListener("click", closeDoctor);
-            document
-                .getElementById("doctorOverlay")
-                .addEventListener("click", closeDoctor);
-        </script>
-    @endpush
+    });
+</script>
+@endpush
 @endsection
