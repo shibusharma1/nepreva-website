@@ -6,7 +6,7 @@
             <div class="bg-white border border-slate-200 shadow-[0_20px_80px_rgba(0,0,0,.15)]">
                 <div class="flex items-center justify-between border-b border-slate-200 px-6 md:px-8 py-5">
                     <div>
-                        <h3 class="text-primary text-xl md:text-2xl font-black">
+                        <h3 class="text-primary text-xl md:text-2xl font-bold">
                             Search CIWEC
                         </h3>
                         <p class="text-slate-500 text-sm mt-1">

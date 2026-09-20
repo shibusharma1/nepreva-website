@@ -313,7 +313,7 @@
                             {{ $ktmdoctors->sub_title }}
                         </p>
                         <div class="mt-2 border-t border-slate-100 pt-3">
-                            <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                            <div class="flex items-center gap-2 text-sm font-medium text-slate-500">
                                 <i class="fa-solid fa-user-doctor text-secondary"></i>
                                 <span>{{ $ktmdoctors->post_excerpt }}</span>
                             </div>
@@ -350,7 +350,7 @@
                             {{ $pkhdoctors->sub_title }}
                         </p>
                         <div class="mt-2 border-t border-slate-100 pt-3">
-                            <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                            <div class="flex items-center gap-2 text-sm font-medium text-slate-500">
                                 <i class="fa-solid fa-user-doctor text-secondary"></i>
                                 <span>{{ $ktmdoctors->post_excerpt }}</span>
                             </div>
@@ -378,7 +378,7 @@
                         {{ $doctorssection->post_title }}
                     </h2>
                     <div class="my-5 h-1 w-10 bg-secondary"></div>
-                    <p class="text-sm leading-7 text-slate-600 sm:text-base">
+                    <p class="text-base leading-relaxed text-slate-600 sm:text-lg">
                         {{ $doctorssection->post_excerpt }}
                     </p>
                     <div class="mt-6">
@@ -391,32 +391,7 @@
             </div>
         </div>
     </section>
-    <!-- =========================================================
-         DOCTOR PROFILE MODAL
-         ========================================================= -->
-    <div id="doctorModal"
-        class="fixed inset-0 z-[99999] hidden items-center justify-center bg-primary/80 backdrop-blur-sm p-4 sm:p-6">
-
-        <!-- Overlay -->
-        <div id="doctorOverlay" class="absolute inset-0">
-        </div>
-
-        <!-- Modal -->
-        <div class="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-hidden bg-white shadow-2xl">
-
-            <!-- Close Button -->
-            <button id="closeDoctorModal" type="button" aria-label="Close doctor profile"
-                class="absolute right-4 top-4 z-30 flex h-10 w-10 items-center justify-center bg-primary text-white transition-all duration-300 hover:bg-secondary">
-
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <!-- Dynamic Content -->
-            <div id="doctorModalContent" class="max-h-[90vh] overflow-y-auto">
-            </div>
-
-        </div>
-    </div>
+    @include('themes.default.common.doctorsmodal')
     @if ($patientStoriesHeading && $patientStories->isNotEmpty())
         @php
             $featuredStory = $patientStories->first();
@@ -435,7 +410,7 @@
                                 {{ $patientStoriesHeading->post_title }}
                             </h2>
                             @endif @if ($patientStoriesHeading->post_excerpt)
-                                <p class="max-w-3xl mx-auto text-gray-600 text-sm md:text-base leading-relaxed">
+                                <p class="max-w-3xl mx-auto text-slate-600 text-base md:text-lg leading-relaxed">
                                     {{ $patientStoriesHeading->post_excerpt }}
                                 </p>
                             @endif
@@ -1086,75 +1061,8 @@
         </section>
     @endif
 
-    <script>
-        const items = document.querySelectorAll('.model-item');
-        const image = document.getElementById('centerImage');
-
-        items.forEach(item => {
-
-            item.addEventListener('click', () => {
-
-                items.forEach(i => i.classList.remove('active'));
-
-                item.classList.add('active');
-
-
-                image.style.opacity = '0';
-                image.style.transform = 'scale(.95)';
-
-                setTimeout(() => {
-                    image.src = item.dataset.image;
-                    image.style.opacity = '1';
-                    image.style.transform = 'scale(1)';
-                }, 250);
-
-            });
-
-        });
-
-        const videoModal = document.getElementById("videoModal");
-        const storyVideo = document.getElementById("storyVideo");
-        const closeVideoModal = document.getElementById("closeVideoModal");
-        if (videoModal && storyVideo) {
-            document.querySelectorAll(".story-card[data-video]").forEach((card) => {
-                const playButton = card.querySelector(".story-play-btn");
-                if (!playButton) return;
-                playButton.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const video = card.dataset.video;
-                    if (!video) return;
-                    const separator = video.includes("?") ? "&" : "?";
-                    storyVideo.src = `${video}${separator}autoplay=1&rel=0&modestbranding=1`;
-                    videoModal.classList.remove("hidden");
-                    videoModal.classList.add("flex");
-                    document.body.style.overflow = "hidden";
-                });
-            });
-            const closeModal = () => {
-                videoModal.classList.add("hidden");
-                videoModal.classList.remove("flex");
-                storyVideo.src = "";
-                document.body.style.overflow = "";
-            };
-            closeVideoModal?.addEventListener("click", closeModal);
-            videoModal.addEventListener("click", (e) => {
-                if (e.target === videoModal) {
-                    closeModal();
-                }
-            });
-            document.addEventListener("keydown", (e) => {
-                if (
-                    e.key === "Escape" && !videoModal.classList.contains("hidden")
-                ) {
-                    closeModal();
-                }
-            });
-        }
-    </script>
-
-    <script>
-        const publications = {!! json_encode(
+    <script type="application/json" id="publicationsData">
+        {!! json_encode(
             $publications->documents->map(function ($doc) {
                     return [
                         'id' => $doc->id,
@@ -1162,168 +1070,8 @@
                         'file' => asset('uploads/doc/' . $doc->document),
                     ];
                 })->values(),
-        ) !!};
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const publicationTable = document.getElementById("publicationTable");
-            if (!publicationTable) {
-                return;
-            }
-            const pagination = document.getElementById("publicationPagination");
-            const loader = document.getElementById("publicationLoader");
-            const content = document.getElementById("publicationContent");
-            const searchInput = document.getElementById("searchInput");
-            const perPageSelect = document.getElementById("perPage");
-            let currentPage = 1;
-            let perPage = parseInt(perPageSelect?.value || 5);
-            let search = "";
-
-            function showLoader() {
-                if (loader) {
-                    loader.classList.remove("hidden");
-                }
-                if (content) {
-                    content.style.opacity = ".3";
-                    content.style.pointerEvents = "none";
-                }
-            }
-
-            function hideLoader() {
-                if (loader) {
-                    loader.classList.add("hidden");
-                }
-                if (content) {
-                    content.style.opacity = "1";
-                    content.style.pointerEvents = "auto";
-                }
-            }
-
-            function escapeHtml(value) {
-                const div = document.createElement("div");
-                div.textContent = value ?? "";
-                return div.innerHTML;
-            }
-
-            function renderTable(data) {
-                publicationTable.innerHTML = "";
-                if (!data.length) {
-                    publicationTable.innerHTML = `
-                    <tr>
-                        <td colspan="3"
-                            class="px-5 py-8 text-center text-slate-500">
-                            No publications found
-                        </td>
-                    </tr>
-                `;
-                    return;
-                }
-                data.forEach((item, index) => {
-                    const serialNumber =
-                        (currentPage - 1) * perPage + index + 1;
-                    publicationTable.innerHTML += `
-                    <tr class="border-b border-slate-200 hover:bg-slate-100 transition">
-                        <td class="px-5 py-4 font-semibold text-primary">
-                            ${serialNumber}
-                        </td>
-                        <td class="px-5 py-4 text-slate-700">
-                            <strong>
-                                ${escapeHtml(item.title)}
-                            </strong>
-                        </td>
-                        <td class="px-5 py-4 text-center">
-                            <a
-                                href="${item.file}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 text-primary font-semibold">
-                                <i class="fa-solid fa-file-pdf text-secondary"></i>
-                                View PDF
-                            </a>
-                        </td>
-                    </tr>
-                `;
-                });
-            }
-
-            function renderPagination(totalPages) {
-                if (!pagination) {
-                    return;
-                }
-                pagination.innerHTML = "";
-                if (totalPages <= 1) {
-                    return;
-                }
-                for (let i = 1; i <= totalPages; i++) {
-                    pagination.innerHTML += `
-                    <button
-                        type="button"
-                        data-page="${i}"
-                        class="publication-page-btn px-4 py-2 border transition
-                        ${
-                            currentPage === i
-                                ? "bg-primary text-white border-primary"
-                                : "bg-white text-primary border-slate-300 hover:bg-primary hover:text-white"
-                        }">
-                        ${i}
-                    </button>
-                `;
-                }
-                document
-                    .querySelectorAll(".publication-page-btn")
-                    .forEach(button => {
-                        button.addEventListener("click", function() {
-                            currentPage = parseInt(this.dataset.page);
-                            fetchPublications();
-                        });
-                    });
-            }
-
-            function fetchPublications() {
-                showLoader();
-                setTimeout(function() {
-                    const searchTerm = search.trim().toLowerCase();
-                    const filtered = publications.filter(item => {
-                        return (item.title || "")
-                            .toLowerCase()
-                            .includes(searchTerm);
-                    });
-                    const totalPages =
-                        Math.ceil(filtered.length / perPage);
-                    if (currentPage > totalPages && totalPages > 0) {
-                        currentPage = 1;
-                    }
-                    const start =
-                        (currentPage - 1) * perPage;
-                    const data =
-                        filtered.slice(start, start + perPage);
-                    renderTable(data);
-                    renderPagination(totalPages);
-                    hideLoader();
-                }, 300);
-            }
-            if (perPageSelect) {
-                perPageSelect.addEventListener("change", function() {
-                    perPage = parseInt(this.value);
-                    currentPage = 1;
-                    fetchPublications();
-                });
-            }
-            if (searchInput) {
-                let typingTimer;
-                searchInput.addEventListener("input", function() {
-                    clearTimeout(typingTimer);
-                    const value = this.value;
-                    typingTimer = setTimeout(function() {
-                        search = value;
-                        currentPage = 1;
-                        fetchPublications();
-                    }, 300);
-                });
-            }
-            fetchPublications();
-        });
+            JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        ) !!}
     </script>
     @php
         $homeDoctors = [
@@ -1368,196 +1116,10 @@
             ],
         ];
     @endphp
-  @push('scripts')
-<script>
-    const homeDoctors = @json($homeDoctors);
-
-    function openHomeDoctor(key) {
-
-        const doctor = homeDoctors[key];
-
-        if (!doctor) {
-            console.error('Doctor not found:', key);
-            return;
-        }
-
-        const doctorModal = document.getElementById('doctorModal');
-        const doctorModalContent = document.getElementById('doctorModalContent');
-
-        if (!doctorModal || !doctorModalContent) {
-            console.error('Doctor modal elements are missing.');
-            return;
-        }
-
-        doctorModalContent.innerHTML = `
-            <div class="grid lg:grid-cols-12">
-
-                <!-- IMAGE -->
-                <div class="lg:col-span-5">
-                    <img
-                        src="${doctor.image || '/assets/img/doctor-placeholder.jpg'}"
-                        alt="${doctor.name}"
-                        class="h-[280px] w-full object-cover sm:h-[350px] lg:h-full">
-                </div>
-
-                <!-- DETAILS -->
-                <div class="lg:col-span-7 p-6 sm:p-8 lg:p-10">
-
-                    <!-- Department -->
-                    <span
-                        class="inline-flex items-center gap-2 bg-secondary/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-secondary">
-
-                        <span class="h-1.5 w-1.5 bg-secondary"></span>
-
-                        ${doctor.department || ''}
-                    </span>
-
-                    <!-- Doctor Name -->
-                    <h2 class="mt-4 text-2xl font-black leading-tight text-primary sm:text-3xl">
-                        ${doctor.name || ''}
-                    </h2>
-
-                    <!-- Qualification -->
-                    <p class="mt-2 text-sm leading-6 text-slate-500">
-                        ${doctor.qualification || ''}
-                    </p>
-
-                    <!-- Divider -->
-                    <div class="my-5 h-1 w-10 bg-secondary"></div>
-
-                    <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-3 border-y border-slate-100 py-5">
-
-                        <div class="text-center">
-                            <div class="text-xl font-black text-primary">
-                                ${doctor.experience || '-'}
-                            </div>
-
-                            <p class="mt-1 text-xs text-slate-500">
-                                Experience
-                            </p>
-                        </div>
-
-                        <div class="border-x border-slate-100 text-center">
-                            <div class="text-xl font-black text-primary">
-                                ${doctor.patients || '-'}
-                            </div>
-
-                            <p class="mt-1 text-xs text-slate-500">
-                                Patients
-                            </p>
-                        </div>
-
-                        <div class="text-center">
-                            <div class="text-xl font-black text-primary">
-                                ${doctor.research || '-'}
-                            </div>
-
-                            <p class="mt-1 text-xs text-slate-500">
-                                Publications
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <!-- About -->
-                    <div class="mt-6">
-
-                        <h3 class="text-lg font-bold text-primary">
-                            About Doctor
-                        </h3>
-
-                        <p class="mt-2 text-sm leading-7 text-slate-600">
-                            ${doctor.about || 'Doctor information is currently unavailable.'}
-                        </p>
-
-                    </div>
-
-                    <!-- Languages -->
-                    <div class="mt-5">
-
-                        <h3 class="text-lg font-bold text-primary">
-                            Languages
-                        </h3>
-
-                        <p class="mt-2 text-sm text-slate-600">
-                            ${doctor.languages || '-'}
-                        </p>
-
-                    </div>
-
-                    <!-- Appointment -->
-                    <div class="mt-7">
-
-                        <a
-                            href="{{ url('page/bookappointment.html') }}"
-                            class="btn-primary inline-flex items-center gap-3">
-
-                            Book Appointment
-
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-        `;
-
-        // Show modal
-        doctorModal.classList.remove('hidden');
-        doctorModal.classList.add('flex');
-
-        // Prevent background scrolling
-        document.body.style.overflow = 'hidden';
-    }
-
-
-    function closeDoctor() {
-
-        const doctorModal = document.getElementById('doctorModal');
-
-        if (!doctorModal) {
-            return;
-        }
-
-        doctorModal.classList.add('hidden');
-        doctorModal.classList.remove('flex');
-
-        document.body.style.overflow = '';
-    }
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-
-        const closeButton = document.getElementById('closeDoctorModal');
-        const overlay = document.getElementById('doctorOverlay');
-
-        // Close button
-        if (closeButton) {
-            closeButton.addEventListener('click', closeDoctor);
-        }
-
-        // Click outside modal
-        if (overlay) {
-            overlay.addEventListener('click', closeDoctor);
-        }
-
-        // ESC key
-        document.addEventListener('keydown', function (event) {
-
-            if (
-                event.key === 'Escape' &&
-                !document.getElementById('doctorModal')?.classList.contains('hidden')
-            ) {
-                closeDoctor();
-            }
-
-        });
-
-    });
-</script>
-@endpush
+    <script type="application/json" id="homeDoctorsData">
+        {!! json_encode(
+            $homeDoctors,
+            JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        ) !!}
+    </script>
 @endsection

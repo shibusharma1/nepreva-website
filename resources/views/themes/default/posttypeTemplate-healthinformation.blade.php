@@ -4,7 +4,7 @@
 @section('content')
     @include('themes.default.common.herobanner')
 
-    <section class="section-padding bg-white overflow-hidden">
+    <section class="section-padding bg-slate-50 overflow-hidden">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
@@ -93,8 +93,8 @@
         </div>
     </section>
 
-    <script>
-        const healthinformation = {!! json_encode(
+    <script type="application/json" id="healthInformationData">
+        {!! json_encode(
             $healthinformation->map(function ($post) {
                     return [
                         'id' => $post->id,
@@ -108,149 +108,7 @@
                         'detailsUrl' => url('page/' . $post->uri),
                     ];
                 })->values(),
-        ) !!};
+            JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        ) !!}
     </script>
-
-    <script>
-        const publicationTable = document.getElementById("publicationTable");
-        if (publicationTable) {
-            const pagination = document.getElementById("publicationPagination");
-            const loader = document.getElementById("publicationLoader");
-            const content = document.getElementById("publicationContent");
-            const searchInput = document.getElementById("searchInput");
-            const perPageSelect = document.getElementById("perPage");
-
-            let currentPage = 1;
-            let perPage = 5;
-            let search = "";
-
-            function showLoader() {
-                if (loader)
-                    loader.classList.remove("hidden");
-                if (content) {
-                    content.style.opacity = ".3";
-                    content.style.pointerEvents = "none";
-                }
-            }
-
-            function hideLoader() {
-                if (loader)
-                    loader.classList.add("hidden");
-                if (content) {
-                    content.style.opacity = "1";
-                    content.style.pointerEvents = "auto";
-                }
-            }
-
-            function getActionButtons(item) {
-                if (!item.documents.length) {
-                    return `<span class="text-slate-400">No Document</span>`;
-                }
-                let buttons = "";
-                item.documents.forEach(doc => {
-                    buttons += `
-                <a href="${doc.file}"
-                   target="_blank"
-                   download
-                   class="inline-flex items-center gap-2 text-primary font-semibold mr-3">
-                    <i class="fa-solid fa-file-pdf text-secondary"></i>
-                    ${doc.title}
-                </a>
-            `;
-                });
-                return buttons;
-            }
-
-            function renderTable(data) {
-                publicationTable.innerHTML = "";
-                if (!data.length) {
-                    publicationTable.innerHTML = `
-                <tr>
-                    <td colspan="3"
-                        class="px-5 py-8 text-center text-slate-500">
-                        No records found
-                    </td>
-                </tr>
-            `;
-                    return;
-                }
-
-                data.forEach((item, index) => {
-                    publicationTable.innerHTML += `
-                <tr class="border-b border-slate-200 hover:bg-slate-100 transition">
-                    <td class="px-5 py-4 font-semibold text-primary">
-                        ${(currentPage - 1) * perPage + index + 1}
-                    </td>
-                    <td class="px-5 py-4 text-slate-700">
-                        ${item.title}
-                    </td>
-                    <td class="px-5 py-4 text-center">
-                        ${getActionButtons(item)}
-                    </td>
-                </tr>
-            `;
-                });
-
-            }
-
-            function renderPagination(totalPages) {
-                if (!pagination)
-                    return;
-                pagination.innerHTML = "";
-                if (totalPages <= 1)
-                    return;
-                for (let i = 1; i <= totalPages; i++) {
-                    pagination.innerHTML += `
-                <button
-                    onclick="changePage(${i})"
-                    class="px-4 py-2 border transition
-                    ${currentPage === i
-                        ? "bg-primary text-white border-primary"
-                        : "bg-white text-primary border-slate-300 hover:bg-primary hover:text-white"}">
-                    ${i}
-                </button>
-            `;
-                }
-            }
-
-            function fetchhealthinformation() {
-                showLoader();
-                setTimeout(() => {
-                    const filtered = healthinformation.filter(item =>
-                        item.title.toLowerCase().includes(search.toLowerCase())
-                    );
-                    const totalPages = Math.ceil(filtered.length / perPage);
-                    const start = (currentPage - 1) * perPage;
-                    const data = filtered.slice(start, start + perPage);
-                    renderTable(data);
-                    renderPagination(totalPages);
-                    hideLoader();
-                }, 300);
-            }
-            window.changePage = function(page) {
-                currentPage = page;
-                fetchhealthinformation();
-            }
-            if (perPageSelect) {
-                perPageSelect.addEventListener("change", function(e) {
-                    perPage = parseInt(e.target.value);
-                    currentPage = 1;
-                    fetchhealthinformation();
-                });
-            }
-            if (searchInput) {
-                let typingTimer;
-                searchInput.addEventListener("keyup", function(e) {
-                    clearTimeout(typingTimer);
-                    typingTimer = setTimeout(function() {
-                        search = e.target.value;
-                        currentPage = 1;
-                        fetchhealthinformation();
-                    }, 300);
-                });
-            }
-            fetchhealthinformation();
-        }
-    </script>
-
 @endsection

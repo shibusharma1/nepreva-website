@@ -12,7 +12,7 @@
                 <h2 class="section-title">
                     Find The Right Doctor
                 </h2>
-                <p class="text-slate-600 mt-6 leading-8">
+                <p class="text-slate-600 text-base md:text-lg mt-6 leading-relaxed">
                     Search our experienced healthcare professionals by
                     name, specialty or location.
                 </p>
@@ -20,7 +20,7 @@
             <div id="doctor-search" class="bg-white border border-slate-200 p-6 lg:p-8 shadow-sm">
                 <div class="grid lg:grid-cols-12 gap-5">
                     <div class="lg:col-span-5">
-                        <label class="block text-primary font-semibold mb-3">
+                        <label class="block text-sm font-semibold text-primary mb-2">
                             Search Doctor
                         </label>
                         <div class="relative">
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="lg:col-span-3">
-                        <label class="block text-primary font-semibold mb-3">
+                        <label class="block text-sm font-semibold text-primary mb-2">
                             Department
                         </label>
                         <select id="departmentFilter"
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="lg:col-span-2">
-                        <label class="block text-primary font-semibold mb-3">
+                        <label class="block text-sm font-semibold text-primary mb-2">
                             Location
                         </label>
                         <select id="locationFilter"
@@ -68,12 +68,12 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-wrap items-center justify-between gap-4 my-8">
+            <div class="flex flex-wrap items-center justify-between gap-4 my-6">
                 <div>
-                    <span class="text-secondary font-semibold uppercase tracking-[3px]">
+                    {{-- <span class="text-secondary font-semibold uppercase tracking-[3px]">
                         Our Medical Team
-                    </span>
-                    <h2 class="text-primary text-4xl font-black mt-2">
+                    </span> --}}
+                    <h2 class="section-title mt-2">
                         Available Doctors
                     </h2>
                 </div>
@@ -102,7 +102,7 @@
                     <h3 class="text-primary text-3xl font-black">
                         No Doctors Found
                     </h3>
-                    <p class="text-slate-600 max-w-xl mx-auto mt-4 leading-8">
+                    <p class="text-slate-600 text-base md:text-lg max-w-xl mx-auto mt-4 leading-relaxed">
                         We couldn't find any doctors matching your search criteria.
                     </p>
                     <button id="clearSearchBtn" class="btn-primary mt-8">
@@ -112,19 +112,8 @@
             </div>
         </div>
     </section>
-    <div id="doctorModal" class="fixed inset-0 z-[9999] hidden">
-        <div id="doctorOverlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
-        </div>
-        <div class="relative h-screen flex items-center justify-center p-4">
-            <div class="bg-white max-w-6xl w-full max-h-[80vh] overflow-y-auto relative">
-                <button id="closeDoctorModal" class="absolute top-5 right-5 w-12 h-12 bg-primary text-white z-20 hover:bg-secondary transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div id="doctorModalContent"></div>
-            </div>
-        </div>
-    </div>
-    <section class="section-padding bg-white overflow-hidden">
+    @include('themes.default.common.doctorsmodal')
+    <section class="section-padding bg-slate-50 overflow-hidden">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="text-center max-w-4xl mx-auto mb-16">
@@ -134,7 +123,7 @@
                 <h2 class="section-title">
                     Medical Specialities We Cover
                 </h2>
-                <p class="text-slate-600 mt-6 leading-8">
+                <p class="text-slate-600 text-base md:text-lg mt-6 leading-relaxed">
                     Our multidisciplinary team provides specialized
                     healthcare services across a wide range of medical
                     disciplines to support comprehensive patient care.
@@ -151,7 +140,7 @@
                         <h3 class="text-primary text-2xl font-black">
                             {{ $speciality->post_title }}
                         </h3>
-                        <p class="text-slate-600 mt-4 leading-7">
+                        <p class="text-slate-600 text-sm md:text-base mt-4 leading-relaxed">
                             {!! $speciality->post_excerpt !!}
                         </p>
                     </div>
@@ -164,10 +153,10 @@
                         <span class="text-secondary font-bold uppercase tracking-[3px]">
                             {{ $expertcare->sub_title }}
                         </span>
-                        <h3 class="text-white text-4xl font-black mt-5">
+                        <h3 class="text-white text-2xl md:text-3xl font-bold mt-4">
                             {{ $expertcare->post_title }}
                         </h3>
-                        <p class="text-white/80 mt-6 leading-8">
+                        <p class="text-white/80 text-base md:text-lg mt-4 leading-relaxed">
                             {{ $expertcare->post_excerpt }}
                         </p>
                     </div>
@@ -232,7 +221,7 @@
                         </i>
                         Expert Medical Care Starts Here
                     </span>
-                    <h2 class="text-white text-4xl lg:text-4xl font-black mt-8 leading-tight">
+                    <h2 class="text-white text-2xl md:text-3xl font-bold mt-6 leading-tight">
                         Connect With The Right
                         Specialist Today
                     </h2>
@@ -383,339 +372,7 @@
             })
             ->values();
     @endphp
-    @push('scripts')
-        <script>
-            const doctors = @json($doctorData);
-            let currentDoctors = [...doctors];
-            const doctorLoader = document.getElementById("doctorLoader");
-            const doctorGrid = document.getElementById("doctorGrid");
-
-            function showLoader() {
-                doctorLoader.classList.remove("hidden");
-                doctorGrid.classList.add("hidden");
-            }
-
-            function hideLoader() {
-                doctorLoader.classList.add("hidden");
-                doctorGrid.classList.remove("hidden");
-            }
-
-            function populateDepartments() {
-                const departmentSelect = document.getElementById("departmentFilter");
-                departmentSelect.innerHTML = `
-                    <option value="">
-                        All Departments
-                    </option>
-                `;
-                const departments = [...new Set(
-                    doctors.map(item => item.department).filter(Boolean)
-                )];
-
-                departments.forEach(department => {
-
-                    departmentSelect.insertAdjacentHTML(
-                        "beforeend",
-                        `
-                        <option value="${department}">
-                            ${department}
-                        </option>
-                        `
-                    );
-                });
-            }
-
-            function renderDoctors(data) {
-                currentDoctors = data;
-                const doctorCount = document.getElementById("doctorCount");
-                const emptyState = document.getElementById("doctorEmptyState");
-                doctorGrid.innerHTML = "";
-                doctorCount.innerText =
-                    `${data.length} Doctor${data.length !== 1 ? "s" : ""}`;
-                if (data.length === 0) {
-                    doctorGrid.innerHTML = "";
-                    emptyState.classList.remove("hidden");
-                    return;
-                }
-                emptyState.classList.add("hidden");
-                data.forEach((doctor, index) => {
-                    doctorGrid.insertAdjacentHTML(
-                        "beforeend",
-
-                        `<article class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
-                            <div class="relative overflow-hidden">
-                                <img
-                                    src="${doctor.image}"
-                                    alt="${doctor.name}"
-                                    class="w-full h-[280px] object-cover transition duration-700 group-hover:scale-105">
-                                <div class="absolute top-4 left-4">
-                                    <span class="bg-primary text-white px-4 py-2 text-xs font-semibold">
-                                        ${doctor.location}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-secondary text-sm font-semibold">
-                                    ${doctor.department}
-                                </span>
-                                <h3 class="text-primary text-xl font-black mt-2">
-                                    ${doctor.name}
-                                </h3>
-                                <p class="text-slate-500 text-sm mt-1 leading-7">
-                                    ${doctor.qualification}
-                                </p>
-                                <button
-                                    onclick="openDoctor(${index})"
-                                    class="btn-primary w-full mt-2">
-                                    View Profile
-                                </button>
-                            </div>
-                        </article>
-                        `
-                    );
-                });
-            }
-
-            function filterDoctors() {
-                showLoader();
-                setTimeout(() => {
-                    const keyword =
-                        document.getElementById("doctorSearch")
-                        .value
-                        .toLowerCase();
-                    const department =
-                        document.getElementById("departmentFilter").value;
-                    const location =
-                        document.getElementById("locationFilter").value;
-                    const filtered = doctors.filter(doctor => {
-                        const matchSearch =
-                            doctor.name.toLowerCase().includes(keyword);
-                        const matchDepartment =
-                            department === "" ||
-                            doctor.department === department;
-                        const matchLocation =
-                            location === "" ||
-                            doctor.location === location;
-                        return (
-                            matchSearch &&
-                            matchDepartment &&
-                            matchLocation
-                        );
-                    });
-                    renderDoctors(filtered);
-                    hideLoader();
-                }, 500);
-            }
-
-            function openDoctor(index) {
-                const doctor = doctors[index];
-                doctorModalContent.innerHTML = `
-                <div class="grid lg:grid-cols-12">
-                
-                    <!-- IMAGE -->
-                    <div class="lg:col-span-5">
-                
-                        <img
-                            src="${doctor.image || "./assets/img/doctor-placeholder.jpg"}"
-                            class="w-full h-[280px] lg:h-full object-cover">
-                
-                    </div>
-                
-                    <!-- DETAILS -->
-                    <div class="lg:col-span-7 p-3 lg:p-4">
-                
-                        <span
-                            class="inline-block bg-secondary/10 text-secondary px-3 py-1 text-sm font-semibold">
-                
-                            ${doctor.department}
-                
-                        </span>
-                
-                        <h2
-                            class="text-primary text-3xl font-black mt-3">
-                
-                            ${doctor.name}
-                
-                        </h2>
-                
-                        <p
-                            class="text-slate-600 mt-2 text-sm">
-                
-                            ${doctor.qualification}
-                
-                        </p>
-                
-                        <!-- STATS -->
-                        <div class="grid grid-cols-3 gap-3 mt-4">
-                
-                            <div class="text-center">
-                
-                                <div class="text-primary text-2xl font-black">
-                
-                                    ${doctor.experience}
-                
-                                </div>
-                
-                                <p class="text-xs text-slate-500">
-                
-                                    Experience
-                
-                                </p>
-                
-                            </div>
-                
-                            <div class="text-center">
-                
-                                <div class="text-primary text-2xl font-black">
-                
-                                    ${doctor.patients}
-                
-                                </div>
-                
-                                <p class="text-xs text-slate-500">
-                
-                                    Patients
-                
-                                </p>
-                
-                            </div>
-                
-                            <div class="text-center">
-                
-                                <div class="text-primary text-2xl font-black">
-                
-                                    ${doctor.research}
-                
-                                </div>
-                
-                                <p class="text-xs text-slate-500">
-                
-                                    Publications
-                
-                                </p>
-                
-                            </div>
-                
-                        </div>
-                
-                        <!-- ABOUT -->
-                        <div class="mt-4">
-                
-                            <h3 class="text-primary text-lg font-black mb-2">
-                
-                                About Doctor
-                
-                            </h3>
-                
-                            <p class="text-slate-600 leading-6 text-sm">
-                
-                                ${doctor.about}
-                
-                            </p>
-                
-                        </div>
-                
-                        <!-- EDUCATION -->
-                        <div class="mt-4">
-                
-                            <h3 class="text-primary text-lg font-black mb-2">
-                
-                                Education
-                
-                            </h3>
-                
-                            <ul class="space-y-2">
-                
-                                ${doctor.education
-                                .map(
-                                    (item) => `
-                                                                                    <li class="flex items-start gap-2 text-sm text-slate-600">
-                                                                                        <i class="fa-solid fa-circle-check text-secondary mt-1 text-xs"></i>
-                                                                                        <span>${item}</span>
-                                                                                    </li>
-                                                                                `,
-                                )
-                                .join("")}
-                            </ul>
-                        </div>
-                        <!-- LANGUAGES -->
-                        <div class="mt-4">
-                            <h3 class="text-primary text-lg font-black mb-2">
-                                Languages
-                            </h3>
-                            <p class="text-slate-600 text-sm">
-                                ${doctor.languages}
-                            </p>
-                        </div>
-                        <!-- BUTTON -->
-                        <a
-                            href="./bookappointment.php"
-                            class="btn-primary mt-6 inline-flex">
-                            Book Appointment
-                        </a>
-                    </div>
-                </div>
-                
-                `;
-
-                doctorModal.classList.remove("hidden");
-                document.body.style.overflow = "hidden";
-            }
-
-            function closeDoctor() {
-                doctorModal.classList.add("hidden");
-                document.body.style.overflow = "";
-            }
-            document
-                .getElementById("closeDoctorModal")
-                .addEventListener("click", closeDoctor);
-            document.getElementById("doctorOverlay").addEventListener("click", closeDoctor);
-
-            function filterDoctors() {
-                showLoader();
-                setTimeout(() => {
-                    const keyword = document.getElementById("doctorSearch").value.toLowerCase();
-                    const department = document.getElementById("departmentFilter").value;
-                    const location = document.getElementById("locationFilter").value;
-                    const filteredDoctors = doctors.filter((doctor) => {
-                        const matchSearch = doctor.name.toLowerCase().includes(keyword);
-                        const matchDepartment =
-                            department === "" || doctor.department === department;
-                        const matchLocation = location === "" || doctor.location === location;
-                        return matchSearch && matchDepartment && matchLocation;
-                    });
-                    renderDoctors(filteredDoctors);
-                    hideLoader();
-                }, 500);
-            }
-            document.addEventListener("DOMContentLoaded", () => {
-                populateDepartments();
-                renderDoctors(doctors);
-                document
-                    .getElementById("doctorSearch")
-                    .addEventListener("input", filterDoctors);
-                document
-                    .getElementById("departmentFilter")
-                    .addEventListener("change", filterDoctors);
-                document
-                    .getElementById("locationFilter")
-                    .addEventListener("change", filterDoctors);
-                document
-                    .getElementById("resetFilters")
-                    .addEventListener("click", () => {
-                        document.getElementById("doctorSearch").value = "";
-                        document.getElementById("departmentFilter").value = "";
-                        document.getElementById("locationFilter").value = "";
-                        renderDoctors(doctors);
-                    });
-                document
-                    .getElementById("clearSearchBtn")
-                    .addEventListener("click", () => {
-                        document.getElementById("doctorSearch").value = "";
-                        document.getElementById("departmentFilter").value = "";
-                        document.getElementById("locationFilter").value = "";
-                        renderDoctors(doctors);
-                    });
-            });
-        </script>
-    @endpush
+    <script type="application/json" id="doctorData">
+        {!! json_encode($doctorData) !!}
+    </script>
 @endsection

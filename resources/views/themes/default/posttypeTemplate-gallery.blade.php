@@ -3,7 +3,7 @@
 @section('meta_description', $data->meta_description)
 @section('content')
     @include('themes.default.common.herobanner')
-    <section class="section-padding bg-white">
+    <section class="section-padding bg-slate-50">
         <!-- Heading -->
         <div class="container-custom">
             <div class="max-w-4xl mx-auto text-center">
@@ -40,9 +40,14 @@
         <div class="container-custom mt-8">
             <div id="galleryGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
                 @forelse ($galleries as $key => $gallery)
-                    <div class="gallery-item {{ Str::slug($gallery->category->caption) }}">
+                    <div class="gallery-item group relative cursor-pointer overflow-hidden border border-slate-200 {{ Str::slug($gallery->category->caption) }}">
                         <img loading="lazy" decoding="async" src="{{ asset('uploads/galleries/' . $gallery->picture) }}"
-                            alt="{{ $gallery->caption }}" class="w-full h-[300px] object-cover">
+                            alt="{{ $gallery->caption ?? 'CIWEC Gallery' }}" class="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                            <div class="w-12 h-12 bg-white text-primary flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                                <i class="fa-solid fa-magnifying-glass-plus text-lg"></i>
+                            </div>
+                        </div>
                     </div>
                 @empty
                     <div class="md:col-span-2 xl:col-span-4">
@@ -155,47 +160,5 @@
         </div>
     </div>
 
-    <script>
-        const videoBtns = document.querySelectorAll(".videoBtn");
-        const videoModal = document.getElementById("videoModal");
-        const videoFrame = document.getElementById("videoFrame");
-        const closeVideo = document.getElementById("closeVideo");
-        const videoOverlay = document.getElementById("videoOverlay");
-        videoBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
-                videoFrame.src = btn.dataset.video + "?autoplay=1&rel=0";
-                videoModal.classList.remove("hidden");
-                document.body.style.overflow = "hidden";
-            });
-        });
-        function closeVideoModal() {
-            videoModal.classList.add("hidden");
-            videoFrame.src = "";
-            document.body.style.overflow = "";
-        }
-        closeVideo.addEventListener("click", closeVideoModal);
-        videoOverlay.addEventListener("click", closeVideoModal);
-        // gallery js
-        const filterButtons = document.querySelectorAll(".gallery-filter");
-        const galleryItems = document.querySelectorAll(".gallery-item");
-        if (filterButtons.length && galleryItems.length) {
-            filterButtons.forEach(button => {
-                button.addEventListener("click", () => {
-                    // Active button
-                    filterButtons.forEach(btn => btn.classList.remove("active"));
-                    button.classList.add("active");
-                    const filter = button.dataset.filter;
-                    galleryItems.forEach(item => {
-                        if (filter === "all") {
-                            item.style.display = "";
-                        } else {
-                            item.style.display = item.classList.contains(filter) ?
-                                "" :
-                                "none";
-                        }
-                    });
-                });
-            });
-        }
-    </script>
+    @include('themes.default.common.gallerymodal')
 @endsection

@@ -4,10 +4,10 @@
 @section('meta_description', $data->meta_description)
 @section('thumbnail', $data->page_thumbnail)
 @section('content')
-@include('themes.default.common.herobanner')
-    <section class="section-padding bg-white">
+    @include('themes.default.common.herobanner')
+    <section class="section-padding bg-slate-50">
         <div class="container-custom">
-            <div class="editor-content">
+            <div class="editor-content leading-relaxed text-slate-600 prose max-w-none">
                 {!! $data->content !!}
             </div>
         </div>
