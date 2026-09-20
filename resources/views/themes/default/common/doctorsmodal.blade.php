@@ -1,5 +1,5 @@
 <!-- DOCTOR PROFILE MODAL COMPONENT -->
-<div id="doctorModal" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-primary/80 backdrop-blur-sm p-4 sm:p-6">
+<div id="doctorModal" class="fixed inset-0 z-[99999] hidden items-center justify-center bg-slate-900/65 backdrop-blur-sm p-4 sm:p-6">
     <!-- Overlay -->
     <div id="doctorOverlay" class="absolute inset-0">
     </div>
