@@ -1,13 +1,139 @@
+@php
+    // Dynamic Page Title
+    $seoTitle = trim(View::getSection('meta_title'));
+    if (empty($seoTitle)) {
+        if (isset($data->post_title) && !empty($data->post_title)) {
+            $seoTitle = e($data->post_title) . ' | CIWEC Hospital & Travel Medicine Center';
+        } elseif (isset($posttype->post_type) && !empty($posttype->post_type)) {
+            $seoTitle = e($posttype->post_type) . ' | CIWEC Hospital & Travel Medicine Center';
+        } else {
+            $seoTitle = 'CIWEC Hospital – Travel Medicine Center in Kathmandu & Pokhara, Nepal';
+        }
+    }
+
+    // Dynamic Meta Description
+    $seoDescription = trim(View::getSection('meta_description'));
+    if (empty($seoDescription)) {
+        if (isset($data->meta_description) && !empty($data->meta_description)) {
+            $seoDescription = e($data->meta_description);
+        } elseif (isset($data->post_excerpt) && !empty($data->post_excerpt)) {
+            $seoDescription = e(Str::limit(strip_tags($data->post_excerpt), 160));
+        } elseif (isset($setting->meta_description) && !empty($setting->meta_description)) {
+            $seoDescription = e($setting->meta_description);
+        } else {
+            $seoDescription = 'CIWEC Hospital and Travel Medicine Center is a world-renowned destination travel medicine hospital in Kathmandu and Pokhara, Nepal, providing 24/7 emergency care, travel health advice, and specialist medical services.';
+        }
+    }
+
+    // Dynamic Meta Keywords
+    $seoKeywords = trim(View::getSection('meta_keywords'));
+    if (empty($seoKeywords)) {
+        if (isset($data->meta_keyword) && !empty($data->meta_keyword)) {
+            $seoKeywords = e($data->meta_keyword);
+        } elseif (isset($setting->meta_key) && !empty($setting->meta_key)) {
+            $seoKeywords = e($setting->meta_key);
+        } else {
+            $seoKeywords = 'CIWEC Hospital, Travel Medicine Center Nepal, Kathmandu Hospital, Pokhara Clinic, Travel Health, Altitude Sickness Treatment, Travel Vaccinations Nepal, Emergency Medical Care Nepal';
+        }
+    }
+
+    // OpenGraph & Social Image
+    $seoImage = asset('themes-assets/img/logo.png');
+    if (isset($data->banner) && !empty($data->banner)) {
+        $seoImage = asset('uploads/medium/' . $data->banner);
+    }
+
+    // Canonical URL
+    $canonicalUrl = url()->current();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        CIWEC Hospital – CIWEC Hospital and Travel Medicine Center is one of the most reputable destination travel
-        medicine hospitals in the world.
-    </title>
+
+    <!-- Primary Meta Tags -->
+    <title>{{ $seoTitle }}</title>
+    <meta name="title" content="{{ $seoTitle }}">
+    <meta name="description" content="{{ $seoDescription }}">
+    <meta name="keywords" content="{{ $seoKeywords }}">
+    <meta name="author" content="CIWEC Hospital">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CIWEC Hospital & Travel Medicine Center">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:image" content="{{ $seoImage }}">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ $canonicalUrl }}">
+    <meta name="twitter:title" content="{{ $seoTitle }}">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
+    <meta name="twitter:image" content="{{ $seoImage }}">
+
+    <!-- Structured Data (Schema.org / JSON-LD for Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Hospital",
+      "name": "CIWEC Hospital and Travel Medicine Center",
+      "alternateName": "CIWEC Clinic",
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset('themes-assets/img/logo.png') }}",
+      "image": "{{ $seoImage }}",
+      "description": "{{ $seoDescription }}",
+      "telephone": ["+977-1-4424111", "+977-1-4435232"],
+      "email": "info@ciwec-clinic.com",
+      "priceRange": "$$",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Lainchaur, Opposite British Embassy",
+          "addressLocality": "Kathmandu",
+          "addressRegion": "Bagmati",
+          "postalCode": "44600",
+          "addressCountry": "NP"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Lakeside, Center Point",
+          "addressLocality": "Pokhara",
+          "addressRegion": "Gandaki",
+          "postalCode": "33700",
+          "addressCountry": "NP"
+        }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "medicalSpecialty": [
+        "Travel Medicine",
+        "Emergency Care",
+        "Internal Medicine",
+        "High Altitude Medicine",
+        "Pediatrics"
+      ]
+    }
+    </script>
+
     <link rel="icon" type="image/png" href="{{ asset('themes-assets/img/logo.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -54,7 +180,7 @@
         class="fixed top-0 right-[-100%] w-[88vw] max-w-[380px] h-screen bg-white z-[999] overflow-y-auto transition-all duration-500 shadow-[-20px_0_40px_rgba(0,0,0,.15)]">
         <!-- TOP -->
         <div class="flex items-center justify-between p-5 border-b">
-            <img src="{{ asset('themes-assets/img/logo.png') }}" class="h-14">
+            <img src="{{ asset('themes-assets/img/logo.png') }}" alt="CIWEC Hospital & Travel Medicine Center" class="h-14">
             <button id="closeMenu" class="w-10 h-10 bg-primary text-white">
                 <i class="fa-solid fa-xmark">
                 </i>
@@ -174,6 +300,7 @@
                     <!-- Logo -->
                     <a href="{{ url('/') }}">
                         <img width="128" height="71" src="{{ asset('themes-assets/img/logo.png') }}"
+                            alt="CIWEC Hospital & Travel Medicine Center"
                             class="h-[70px] lg:h-[75px] w-auto object-contain transition-all duration-300">
                     </a>
                 </div>

@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- JOURNEY -->
-                <div class="space-y-12">
+                <div class="space-y-6">
 
                     @foreach ($history as $historyItem)
                         <div class="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">

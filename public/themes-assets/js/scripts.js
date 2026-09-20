@@ -1038,6 +1038,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /* GLightbox Inline Modal Initialization for Testimonials */
+    if (typeof GLightbox !== "undefined" && document.querySelector(".testimonial-lightbox, [data-glightbox]")) {
+        GLightbox({
+            selector: '.testimonial-lightbox, [data-glightbox]',
+            touchNavigation: true,
+            loop: false,
+            autoplayVideos: true
+        });
+    }
+
     /* Back To Top + Scroll Progress */
     const backToTop = document.getElementById("backToTop");
     const progressCircle = document.getElementById("scrollProgress");

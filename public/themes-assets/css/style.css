@@ -1659,6 +1659,23 @@ WHATS NEW SECTION
 }
 
     /* =========================================================
+       GLIGHTBOX INLINE CONTAINER & OVERFLOW FIX
+       ========================================================= */
+    .ginlined-content,
+    .gslide-inline,
+    .gslide-inline .ginlined-content,
+    .gslide-content {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+        margin: 0 auto !important;
+    }
+
+    .glightbox-container {
+        overflow-x: hidden !important;
+    }
+
+    /* =========================================================
        GLIGHTBOX CONTENT
        ========================================================= */
 
@@ -1679,6 +1696,10 @@ WHATS NEW SECTION
         background: #ffffff;
 
         overflow: hidden;
+
+        box-sizing: border-box;
+
+        margin: 0 auto;
 
     }
 

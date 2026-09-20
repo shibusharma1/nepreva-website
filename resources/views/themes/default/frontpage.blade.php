@@ -818,9 +818,9 @@
      ========================================================= --}}
 
     @foreach ($testimonials as $testimonial)
-        <div id="testimonial-lightbox-{{ $testimonial->id }}" class="hidden">
+        <div id="testimonial-lightbox-{{ $testimonial->id }}" class="overflow-x-hidden hidden">
 
-            <div class="testimonial-lightbox-content">
+            <div class="testimonial-lightbox-content h-full">
 
                 {{-- =================================================
                  IMAGE
