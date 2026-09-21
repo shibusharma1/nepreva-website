@@ -19,7 +19,7 @@
 
     /* BORDER */
     --border: #e2e8f0;
-    
+
     /* SHADOW */
     --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
     --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.06);
@@ -641,7 +641,7 @@ textarea.form-control {
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(0, 0, 0, 0.80),
+        rgba(0, 0, 0, 0.8),
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.05)
     );
@@ -728,7 +728,6 @@ textarea.form-control {
     transform: translateY(0);
 } */
 
-
 /* =========================================================
    LARGE DESKTOP / 24" MONITORS
    ========================================================= */
@@ -751,7 +750,6 @@ textarea.form-control {
     }
 }
 
-
 /* =========================================================
    EXTRA LARGE SCREENS
    ========================================================= */
@@ -766,7 +764,6 @@ textarea.form-control {
     }
 }
 
-
 /* =========================================================
    TABLET
    ========================================================= */
@@ -776,7 +773,6 @@ textarea.form-control {
         height: 380px;
     }
 }
-
 
 /* =========================================================
    MOBILE
@@ -942,7 +938,7 @@ WHATS NEW SECTION
     transform: rotate(45deg);
 }
 
- .model-item {
+.model-item {
     width: 100%;
     min-height: 78px;
     display: flex;
@@ -962,7 +958,7 @@ WHATS NEW SECTION
 .model-item:hover {
     transform: translateY(-4px);
     border-color: var(--primary);
-    box-shadow: 0 12px 28px rgba(17, 73, 123, 0.10);
+    box-shadow: 0 12px 28px rgba(17, 73, 123, 0.1);
 }
 
 .model-item h3 {
@@ -1004,7 +1000,7 @@ WHATS NEW SECTION
     border: 2px dashed rgba(17, 73, 123, 0.12);
     transform: translate(-50%, -50%);
     animation: rotateRing 60s linear infinite;
-}   
+}
 .ciwec-ring::before,
 .ciwec-ring::after {
     content: "";
@@ -1636,7 +1632,7 @@ WHATS NEW SECTION
     bottom: -5px;
     width: 14px;
     height: 14px;
-    border: 2px solid #EA4335;
+    border: 2px solid #ea4335;
     border-radius: 50%;
     background: rgba(234, 67, 53, 0.16);
     transform: translateX(-50%);
@@ -1644,7 +1640,8 @@ WHATS NEW SECTION
 }
 
 @keyframes mapPinBob {
-    0%, 100% {
+    0%,
+    100% {
         translate: 0 0;
     }
     50% {
@@ -1657,7 +1654,8 @@ WHATS NEW SECTION
         opacity: 0.75;
         scale: 0.6;
     }
-    75%, 100% {
+    75%,
+    100% {
         opacity: 0;
         scale: 2.5;
     }
@@ -1670,393 +1668,304 @@ WHATS NEW SECTION
     }
 }
 
-    /* =========================================================
+/* =========================================================
        GLIGHTBOX INLINE CONTAINER & OVERFLOW FIX
        ========================================================= */
-    .ginlined-content,
-    .gslide-inline,
-    .gslide-inline .ginlined-content,
-    .gslide-content {
-        max-width: 100% !important;
-        overflow-x: hidden !important;
-        box-sizing: border-box !important;
-        margin: 0 auto !important;
-    }
+.ginlined-content,
+.gslide-inline,
+.gslide-inline .ginlined-content,
+.gslide-content {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+}
 
-    .glightbox-container {
-        overflow-x: hidden !important;
-    }
+.glightbox-container {
+    overflow-x: hidden !important;
+}
 
-    /* =========================================================
+/* =========================================================
        GLIGHTBOX CONTENT
        ========================================================= */
 
-    .testimonial-lightbox-content {
+.testimonial-lightbox-content {
+    width: min(920px, calc(100vw - 32px));
 
-        width: min(920px, calc(100vw - 32px));
+    max-width: 920px;
 
-        max-width: 920px;
+    max-height: calc(100vh - 80px);
 
-        max-height: calc(100vh - 80px);
+    display: grid;
 
-        display: grid;
+    grid-template-columns:
+        minmax(280px, 38%)
+        minmax(0, 1fr);
 
-        grid-template-columns:
-            minmax(280px, 38%)
-            minmax(0, 1fr);
+    background: #ffffff;
 
-        background: #ffffff;
+    overflow: hidden;
 
-        overflow: hidden;
+    box-sizing: border-box;
 
-        box-sizing: border-box;
+    margin: 0 auto;
+}
 
-        margin: 0 auto;
-
-    }
-
-
-    /* =========================================================
+/* =========================================================
        IMAGE
        ========================================================= */
 
-    .testimonial-lightbox-image {
+.testimonial-lightbox-image {
+    width: 100%;
 
-        width: 100%;
+    height: 100%;
 
-        height: 100%;
+    min-height: 420px;
 
-        min-height: 420px;
+    overflow: hidden;
+}
 
-        overflow: hidden;
+.testimonial-lightbox-image img {
+    display: block;
 
-    }
+    width: 100%;
 
+    height: 100%;
 
-    .testimonial-lightbox-image img {
+    object-fit: cover;
+}
 
-        display: block;
-
-        width: 100%;
-
-        height: 100%;
-
-        object-fit: cover;
-
-    }
-
-
-    /* =========================================================
+/* =========================================================
        BODY
        ========================================================= */
 
-    .testimonial-lightbox-body {
+.testimonial-lightbox-body {
+    min-width: 0;
 
-        min-width: 0;
+    max-height: calc(100vh - 80px);
 
-        max-height: calc(100vh - 80px);
+    padding: 40px;
 
-        padding: 40px;
+    overflow-y: auto;
 
-        overflow-y: auto;
+    overflow-x: hidden;
 
-        overflow-x: hidden;
+    word-break: break-word;
 
-        word-break: break-word;
+    overflow-wrap: anywhere;
 
-        overflow-wrap: anywhere;
+    scrollbar-width: thin;
+}
 
-        scrollbar-width: thin;
-
-    }
-
-
-    /* =========================================================
+/* =========================================================
        FULL CONTENT
        ========================================================= */
 
-    .testimonial-full-content {
+.testimonial-full-content {
+    min-width: 0;
 
-        min-width: 0;
+    color: var(--slate-600);
 
-        color: var(--slate-600);
+    font-size: 15px;
 
-        font-size: 15px;
+    line-height: 1.9;
 
-        line-height: 1.9;
+    overflow-wrap: anywhere;
 
-        overflow-wrap: anywhere;
+    word-break: break-word;
+}
 
-        word-break: break-word;
+.testimonial-full-content p {
+    margin-bottom: 1rem;
+}
 
-    }
+.testimonial-full-content p:last-child {
+    margin-bottom: 0;
+}
 
+.testimonial-full-content img {
+    display: block;
 
-    .testimonial-full-content p {
+    max-width: 100%;
 
-        margin-bottom: 1rem;
+    height: auto;
+}
 
-    }
+.testimonial-full-content video {
+    display: block;
 
+    max-width: 100%;
 
-    .testimonial-full-content p:last-child {
+    height: auto;
+}
 
-        margin-bottom: 0;
+.testimonial-full-content iframe {
+    display: block;
 
-    }
+    width: 100%;
 
+    max-width: 100%;
 
-    .testimonial-full-content img {
+    height: auto;
+}
 
-        display: block;
+.testimonial-full-content table {
+    display: block;
 
-        max-width: 100%;
+    width: 100%;
 
-        height: auto;
+    max-width: 100%;
 
-    }
+    overflow-x: auto;
+}
 
+.testimonial-full-content pre {
+    max-width: 100%;
 
-    .testimonial-full-content video {
+    white-space: pre-wrap;
 
-        display: block;
+    overflow-wrap: anywhere;
+}
 
-        max-width: 100%;
+.testimonial-full-content code {
+    max-width: 100%;
 
-        height: auto;
+    white-space: pre-wrap;
 
-    }
+    overflow-wrap: anywhere;
+}
 
-
-    .testimonial-full-content iframe {
-
-        display: block;
-
-        width: 100%;
-
-        max-width: 100%;
-
-        height: auto;
-
-    }
-
-
-    .testimonial-full-content table {
-
-        display: block;
-
-        width: 100%;
-
-        max-width: 100%;
-
-        overflow-x: auto;
-
-    }
-
-
-    .testimonial-full-content pre {
-
-        max-width: 100%;
-
-        white-space: pre-wrap;
-
-        overflow-wrap: anywhere;
-
-    }
-
-
-    .testimonial-full-content code {
-
-        max-width: 100%;
-
-        white-space: pre-wrap;
-
-        overflow-wrap: anywhere;
-
-    }
-
-
-    /* =========================================================
+/* =========================================================
        GLIGHTBOX INLINE WRAPPER
        ========================================================= */
 
-    .glightbox-container .ginner-container {
+.glightbox-container .ginner-container {
+    width: auto;
 
-        width: auto;
+    max-width: 100%;
 
-        max-width: 100%;
+    max-height: 100%;
+}
 
-        max-height: 100%;
+.glightbox-container .gslide-inline {
+    width: auto !important;
 
-    }
+    max-width: 100%;
+}
 
+.glightbox-container .gslide-inline .ginlined-content {
+    width: auto !important;
 
-    .glightbox-container .gslide-inline {
+    max-width: 100%;
 
-        width: auto !important;
+    max-height: 100%;
 
-        max-width: 100%;
+    padding: 0 !important;
 
-    }
+    overflow: visible;
+}
 
-
-    .glightbox-container .gslide-inline .ginlined-content {
-
-        width: auto !important;
-
-        max-width: 100%;
-
-        max-height: 100%;
-
-        padding: 0 !important;
-
-        overflow: visible;
-
-    }
-
-
-    /* =========================================================
+/* =========================================================
        TABLET
        ========================================================= */
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
+    .testimonial-lightbox-content {
+        width: calc(100vw - 24px);
 
-        .testimonial-lightbox-content {
+        max-width: calc(100vw - 24px);
 
-            width: calc(100vw - 24px);
+        max-height: calc(100vh - 40px);
 
-            max-width: calc(100vw - 24px);
+        grid-template-columns: 1fr;
 
-            max-height: calc(100vh - 40px);
-
-            grid-template-columns: 1fr;
-
-            grid-template-rows:
-                220px
-                minmax(0, 1fr);
-
-        }
-
-
-        .testimonial-lightbox-image {
-
-            min-height: 0;
-
-            height: 220px;
-
-        }
-
-
-        .testimonial-lightbox-body {
-
-            max-height: calc(100vh - 260px);
-
-            padding: 28px 24px;
-
-        }
-
+        grid-template-rows:
+            220px
+            minmax(0, 1fr);
     }
 
+    .testimonial-lightbox-image {
+        min-height: 0;
 
-    /* =========================================================
+        height: 220px;
+    }
+
+    .testimonial-lightbox-body {
+        max-height: calc(100vh - 260px);
+
+        padding: 28px 24px;
+    }
+}
+
+/* =========================================================
        MOBILE
        ========================================================= */
 
-    @media (max-width: 480px) {
+@media (max-width: 480px) {
+    .testimonial-lightbox-content {
+        width: calc(100vw - 16px);
 
-        .testimonial-lightbox-content {
+        max-width: calc(100vw - 16px);
 
-            width: calc(100vw - 16px);
+        max-height: calc(100vh - 24px);
 
-            max-width: calc(100vw - 16px);
-
-            max-height: calc(100vh - 24px);
-
-            grid-template-rows:
-                180px
-                minmax(0, 1fr);
-
-        }
-
-
-        .testimonial-lightbox-image {
-
-            height: 180px;
-
-        }
-
-
-        .testimonial-lightbox-body {
-
-            max-height: calc(100vh - 204px);
-
-            padding: 22px 18px;
-
-        }
-
-
-        .testimonial-lightbox-body h2 {
-
-            font-size: 1.5rem;
-
-            line-height: 1.25;
-
-        }
-
-
-        .testimonial-lightbox-body .testimonial-full-content {
-
-            font-size: 14px;
-
-            line-height: 1.75;
-
-        }
-
+        grid-template-rows:
+            180px
+            minmax(0, 1fr);
     }
 
+    .testimonial-lightbox-image {
+        height: 180px;
+    }
 
-    /* =========================================================
+    .testimonial-lightbox-body {
+        max-height: calc(100vh - 204px);
+
+        padding: 22px 18px;
+    }
+
+    .testimonial-lightbox-body h2 {
+        font-size: 1.5rem;
+
+        line-height: 1.25;
+    }
+
+    .testimonial-lightbox-body .testimonial-full-content {
+        font-size: 14px;
+
+        line-height: 1.75;
+    }
+}
+
+/* =========================================================
        VERY SMALL MOBILE
        ========================================================= */
 
-    @media (max-width: 360px) {
-
-        .testimonial-lightbox-content {
-
-            grid-template-rows:
-                150px
-                minmax(0, 1fr);
-
-        }
-
-
-        .testimonial-lightbox-image {
-
-            height: 150px;
-
-        }
-
-
-        .testimonial-lightbox-body {
-
-            max-height: calc(100vh - 174px);
-
-            padding: 18px 15px;
-
-        }
-
-
-        .testimonial-lightbox-body h2 {
-
-            font-size: 1.35rem;
-
-        }
-
-
-        .testimonial-lightbox-body .testimonial-full-content {
-
-            font-size: 13px;
-
-        }
-
+@media (max-width: 360px) {
+    .testimonial-lightbox-content {
+        grid-template-rows:
+            150px
+            minmax(0, 1fr);
     }
+
+    .testimonial-lightbox-image {
+        height: 150px;
+    }
+
+    .testimonial-lightbox-body {
+        max-height: calc(100vh - 174px);
+
+        padding: 18px 15px;
+    }
+
+    .testimonial-lightbox-body h2 {
+        font-size: 1.35rem;
+    }
+
+    .testimonial-lightbox-body .testimonial-full-content {
+        font-size: 13px;
+    }
+}
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
