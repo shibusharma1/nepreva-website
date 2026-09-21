@@ -5,7 +5,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-14">
                 <div>
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('themes-assets/img/logo.png') }}" alt="CIWEC Hospital & Travel Medicine Center Logo" class="h-20 bg-white p-3 mb-6">
+                        <img src="{{ asset('themes-assets/img/logo.png') }}" alt="CIWEC Hospital & Travel Medicine Center Logo" class="h-20 bg-[var([var(--neutral-50)])]p-3 mb-6">
                     </a>
                     <p class="text-white/80 text-sm md:text-base leading-relaxed">
                         {{ $setting->welcome_text }}
@@ -21,9 +21,8 @@
                                 Home
                             </a>
                             @foreach ($navigations as $row)
-                        <li>
-                            <a href="{{ url('page/' . posttype_url($row->uri)) }}"
-                                class="text-white/80 hover:text-secondary transition">{{ $row->post_type }}</a>
+                        <li> 
+                            <a href="{{ url(posttype_url($row->uri)) }}" class="text-white/80 hover:text-secondary transition">{{ $row->post_type }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -35,7 +34,7 @@
                     <ul class="space-y-3">
                         @foreach ($services->skip(1)->take(6) as $service)
                             <li>
-                                <a href="{{ url($service->uri) }}"
+                                <a href="{{ url($service->uri).'.html'}}"
                                     class="text-white/80 hover:text-secondary transition">
                                     {{ $service->post_title }}
                                 </a>
@@ -57,7 +56,7 @@
                         <input type="email" placeholder="Email Address" name="email"
                             class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
                         <button type="submit"
-                            class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition hover:border-2 hover:border-secondary">
+                            class="w-14 bg-secondary text-white hover:bg-[var([var(--neutral-50)])]hover:text-primary transition hover:border-2 hover:border-secondary">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
@@ -115,7 +114,7 @@
 
 <!-- Back to top button  -->
 <button id="backToTop" aria-label="Back to top"
-    class="fixed bottom-40 right-4 md:bottom-28 md:right-6 z-[60] w-14 h-14 bg-white border-2 border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,.15)] text-primary opacity-0 pointer-events-none translate-y-8 transition-all duration-500 rounded-full hover:border-primary hover:text-secondary">
+    class="fixed bottom-40 right-4 md:bottom-28 md:right-6 z-[60] w-14 h-14 bg-[var([var(--neutral-50)])]border-2 border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,.15)] text-primary opacity-0 pointer-events-none translate-y-8 transition-all duration-500 rounded-full hover:border-primary hover:text-secondary">
     <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="46" stroke="#E5E7EB" stroke-width="4" fill="none" />
         <circle id="scrollProgress" cx="50" cy="50" r="46" stroke="#D71920" stroke-width="4"

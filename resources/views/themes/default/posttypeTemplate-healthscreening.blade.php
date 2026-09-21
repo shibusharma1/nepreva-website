@@ -29,7 +29,7 @@
 
 
                 <!-- FEATURED GUIDE -->
-                <div class="bg-white border border-slate-200 overflow-hidden">
+                <div class="bg-[var(--neutral-50)] border border-slate-200 overflow-hidden">
 
                     <div class="grid lg:grid-cols-12 items-center">
 
@@ -119,7 +119,7 @@
 
                         @foreach ($otherGuides as $guide)
                             <article
-                                class="group bg-white border border-slate-200 hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                                class="group bg-[var([var(--neutral-50)])]border border-slate-200 hover:border-secondary hover:-translate-y-2 transition-all duration-500">
 
                                 <img src="{{ !empty($guide->banner) ? asset('uploads/medium/' . $guide->banner) : asset('uploads/medium/default.webp') }}"
                                     alt="{{ $guide->post_title }}" class="w-full h-52 object-cover">
@@ -170,7 +170,7 @@
         </div>
     </section>
 
-    <section class="section-padding bg-slate-50 overflow-hidden">
+    <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="text-center max-w-4xl mx-auto mb-12">
@@ -306,7 +306,7 @@
                     <div class="faq-item {{ $index === 0 ? 'active' : '' }}">
 
                         <button
-                            class="faq-btn w-full flex items-center justify-between bg-white border border-slate-200 px-6 py-4 text-left">
+                            class="faq-btn w-full flex items-center justify-between bg-[var([var(--neutral-50)])]border border-slate-200 px-6 py-4 text-left">
 
                             <span class="text-primary font-bold text-base md:text-lg">
                                 {{ $item->post_title }}

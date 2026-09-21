@@ -1846,59 +1846,81 @@ WHATS NEW SECTION
 
 .glightbox-container .ginner-container {
     width: auto;
-
     max-width: 100%;
-
     max-height: 100%;
 }
 
 .glightbox-container .gslide-inline {
     width: auto !important;
-
     max-width: 100%;
 }
 
 .glightbox-container .gslide-inline .ginlined-content {
     width: auto !important;
-
     max-width: 100%;
-
     max-height: 100%;
-
     padding: 0 !important;
-
     overflow: visible;
 }
 
+/* GLightbox Floating Close Button */
+.gclose,
+.glightbox-container .gclose {
+    top: 12px !important;
+    right: 12px !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    border-radius: 9999px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 99999 !important;
+    opacity: 0.95 !important;
+    transition: all 0.3s ease !important;
+}
+.gclose:hover,
+.glightbox-container .gclose:hover {
+    background: #d71920 !important;
+    opacity: 1 !important;
+    transform: scale(1.05);
+}
+.gclose svg,
+.glightbox-container .gclose svg {
+    width: 14px !important;
+    height: 14px !important;
+}
+.gclose svg path,
+.glightbox-container .gclose svg path {
+    fill: #ffffff !important;
+}
+
 /* =========================================================
-       TABLET
+       TABLET & MOBILE RESPONSIVE LIGHTBOX
        ========================================================= */
 
 @media (max-width: 768px) {
     .testimonial-lightbox-content {
         width: calc(100vw - 24px);
-
         max-width: calc(100vw - 24px);
-
         max-height: calc(100vh - 40px);
-
         grid-template-columns: 1fr;
-
-        grid-template-rows:
-            220px
-            minmax(0, 1fr);
+        grid-template-rows: 220px minmax(0, 1fr);
+        border-radius: 16px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
     }
 
     .testimonial-lightbox-image {
         min-height: 0;
-
         height: 220px;
     }
 
     .testimonial-lightbox-body {
         max-height: calc(100vh - 260px);
-
-        padding: 28px 24px;
+        padding: 24px 20px;
     }
 }
 
@@ -1908,15 +1930,11 @@ WHATS NEW SECTION
 
 @media (max-width: 480px) {
     .testimonial-lightbox-content {
-        width: calc(100vw - 16px);
-
-        max-width: calc(100vw - 16px);
-
-        max-height: calc(100vh - 24px);
-
-        grid-template-rows:
-            180px
-            minmax(0, 1fr);
+        width: calc(100vw - 20px);
+        max-width: calc(100vw - 20px);
+        max-height: calc(100vh - 32px);
+        grid-template-rows: 180px minmax(0, 1fr);
+        border-radius: 12px;
     }
 
     .testimonial-lightbox-image {
@@ -1924,21 +1942,18 @@ WHATS NEW SECTION
     }
 
     .testimonial-lightbox-body {
-        max-height: calc(100vh - 204px);
-
-        padding: 22px 18px;
+        max-height: calc(100vh - 212px);
+        padding: 20px 16px;
     }
 
     .testimonial-lightbox-body h2 {
-        font-size: 1.5rem;
-
-        line-height: 1.25;
+        font-size: 1.35rem;
+        line-height: 1.3;
     }
 
     .testimonial-lightbox-body .testimonial-full-content {
         font-size: 14px;
-
-        line-height: 1.75;
+        line-height: 1.7;
     }
 }
 
@@ -1948,9 +1963,9 @@ WHATS NEW SECTION
 
 @media (max-width: 360px) {
     .testimonial-lightbox-content {
-        grid-template-rows:
-            150px
-            minmax(0, 1fr);
+        width: calc(100vw - 16px);
+        max-width: calc(100vw - 16px);
+        grid-template-rows: 150px minmax(0, 1fr);
     }
 
     .testimonial-lightbox-image {
@@ -1958,13 +1973,12 @@ WHATS NEW SECTION
     }
 
     .testimonial-lightbox-body {
-        max-height: calc(100vh - 174px);
-
-        padding: 18px 15px;
+        max-height: calc(100vh - 182px);
+        padding: 16px 14px;
     }
 
     .testimonial-lightbox-body h2 {
-        font-size: 1.35rem;
+        font-size: 1.25rem;
     }
 
     .testimonial-lightbox-body .testimonial-full-content {

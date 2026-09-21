@@ -212,7 +212,7 @@
     </div>
     <!-- MOBILE MENU -->
     <div id="mobileMenu"
-        class="fixed top-0 right-[-100%] w-[88vw] max-w-[380px] h-screen bg-white z-[999] overflow-y-auto transition-all duration-500 shadow-[-20px_0_40px_rgba(0,0,0,.15)]">
+        class="fixed top-0 right-[-100%] w-[88vw] max-w-[380px] h-screen bg-[var([var(--neutral-50)])]z-[999] overflow-y-auto transition-all duration-500 shadow-[-20px_0_40px_rgba(0,0,0,.15)]">
         <!-- TOP -->
         <div class="flex items-center justify-between p-5 border-b">
             <img src="{{ asset('themes-assets/img/logo.png') }}" alt="CIWEC Hospital & Travel Medicine Center"
@@ -373,7 +373,7 @@
     </div>
 
     <!-- HEADER -->
-    <header id="header" class="sticky top-0 z-50 bg-white border-b border-slate-200">
+    <header id="header" class="sticky top-0 z-50 bg-[var([var(--neutral-50)])]border-b border-slate-200">
         <div class="container-custom">
             <div class="h-[74px] lg:h-[86px] flex items-center justify-between">
                 <!-- LEFT -->
@@ -422,7 +422,7 @@
                                 </button>
                                 <div id="aboutDropdown"
                                     class="dropdown-menu absolute top-[120%] left-0 w-[340px]
-                                            bg-white rounded-xl border border-slate-200
+                                            bg-[var([var(--neutral-50)])]rounded-xl border border-slate-200
                                             shadow-[0_15px_40px_rgba(0,0,0,0.08)]
                                             opacity-0 invisible translate-y-3
                                             transition-all duration-300 z-50 overflow-hidden">
@@ -482,7 +482,7 @@
                                 </button>
                                 <div id="servicesDropdown"
                                     class="dropdown-menu absolute top-[120%] left-0 w-[380px]
-                                            bg-white rounded-xl border border-slate-200
+                                            bg-[var([var(--neutral-50)])]rounded-xl border border-slate-200
                                             shadow-[0_15px_40px_rgba(0,0,0,0.08)]
                                             opacity-0 invisible translate-y-3
                                             transition-all duration-300 z-50 overflow-hidden">

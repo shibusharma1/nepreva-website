@@ -117,7 +117,7 @@
     @endif
 
     @if ($visionMissionSection)
-        <section class="section-padding bg-slate-50 overflow-hidden">
+        <section class="section-padding bg-slate-100 overflow-hidden">
             <div class="container-custom">
 
                 <!-- HEADING -->
@@ -142,7 +142,7 @@
                     @if ($vision)
                         <!-- VISION -->
                         <div
-                            class="group relative bg-white border border-slate-200 p-8 hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                            class="group relative bg-[var(--neutral-50)] border border-slate-200 p-8 hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
 
                             <div class="w-16 h-16 bg-primary/10 flex items-center justify-center mb-6">
                                 <i class="{{ $vision->associated_title }} text-primary text-2xl">
@@ -184,7 +184,7 @@
                     @if ($values)
                         <!-- VALUES -->
                         <div
-                            class="group relative bg-white border border-slate-200 p-8 hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                            class="group relative bg-[var(--neutral-50)] border border-slate-200 p-8 hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
 
                             <div class="w-16 h-16 bg-primary/10 flex items-center justify-center mb-6">
                                 <i class="{{ $values->associated_title }} text-primary text-2xl">
@@ -241,7 +241,7 @@
                 <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
                     <!-- ITEM -->
                     <div
-                        class="bg-white border border-slate-200 p-6 md:p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                        class="bg-[var(--neutral-50)] border border-slate-200 p-6 md:p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
 
                         <div class="w-14 h-14 mx-auto bg-primary/10 flex items-center justify-center mb-5">
                             <i class="fa-solid fa-calendar-check text-primary text-xl"></i>
@@ -258,7 +258,7 @@
                     </div>
 
                     <!-- ITEM -->
-                    <div class="bg-white border border-slate-200 p-6 md:p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                    <div class="bg-[var(--neutral-50)] border border-slate-200 p-6 md:p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
                         <div class="w-14 h-14 mx-auto bg-primary/10 flex items-center justify-center mb-5">
                             <i class="fa-solid fa-globe text-primary text-xl"> </i>
                         </div>
@@ -274,7 +274,7 @@
                     </div>
 
                     <!-- ITEM -->
-                    <div class="bg-white border border-slate-200 p-6 md:p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                    <div class="bg-[var(--neutral-50)] border border-slate-200 p-6 md:p-8 text-center hover:border-secondary hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
                         <div class="w-14 h-14 mx-auto bg-primary/10 flex items-center justify-center mb-5">
                             <i class="fa-solid fa-user-doctor text-primary text-xl"> </i>
                         </div>
@@ -307,7 +307,7 @@
 
                 </div>
                 <!-- TRUST BAR -->
-                <div class="mt-12 bg-white border border-slate-200 p-8 lg:p-10">
+                <div class="mt-12 bg-[var(--neutral-50)] border border-slate-200 p-8 lg:p-10">
                     <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                         <div>
                             <h4 class="text-primary font-bold text-lg mb-2">

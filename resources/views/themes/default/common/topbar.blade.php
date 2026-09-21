@@ -1,4 +1,4 @@
-<div class="hidden lg:block bg-white border-b border-slate-200">
+<div class="hidden lg:block bg-[var([var(--neutral-50)])]border-b border-slate-200">
     <div class="container-custom">
         <div class="h-11 flex items-center justify-between">
             <div class="flex items-center gap-8">

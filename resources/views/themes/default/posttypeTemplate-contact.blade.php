@@ -4,10 +4,10 @@
 @section('content')
     @include('themes.default.common.herobanner')
 
-    <section class="section-padding bg-slate-50 overflow-hidden">
+    <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <div class="grid xl:grid-cols-[1.2fr_.8fr] gap-10 items-start">
-                <div class="bg-white border border-slate-200 shadow-md p-6 md:p-10 relative overflow-hidden">
+                <div class="bg-[var(--neutral-50)] border border-slate-200 shadow-md p-6 md:p-10 relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-full h-1.5 bg-secondary">
                     </div>
                     <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-2">
@@ -148,7 +148,7 @@
                         </p>
                     </div>
                     <!-- POKHARA -->
-                    <div class="bg-white border border-slate-200 p-6 md:p-7 shadow-sm">
+                    <div class="bg-[var(--neutral-50)] border border-slate-200 p-6 md:p-7 shadow-sm">
                         <div class="flex items-center gap-4 mb-4">
                             <div class="w-12 h-12 bg-secondary/10 flex items-center justify-center">
                                 <i class="fa-solid fa-hospital text-secondary text-xl">
@@ -190,7 +190,7 @@
                         </a>
                     </div>
                     <!-- OFFICE HOURS -->
-                    <div class="bg-white border border-slate-200 p-6 md:p-7 shadow-sm">
+                    <div class="bg-[var(--neutral-50)] border border-slate-200 p-6 md:p-7 shadow-sm">
                         <h3 class="text-primary text-lg font-bold mb-4">
                             Office Hours
                         </h3>

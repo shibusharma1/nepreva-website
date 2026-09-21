@@ -34,70 +34,70 @@ document.addEventListener("DOMContentLoaded", () => {
         doctorModalContent.innerHTML = `
             <div class="grid lg:grid-cols-12">
                 <!-- IMAGE -->
-                <div class="lg:col-span-5 bg-slate-100 relative min-h-[280px]">
+                <div class="lg:col-span-5 bg-slate-100 relative min-h-[220px] sm:min-h-[300px] lg:min-h-full">
                     <img
                         src="${doctor.image || ''}"
                         alt="${doctor.name || 'Doctor'}"
-                        class="h-[280px] sm:h-[350px] lg:h-full w-full object-cover">
+                        class="h-[220px] sm:h-[320px] lg:h-full w-full object-cover object-top">
                 </div>
 
                 <!-- DETAILS -->
-                <div class="lg:col-span-7 p-6 sm:p-8 lg:p-10">
+                <div class="lg:col-span-7 p-5 sm:p-8 lg:p-10">
                     <!-- Department Badge -->
-                    <span class="inline-flex items-center gap-2 bg-secondary/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-secondary">
-                        <span class="h-1.5 w-1.5 bg-secondary"></span>
+                    <span class="inline-flex items-center gap-1.5 sm:gap-2 bg-secondary/10 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-secondary rounded-md">
+                        <span class="h-1.5 w-1.5 bg-secondary rounded-full"></span>
                         ${doctor.department || 'Medical Specialist'}
                     </span>
 
                     <!-- Doctor Name -->
-                    <h2 class="mt-3 text-2xl sm:text-3xl font-bold leading-tight text-primary">
+                    <h2 class="mt-2.5 sm:mt-3 text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-primary">
                         ${doctor.name || ''}
                     </h2>
 
                     <!-- Qualification -->
-                    <p class="mt-1 text-sm font-medium text-slate-500">
+                    <p class="mt-1 text-xs sm:text-sm font-medium text-slate-500">
                         ${doctor.qualification || ''}
                     </p>
 
                     <!-- Accent Line -->
-                    <div class="my-4 h-1 w-12 bg-secondary"></div>
+                    <div class="my-3 sm:my-4 h-1 w-12 bg-secondary"></div>
 
                     <!-- Stats Box -->
-                    <div class="bg-slate-50 border border-slate-200 p-4 grid grid-cols-3 gap-3 my-5 text-center">
-                        <div>
-                            <div class="text-lg sm:text-xl font-bold text-primary">
+                    <div class="bg-slate-50 border border-slate-200 p-3 sm:p-4 grid grid-cols-3 gap-1.5 sm:gap-3 my-4 sm:my-5 text-center rounded-lg sm:rounded-xl">
+                        <div class="px-1">
+                            <div class="text-base sm:text-xl font-bold text-primary">
                                 ${doctor.experience || '-'}
                             </div>
-                            <p class="mt-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            <p class="mt-0.5 sm:mt-1 text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider leading-tight">
                                 Experience
                             </p>
                         </div>
 
-                        <div class="border-x border-slate-200">
-                            <div class="text-lg sm:text-xl font-bold text-primary">
+                        <div class="border-x border-slate-200 px-1">
+                            <div class="text-base sm:text-xl font-bold text-primary">
                                 ${doctor.patients || '-'}
                             </div>
-                            <p class="mt-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            <p class="mt-0.5 sm:mt-1 text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider leading-tight">
                                 Patients
                             </p>
                         </div>
 
-                        <div>
-                            <div class="text-lg sm:text-xl font-bold text-primary">
+                        <div class="px-1">
+                            <div class="text-base sm:text-xl font-bold text-primary">
                                 ${doctor.research || '-'}
                             </div>
-                            <p class="mt-1 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            <p class="mt-0.5 sm:mt-1 text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider leading-tight">
                                 Publications
                             </p>
                         </div>
                     </div>
 
                     <!-- About -->
-                    <div class="mt-5">
-                        <h3 class="text-base font-bold text-primary mb-2 border-b border-slate-100 pb-1">
+                    <div class="mt-4 sm:mt-5">
+                        <h3 class="text-sm sm:text-base font-bold text-primary mb-1.5 sm:mb-2 border-b border-slate-100 pb-1">
                             About Doctor
                         </h3>
-                        <p class="mt-2 text-sm leading-relaxed text-slate-600">
+                        <p class="mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
                             ${doctor.about || 'Doctor information is currently unavailable.'}
                         </p>
                     </div>
@@ -105,18 +105,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${educationHtml}
 
                     <!-- Languages -->
-                    <div class="mt-5">
-                        <h3 class="text-base font-bold text-primary mb-2 border-b border-slate-100 pb-1">
+                    <div class="mt-4 sm:mt-5">
+                        <h3 class="text-sm sm:text-base font-bold text-primary mb-1.5 sm:mb-2 border-b border-slate-100 pb-1">
                             Languages Spoken
                         </h3>
-                        <p class="mt-2 text-sm text-slate-600 font-medium">
+                        <p class="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-600 font-medium">
                             ${doctor.languages || 'English, Nepali'}
                         </p>
                     </div>
 
                     <!-- CTA Button -->
-                    <div class="mt-7">
-                        <a href="/page/bookappointment.html" class="btn-primary inline-flex items-center gap-3">
+                    <div class="mt-6 sm:mt-7">
+                        <a href="/page/bookappointment.html" class="btn-primary inline-flex items-center gap-2.5 w-full sm:w-auto justify-center">
                             Book Appointment
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
             data.forEach((doctor, index) => {
                 doctorGrid.insertAdjacentHTML(
                     "beforeend",
-                    `<article class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                    `<article class="group bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                         <div class="relative overflow-hidden">
                             <img
                                 src="${doctor.image}"
@@ -570,7 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         class="pub-page-btn px-4 py-2 border transition
                         ${currentPage === i
                             ? "bg-primary text-white border-primary"
-                            : "bg-white text-primary border-slate-300 hover:bg-primary hover:text-white"}">
+                            : "bg-[var(--neutral-50)] text-primary border-slate-300 hover:bg-primary hover:text-white"}">
                         ${i}
                     </button>
                 `;

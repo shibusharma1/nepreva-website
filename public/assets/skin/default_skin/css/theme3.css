@@ -4635,7 +4635,7 @@ a.bg-light:hover {
 .bg-light.darker {
   background-color: #E7E7E7;
 }
-.bg-white {
+.bg-[var([var(--neutral-50)])]{
   background-color: #FAFAFA;
   color: #666;
   background-color: #FFF !important;
@@ -4643,10 +4643,10 @@ a.bg-light:hover {
 a.bg-white:hover {
   background-color: #ededed !important;
 }
-.bg-white .text-muted {
+.bg-[var([var(--neutral-50)])].text-muted {
   color: #999;
 }
-.bg-white .text-darken {
+.bg-[var([var(--neutral-50)])].text-darken {
   color: #222;
 }
 .bg-white.light {

@@ -32,7 +32,7 @@
     </section>
     <section class="relative z-20 -mt-10 md:-mt-12 xl:-mt-16">
         <div class="container-custom">
-            <div class="border bg-white border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
+            <div class="border bg-[var(--neutral-50)] border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
                 <div class="grid grid-cols-1 md:grid-cols-3">
                     <!-- FIND DOCTOR (Hidden on Mobile) -->
                     <a href="{{ url('doctors-at-ciwec.html') }}"
@@ -238,7 +238,7 @@
             <div class="grid grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4 mt-10 xl:mt-12">
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="20000">
                         0
@@ -248,7 +248,7 @@
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="130">
                         0
@@ -257,7 +257,7 @@
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="40">
                         0
@@ -266,7 +266,7 @@
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-white p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="2">
                         0
@@ -295,7 +295,7 @@
             <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
                 <!-- DOCTOR 1 -->
                 <article
-                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-[var(--neutral-50)] transition-colors duration-300 hover:border-secondary">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
                             alt="{{ $ktmdoctors->post_title }}" loading="lazy"
@@ -332,7 +332,7 @@
                 </article>
                 <!-- DOCTOR 2 -->
                 <article
-                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors duration-300 hover:border-secondary">
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-[var(--neutral-50)] transition-colors duration-300 hover:border-secondary">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
                             alt="{{ $pkhdoctors->post_title }}" loading="lazy"
@@ -530,7 +530,7 @@
             <div class="relative w-full max-w-6xl">
                 <!-- CLOSE -->
                 <button id="closeVideoModal" type="button" aria-label="Close video"
-                    class="absolute -top-14 right-0 w-11 h-11 bg-white text-primary hover:bg-secondary hover:text-white transition-all duration-300">
+                    class="absolute -top-14 right-0 w-11 h-11 bg-[var(--neutral-50)] text-primary hover:bg-secondary hover:text-white transition-all duration-300">
                     <i class="fa-solid fa-xmark text-lg"></i> </button> <!-- YOUTUBE VIDEO -->
                 <div class="w-full h-[75vh] bg-black">
                     <iframe id="storyVideo" class="w-full h-full" src="" title="Patient Story Video"
@@ -544,97 +544,8 @@
     @endif
 
     <!-- TESTIMONIAL -->
-    {{-- <section class="section-padding bg-slate-200 overflow-hidden">
+      <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
-                <div class="max-w-3xl">
-                    <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                        <span class="w-2 h-2 bg-secondary"></span>
-                        {{ $testimonialheading->sub_title ?? 'PATIENT FEEDBACK' }} </span>
-                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
-                        {{ $testimonialheading->post_title }}
-                    </h2>
-                    <p class="text-slate-600 text-base md:text-lg leading-8">
-                        {{ $testimonialheading->post_excerpt }}
-                    </p>
-                </div>
-                <!-- GOOGLE RATING -->
-                <div class="border border-slate-200 bg-white px-6 py-5">
-                    <div class="flex items-center gap-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-10 h-10">
-                            <path fill="#FFC107"
-                                d="M43.611 20.083H42V20H24v8h11.303C33.655 32.657 29.203 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z" />
-                            <path fill="#FF3D00"
-                                d="M6.306 14.691l6.571 4.819C14.655 16.108 18.961 13 24 13c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.277 4 24 4 16.318 4 9.656 8.337 6.306 14.691z" />
-                            <path fill="#4CAF50"
-                                d="M24 44c5.176 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.143 35.091 26.715 36 24 36c-5.181 0-9.625-3.327-11.287-7.946l-6.522 5.025C9.507 39.556 16.227 44 24 44z" />
-                            <path fill="#1976D2"
-                                d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.084 5.57l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z" />
-                        </svg>
-                        <div>
-                            <div class="flex text-[#f59e0b] text-lg mb-1">★★★★★</div>
-                            <div class="text-primary font-black text-xl">
-                                {{ $testimonialheading->associated_title ?? '4.9/5 Rating' }}
-                            </div>
-                            <div class="text-slate-500 text-sm">Based on Google Reviews</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- REVIEWS -->
-            <div class="swiper reviewSwiper">
-                <div class="swiper-wrapper">
-                    @forelse($testimonials as $testimonial)
-                        <div class="swiper-slide">
-                            <article
-                                class="group h-full bg-white border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
-                                <!-- USER -->
-                                <div class="flex items-center gap-4 mb-6">
-                                    <img src="{{ asset('uploads/medium/' . $testimonial->banner) }}"
-                                        class="w-16 h-16 object-cover" alt="{{ $testimonial->post_title }}">
-                                    <div>
-                                        <h3 class="text-primary text-lg font-bold">
-                                            {{ $testimonial->post_title }}
-                                        </h3>
-                                        <div class="text-[#f59e0b] text-sm">
-                                            @php $rating = (int) $testimonial->associated_title; @endphp @for ($i = 0; $i < $rating; $i++)
-                                                ★
-                                            @endfor
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- REVIEW TEXT -->
-                                <p class="text-slate-600 leading-8 mb-6">
-                                    {{ $testimonial->post_excerpt }}
-                                </p>
-                                <a href="{{ url($testimonial->uri) }}"
-                                    class="inline-flex items-center gap-2 text-primary font-semibold text-sm"> Read Full
-                                    Story <i class="fa-solid fa-arrow-right text-secondary"> </i>
-                                </a>
-                            </article>
-                        </div>
-                    @empty
-                        <div class="swiper-slide">
-                            <article class="bg-white p-10 text-center border border-slate-200">
-                                <h3 class="text-primary text-xl font-bold">
-                                    No Testimonials Available
-                                </h3>
-                            </article>
-                        </div>
-                    @endforelse
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    {{-- =========================================================
-     TESTIMONIAL / PATIENT FEEDBACK SECTION
-     ========================================================= --}}
-
-    <section class="section-padding bg-slate-100 overflow-hidden">
-
-        <div class="container-custom">
-
             {{-- =====================================================
              HEADER
              ===================================================== --}}
@@ -671,7 +582,7 @@
                 {{-- =================================================
                  GOOGLE RATING
                  ================================================= --}}
-                <div class="border border-slate-200 bg-white px-6 py-5 shrink-0">
+                <div class="border border-slate-200 bg-[var(--neutral-50)] px-6 py-5 shrink-0">
 
                     <div class="flex items-center gap-4">
 
@@ -721,7 +632,7 @@
                     @forelse($testimonials as $testimonial)
                         <div class="swiper-slide h-auto">
                             <a href="#testimonial-lightbox-{{ $testimonial->id }}" data-glightbox="type: inline"
-                                class="testimonial-lightbox group block h-full bg-white border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
+                                class="testimonial-lightbox group block h-full bg-[var(--neutral-50)] border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
 
                                 <!-- USER -->
                                 <div class="flex items-center gap-4 mb-6">
@@ -784,7 +695,7 @@
                          ================================================= --}}
                         <div class="swiper-slide">
 
-                            <div class="bg-white border border-slate-200 p-10 text-center">
+                            <div class="bg-[var(--neutral-50)] border border-slate-200 p-10 text-center">
 
                                 <h3 class="text-primary text-xl font-bold">
 
@@ -964,7 +875,7 @@
                         @foreach ($awards as $award)
                             <div class="swiper-slide h-auto">
                                 <div
-                                    class="group relative overflow-hidden h-[180px] bg-white border border-slate-100 flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                                    class="group relative overflow-hidden h-[180px] bg-[var(--neutral-50)] border border-slate-100 flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
                                     <div
                                         class="absolute w-0 h-0 rounded-full bg-primary/5 transition-all duration-700 group-hover:w-56 group-hover:h-56">
                                     </div>
@@ -1009,7 +920,7 @@
                         <!-- LEFT -->
                         <div class="flex items-center gap-3">
                             <span class="text-sm font-semibold text-primary"> Show </span> <select id="perPage"
-                                class="h-11 px-4 border border-slate-300 bg-white text-sm text-slate-700 focus:border-secondary outline-none">
+                                class="h-11 px-4 border border-slate-300 bg-[var(--neutral-50)] text-sm text-slate-700 focus:border-secondary outline-none">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -1020,7 +931,7 @@
                             <div class="relative w-full lg:w-[320px]">
                                 <input type="text" id="searchInput" placeholder="Search publications..."
                                     autocomplete="off"
-                                    class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-white text-sm outline-none focus:border-secondary">
+                                    class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[var(--neutral-50)] text-sm outline-none focus:border-secondary">
                                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                                 </i>
                             </div>
@@ -1041,7 +952,7 @@
                 <!-- CONTENT -->
                 <div id="publicationContent">
                     <!-- TABLE -->
-                    <div class="overflow-x-auto border border-slate-200 bg-white">
+                    <div class="overflow-x-auto border border-slate-200 bg-[var(--neutral-50)]">
                         <table class="w-full">
                             <thead>
                                 <tr class="bg-primary text-white">

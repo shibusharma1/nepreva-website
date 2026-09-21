@@ -17,7 +17,7 @@
                     name, specialty or location.
                 </p>
             </div>
-            <div id="doctor-search" class="bg-white border border-slate-200 p-6 lg:p-8 shadow-sm">
+            <div id="doctor-search" class="bg-[var(--neutral-50)] border border-slate-200 p-6 lg:p-8 shadow-sm">
                 <div class="grid lg:grid-cols-12 gap-5">
                     <div class="lg:col-span-5">
                         <label class="block text-sm font-semibold text-primary mb-2">
@@ -113,10 +113,10 @@
         </div>
     </section>
     @include('themes.default.common.doctorsmodal')
-    <section class="section-padding bg-slate-50 overflow-hidden">
+    <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <!-- HEADER -->
-            <div class="text-center max-w-4xl mx-auto mb-16">
+            <div class="text-center max-w-4xl mx-auto mb-12">
                 <span class="section-subtitle">
                     Areas Of Expertise
                 </span>
@@ -132,7 +132,7 @@
             <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                 @foreach ($specialities as $speciality)
                     <div
-                        class="group bg-slate-100 border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                        class="group bg-[var(--neutral-50)] border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
                         <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
                             <i class="{{ $speciality->associated_title }} text-primary hover:text-secondary text-3xl">
                             </i>
@@ -147,7 +147,7 @@
                 @endforeach
             </div>
             <!-- FEATURE BAR -->
-            <div class="bg-primary mt-20 overflow-hidden">
+            <div class="bg-primary/95 mt-12 overflow-hidden">
                 <div class="grid lg:grid-cols-12 items-center">
                     <div class="lg:col-span-8 p-10 lg:p-14">
                         <span class="text-secondary font-bold uppercase tracking-[3px]">
@@ -166,187 +166,8 @@
                     </div>
                 </div>
             </div>
-            <!-- STATS -->
-            <div class="grid md:grid-cols-4 gap-6 mt-20">
-                <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-3xl font-black">
-                        Multi
-                    </h3>
-                    <p class="text-slate-600 mt-3">
-                        Specialties
-                    </p>
-                </div>
-                <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-3xl font-black">
-                        Expert
-                    </h3>
-                    <p class="text-slate-600 mt-3">
-                        Consultants
-                    </p>
-                </div>
-                <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-3xl font-black">
-                        Trusted
-                    </h3>
-                    <p class="text-slate-600 mt-3">
-                        Medical Care
-                    </p>
-                </div>
-                <div class="bg-slate-100 border border-slate-200 p-8 text-center">
-                    <h3 class="text-primary text-3xl font-black">
-                        Quality
-                    </h3>
-                    <p class="text-slate-600 mt-3">
-                        Healthcare
-                    </p>
-                </div>
-            </div>
         </div>
     </section>
-
-    <section class="section-padding relative overflow-hidden bg-primary/95">
-        <!-- BACKGROUND SHAPES -->
-        <div
-            class="absolute top-0 left-0 w-[400px] h-[400px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
-        </div>
-        <div
-            class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/10 rounded-full translate-x-1/3 translate-y-1/3">
-        </div>
-        <div class="container-custom relative z-10">
-            <div>
-                <!-- HEADER -->
-                <div class="max-w-5xl mx-auto text-center">
-                    <span class="inline-flex items-center gap-3 bg-white/10 px-5 py-3 text-white font-semibold">
-                        <i class="fa-solid fa-user-doctor text-secondary">
-                        </i>
-                        Expert Medical Care Starts Here
-                    </span>
-                    <h2 class="text-white text-2xl md:text-3xl font-bold mt-6 leading-tight">
-                        Connect With The Right
-                        Specialist Today
-                    </h2>
-                    <p class="text-white/80 text-lg leading-8 mt-8 max-w-3xl mx-auto">
-                        Whether you need a specialist consultation,
-                        preventive health advice, travel medicine support,
-                        or follow-up care, our experienced medical team
-                        is ready to help.
-                    </p>
-                </div>
-                <!-- ACTION CARDS -->
-                <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mt-16">
-                    <!-- BOOK -->
-                    <div class="bg-white p-8 text-center hover:-translate-y-2 transition-all duration-500">
-                        <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-calendar-check text-primary text-3xl">
-                            </i>
-                        </div>
-                        <h3 class="text-primary text-2xl font-black">
-                            Book Appointment
-                        </h3>
-                        <p class="text-slate-600 mt-4 leading-7">
-                            Schedule your consultation
-                            with a trusted specialist.
-                        </p>
-                        <a href="{{ url('page/bookappointment.html') }}"
-                            class="inline-block mt-8 bg-primary text-white px-8 py-3 font-semibold hover:bg-secondary transition">
-                            Book Now
-                        </a>
-                    </div>
-                    <!-- FIND DOCTOR -->
-                    <div class="bg-white p-8 text-center hover:-translate-y-2 transition-all duration-500">
-                        <div class="w-20 h-20 mx-auto bg-secondary/10 flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-user-doctor text-secondary text-3xl">
-                            </i>
-                        </div>
-                        <h3 class="text-primary text-2xl font-black">
-                            Find Specialist
-                        </h3>
-                        <p class="text-slate-600 mt-4 leading-7">
-                            Browse our experienced
-                            doctors and specialties.
-                        </p>
-                        <a href="#doctor-search"
-                            class="inline-block mt-8 bg-secondary text-white px-8 py-3 font-semibold hover:bg-primary transition">
-                            Find Doctor
-                        </a>
-                    </div>
-                    <!-- CONTACT -->
-                    <div class="bg-white p-8 text-center hover:-translate-y-2 transition-all duration-500">
-                        <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-headset text-primary text-3xl">
-                            </i>
-                        </div>
-                        <h3 class="text-primary text-2xl font-black">
-                            Contact Hospital
-                        </h3>
-                        <p class="text-slate-600 mt-4 leading-7">
-                            Get assistance regarding
-                            doctors and appointments.
-                        </p>
-                        <a href="{{ url('page/contact.html') }}"
-                            class="inline-block mt-8 bg-primary text-white px-8 py-3 font-semibold hover:bg-secondary transition">
-                            Contact Us
-                        </a>
-                    </div>
-                    <!-- EMERGENCY -->
-                    <div
-                        class="bg-white p-8 text-center border-t-4 border-red-500 hover:-translate-y-2 transition-all duration-500">
-                        <div class="w-20 h-20 mx-auto bg-red-100 flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-truck-medical text-red-600 text-3xl">
-                            </i>
-                        </div>
-                        <h3 class="text-primary text-2xl font-black">
-                            Emergency Care
-                        </h3>
-                        <p class="text-slate-600 mt-4 leading-7">
-                            Immediate medical assistance
-                            available 24 hours a day.
-                        </p>
-                        <a href="tel:{{ $setting->phone }}"
-                            class="inline-block mt-8 bg-red-600 text-white px-8 py-3 font-semibold hover:bg-red-700 transition">
-                            Call Now
-                        </a>
-                    </div>
-                </div>
-                <!-- BOTTOM STATS -->
-                {{-- <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mt-16">
-                    <div class="text-center">
-                        <h3 class="text-white text-4xl font-black">
-                            Expert
-                        </h3>
-                        <p class="text-white/70 mt-3">
-                            Medical Specialists
-                        </p>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white text-4xl font-black">
-                            Multi
-                        </h3>
-                        <p class="text-white/70 mt-3">
-                            Specialties Covered
-                        </p>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white text-4xl font-black">
-                            Trusted
-                        </h3>
-                        <p class="text-white/70 mt-3">
-                            Patient Care
-                        </p>
-                    </div>
-                    <div class="text-center">
-                        <h3 class="text-white text-4xl font-black">
-                            24/7
-                        </h3>
-                        <p class="text-white/70 mt-3">
-                            Emergency Support
-                        </p>
-                    </div>
-                </div> --}}
-            </div>
-        </div>
-    </section>
-
     @php
         $doctorData = $doctors
             ->map(function ($doctor) {

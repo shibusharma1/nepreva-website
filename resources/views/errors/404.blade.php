@@ -39,7 +39,7 @@
         </div>
         {{-- Quick Links --}}
         <div class="max-w-5xl mx-auto mt-20">
-            <div class="bg-white border border-slate-200 shadow-lg">
+            <div class="bg-[var(--neutral-50)] border border-slate-200 shadow-lg">
                 <div class="grid md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200">
                     <a href="{{ url('/about-us.html') }}" class="group p-8 text-center hover:bg-slate-50 transition">
                         <div

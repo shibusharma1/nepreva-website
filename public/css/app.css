@@ -7083,7 +7083,7 @@ button.bg-dark:focus {
   background-color: #1d2124 !important;
 }
 
-.bg-white {
+.bg-[var([var(--neutral-50)])]{
   background-color: #fff !important;
 }
 

@@ -3,7 +3,7 @@
 @section('meta_description', $data->meta_description)
 @section('content')
     @include('themes.default.common.herobanner')
-    <section id="appointmentForm" class="section-padding bg-slate-50 overflow-hidden">
+    <section id="appointmentForm" class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <div class="text-center max-w-4xl mx-auto mb-10">
                 <span class="section-subtitle">
@@ -20,7 +20,7 @@
             <div class="grid xl:grid-cols-12 gap-8">
                 <!-- FORM -->
                 <div class="xl:col-span-8">
-                    <div class="bg-white border border-slate-200 shadow-md p-6 md:p-10">
+                    <div class="bg-[var(--neutral-50)] border border-slate-200 shadow-md p-6 md:p-10">
                         @if (session('error'))
                             <div id="flash-message"
                                 class="my-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4 text-red-700 text-sm">
@@ -353,7 +353,7 @@
                 </div>
                 <!-- RIGHT -->
                 <div class="xl:col-span-5">
-                    <div class="bg-white p-6 md:p-8 shadow-xl border border-slate-200">
+                    <div class="bg-[var(--neutral-50)] p-6 md:p-8 shadow-xl border border-slate-200">
                         <div class="w-14 h-14 bg-red-100 flex items-center justify-center mx-auto rounded-full">
                             <i class="fa-solid fa-truck-medical text-red-600 text-2xl">
                             </i>

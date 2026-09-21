@@ -1,4 +1,4 @@
-<section id="map" class="section-padding bg-slate-50 overflow-hidden">
+<section id="map" class="section-padding bg-slate-100 overflow-hidden">
     <div class="container-custom">
         <!-- HEADER -->
         <div class="max-w-3xl mb-10 lg:mb-12">
@@ -17,7 +17,7 @@
         <!-- LOCATIONS -->
         <div class="grid xl:grid-cols-2 gap-8">
             <!-- KATHMANDU -->
-            <div class="bg-white border border-slate-200 overflow-hidden hover:border-secondary hover:shadow-xl transition-all duration-300">
+            <div class="bg-[var([var(--neutral-50)])]border border-slate-200 overflow-hidden hover:border-secondary hover:shadow-xl transition-all duration-300">
                 <!-- MAP -->
                 <div class="h-[280px]">
                    {!! $setting->google_map !!}
@@ -67,7 +67,7 @@
             </div>
 
             <!-- POKHARA -->
-            <div class="bg-white border border-slate-200 overflow-hidden hover:border-secondary hover:shadow-xl transition-all duration-300">
+            <div class="bg-[var([var(--neutral-50)])]border border-slate-200 overflow-hidden hover:border-secondary hover:shadow-xl transition-all duration-300">
                 <!-- MAP -->
                 <div class="h-[280px]">
                     {!! $setting->google_map2 !!}

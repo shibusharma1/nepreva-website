@@ -69,7 +69,7 @@
     @endif
 
     @if ($historicalgalleryheading)
-        <section class="section-padding bg-slate-50 overflow-hidden">
+        <section class="section-padding bg-slate-100 overflow-hidden">
             <div class="container-custom">
 
                 <!-- HEADING -->
@@ -219,7 +219,7 @@
 
                     @foreach ($founders as $founder)
                         <!-- PERSON -->
-                        <div class="bg-white border border-slate-200 text-center overflow-hidden hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                        <div class="bg-[var([var(--neutral-50)])]border border-slate-200 text-center overflow-hidden hover:border-secondary hover:-translate-y-2 transition-all duration-500">
 
                             <img src="{{ !empty($founder->banner)
                                 ? asset('uploads/medium/' . $founder->banner)

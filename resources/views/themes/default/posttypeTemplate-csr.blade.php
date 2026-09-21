@@ -5,7 +5,7 @@
     @include('themes.default.common.herobanner')
     @if ($csrhero)
         <!-- CSR MISSION -->
-        <section class="section-padding bg-slate-50 overflow-hidden">
+        <section class="section-padding bg-slate-100 overflow-hidden">
             <div class="container-custom">
                 <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     <!-- LEFT CONTENT -->
@@ -80,7 +80,7 @@
                             class="w-full h-[450px] md:h-[500px] object-cover border border-slate-200 shadow-lg" />
 
                         <!-- FLOATING CARD -->
-                        <div class="absolute bottom-6 left-6 bg-white p-5 md:p-6 shadow-xl max-w-[240px] border border-slate-100">
+                        <div class="absolute bottom-6 left-6 bg-[var(--neutral-50)] p-5 md:p-6 shadow-xl max-w-[240px] border border-slate-100">
                             <span class="text-secondary text-xs font-bold uppercase tracking-[1px]"> Since 1982 </span>
 
                             <h4 class="text-primary text-base font-bold mt-1">Serving Communities Across Nepal</h4>
@@ -115,7 +115,7 @@
                 <div class="grid lg:grid-cols-2 gap-8">
                     @foreach ($csrfeatured as $csrItem)
                         <div
-                            class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                            class="group bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                             <div class="grid md:grid-cols-2">
                                 <div class="overflow-hidden">
                                     <img src="{{ !empty($csrItem->banner)
@@ -152,7 +152,7 @@
         </section>
     @endif
     @if ($featuredstory)
-        <section class="section-padding bg-slate-50 overflow-hidden">
+        <section class="section-padding bg-slate-100 overflow-hidden">
             <div class="container-custom">
                 <!-- FEATURED STORY -->
                 <div class="bg-primary overflow-hidden">

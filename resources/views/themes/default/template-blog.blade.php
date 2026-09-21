@@ -10,7 +10,7 @@
             @if (isset($posts) && count($posts) > 0)
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach ($posts as $post)
-                        <article class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full">
+                        <article class="group bg-[var([var(--neutral-50)])]border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full">
                             <div class="overflow-hidden h-52 relative">
                                 <img src="{{ $post->banner ? asset('uploads/medium/' . $post->banner) : asset('themes-assets/img/ciwec.webp') }}"
                                     alt="{{ $post->post_title }}"
@@ -48,7 +48,7 @@
                     </div>
                 @endif
             @else
-                <div class="bg-white border border-slate-200 py-16 px-6 text-center max-w-2xl mx-auto">
+                <div class="bg-[var([var(--neutral-50)])]border border-slate-200 py-16 px-6 text-center max-w-2xl mx-auto">
                     <div class="w-16 h-16 bg-primary/10 text-primary flex items-center justify-center mx-auto mb-5 rounded-full">
                         <i class="fa-solid fa-newspaper text-2xl"></i>
                     </div>
