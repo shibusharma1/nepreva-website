@@ -45,6 +45,21 @@
 
     // Canonical URL
     $canonicalUrl = url()->current();
+
+    // Active menu URL helper function
+    $checkActiveUrl = function($targetUrl = null, $slug = null) {
+        $current = url()->current();
+        if ($targetUrl && $current === $targetUrl) {
+            return true;
+        }
+        if ($slug && $slug !== '/') {
+            $cleanSlug = trim($slug, '/');
+            if (request()->is('page/' . $cleanSlug) || request()->is($cleanSlug) || request()->is('*' . $cleanSlug . '*')) {
+                return true;
+            }
+        }
+        return false;
+    };
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -222,31 +237,49 @@
         </div>
         <div class="p-5">
             <!-- HOME -->
+            @php $isHomeActive = request()->is('/') || request()->path() === '/'; @endphp
             <a href="{{ url('/') }}"
-                class="flex items-center justify-between py-4 border-b border-slate-200 text-[15px] font-semibold text-slate-800 hover:text-secondary transition">
+                class="flex items-center justify-between py-4 border-b border-slate-200 text-[15px] font-semibold {{ $isHomeActive ? 'text-secondary' : 'text-slate-800' }} hover:text-secondary transition">
                 <span>
                     Home
                 </span>
-                <i class="fa-solid fa-arrow-right text-[11px] text-slate-400">
+                <i class="fa-solid fa-arrow-right text-[11px] {{ $isHomeActive ? 'text-secondary' : 'text-slate-400' }}">
                 </i>
             </a>
             @foreach ($navigations as $row)
                 {{-- ABOUT --}}
                 @if ($row->id == 1)
+                    @php
+                        $isAboutActive = false;
+                        foreach ($abouts as $about) {
+                            $aboutUrl = url(geturl($about->uri, $about->page_key));
+                            if ($checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key)) {
+                                $isAboutActive = true;
+                                break;
+                            }
+                        }
+                        if (!$isAboutActive) {
+                            $isAboutActive = $checkActiveUrl(url('page/' . posttype_url($row->uri)), $row->uri);
+                        }
+                    @endphp
                     <div class="mobile-dropdown border-b border-slate-200">
                         <button
-                            class="mobile-dropdown-btn w-full flex items-center justify-between py-4 text-[15px] font-semibold text-slate-800">
+                            class="mobile-dropdown-btn w-full flex items-center justify-between py-4 text-[15px] font-semibold {{ $isAboutActive ? 'text-secondary' : 'text-slate-800' }}">
                             <span>
                                 {{ $row->post_type }}
                             </span>
-                            <i class="fa-solid fa-angle-down mobile-arrow text-[12px] text-slate-400">
+                            <i class="fa-solid fa-angle-down mobile-arrow text-[12px] {{ $isAboutActive ? 'text-secondary' : 'text-slate-400' }}">
                             </i>
                         </button>
                         <div class="mobile-dropdown-menu">
                             <div class="pb-4 pl-4 border-l-2 border-slate-100 space-y-3">
                                 @foreach ($abouts as $about)
-                                    <a href="{{ url(geturl($about->uri, $about->page_key)) }}"
-                                        class="block text-[14px] text-slate-600 hover:text-secondary transition">
+                                    @php
+                                        $aboutUrl = url(geturl($about->uri, $about->page_key));
+                                        $isItemActive = $checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key);
+                                    @endphp
+                                    <a href="{{ $aboutUrl }}"
+                                        class="block text-[14px] {{ $isItemActive ? 'text-secondary font-bold' : 'text-slate-600' }} hover:text-secondary transition">
                                         {{ $about->post_title }}
                                     </a>
                                 @endforeach
@@ -256,20 +289,37 @@
                     </div>
                     {{-- SERVICES --}}
                 @elseif ($row->id == 2)
+                    @php
+                        $isServiceActive = false;
+                        foreach ($services as $service) {
+                            $serviceUrl = url(geturl($service->uri));
+                            if ($checkActiveUrl($serviceUrl, $service->uri)) {
+                                $isServiceActive = true;
+                                break;
+                            }
+                        }
+                        if (!$isServiceActive) {
+                            $isServiceActive = $checkActiveUrl(url('page/' . posttype_url($row->uri)), $row->uri);
+                        }
+                    @endphp
                     <div class="mobile-dropdown border-b border-slate-200">
                         <button
-                            class="mobile-dropdown-btn w-full flex items-center justify-between py-4 text-[15px] font-semibold text-slate-800">
+                            class="mobile-dropdown-btn w-full flex items-center justify-between py-4 text-[15px] font-semibold {{ $isServiceActive ? 'text-secondary' : 'text-slate-800' }}">
                             <span>
                                 {{ $row->post_type }}
                             </span>
-                            <i class="fa-solid fa-angle-down mobile-arrow text-[12px] text-slate-400">
+                            <i class="fa-solid fa-angle-down mobile-arrow text-[12px] {{ $isServiceActive ? 'text-secondary' : 'text-slate-400' }}">
                             </i>
                         </button>
                         <div class="mobile-dropdown-menu">
                             <div class="pb-4 pl-4 border-l-2 border-slate-100 space-y-3">
                                 @foreach ($services as $service)
-                                    <a href="{{ url(geturl($service->uri)) }}"
-                                        class="block text-[14px] text-slate-600 hover:text-secondary transition">
+                                    @php
+                                        $serviceUrl = url(geturl($service->uri));
+                                        $isItemActive = $checkActiveUrl($serviceUrl, $service->uri);
+                                    @endphp
+                                    <a href="{{ $serviceUrl }}"
+                                        class="block text-[14px] {{ $isItemActive ? 'text-secondary font-bold' : 'text-slate-600' }} hover:text-secondary transition">
                                         {{ $service->post_title }}
                                     </a>
                                 @endforeach
@@ -278,12 +328,16 @@
                     </div>
                     {{-- NORMAL MENUS --}}
                 @else
-                    <a href="{{ url('page/' . posttype_url($row->uri)) }}"
-                        class="flex items-center justify-between py-4 border-b border-slate-200 text-[15px] font-semibold text-slate-800 hover:text-secondary transition">
+                    @php
+                        $navUrl = url('page/' . posttype_url($row->uri));
+                        $isNavActive = $checkActiveUrl($navUrl, $row->uri);
+                    @endphp
+                    <a href="{{ $navUrl }}"
+                        class="flex items-center justify-between py-4 border-b border-slate-200 text-[15px] font-semibold {{ $isNavActive ? 'text-secondary' : 'text-slate-800' }} hover:text-secondary transition">
                         <span>
                             {{ $row->post_type }}
                         </span>
-                        <i class="fa-solid fa-arrow-right text-[11px] text-slate-400">
+                        <i class="fa-solid fa-arrow-right text-[11px] {{ $isNavActive ? 'text-secondary' : 'text-slate-400' }}">
                         </i>
                     </a>
                 @endif
@@ -307,18 +361,31 @@
                 <!-- DESKTOP NAVIGATION -->
                 <nav class="hidden xl:flex items-center gap-6">
                     <!-- Home -->
-                    <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'text-secondary' : '' }}">
+                    <a href="{{ url('/') }}" class="nav-link {{ $isHomeActive ? 'active text-secondary' : '' }}">
                         Home
                     </a>
                     @foreach ($navigations as $row)
                         {{-- ABOUT --}}
                         @if ($row->id == 1)
+                            @php
+                                $isAboutActive = false;
+                                foreach ($abouts as $about) {
+                                    $aboutUrl = url(geturl($about->uri, $about->page_key));
+                                    if ($checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key)) {
+                                        $isAboutActive = true;
+                                        break;
+                                    }
+                                }
+                                if (!$isAboutActive) {
+                                    $isAboutActive = $checkActiveUrl(url('page/' . posttype_url($row->uri)), $row->uri);
+                                }
+                            @endphp
                             <div class="relative dropdown-parent">
-                                <button class="nav-link flex items-center gap-2 dropdown-toggle"
+                                <button class="nav-link flex items-center gap-2 dropdown-toggle {{ $isAboutActive ? 'active text-secondary' : '' }}"
                                     data-dropdown="aboutDropdown">
                                     {{ $row->post_type }}
                                     <i
-                                        class="fa-solid fa-angle-down text-[13px] transition-all duration-300 dropdown-icon">
+                                        class="fa-solid fa-angle-down text-[13px] transition-all duration-300 dropdown-icon {{ $isAboutActive ? 'text-secondary' : '' }}">
                                     </i>
                                 </button>
                                 <div id="aboutDropdown"
@@ -330,16 +397,20 @@
                                     <div class="py-2">
 
                                         @foreach ($abouts as $about)
-                                            <a href="{{ url(geturl($about->uri)) }}" class="dropdown-item">
+                                            @php
+                                                $aboutUrl = url(geturl($about->uri, $about->page_key));
+                                                $isItemActive = $checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key);
+                                            @endphp
+                                            <a href="{{ $aboutUrl }}" class="dropdown-item">
                                                 <div>
-                                                    <h5>
+                                                    <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}">
                                                         {{ $about->post_title }}
                                                     </h5>
                                                     <span>
                                                         {{ $about->sub_title }}
                                                     </span>
                                                 </div>
-                                                <i class="fa-solid fa-arrow-right">
+                                                <i class="fa-solid fa-arrow-right {{ $isItemActive ? 'text-secondary' : '' }}">
                                                 </i>
                                             </a>
                                         @endforeach
@@ -348,12 +419,25 @@
                             </div>
                             {{-- SERVICES --}}
                         @elseif($row->id == 2)
+                            @php
+                                $isServiceActive = false;
+                                foreach ($services as $service) {
+                                    $serviceUrl = url(geturl($service->uri));
+                                    if ($checkActiveUrl($serviceUrl, $service->uri)) {
+                                        $isServiceActive = true;
+                                        break;
+                                    }
+                                }
+                                if (!$isServiceActive) {
+                                    $isServiceActive = $checkActiveUrl(url('page/' . posttype_url($row->uri)), $row->uri);
+                                }
+                            @endphp
                             <div class="relative dropdown-parent">
-                                <button class="nav-link flex items-center gap-2 dropdown-toggle"
+                                <button class="nav-link flex items-center gap-2 dropdown-toggle {{ $isServiceActive ? 'active text-secondary' : '' }}"
                                     data-dropdown="servicesDropdown">
                                     {{ $row->post_type }}
                                     <i
-                                        class="fa-solid fa-angle-down text-[13px] transition-all duration-300 dropdown-icon">
+                                        class="fa-solid fa-angle-down text-[13px] transition-all duration-300 dropdown-icon {{ $isServiceActive ? 'text-secondary' : '' }}">
                                     </i>
                                 </button>
                                 <div id="servicesDropdown"
@@ -364,9 +448,13 @@
                                             transition-all duration-300 z-50 overflow-hidden">
                                     <div class="py-2">
                                         @foreach ($services as $service)
-                                            <a href="{{ url(geturl($service->uri)) }}" class="dropdown-item">
+                                            @php
+                                                $serviceUrl = url(geturl($service->uri));
+                                                $isItemActive = $checkActiveUrl($serviceUrl, $service->uri);
+                                            @endphp
+                                            <a href="{{ $serviceUrl }}" class="dropdown-item">
                                                 <div>
-                                                    <h5>
+                                                    <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}">
                                                         {{ $service->post_title }}
                                                     </h5>
                                                     <span>
@@ -374,7 +462,7 @@
                                                         {{ $service->sub_title }}
                                                     </span>
                                                 </div>
-                                                <i class="fa-solid fa-arrow-right">
+                                                <i class="fa-solid fa-arrow-right {{ $isItemActive ? 'text-secondary' : '' }}">
                                                 </i>
                                             </a>
                                         @endforeach
@@ -383,8 +471,12 @@
                             </div>
                             {{-- NORMAL MENUS --}}
                         @else
-                            <a href="{{ url('page/' . posttype_url($row->uri)) }}"
-                                class="nav-link {{ request()->is('page/' . posttype_url($row->uri)) ? 'active' : '' }}">
+                            @php
+                                $navUrl = url('page/' . posttype_url($row->uri));
+                                $isNavActive = $checkActiveUrl($navUrl, $row->uri);
+                            @endphp
+                            <a href="{{ $navUrl }}"
+                                class="nav-link {{ $isNavActive ? 'active text-secondary' : '' }}">
                                 {{ $row->post_type }}
                             </a>
                         @endif

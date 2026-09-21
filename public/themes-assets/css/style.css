@@ -210,6 +210,9 @@ textarea.form-control {
 .nav-link:hover {
     color: var(--primary);
 }
+.nav-link.active {
+    color: var(--secondary);
+}
 .nav-link::after {
     content: "";
     position: absolute;
@@ -220,7 +223,8 @@ textarea.form-control {
     background: var(--secondary);
     transition: 0.3s;
 }
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
 /* History CSS */
