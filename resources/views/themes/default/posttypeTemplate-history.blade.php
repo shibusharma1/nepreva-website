@@ -183,7 +183,7 @@
                 </p>
                 <!-- CTA BUTTONS -->
                 <div class="flex flex-wrap justify-center gap-4 mt-8">
-                    <a href="{{ url('page/bookappointment.html') }}" class="btn-primary">
+                    <a href="{{ url('page/bookappointment.html') }}" class="btn-outline text-white">
                         Book Appointment
                     </a>
                     <a href="{{ url('doctors-at-ciwec.html') }}" class="btn-secondary">
