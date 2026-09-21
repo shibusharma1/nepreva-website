@@ -3,7 +3,7 @@
     <!-- HERO -->
     <section id="hero-section" class="relative">
         <!-- VIDEO HERO -->
-        <div class="relative h-[70vh] sm:h-[70vh] lg:h-[70vh] xl:h-[70vh] overflow-hidden">
+        <div class="relative h-[50vh] sm:h-[50vh] lg:h-[70vh] xl:h-[70vh] overflow-hidden">
             <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="auto">
                 <source src="{{ asset('themes-assets/vdo/banner.webm') }}" type="video/mp4">
             </video>
