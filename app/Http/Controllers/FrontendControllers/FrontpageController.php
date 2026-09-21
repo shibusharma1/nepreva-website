@@ -490,7 +490,7 @@ class FrontpageController extends Controller
 
   public function sendmail_contact(Request $request)
   {
-    dd($request->all());
+    // dd($request->all());
     $g_recaptcha_response = $request->input('g_recaptcha_response');
     $result = $this->getCaptcha($g_recaptcha_response);
     if ($result->success == true) {
