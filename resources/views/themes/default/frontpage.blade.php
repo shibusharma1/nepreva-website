@@ -120,7 +120,7 @@
 
     <!-- #currently working -->
     {{-- <section class="relative overflow-hidden bg-slate-100 py-8 md:py-12 lg:py-14"> --}}
-    <section class="relative overflow-hidden bg-slate-100 section-padding">
+    <section class="relative overflow-hidden bg-slate-100 section-padding pb-14">
         <div class="absolute inset-x-0 bottom-0 z-0 hidden lg:block">
             {{-- <img src="{{ asset('uploads/medium/' . $whyciwecheading->banner) }}"
             class="mx-auto h-auto w-[120%] object-contain opacity-[0.25] lg:w-full"> --}}
