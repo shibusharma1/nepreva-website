@@ -1020,8 +1020,7 @@
                             <input type="text" id="searchInput" placeholder="Search publications..."
                                 autocomplete="off"
                                 class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-white text-sm outline-none focus:border-secondary">
-                            <i
-                                class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                             </i>
                         </div>
                     </div>
