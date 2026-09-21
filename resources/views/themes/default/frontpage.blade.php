@@ -295,7 +295,7 @@
             <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
                 <!-- DOCTOR 1 -->
                 <article
-                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-[var(--neutral-50)] transition-colors duration-300 hover:border-secondary">
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
                             alt="{{ $ktmdoctors->post_title }}" loading="lazy"
@@ -332,7 +332,7 @@
                 </article>
                 <!-- DOCTOR 2 -->
                 <article
-                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-[var(--neutral-50)] transition-colors duration-300 hover:border-secondary">
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
                             alt="{{ $pkhdoctors->post_title }}" loading="lazy"
