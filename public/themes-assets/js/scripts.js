@@ -1245,4 +1245,29 @@ document.addEventListener("DOMContentLoaded", () => {
             closeAllDropdowns();
         }
     });
+
+    /* ==========================================================================
+       13. MOBILE STICKY BAR SHOW/HIDE ON SCROLL
+       ========================================================================== */
+    const mobileStickyBar = document.getElementById("mobileStickyBar");
+    if (mobileStickyBar) {
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener("scroll", () => {
+            const currentScrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const isAtBottom = (windowHeight + currentScrollY) >= (documentHeight - 20);
+            const delta = currentScrollY - lastScrollY;
+
+            if (isAtBottom || currentScrollY <= 0 || delta < -5) {
+                mobileStickyBar.classList.remove("translate-y-full");
+            } else if (delta > 5 && currentScrollY > 50) {
+                mobileStickyBar.classList.add("translate-y-full");
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+    }
 });
+
