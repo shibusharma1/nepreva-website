@@ -621,6 +621,20 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        const resetBtn = document.getElementById("resetPublications") || document.querySelector(".reset-pub-btn");
+        if (resetBtn) {
+            resetBtn.addEventListener("click", function () {
+                if (searchInput) searchInput.value = "";
+                search = "";
+                currentPage = 1;
+                if (perPageSelect) {
+                    perPageSelect.value = "5";
+                    perPage = 5;
+                }
+                fetchPubs();
+            });
+        }
+
         fetchPubs();
     }
 

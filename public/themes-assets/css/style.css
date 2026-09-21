@@ -157,6 +157,7 @@ body {
 }
 .btn-outline:hover {
     border-color: var(--primary);
+    background: var(--white);
     color: var(--primary);
 }
 .card-modern {
