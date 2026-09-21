@@ -30,7 +30,6 @@ html {
 }
 body {
     font-family: 'Source Sans 3', sans-serif;
-    /* font-family: "Inter", sans-serif; */
     font-size: clamp(1.03125rem, 0.98rem + 0.25vw, 1.125rem);
     line-height: 1.7;
     color: var(--text-body);

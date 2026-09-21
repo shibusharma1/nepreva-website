@@ -132,7 +132,7 @@
                     <span class="h-1.5 w-1.5 bg-secondary"></span>
                     {{ $whyciwecheading->sub_title }}
                 </span>
-                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
+                <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
                     {{ $whyciwecheading->post_title }}
                 </h2>
                 <p class="text-slate-600 text-base md:text-lg leading-8 mb-8 max-w-2xl">
@@ -196,7 +196,7 @@
                     <span
                         class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                         <span class="w-2 h-2 bg-secondary"></span> {{ $trustedworldwide->sub_title }} </span>
-                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
+                    <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-6">
                         {{ $trustedworldwide->post_title }}
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8 mb-8 max-w-2xl">
@@ -406,7 +406,7 @@
                             class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                             <span class="w-2 h-2 bg-secondary"></span> {{ $patientStoriesHeading->sub_title }} </span>
                         @endif @if ($patientStoriesHeading->post_title)
-                            <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-6">
+                            <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-6">
                                 {{ $patientStoriesHeading->post_title }}
                             </h2>
                             @endif @if ($patientStoriesHeading->post_excerpt)
@@ -563,7 +563,7 @@
                     </span>
 
 
-                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
+                    <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
 
                         {{ $testimonialheading->post_title }}
 
@@ -860,7 +860,7 @@
                             class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                             <span class="w-2 h-2 bg-secondary"></span> {{ $awardheading->sub_title }} </span>
                         @endif @if ($awardheading->post_title)
-                            <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
+                            <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
                                 {{ $awardheading->post_title }}
                             </h2>
                             @endif @if ($awardheading->post_excerpt)
@@ -875,7 +875,7 @@
                         @foreach ($awards as $award)
                             <div class="swiper-slide h-auto">
                                 <div
-                                    class="group relative overflow-hidden h-[180px] bg-[var(--neutral-50)] border border-slate-100 flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                                    class="group relative overflow-hidden h-[180px] bg-white border border-slate-100 flex items-center justify-center transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
                                     <div
                                         class="absolute w-0 h-0 rounded-full bg-primary/5 transition-all duration-700 group-hover:w-56 group-hover:h-56">
                                     </div>
@@ -894,7 +894,7 @@
     @endif
 
     @if ($publications)
-        <section class="section-padding overflow-hidden relative">
+        <section class="section-padding bg-slate-100 overflow-hidden relative">
             <div class="container-custom z-10 relative">
                 <!-- HEADER -->
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
@@ -904,7 +904,7 @@
                                 class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
                                 <span class="w-2 h-2 bg-secondary"></span> {{ $publications->sub_title }} </span>
                             @endif @if ($publications->post_title)
-                                <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
+                                <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
                                     {{ $publications->post_title }}
                                 </h2>
                                 @endif @if ($publications->post_excerpt)
@@ -915,7 +915,7 @@
                     </div>
                 </div>
                 <!-- FILTER BAR -->
-                <div class="border border-slate-200 bg-slate-100 p-5 md:p-6 mb-6">
+                <div class="border border-slate-200 bg-slate-200 p-5 md:p-6 mb-6">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
                         <!-- LEFT -->
                         <div class="flex items-center gap-3">

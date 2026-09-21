@@ -14,7 +14,7 @@
                         <span class="w-2 h-2 bg-secondary"></span>
                         Research Publications
                     </span>
-                    <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-4">
+                    <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
                         Research Informations & Publications
 
                     </h2>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <!-- FILTER BAR -->
-            <div class="border border-slate-200 bg-slate-100 p-5 md:p-6 mb-6">
+            <div class="border border-slate-200 bg-slate-200 p-5 md:p-6 mb-6">
                 <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
                     <!-- LEFT -->
                     <div class="flex items-center gap-3">

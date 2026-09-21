@@ -545,7 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td class="px-5 py-4 font-semibold text-primary">
                             ${serialNumber}
                         </td>
-                        <td class="px-5 py-4 text-slate-700">
+                        <td class="px-5 py-4 text-black/90">
                             <strong>${escapeHtml(item.title)}</strong>
                             ${item.content ? `<br>${item.content}` : ''}
                         </td>

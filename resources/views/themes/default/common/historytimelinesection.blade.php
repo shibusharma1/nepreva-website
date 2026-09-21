@@ -113,7 +113,7 @@
                             <span class="w-2 h-2 bg-secondary"></span>
                             Our Journey
                         </span>
-                        <h2 class="text-primary text-2xl md:text-3xl font-black leading-tight mb-3 lg:mb-4">
+                        <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-3 lg:mb-4">
                             Over Four Decades of Healthcare Excellence
                         </h2>
                         <p class="text-slate-600 text-base md:text-lg leading-8">
@@ -159,7 +159,7 @@
                                     {{ $firstHistory->sub_title }}
                                 </span>
                                 <h3 id="historyTitle"
-                                    class="text-xl md:text-2xl lg:text-3xl text-primary font-black leading-tight mb-3">
+                                    class="text-xl md:text-2xl lg:text-3xl text-black font-black leading-tight mb-3">
                                     {{ $firstHistory->post_title }}
                                 </h3>
                                 <div class="w-16 h-[3px] bg-secondary mb-5"></div>
