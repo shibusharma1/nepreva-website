@@ -71,7 +71,7 @@
         </div>
     </section>
 
-    <section class="section-padding bg-slate-200 overflow-hidden">
+    <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <div class="text-center mb-12">
                 <span class="section-subtitle">
@@ -96,7 +96,7 @@
                                 <img src="{{ $video->thumbnail }}"
                                     class="w-full h-[260px] object-cover transition-all duration-700 group-hover:scale-110"
                                     alt="{{ $video->title }}">
-                                <div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/60 transition-all">
+                                <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-all">
                                 </div>
                                 <button class="videoBtn absolute inset-0 flex items-center justify-center"
                                     data-video="{{ $video->embed_url }}">

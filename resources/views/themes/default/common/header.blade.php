@@ -21,7 +21,8 @@
         } elseif (isset($setting->meta_description) && !empty($setting->meta_description)) {
             $seoDescription = e($setting->meta_description);
         } else {
-            $seoDescription = 'CIWEC Hospital and Travel Medicine Center is a world-renowned destination travel medicine hospital in Kathmandu and Pokhara, Nepal, providing 24/7 emergency care, travel health advice, and specialist medical services.';
+            $seoDescription =
+                'CIWEC Hospital and Travel Medicine Center is a world-renowned destination travel medicine hospital in Kathmandu and Pokhara, Nepal, providing 24/7 emergency care, travel health advice, and specialist medical services.';
         }
     }
 
@@ -33,7 +34,8 @@
         } elseif (isset($setting->meta_key) && !empty($setting->meta_key)) {
             $seoKeywords = e($setting->meta_key);
         } else {
-            $seoKeywords = 'CIWEC Hospital, Travel Medicine Center Nepal, Kathmandu Hospital, Pokhara Clinic, Travel Health, Altitude Sickness Treatment, Travel Vaccinations Nepal, Emergency Medical Care Nepal';
+            $seoKeywords =
+                'CIWEC Hospital, Travel Medicine Center Nepal, Kathmandu Hospital, Pokhara Clinic, Travel Health, Altitude Sickness Treatment, Travel Vaccinations Nepal, Emergency Medical Care Nepal';
         }
     }
 
@@ -45,9 +47,8 @@
 
     // Canonical URL
     $canonicalUrl = url()->current();
-
     // Active menu URL helper function
-    $checkActiveUrl = function($targetUrl = null, $slug = null) {
+    $checkActiveUrl = function ($targetUrl = null, $slug = null) {
         $currentUrl = url()->current();
         $currentPath = trim(request()->path(), '/');
 
@@ -172,8 +173,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-    <link
+    {{-- <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet"> --}}
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <script>
         tailwind.config = {
@@ -187,7 +191,8 @@
                         bordercolor: '#d7dde5'
                     },
                     fontFamily: {
-                        roboto: ['inter', 'sans-serif']
+                        roboto: ['"Source Sans 3"', 'sans-serif'],
+                        sans: ['"Source Sans 3"', 'sans-serif']
                     },
                     boxShadow: {
                         soft: '0 2px 15px rgba(0,0,0,.06)'
@@ -210,7 +215,8 @@
         class="fixed top-0 right-[-100%] w-[88vw] max-w-[380px] h-screen bg-white z-[999] overflow-y-auto transition-all duration-500 shadow-[-20px_0_40px_rgba(0,0,0,.15)]">
         <!-- TOP -->
         <div class="flex items-center justify-between p-5 border-b">
-            <img src="{{ asset('themes-assets/img/logo.png') }}" alt="CIWEC Hospital & Travel Medicine Center" class="h-14">
+            <img src="{{ asset('themes-assets/img/logo.png') }}" alt="CIWEC Hospital & Travel Medicine Center"
+                class="h-14">
             <button id="closeMenu" class="w-10 h-10 bg-primary text-white">
                 <i class="fa-solid fa-xmark">
                 </i>
@@ -258,7 +264,8 @@
                 <span>
                     Home
                 </span>
-                <i class="fa-solid fa-arrow-right text-[11px] {{ $isHomeActive ? 'text-secondary' : 'text-slate-400' }}">
+                <i
+                    class="fa-solid fa-arrow-right text-[11px] {{ $isHomeActive ? 'text-secondary' : 'text-slate-400' }}">
                 </i>
             </a>
             @foreach ($navigations as $row)
@@ -283,7 +290,8 @@
                             <span>
                                 {{ $row->post_type }}
                             </span>
-                            <i class="fa-solid fa-angle-down mobile-arrow text-[12px] {{ $isAboutActive ? 'text-secondary' : 'text-slate-400' }}">
+                            <i
+                                class="fa-solid fa-angle-down mobile-arrow text-[12px] {{ $isAboutActive ? 'text-secondary' : 'text-slate-400' }}">
                             </i>
                         </button>
                         <div class="mobile-dropdown-menu">
@@ -291,7 +299,9 @@
                                 @foreach ($abouts as $about)
                                     @php
                                         $aboutUrl = url(geturl($about->uri, $about->page_key));
-                                        $isItemActive = $checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key);
+                                        $isItemActive =
+                                            $checkActiveUrl($aboutUrl, $about->uri) ||
+                                            $checkActiveUrl(null, $about->page_key);
                                     @endphp
                                     <a href="{{ $aboutUrl }}"
                                         class="block text-[14px] {{ $isItemActive ? 'text-secondary font-bold' : 'text-slate-600' }} hover:text-secondary transition">
@@ -323,7 +333,8 @@
                             <span>
                                 {{ $row->post_type }}
                             </span>
-                            <i class="fa-solid fa-angle-down mobile-arrow text-[12px] {{ $isServiceActive ? 'text-secondary' : 'text-slate-400' }}">
+                            <i
+                                class="fa-solid fa-angle-down mobile-arrow text-[12px] {{ $isServiceActive ? 'text-secondary' : 'text-slate-400' }}">
                             </i>
                         </button>
                         <div class="mobile-dropdown-menu">
@@ -352,7 +363,8 @@
                         <span>
                             {{ $row->post_type }}
                         </span>
-                        <i class="fa-solid fa-arrow-right text-[11px] {{ $isNavActive ? 'text-secondary' : 'text-slate-400' }}">
+                        <i
+                            class="fa-solid fa-arrow-right text-[11px] {{ $isNavActive ? 'text-secondary' : 'text-slate-400' }}">
                         </i>
                     </a>
                 @endif
@@ -376,7 +388,8 @@
                 <!-- DESKTOP NAVIGATION -->
                 <nav class="hidden xl:flex items-center gap-6">
                     <!-- Home -->
-                    <a href="{{ url('/') }}" class="nav-link {{ $isHomeActive ? 'active text-secondary' : '' }}">
+                    <a href="{{ url('/') }}"
+                        class="nav-link {{ $isHomeActive ? 'active text-secondary' : '' }}">
                         Home
                     </a>
                     @foreach ($navigations as $row)
@@ -386,7 +399,10 @@
                                 $isAboutActive = false;
                                 foreach ($abouts as $about) {
                                     $aboutUrl = url(geturl($about->uri, $about->page_key));
-                                    if ($checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key)) {
+                                    if (
+                                        $checkActiveUrl($aboutUrl, $about->uri) ||
+                                        $checkActiveUrl(null, $about->page_key)
+                                    ) {
                                         $isAboutActive = true;
                                         break;
                                     }
@@ -396,7 +412,8 @@
                                 }
                             @endphp
                             <div class="relative dropdown-parent">
-                                <button class="nav-link flex items-center gap-2 dropdown-toggle {{ $isAboutActive ? 'active text-secondary' : '' }}"
+                                <button
+                                    class="nav-link flex items-center gap-2 dropdown-toggle {{ $isAboutActive ? 'active text-secondary' : '' }}"
                                     data-dropdown="aboutDropdown">
                                     {{ $row->post_type }}
                                     <i
@@ -414,9 +431,12 @@
                                         @foreach ($abouts as $about)
                                             @php
                                                 $aboutUrl = url(geturl($about->uri, $about->page_key));
-                                                $isItemActive = $checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key);
+                                                $isItemActive =
+                                                    $checkActiveUrl($aboutUrl, $about->uri) ||
+                                                    $checkActiveUrl(null, $about->page_key);
                                             @endphp
-                                            <a href="{{ $aboutUrl }}" class="dropdown-item {{ $isItemActive ? 'active' : '' }}">
+                                            <a href="{{ $aboutUrl }}"
+                                                class="dropdown-item {{ $isItemActive ? 'active' : '' }}">
                                                 <div>
                                                     <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}">
                                                         {{ $about->post_title }}
@@ -425,7 +445,8 @@
                                                         {{ $about->sub_title }}
                                                     </span>
                                                 </div>
-                                                <i class="fa-solid fa-arrow-right {{ $isItemActive ? 'text-secondary' : '' }}">
+                                                <i
+                                                    class="fa-solid fa-arrow-right {{ $isItemActive ? 'text-secondary' : '' }}">
                                                 </i>
                                             </a>
                                         @endforeach
@@ -444,11 +465,15 @@
                                     }
                                 }
                                 if (!$isServiceActive) {
-                                    $isServiceActive = $checkActiveUrl(url('page/' . posttype_url($row->uri)), $row->uri);
+                                    $isServiceActive = $checkActiveUrl(
+                                        url('page/' . posttype_url($row->uri)),
+                                        $row->uri,
+                                    );
                                 }
                             @endphp
                             <div class="relative dropdown-parent">
-                                <button class="nav-link flex items-center gap-2 dropdown-toggle {{ $isServiceActive ? 'active text-secondary' : '' }}"
+                                <button
+                                    class="nav-link flex items-center gap-2 dropdown-toggle {{ $isServiceActive ? 'active text-secondary' : '' }}"
                                     data-dropdown="servicesDropdown">
                                     {{ $row->post_type }}
                                     <i
@@ -467,7 +492,8 @@
                                                 $serviceUrl = url(geturl($service->uri));
                                                 $isItemActive = $checkActiveUrl($serviceUrl, $service->uri);
                                             @endphp
-                                            <a href="{{ $serviceUrl }}" class="dropdown-item {{ $isItemActive ? 'active' : '' }}">
+                                            <a href="{{ $serviceUrl }}"
+                                                class="dropdown-item {{ $isItemActive ? 'active' : '' }}">
                                                 <div>
                                                     <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}">
                                                         {{ $service->post_title }}
@@ -477,7 +503,8 @@
                                                         {{ $service->sub_title }}
                                                     </span>
                                                 </div>
-                                                <i class="fa-solid fa-arrow-right {{ $isItemActive ? 'text-secondary' : '' }}">
+                                                <i
+                                                    class="fa-solid fa-arrow-right {{ $isItemActive ? 'text-secondary' : '' }}">
                                                 </i>
                                             </a>
                                         @endforeach
@@ -507,7 +534,7 @@
                         </span>
                     </button>
                     <a href="{{ url('page/bookappointment.html') }}"
-                        class="hidden lg:inline-flex items-center justify-center h-11 px-5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-dark transition">
+                        class="hidden lg:inline-flex items-center justify-center h-11 px-5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-dark transition shadow-sm">
                         Book Appointment
                     </a>
                 </div>
@@ -526,4 +553,3 @@
     </header>
     <!-- Searchbar -->
     @include('themes.default.common.searchbar')
-

@@ -111,7 +111,7 @@
                                 alt="{{ $galleryItem->post_title }}"
                                 class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105">
 
-                            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent group-hover:from-primary/95 transition-all">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent group-hover:from-black/80 transition-all">
                             </div>
 
                             <div class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -156,11 +156,11 @@
         </section>
     @endif
 
-    <section class="section-padding relative overflow-hidden bg-primary">
+    <section class="section-padding relative overflow-hidden bg-primary/95">
         <!-- DECORATION -->
-        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
+        <div class="absolute top-0 left-0 w-[400px] h-[400px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
         </div>
-        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3">
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3">
         </div>
         <div class="container-custom relative z-10">
             <div class="text-center max-w-4xl mx-auto">

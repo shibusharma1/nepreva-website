@@ -600,7 +600,7 @@
                         </div>
 
 
-                        <div class="lg:col-span-5 bg-slate-950 p-8 lg:p-12 h-full flex items-center">
+                        <div class="lg:col-span-5 bg-primary/95 p-8 lg:p-12 h-full flex items-center">
 
                             <div>
 

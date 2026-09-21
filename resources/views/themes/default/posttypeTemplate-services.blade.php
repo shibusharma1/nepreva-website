@@ -99,7 +99,7 @@
         <!-- BACKDROP -->
         <div
             id="serviceModalBackdrop"
-            class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm">
+            class="absolute inset-0 bg-primary/95/60 backdrop-blur-sm">
         </div>
 
         <!-- MODAL -->

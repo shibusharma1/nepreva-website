@@ -47,14 +47,14 @@
 <div id="mobileStickyBar" class="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-slate-200 shadow-[0_-8px_25px_rgba(0,0,0,.08)] transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden lg:hidden">
     <div class="grid grid-cols-2">
         <!-- INQUIRY -->
-        <a href="{{ url('page/contact.html') }}" class="flex flex-col items-center justify-center py-3 border-x border-slate-200 text-primary">
+        <a href="{{ url('page/contact.html') }}" class="flex flex-col items-center justify-center py-3 border-x border-slate-200 text-primary hover:text-primary-dark transition">
             <i class="fa-regular fa-message text-lg mb-1"></i>
             <span class="text-[11px] font-semibold">
                 Inquiry
             </span>
         </a>
         <!-- APPOINTMENT -->
-        <a href="{{ url('page/bookappointment.html') }}" class="flex flex-col items-center justify-center py-3 bg-primary text-white">
+        <a href="{{ url('page/bookappointment.html') }}" class="flex flex-col items-center justify-center py-3 bg-primary text-white hover:bg-primary-dark transition">
             <i class="fa-regular fa-calendar-check text-lg mb-1"></i>
             <span class="text-[11px] font-semibold">
                 Appointment

@@ -204,13 +204,13 @@
         </div>
     </section>
 
-    <section class="section-padding relative overflow-hidden bg-primary">
+    <section class="section-padding relative overflow-hidden bg-primary/95">
         <!-- BACKGROUND SHAPES -->
         <div
-            class="absolute top-0 left-0 w-[500px] h-[500px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
+            class="absolute top-0 left-0 w-[400px] h-[400px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
         </div>
         <div
-            class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-secondary/10 rounded-full translate-x-1/3 translate-y-1/3">
+            class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/10 rounded-full translate-x-1/3 translate-y-1/3">
         </div>
         <div class="container-custom relative z-10">
             <div>
