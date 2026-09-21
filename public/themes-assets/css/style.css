@@ -374,14 +374,21 @@ textarea.form-control {
     color: #94a3b8;
     transition: 0.3s;
 }
-.dropdown-item:hover {
+.dropdown-item:hover,
+.dropdown-item.active {
     background: #f8fafc;
 }
-.dropdown-item:hover::before {
+.dropdown-item:hover::before,
+.dropdown-item.active::before {
     opacity: 1;
 }
-.dropdown-item:hover i {
-    color: #d71920;
+.dropdown-item.active h5 {
+    color: var(--secondary);
+    font-weight: 700;
+}
+.dropdown-item:hover i,
+.dropdown-item.active i {
+    color: var(--secondary);
     transform: translateX(4px);
 }
 /*Animations for why ciwec section */

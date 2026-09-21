@@ -48,13 +48,28 @@
 
     // Active menu URL helper function
     $checkActiveUrl = function($targetUrl = null, $slug = null) {
-        $current = url()->current();
-        if ($targetUrl && $current === $targetUrl) {
+        $currentUrl = url()->current();
+        $currentPath = trim(request()->path(), '/');
+
+        if ($targetUrl && $currentUrl === $targetUrl) {
             return true;
         }
+
+        if ($targetUrl) {
+            $targetPath = trim(parse_url($targetUrl, PHP_URL_PATH) ?? '', '/');
+            if ($targetPath && $currentPath === $targetPath) {
+                return true;
+            }
+        }
+
         if ($slug && $slug !== '/') {
             $cleanSlug = trim($slug, '/');
-            if (request()->is('page/' . $cleanSlug) || request()->is($cleanSlug) || request()->is('*' . $cleanSlug . '*')) {
+            $slugBase = str_replace('.html', '', $cleanSlug);
+            if (
+                request()->is('page/' . $slugBase . '*') ||
+                request()->is($slugBase . '*') ||
+                request()->is('*' . $slugBase . '*')
+            ) {
                 return true;
             }
         }
@@ -401,7 +416,7 @@
                                                 $aboutUrl = url(geturl($about->uri, $about->page_key));
                                                 $isItemActive = $checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key);
                                             @endphp
-                                            <a href="{{ $aboutUrl }}" class="dropdown-item">
+                                            <a href="{{ $aboutUrl }}" class="dropdown-item {{ $isItemActive ? 'active' : '' }}">
                                                 <div>
                                                     <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}">
                                                         {{ $about->post_title }}
@@ -452,7 +467,7 @@
                                                 $serviceUrl = url(geturl($service->uri));
                                                 $isItemActive = $checkActiveUrl($serviceUrl, $service->uri);
                                             @endphp
-                                            <a href="{{ $serviceUrl }}" class="dropdown-item">
+                                            <a href="{{ $serviceUrl }}" class="dropdown-item {{ $isItemActive ? 'active' : '' }}">
                                                 <div>
                                                     <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}">
                                                         {{ $service->post_title }}
