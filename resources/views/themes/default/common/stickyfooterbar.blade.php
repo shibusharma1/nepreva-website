@@ -2,7 +2,7 @@
     <div class="relative flex items-center">
         <!-- Chat Panel -->
         <div class="absolute right-8 translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-            <div class="bg-[var([var(--neutral-50)])]shadow-[0_15px_40px_rgba(0,0,0,.12)] border border-slate-100 px-5 py-3 min-w-[220px]">
+            <div class="bg-white shadow-[0_15px_40px_rgba(0,0,0,.12)] border border-slate-100 px-5 py-3 min-w-[220px]">
                 <div class="text-primary font-bold text-sm">
                     Chat with CIWEC
                 </div>
@@ -44,7 +44,7 @@
     </div>
 </div>
 <!-- MOBILE STICKY CTA -->
-<div id="mobileStickyBar" class="fixed bottom-0 left-0 w-full z-50 bg-[var([var(--neutral-50)])]border-t border-slate-200 shadow-[0_-8px_25px_rgba(0,0,0,.08)] transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden lg:hidden">
+<div id="mobileStickyBar" class="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-slate-200 shadow-[0_-8px_25px_rgba(0,0,0,.08)] transform transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden lg:hidden">
     <div class="grid grid-cols-2">
         <!-- INQUIRY -->
         <a href="{{ url('page/contact.html') }}" class="flex flex-col items-center justify-center py-3 border-x border-slate-200 text-primary hover:text-primary-dark transition">

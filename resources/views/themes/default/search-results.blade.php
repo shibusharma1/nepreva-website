@@ -34,7 +34,7 @@
                 <form action="{{ route('search') }}" method="GET" class="flex items-center">
                     <input type="text" name="q" value="{{ $search }}" required minlength="2"
                         placeholder="Search CIWEC..."
-                        class="flex-1 h-14 px-5 border border-slate-300 border-r-0 bg-[var([var(--neutral-50)])]text-slate-700 outline-none focus:border-secondary transition">
+                        class="flex-1 h-14 px-5 border border-slate-300 border-r-0 bg-white text-slate-700 outline-none focus:border-secondary transition">
                     <button type="submit" aria-label="Search" class="btn-primary h-14 min-w-[60px] px-6 rounded-l-none flex items-center justify-center">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
@@ -69,7 +69,7 @@
                                 ? url('page/' . $targetPost->uri . '.html')
                                 : url($targetPost->uri . '.html');
                         @endphp
-                        <article class="group bg-[var([var(--neutral-50)])]border border-slate-200 p-6 md:p-7 hover:border-secondary hover:shadow-xl transition-all duration-300">
+                        <article class="group bg-white border border-slate-200 p-6 md:p-7 hover:border-secondary hover:shadow-xl transition-all duration-300">
                             <div class="flex items-start gap-5">
                                 <!-- ICON -->
                                 <div class="hidden sm:flex shrink-0 w-12 h-12 bg-primary/5 text-primary items-center justify-center group-hover:bg-secondary group-hover:text-white transition">
@@ -114,7 +114,7 @@
                 </div>
             @else
                 <!-- EMPTY -->
-                <div class="bg-[var([var(--neutral-50)])]border border-slate-200 py-16 px-6 text-center shadow-sm">
+                <div class="bg-white border border-slate-200 py-16 px-6 text-center shadow-sm">
                     <div class="w-16 h-16 bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-5">
                         <i class="fa-solid fa-magnifying-glass text-xl"></i>
                     </div>

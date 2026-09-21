@@ -14,7 +14,7 @@
     <section class="section-padding bg-slate-50">
         <div class="container-custom">
             <!-- Main service panel -->
-            <div class="grid items-start border border-slate-200 bg-[var([var(--neutral-50)])]lg:grid-cols-12">
+            <div class="grid items-start border border-slate-200 bg-white lg:grid-cols-12">
                 <!-- Sticky Service Image -->
                 <div class="lg:col-span-5 lg:sticky lg:top-24 lg:self-start">
                     <div class="overflow-hidden">
@@ -41,7 +41,7 @@
                         @endif
                         <!-- Detailed Content -->
                         @if (trim(strip_tags($data->post_content ?? '')) !== '')
-                            <div class="mt-5 border border-slate-200 bg-[var([var(--neutral-50)])]p-5 sm:p-6">
+                            <div class="mt-5 border border-slate-200 bg-white p-5 sm:p-6">
                                 <div class="service-detail-content text-slate-600 leading-relaxed text-base md:text-lg prose prose-lg max-w-none">
                                     {!! $data->post_content !!}
                                 </div>
@@ -64,7 +64,7 @@
             </div>
             <!-- Documents -->
             @if (isset($documents) && $documents->isNotEmpty())
-                <div class="mt-6 border border-slate-200 bg-[var([var(--neutral-50)])]p-5 sm:p-7">
+                <div class="mt-6 border border-slate-200 bg-white p-5 sm:p-7">
                     <h2 class="text-base font-bold text-primary">
                         Related Documents
                     </h2>

@@ -44,7 +44,7 @@
 
                     @foreach ($locationServices as $service)
                         <div
-                            class="group bg-[var([var(--neutral-50)])]border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                            class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
                             <div class="p-6 md:p-8 flex flex-col h-full">
                                 <div class="flex justify-between items-center mb-3">
                                     <span class="text-secondary text-xs font-bold uppercase tracking-[2px]">
@@ -105,7 +105,7 @@
         <!-- MODAL -->
         <div
             id="serviceModalContent"
-            class="relative flex w-full max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl max-h-[94vh] sm:max-h-[90vh] flex-col overflow-hidden bg-[var([var(--neutral-50)])]shadow-2xl">
+            class="relative flex w-full max-w-[95vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl max-h-[94vh] sm:max-h-[90vh] flex-col overflow-hidden bg-white shadow-2xl">
 
             <!-- MODAL HEADER -->
             <div
@@ -367,7 +367,7 @@
                 <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                     @foreach ($facilities as $facility)
                         <div id="facilities"
-                            class="group overflow-hidden bg-[var([var(--neutral-50)])]border border-slate-200 hover:border-secondary transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                            class="group overflow-hidden bg-white border border-slate-200 hover:border-secondary transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
                             <div class="overflow-hidden">
                                 <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $facility->banner) }}"
                                     alt="{{ $facility->post_title }}"

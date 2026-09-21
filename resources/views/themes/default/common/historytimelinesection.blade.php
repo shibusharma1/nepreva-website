@@ -143,7 +143,7 @@
                     </div>
                     <!-- EXISTING CONTENT CARD -->
                     <div
-                        class="grid lg:grid-cols-12 bg-[var([var(--neutral-50)])]border border-slate-200 overflow-hidden rounded-sm shadow-sm">
+                        class="grid lg:grid-cols-12 bg-white border border-slate-200 overflow-hidden rounded-sm shadow-sm">
                         <!-- IMAGE -->
                         <div class="lg:col-span-5">
                             <img id="historyImage"
@@ -178,7 +178,7 @@
             <!-- MOBILE LAYOUT -->
             <div class="lg:hidden">
                 <!-- CONTENT CARD -->
-                <div class="grid bg-[var([var(--neutral-50)])]border border-slate-200 overflow-hidden rounded-xl shadow-sm mb-6">
+                <div class="grid bg-white border border-slate-200 overflow-hidden rounded-xl shadow-sm mb-6">
                     <!-- IMAGE -->
                     <div>
                         <img id="historyImageMobile"
@@ -207,7 +207,7 @@
                 <div class="space-y-3">
                     @foreach ($history as $historyItem)
                         <button type="button"
-                            class="history-year {{ $loop->first ? 'active' : '' }} w-full text-left flex items-start gap-4 {{ $loop->first ? 'p-3 sm:p-4' : 'p-4' }} bg-[var([var(--neutral-50)])]border border-slate-200 hover:border-secondary transition-all duration-300"
+                            class="history-year {{ $loop->first ? 'active' : '' }} w-full text-left flex items-start gap-4 {{ $loop->first ? 'p-3 sm:p-4' : 'p-4' }} bg-white border border-slate-200 hover:border-secondary transition-all duration-300"
                             data-history-id="{{ $historyItem->id }}" data-history-index="{{ $loop->index }}">
                             <span class="flex flex-col items-center mt-1">
                                 <span
