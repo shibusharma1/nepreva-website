@@ -2626,15 +2626,18 @@ body.sb-l-m .navbar-brand {
 ========================================================= */
 /* Sidebar Container */
 #sidebar_left {
-  background-color: #30363e;
+  /* background-color: #30363e; */
+  background-color: #11497b;
 }
 /* Menu Item - Label Color */
 .sidebar-menu .sidebar-label {
-  color: #70829a;
+  color: #fdfdfd;
+  /* color: #70829a; */
 }
 /* Menu item Caret */
 .sidebar-menu li > a > span.caret {
-  color: #858483;
+  color: #f8fafc;
+  /* color: #858483; */
 }
 /* Open Menu item Caret */
 .sidebar-menu li > a.menu-open > span.caret {
@@ -2663,7 +2666,8 @@ body.sb-l-m .navbar-brand {
 }
 /* Top Level Active Menu Item - Icon Color */
 .sidebar-menu > li.active > a > span:nth-child(1) {
-  color: #0073aa;
+  /* color: #0073aa; */
+  color: #f8fafc;
 }
 /* Top Level Active Item - Border Color */
 .sidebar-menu > li.active > a:after,
@@ -6484,7 +6488,8 @@ a.text-success:hover {
   color: #56c046;
 }
 .text-info {
-  color: #3bafda;
+  /* color: #3bafda; */
+  color: #f8fafc;
 }
 a.text-info:hover {
   color: #030e13;

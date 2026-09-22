@@ -5,7 +5,7 @@
 @section('thumbnail', $data->page_thumbnail)
 @section('content')
     @include('themes.default.common.herobanner')
-    <section class="section-padding bg-slate-50">
+    <section class="section-padding bg-slate-100">
         <div class="container-custom">
             @if (isset($posts) && count($posts) > 0)
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

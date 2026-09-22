@@ -5,7 +5,7 @@
 @section('thumbnail', $data->page_thumbnail)
 @section('content')
     @include('themes.default.common.herobanner')
-    <section class="section-padding bg-slate-50">
+    <section class="section-padding bg-slate-100">
         <div class="container-custom">
             <div class="editor-content leading-relaxed text-slate-600 prose max-w-none">
                 {!! $data->content !!}

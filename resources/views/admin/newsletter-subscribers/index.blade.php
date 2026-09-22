@@ -17,7 +17,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
+                                        {{-- <th>Name</th> --}}
                                         <th>Email</th>
                                         <th>Subscribed At</th>
                                         <th>Unsubscribed At</th>
@@ -28,7 +28,7 @@
                                     @foreach ($data as $key => $value)
                                         <tr>
                                             <td>{{ $key += 1 }}</td>
-                                            <td>{{ $value->name }}</td>
+                                            {{-- <td>{{ $value->name }}</td> --}}
                                             <td>{{ $value->email }}</td>
                                             <td>{{ $value->subscribed_at }}</td>
                                             <td>{{ $value->unsubscribed_at ?? 'N/A' }}</td>

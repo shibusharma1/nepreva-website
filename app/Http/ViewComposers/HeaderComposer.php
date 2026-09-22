@@ -19,7 +19,7 @@ class HeaderComposer
 	{
 		$view->with('navigations', PostTypeModel::where(['is_menu' => '1'])->orderBy('ordering', 'asc')->get());
 		$view->with('setting', SettingModel::where('id', 1)->first());
-		$view->with('abouts', PostModel::where(['post_type' => '1', 'post_parent' => '0', 'status' => 1])->orderBy('id', 'asc')->get());
-		$view->with('services', PostModel::where(['post_type' => '2', 'post_parent' => '0'])->orderBy('id', 'asc')->get());
+		$view->with('abouts', PostModel::where(['post_type' => '1', 'post_parent' => '0', 'status' => 1])->orderBy('post_order', 'asc')->get());
+		$view->with('services', PostModel::where(['post_type' => '2', 'post_parent' => '0'])->orderBy('post_order', 'asc')->get());
 	}
 }

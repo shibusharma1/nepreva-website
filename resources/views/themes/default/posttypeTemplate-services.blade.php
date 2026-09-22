@@ -26,10 +26,8 @@
                         $locations = $services->where('post_parent', 26)->take(2);
                     @endphp
                     @foreach ($locations as $location)
-                        <button
-                            class="location-btn px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 {{ $loop->first ? 'bg-primary text-white shadow-md' : 'text-slate-600 hover:text-primary' }}"
+                        <button class="location-btn px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 {{ $loop->first ? 'bg-primary text-white shadow-md' : 'text-slate-600 hover:text-primary' }}"
                             data-location="{{ $location->id }}">
-
                             {{ $location->post_title }}
                         </button>
                     @endforeach
@@ -39,21 +37,16 @@
                 @php
                     $locationServices = $services->where('post_parent', $location->id);
                 @endphp
-                <div id="location-{{ $location->id }}"
-                    class="service-wrapper {{ !$loop->first ? 'hidden' : '' }} grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-
+                <div id="location-{{ $location->id }}" class="service-wrapper {{ !$loop->first ? 'hidden' : '' }} grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                     @foreach ($locationServices as $service)
-                        <div
-                            class="group bg-white border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                        <div class="group bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
                             <div class="p-6 md:p-8 flex flex-col h-full">
                                 <div class="flex justify-between items-center mb-3">
                                     <span class="text-secondary text-xs font-bold uppercase tracking-[2px]">
                                         {{ $service->sub_title }}
                                     </span>
                                     <div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
-                                        <i
-                                            class="{{ $service->associated_title ?: 'fa-solid fa-stethoscope' }} text-secondary text-lg">
-                                        </i>
+                                        <i class="{{ $service->associated_title ?: 'fa-solid fa-stethoscope' }} text-secondary text-lg"></i>
                                     </div>
                                 </div>
                                 <h3 class="text-primary text-xl font-bold">
@@ -70,13 +63,8 @@
                                         data-associated-title="{{ $service->associated_title ?: 'fa-solid fa-stethoscope' }}"
                                         data-description="{{ e(strip_tags($service->post_excerpt)) }}"
                                         aria-label="View details about {{ $service->post_title }}">
-
                                         Learn More
-
-                                        <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover:translate-x-1"
-                                            aria-hidden="true">
-                                        </i>
-
+                                        <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -97,9 +85,7 @@
         aria-labelledby="serviceModalTitle">
 
         <!-- BACKDROP -->
-        <div
-            id="serviceModalBackdrop"
-            class="absolute inset-0 bg-primary/95/60 backdrop-blur-sm">
+        <div id="serviceModalBackdrop" class="absolute inset-0 bg-primary/95/60 backdrop-blur-sm">
         </div>
 
         <!-- MODAL -->
@@ -183,7 +169,7 @@
         </div>
 
     </div>
-
+{{-- 
     <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <!-- HEADER -->
@@ -308,7 +294,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     @php
         $locations = $services->where('post_parent', 26)->take(2);
@@ -338,7 +324,7 @@
                 </div>
                 {{-- FEATURED FACILITY --}}
                 @if ($featuredFacility)
-                    <div class="grid lg:grid-cols-12 gap-0 bg-slate-100 border border-slate-200 overflow-hidden mb-12">
+                    <div class="grid lg:grid-cols-12 gap-0 bg-[var(--neutral-50)] border border-slate-200 overflow-hidden mb-12">
                         <div class="lg:col-span-6">
                             <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $featuredFacility->banner) }}"
                                 alt="{{ $featuredFacility->post_title }}" class="w-full h-full min-h-[380px] object-cover">
@@ -367,7 +353,7 @@
                 <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                     @foreach ($facilities as $facility)
                         <div id="facilities"
-                            class="group overflow-hidden bg-white border border-slate-200 hover:border-secondary transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+                            class="group overflow-hidden bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
                             <div class="overflow-hidden">
                                 <img src="{{ asset(env('PUBLIC_PATH') . 'uploads/medium/' . $facility->banner) }}"
                                     alt="{{ $facility->post_title }}"

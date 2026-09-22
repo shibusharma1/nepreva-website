@@ -92,7 +92,7 @@
         <header class="navbar navbar-fixed-top">
             <div class="navbar-branding">
                 <a class="navbar-brand" href="{{ url('/') }}" target="_blank">
-                    Admin Panel
+                    {{ $setting->site_name }}
                 </a>
                 <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
             </div>

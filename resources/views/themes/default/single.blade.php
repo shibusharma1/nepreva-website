@@ -11,7 +11,7 @@
         $parentUri = $data_child->uri ?? 'services';
     @endphp
     <!-- SERVICE DETAIL -->
-    <section class="section-padding bg-slate-50">
+    <section class="section-padding bg-slate-100">
         <div class="container-custom">
             <!-- Main service panel -->
             <div class="grid items-start border border-slate-200 bg-white lg:grid-cols-12">
@@ -51,8 +51,8 @@
                         <div class="mt-6 flex flex-wrap gap-3">
                             <a href="{{ url('page/bookappointment.html') }}"
                                 class="btn-primary inline-flex items-center gap-2 text-sm">
-                                Book an Appointment
-                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                                Book Appointment
+                                {{-- <i class="fa-solid fa-arrow-right text-xs"></i> --}}
                             </a>
                             <a href="{{ url('page/contact.html') }}"
                                 class="btn-secondary inline-flex items-center gap-2 text-sm">

@@ -537,7 +537,7 @@
             <div class="relative w-full max-w-6xl">
                 <!-- CLOSE -->
                 <button id="closeVideoModal" type="button" aria-label="Close video"
-                    class="absolute -top-14 right-0 w-11 h-11 bg-[#fdfdfd] text-primary hover:bg-secondary hover:text-white transition-all duration-300">
+                    class="absolute -top-14 right-0 w-11 h-11 bg-[#fdfdfd] text-primary hover:bg-secondary hover:text-white transition-all duration-300 rounded-full">
                     <i class="fa-solid fa-xmark text-lg"></i> </button> <!-- YOUTUBE VIDEO -->
                 <div class="w-full h-[75vh] bg-black">
                     <iframe id="storyVideo" class="w-full h-full" src="" title="Patient Story Video"

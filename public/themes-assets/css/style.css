@@ -61,7 +61,7 @@ body {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--primary);
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 .section-title {
     font-size: clamp(1.85rem, 4vw, 2.05rem);
@@ -239,7 +239,7 @@ textarea.form-control {
 .award-pagination .swiper-pagination-bullet-active {
     background: var(--primary);
 }
-/* Footer CSS */
+
 .footer-link:hover {
     color: white;
 }
@@ -309,14 +309,14 @@ textarea.form-control {
 /* Desktop drop down link */
 /* Desktop Dropdown Links */
 /* Last item */
-.dropdown-link:last-child {
+/* .dropdown-link:last-child {
     border-bottom: none;
 }
-/* Hover */
+
 .dropdown-link:hover {
     background: #f8fafc;
     color: #d71920;
-}
+} */
 .dropdown-item {
     position: relative;
     display: flex;
@@ -370,7 +370,7 @@ textarea.form-control {
     transform: translateX(4px);
 }
 /*Animations for why ciwec section */
-.animate-show {
+/* .animate-show {
     opacity: 1;
     transform: translateX(0);
 }
@@ -384,8 +384,8 @@ textarea.form-control {
     100% {
         transform: translateY(0);
     }
-}
-.animate-mountain {
+} */
+/* .animate-mountain {
     animation: mountainFloat 5s ease-in-out infinite;
 }
 .specialty-chip:hover {
@@ -395,7 +395,7 @@ textarea.form-control {
     background: #0a3c69;
     color: white;
     border-color: #0a3c69;
-}
+} */
 
 .faq-item.active .faq-btn {
     border-color: var(--secondary);
@@ -537,7 +537,7 @@ textarea.form-control {
         height: 54px;
     }
 }
-.service-tab {
+/* .service-tab {
     padding: 14px 28px;
     border: 1px solid #e2e8f0;
     background: white;
@@ -576,7 +576,7 @@ textarea.form-control {
 .active-location {
     background: #0a3c69;
     color: white;
-}
+} */
 /* SPECIALITY SECTION */
 .speciality-section {
     background: #f1f5f9;
@@ -713,41 +713,31 @@ textarea.form-control {
         padding: 20px;
     }
 }
-/* =========================================================
-   TABLET
-   ========================================================= */
-
+/* TABLET */
 @media (max-width: 1024px) {
     .speciality-card {
         height: 380px;
     }
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
+/* MOBILE */
 @media (max-width: 768px) {
     .speciality-card {
         height: 340px;
     }
-
     .speciality-content {
         padding: 20px;
     }
-
     .speciality-title {
         font-size: 22px;
     }
-
     .speciality-desc {
         font-size: 14px;
         line-height: 1.7;
     }
 }
-/* =========================
-SWIPER PAGINATION
-========================= */
+
+/*SWIPER PAGINATION */
 .speciality-pagination {
     position: relative;
     display: flex;
@@ -769,111 +759,6 @@ SWIPER PAGINATION
     background: var(--secondary);
     border-color: var(--secondary);
     transform: scale(1.15);
-}
-/* =========================
-WHATS NEW SECTION
-========================= */
-.whatsnew-card {
-    background: #ffffff;
-    /* border-radius: 20px; */
-    overflow: hidden;
-    height: 100%;
-    transition: all 0.4s ease;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
-}
-.whatsnew-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
-}
-/* IMAGE */
-.whatsnew-img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s ease;
-}
-.whatsnew-card:hover .whatsnew-img {
-    transform: scale(1.05);
-}
-/* CONTENT */
-.whatsnew-content {
-    padding: 24px;
-}
-/* TITLE */
-.whatsnew-title {
-    font-size: 24px;
-    font-weight: 800;
-    line-height: 1.3;
-    color: var(--primary);
-    margin-bottom: 12px;
-}
-/* DESCRIPTION */
-.whatsnew-desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: rgba(0, 0, 0, 0.65);
-}
-/* BOTTOM AREA */
-.whatsnew-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 22px;
-}
-/* LINK */
-.whatsnew-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--primary);
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-.whatsnew-link:hover {
-    color: var(--secondary);
-}
-/* ARROW */
-.whatsnew-arrow {
-    width: 30px;
-    height: 30px;
-    /* border-radius: 100%; */
-    background: var(--secondary);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    transition: 0.3s ease;
-}
-
-.whatsnew-link:hover .whatsnew-arrow {
-    transform: translateX(3px);
-}
-/* ICON */
-.whatsnew-icon {
-    font-size: 30px;
-    color: rgba(0, 0, 0, 0.12);
-}
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .whatsnew-img {
-        height: 200px;
-    }
-    .whatsnew-content {
-        padding: 20px;
-    }
-    .whatsnew-title {
-        font-size: 20px;
-    }
-    .whatsnew-desc {
-        font-size: 14px;
-    }
-    .whatsnew-icon {
-        font-size: 24px;
-    }
 }
 .faq-content {
     display: none;
@@ -1029,10 +914,10 @@ WHATS NEW SECTION
         height: 450px;
     }
 
-    .ciwec-ring-pulse {
+    /* .ciwec-ring-pulse {
         width: 420px;
         height: 420px;
-    }
+    } */
 }
 
 @media (max-width: 640px) {
@@ -1046,10 +931,10 @@ WHATS NEW SECTION
         height: 330px;
     }
 
-    .ciwec-ring-pulse {
+    /* .ciwec-ring-pulse {
         width: 300px;
         height: 300px;
-    }
+    } */
 
     .model-item {
         padding: 20px;
@@ -1159,12 +1044,12 @@ WHATS NEW SECTION
     }
 }
 
-.ciwec-center-wrap {
+/* .ciwec-center-wrap {
     position: relative;
     width: 520px;
     height: 520px;
     animation: imageFloat 8s ease-in-out infinite;
-}
+} */
 /* terms and condition and privacy policy page css */
 .editor-content {
     color: #475569;
@@ -1493,7 +1378,7 @@ WHATS NEW SECTION
     border-radius: 12px;
     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
 }
-
+/* 
 .success-icon {
     width: 90px;
     height: 90px;
@@ -1562,7 +1447,7 @@ WHATS NEW SECTION
     .success-box h1 {
         font-size: 26px;
     }
-}
+} */
 /* Fix sticky CTA overlap on large desktop screens */
 @media (min-width: 1440px) {
     #stickyBar {
@@ -1617,9 +1502,7 @@ WHATS NEW SECTION
     }
 }
 
-/* =========================================================
-       GLIGHTBOX INLINE CONTAINER & OVERFLOW FIX
-       ========================================================= */
+/* GLIGHTBOX INLINE CONTAINER & OVERFLOW FIX */
 .ginlined-content,
 .gslide-inline,
 .gslide-inline .ginlined-content,
@@ -1634,93 +1517,55 @@ WHATS NEW SECTION
     overflow-x: hidden !important;
 }
 
-/* =========================================================
-       GLIGHTBOX CONTENT
-       ========================================================= */
-
+/* GLIGHTBOX CONTENT */
 .testimonial-lightbox-content {
     width: min(920px, calc(100vw - 32px));
-
     max-width: 920px;
-
     max-height: calc(100vh - 80px);
-
     display: grid;
-
     grid-template-columns:
         minmax(280px, 38%)
         minmax(0, 1fr);
-
     background: #ffffff;
-
     overflow: hidden;
-
     box-sizing: border-box;
-
     margin: 0 auto;
 }
 
-/* =========================================================
-       IMAGE
-       ========================================================= */
-
+/* IMAGE */
 .testimonial-lightbox-image {
     width: 100%;
-
     height: 100%;
-
     min-height: 420px;
-
     overflow: hidden;
 }
 
 .testimonial-lightbox-image img {
     display: block;
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
 }
 
-/* =========================================================
-       BODY
-       ========================================================= */
-
+/* BODY */
 .testimonial-lightbox-body {
     min-width: 0;
-
     max-height: calc(100vh - 80px);
-
     padding: 40px;
-
     overflow-y: auto;
-
     overflow-x: hidden;
-
     word-break: break-word;
-
     overflow-wrap: anywhere;
-
     scrollbar-width: thin;
 }
 
-/* =========================================================
-       FULL CONTENT
-       ========================================================= */
-
+/* FULL CONTENT */
 .testimonial-full-content {
     min-width: 0;
-
     color: var(--slate-600);
-
     font-size: 15px;
-
     line-height: 1.9;
-
     overflow-wrap: anywhere;
-
     word-break: break-word;
 }
 
@@ -1734,60 +1579,43 @@ WHATS NEW SECTION
 
 .testimonial-full-content img {
     display: block;
-
     max-width: 100%;
-
     height: auto;
 }
 
 .testimonial-full-content video {
     display: block;
-
     max-width: 100%;
-
     height: auto;
 }
 
 .testimonial-full-content iframe {
     display: block;
-
     width: 100%;
-
     max-width: 100%;
-
     height: auto;
 }
 
 .testimonial-full-content table {
     display: block;
-
     width: 100%;
-
     max-width: 100%;
-
     overflow-x: auto;
 }
 
 .testimonial-full-content pre {
     max-width: 100%;
-
     white-space: pre-wrap;
-
     overflow-wrap: anywhere;
 }
 
 .testimonial-full-content code {
     max-width: 100%;
-
     white-space: pre-wrap;
-
     overflow-wrap: anywhere;
 }
 
-/* =========================================================
-       GLIGHTBOX INLINE WRAPPER
-       ========================================================= */
-
+/* GLIGHTBOX INLINE WRAPPER */
 .glightbox-container .ginner-container {
     width: auto;
     max-width: 100%;
@@ -1808,7 +1636,6 @@ WHATS NEW SECTION
 }
 
 /* GLightbox Floating Close Button */
-.gclose,
 .glightbox-container .gclose {
     top: 12px !important;
     right: 12px !important;
@@ -1841,11 +1668,7 @@ WHATS NEW SECTION
 .glightbox-container .gclose svg path {
     fill: #ffffff !important;
 }
-
-/* =========================================================
-       TABLET & MOBILE RESPONSIVE LIGHTBOX
-       ========================================================= */
-
+/* TABLET & MOBILE RESPONSIVE LIGHTBOX */
 @media (max-width: 768px) {
     .testimonial-lightbox-content {
         width: calc(100vw - 24px);
@@ -1868,10 +1691,7 @@ WHATS NEW SECTION
     }
 }
 
-/* =========================================================
-       MOBILE
-       ========================================================= */
-
+/* MOBILE */
 @media (max-width: 480px) {
     .testimonial-lightbox-content {
         width: calc(100vw - 20px);
@@ -1901,30 +1721,23 @@ WHATS NEW SECTION
     }
 }
 
-/* =========================================================
-       VERY SMALL MOBILE
-       ========================================================= */
-
+/* VERY SMALL MOBILE */
 @media (max-width: 360px) {
     .testimonial-lightbox-content {
         width: calc(100vw - 16px);
         max-width: calc(100vw - 16px);
         grid-template-rows: 150px minmax(0, 1fr);
     }
-
     .testimonial-lightbox-image {
         height: 150px;
     }
-
     .testimonial-lightbox-body {
         max-height: calc(100vh - 182px);
         padding: 16px 14px;
     }
-
     .testimonial-lightbox-body h2 {
         font-size: 1.25rem;
     }
-
     .testimonial-lightbox-body .testimonial-full-content {
         font-size: 13px;
     }

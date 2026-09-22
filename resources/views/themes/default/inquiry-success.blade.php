@@ -1,7 +1,7 @@
 @extends('themes.default.common.master')
 @section('post_title', 'Success')
 @section('content')
-    <section class="section-padding bg-slate-50 min-h-[60vh] flex items-center">
+    <section class="section-padding bg-slate-100 min-h-[60vh] flex items-center">
         <div class="container-custom">
             <div class="bg-[#fdfdfd] border border-slate-200 shadow-xl p-8 md:p-12 max-w-xl mx-auto text-center">
                 <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">

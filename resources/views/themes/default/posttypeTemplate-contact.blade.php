@@ -18,8 +18,7 @@
                         We're Ready To Help
                     </h2>
                     <p class="text-slate-600 mt-3 text-base md:text-lg leading-relaxed mb-8">
-                        Complete the form below and a member of our
-                        team will respond as soon as possible.
+                        {!! $data->content !!}
                     </p>
                     @if (session('success'))
                         <div id="flash-message"

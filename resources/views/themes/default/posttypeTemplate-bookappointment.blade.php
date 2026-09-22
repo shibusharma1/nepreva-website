@@ -202,32 +202,32 @@
                         <h3 class="text-xl font-bold">
                             Need Assistance?
                         </h3>
-                        <p class="mt-3 text-white/85 text-sm leading-relaxed">
+                        <p class="mt-3 text-white/85 text-base leading-relaxed">
                             Our team is available to help with
                             appointments, inquiries, travel medicine,
                             health screening and specialist consultations.
                         </p>
                         <div class="space-y-5 mt-8">
                             <div class="flex gap-4">
-                                <i class="fa-solid fa-clock text-secondary text-lg mt-0.5">
+                                <i class="fa-solid fa-clock text-white text-lg mt-0.5">
                                 </i>
                                 <div>
-                                    <h4 class="font-semibold text-sm">
+                                    <h4 class="font-semibold text-base">
                                         Response Time
                                     </h4>
-                                    <p class="text-white/70 text-xs mt-0.5">
+                                    <p class="text-white/70 text-sm mt-0.5">
                                         Within 24 Hours
                                     </p>
                                 </div>
                             </div>
                             <div class="flex gap-4">
-                                <i class="fa-solid fa-phone text-secondary text-lg mt-0.5">
+                                <i class="fa-solid fa-phone text-white text-lg mt-0.5">
                                 </i>
                                 <div>
-                                    <h4 class="font-semibold text-sm">
+                                    <h4 class="font-semibold text-base">
                                         Appointment Desk
                                     </h4>
-                                    <p class="text-white/70 text-xs mt-0.5">
+                                    <p class="text-white/70 text-sm mt-0.5">
                                         <a href="tel:{{ $setting->phone }}" class="hover:underline">
                                             {{ $setting->phone }}
                                         </a>
@@ -235,13 +235,13 @@
                                 </div>
                             </div>
                             <div class="flex gap-4">
-                                <i class="fa-solid fa-envelope text-secondary text-lg mt-0.5">
+                                <i class="fa-solid fa-envelope text-white text-lg mt-0.5">
                                 </i>
                                 <div>
-                                    <h4 class="font-semibold text-sm">
+                                    <h4 class="font-semibold text-base">
                                         Email Support
                                     </h4>
-                                    <p class="text-white/70 text-xs mt-0.5">
+                                    <p class="text-white/70 text-sm mt-0.5">
                                         <a href="mailto:{{ $setting->email_primary }}" class="hover:underline">
                                             {{ $setting->email_primary }}
                                         </a>
@@ -249,18 +249,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="border-t border-white/10 mt-8 pt-6">
-                            <h4 class="font-semibold text-sm">
+                        {{-- <div class="border-t border-white/10 mt-8 pt-6">
+                            <h4 class="font-semibold text-base">
                                 Emergency?
                             </h4>
                             <p class="text-white/70 text-xs mt-2 leading-relaxed">
                                 For urgent medical situations,
                                 please call our emergency team directly.
                             </p>
-                            <a href="tel:{{ $setting->phone }}" class="btn-secondary text-xs inline-flex mt-4">
+                            <a href="tel:{{ $setting->phone }}" class="btn- text-xs inline-flex mt-4">
                                 Call Emergency
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -268,7 +268,7 @@
     </section>
 
     <!-- EMERGENCY SUPPORT -->
-    <section class="section-padding relative overflow-hidden bg-primary">
+    <section class="section-padding relative overflow-hidden bg-gradient-primary">
         <!-- SHAPES -->
         <div class="absolute top-0 left-0 w-[450px] h-[450px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
         </div>
@@ -278,7 +278,7 @@
             <div class="grid xl:grid-cols-12 gap-10 items-center">
                 <!-- LEFT -->
                 <div class="xl:col-span-7">
-                    <span class="inline-flex items-center gap-2 bg-secondary text-white px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider">
+                    <span class="inline-flex items-center gap-2 bg-secondary text-white px-3.5 py-1.5 text-sm font-semibold uppercase tracking-wider">
                         <i class="fa-solid fa-triangle-exclamation text-xs"></i>
                         Emergency Support
                     </span>
@@ -295,56 +295,56 @@
                     <div class="grid md:grid-cols-2 gap-5 mt-8">
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-clock text-secondary text-sm">
+                                <i class="fa-solid fa-clock text-[var(--neutral-50)] text-sm">
                                 </i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">
+                                <h4 class="text-white font-semibold text-base">
                                     24/7 Availability
                                 </h4>
-                                <p class="text-white/70 text-xs mt-1">
+                                <p class="text-white/70 text-sm mt-1">
                                     Emergency assistance whenever you need it.
                                 </p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-user-doctor text-secondary text-sm">
+                                <i class="fa-solid fa-user-doctor text-[var(--neutral-50)] text-sm">
                                 </i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">
+                                <h4 class="text-white font-semibold text-base">
                                     Expert Medical Team
                                 </h4>
-                                <p class="text-white/70 text-xs mt-1">
+                                <p class="text-white/70 text-sm mt-1">
                                     Immediate support from qualified professionals.
                                 </p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-phone text-secondary text-sm">
+                                <i class="fa-solid fa-phone text-[var(--neutral-50)] text-sm">
                                 </i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">
+                                <h4 class="text-white font-semibold text-base">
                                     Fast Response
                                 </h4>
-                                <p class="text-white/70 text-xs mt-1">
+                                <p class="text-white/70 text-sm mt-1">
                                     Reach our support team immediately.
                                 </p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-hospital text-secondary text-sm">
+                                <i class="fa-solid fa-hospital text-[var(--neutral-50)] text-sm">
                                 </i>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold text-sm">
+                                <h4 class="text-white font-semibold text-base">
                                     Trusted Healthcare
                                 </h4>
-                                <p class="text-white/70 text-xs mt-1">
+                                <p class="text-white/70 text-sm mt-1">
                                     Decades of medical excellence and care.
                                 </p>
                             </div>
@@ -361,7 +361,7 @@
                         <h3 class="text-primary text-xl font-bold text-center mt-4">
                             Emergency Hotline
                         </h3>
-                        <p class="text-slate-600 text-xs md:text-sm text-center mt-2">
+                        <p class="text-slate-600 text-sm md:text-sm text-center mt-2">
                             For urgent medical assistance, contact us immediately.
                         </p>
                         <a href="tel:{{ $setting->phone }}"
@@ -370,16 +370,16 @@
                         </a>
                         <div class="grid grid-cols-2 gap-3 mt-4">
                             <a href="tel:{{ $setting->phone }}"
-                                class="border border-slate-300 py-3 text-center text-xs font-semibold text-primary rounded-md hover:border-secondary hover:text-secondary transition">
+                                class="border border-slate-300 py-3 text-center text-sm font-semibold text-primary rounded-md hover:border-secondary hover:text-secondary transition">
                                 Call Now
                             </a>
                             <a href="#appointmentForm"
-                                class="bg-primary text-white py-3 text-center text-xs font-semibold rounded-md hover:bg-secondary transition">
+                                class="bg-primary text-white py-3 text-center text-sm font-semibold rounded-md hover:bg-secondary transition">
                                 Book Visit
                             </a>
                         </div>
                         <div class="border-t border-slate-100 mt-6 pt-5">
-                            <p class="text-xs text-slate-500 text-center">
+                            <p class="text-sm text-slate-500 text-center">
                                 For non-emergency appointments, please use the booking form above.
                             </p>
                         </div>

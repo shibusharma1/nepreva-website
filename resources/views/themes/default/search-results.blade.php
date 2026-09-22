@@ -11,7 +11,7 @@
     @endphp
     @include('themes.default.common.herobanner')
 
-    <section class="section-padding bg-slate-50 min-h-[70vh]">
+    <section class="section-padding bg-slate-100 min-h-[70vh]">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="max-w-3xl mb-8 lg:mb-10">

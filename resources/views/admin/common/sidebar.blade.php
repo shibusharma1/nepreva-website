@@ -1,8 +1,6 @@
 <aside id="sidebar_left" class="nano nano-primary affix">
-
     <!-- Start: Sidebar Left Content -->
     <div class="sidebar-left-content nano-content">
-
         <!-- Start: Sidebar Header -->
         <header class="sidebar-header">
             <!-- Sidebar Widget - Search (hidden) -->

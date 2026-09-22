@@ -399,10 +399,7 @@
                                 $isAboutActive = false;
                                 foreach ($abouts as $about) {
                                     $aboutUrl = url(geturl($about->uri, $about->page_key));
-                                    if (
-                                        $checkActiveUrl($aboutUrl, $about->uri) ||
-                                        $checkActiveUrl(null, $about->page_key)
-                                    ) {
+                                    if ($checkActiveUrl($aboutUrl, $about->uri) || $checkActiveUrl(null, $about->page_key)) {
                                         $isAboutActive = true;
                                         break;
                                     }
@@ -416,9 +413,7 @@
                                     class="nav-link flex items-center gap-2 dropdown-toggle {{ $isAboutActive ? 'active text-secondary' : '' }}"
                                     data-dropdown="aboutDropdown">
                                     {{ $row->post_type }}
-                                    <i
-                                        class="fa-solid fa-angle-down text-[13px] transition-all duration-300 dropdown-icon {{ $isAboutActive ? 'text-secondary' : '' }}">
-                                    </i>
+                                    <i class="fa-solid fa-angle-down text-[13px] transition-all duration-300 dropdown-icon {{ $isAboutActive ? 'text-secondary' : '' }}"></i>
                                 </button>
                                 <div id="aboutDropdown"
                                     class="dropdown-menu absolute top-[120%] left-0 w-[340px]

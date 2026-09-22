@@ -5,7 +5,7 @@
     @include('themes.default.common.herobanner')
 
     @if ($posts)
-        <section class="section-padding bg-slate-50">
+        <section class="section-padding bg-slate-100">
             <div class="container-custom space-y-16">
                 @foreach ($posts as $post)
                     <div class="grid md:grid-cols-2 gap-8 items-center">

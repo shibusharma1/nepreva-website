@@ -32,17 +32,17 @@
     </button>
 
     <!-- Main Content Box (Stacked vertically with Header at TOP) -->
-    <div id="galleryModalBox" class="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-hidden bg-primary/95 rounded-2xl border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.8)] flex flex-col">
+    <div id="galleryModalBox" class="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-hidden bg-primary/95 rounded-lg border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.8)] flex flex-col">
         
         <!-- Header Details Panel (Positioned at TOP) -->
         <div id="galleryModalDetails" class="hidden w-full bg-gradient-primary backdrop-blur-md px-6 py-4 sm:px-8 sm:py-5 border-b border-slate-800 shrink-0">
             <div class="flex flex-wrap items-center gap-3">
-                <span id="galleryModalSubtitle" class="inline-flex items-center gap-1.5 bg-secondary/15 text-secondary text-xs font-bold uppercase tracking-[2px] px-3 py-1 rounded-full border border-secondary/20">
+                <span id="galleryModalSubtitle" class="inline-flex items-center gap-1.5 bg-[var(--neutral-50)] text-secondary text-xs font-bold uppercase tracking-[2px] px-3 py-1 rounded-full border border-secondary/20">
                 </span>
                 <h3 id="galleryModalTitle" class="text-white text-lg sm:text-xl font-bold tracking-wide">
                 </h3>
             </div>
-            <p id="galleryModalDescription" class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-2 max-h-[85px] overflow-y-auto pr-2 custom-scrollbar">
+            <p id="galleryModalDescription" class="text-white/90 text-xs sm:text-sm leading-relaxed mt-2 max-h-[85px] overflow-y-auto pr-2 custom-scrollbar">
             </p>
         </div>
 

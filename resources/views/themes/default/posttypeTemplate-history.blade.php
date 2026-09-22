@@ -142,8 +142,7 @@
                 </div>
 
                 <!-- QUOTE -->
-                <div class="mt-14 bg-slate-50 border-l-4 border-secondary p-8 md:p-10 max-w-4xl mx-auto shadow-sm">
-
+                <div class="mt-12 bg-[var(--neutral-50)] border-l-4 border-secondary p-8 md:p-10 max-w-4xl mx-auto shadow-sm">
                     <p class="text-lg md:text-xl italic text-slate-700 leading-relaxed text-center">
                         "Every photograph tells a story of dedication,
                         innovation and our unwavering commitment to

@@ -197,7 +197,7 @@
           <div class="clearfix"></div>
         </div>
 
-        {{-- <div class="sid_ mb10">
+        <div class="sid_ mb10">
           <label class="field select">
             <select id="template" name="template">
               @foreach($templates as $key => $template)
@@ -206,7 +206,7 @@
             </select>
             <i class="arrow"></i>
           </label>
-        </div> --}}
+        </div>
 
         {{-- <div class="sid_ mb10">
           <label class="field select">
