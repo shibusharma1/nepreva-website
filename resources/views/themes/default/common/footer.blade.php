@@ -7,7 +7,7 @@
                     <a href="{{ url('/') }}">
                         <img src="{{ asset('themes-assets/img/logo.png') }}" alt="CIWEC Hospital & Travel Medicine Center Logo" class="h-20 bg-white p-3 mb-6">
                     </a>
-                    <p class="text-white/80 text-sm md:text-base leading-relaxed">
+                    <p class="text-white text-justify text-sm md:text-base leading-relaxed">
                         {{ $setting->welcome_text }}
                     </p>
                 </div>
@@ -17,12 +17,12 @@
                     </h3>
                     <ul class="space-y-3">
                         <li>
-                            <a href="{{ url('/') }}" class="text-white/80 hover:text-secondary transition">
+                            <a href="{{ url('/') }}" class="text-white hover:text-secondary transition">
                                 Home
                             </a>
                             @foreach ($navigations as $row)
                         <li> 
-                            <a href="{{ url(posttype_url($row->uri)) }}" class="text-white/80 hover:text-secondary transition">{{ $row->post_type }}</a>
+                            <a href="{{ url(posttype_url($row->uri)) }}" class="text-white hover:text-secondary transition">{{ $row->post_type }}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -35,7 +35,7 @@
                         @foreach ($services->skip(1)->take(6) as $service)
                             <li>
                                 <a href="{{ url($service->uri).'.html'}}"
-                                    class="text-white/80 hover:text-secondary transition">
+                                    class="text-white hover:text-secondary transition">
                                     {{ $service->post_title }}
                                 </a>
                             </li>
@@ -47,7 +47,7 @@
                     <h3 class="text-white text-lg font-black mb-6">
                         Subscribe
                     </h3>
-                    <p class="text-white/70 text-sm md:text-base mb-5">
+                    <p class="text-white text-sm md:text-base mb-5">
                         Get healthcare updates and newsletters.
                     </p>
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex">

@@ -293,8 +293,10 @@
         <div class="container-custom relative z-10">
             <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
                 <!-- DOCTOR 1 -->
+                {{-- <article
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary"> --}}
                 <article
-                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary">
+                    class="group order-2 flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary xl:order-1">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('uploads/medium/' . $ktmdoctors->banner) }}"
                             alt="{{ $ktmdoctors->post_title }}" loading="lazy"
@@ -331,8 +333,10 @@
                     </div>
                 </article>
                 <!-- DOCTOR 2 -->
+                {{-- <article
+                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary"> --}}
                 <article
-                    class="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary">
+                    class="group order-3 flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white/90 transition-colors duration-300 hover:border-secondary xl:order-2">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('uploads/medium/' . $pkhdoctors->banner) }}"
                             alt="{{ $pkhdoctors->post_title }}" loading="lazy"
@@ -369,17 +373,19 @@
                     </div>
                 </article>
                 <!-- INTRO / VIEW ALL -->
-                <div class="flex min-w-0 flex-col justify-center border border-slate-200 bg-white/90 p-6 sm:p-8 xl:p-9">
-                    <span
+                {{-- <div class="flex min-w-0 flex-col justify-center border border-slate-200 bg-white/90 p-6 sm:p-8 xl:p-9"> --}}
+                <div
+                    class="order-1 flex min-w-0 flex-col justify-center border border-slate-200 bg-white/90 p-6 sm:p-8 xl:order-3 xl:p-9">
+                    {{-- <span
                         class="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                        <span class="h-1.5 w-1.5 flex-shrink-0 bg-secondary"></span>
+                        {{-- <span class="h-1.5 w-1.5 flex-shrink-0 bg-secondary"></span>
                         {{ $doctorssection->sub_title }}
-                    </span>
+                    </span> --}}
                     <h2 class="text-[clamp(1.5rem,2.2vw,2rem)] font-bold leading-tight text-primary">
                         {{ $doctorssection->post_title }}
                     </h2>
                     <div class="my-5 h-1 w-10 bg-secondary"></div>
-                    <p class="text-base leading-relaxed text-slate-600 sm:text-lg">
+                    <p class="text-base leading-relaxed text-slate-600 text-justify sm:text-lg">
                         {{ $doctorssection->post_excerpt }}
                     </p>
                     <div class="mt-6">

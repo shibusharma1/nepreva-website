@@ -163,8 +163,7 @@
                                     {{ $firstHistory->post_title }}
                                 </h3>
                                 <div class="w-16 h-[3px] bg-secondary mb-5"></div>
-                                <p id="historyDescription"
-                                    class="text-slate-600 text-base md:text-lg leading-relaxed max-w-2xl">
+                                <p id="historyDescription" class="text-slate-600 text-justify text-base md:text-lg leading-relaxed max-w-2xl">
                                     {{ $firstHistory->post_excerpt }}
                                 </p>
                             </div>

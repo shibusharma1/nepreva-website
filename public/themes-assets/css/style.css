@@ -5,6 +5,9 @@
     --secondary: #d71920;
     --secondary-dark: #b7151b;
 
+    --emergency: #b94a48;
+    --emergency-dark: #963b39;
+
     /* TEXT */
     --text-heading: #0f172a;
     --text-body: #475569;
@@ -29,7 +32,7 @@ html {
     scroll-behavior: smooth;
 }
 body {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: "Source Sans 3", sans-serif;
     font-size: clamp(1.03125rem, 0.98rem + 0.25vw, 1.125rem);
     line-height: 1.7;
     color: var(--text-body);
