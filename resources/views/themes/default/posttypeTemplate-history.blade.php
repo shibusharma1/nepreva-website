@@ -156,7 +156,7 @@
         </section>
     @endif
 
-    <section class="section-padding relative overflow-hidden bg-primary/95">
+    <section class="section-padding relative overflow-hidden bg-gradient-primary">
         <!-- DECORATION -->
         <div class="absolute top-0 left-0 w-[400px] h-[400px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
         </div>
@@ -165,10 +165,10 @@
         <div class="container-custom relative z-10">
             <div class="text-center max-w-4xl mx-auto">
                 <!-- SUBTITLE -->
-                <span class="section-label">
-                    {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
+                {{-- <span class="section-label">
+                    <span class="w-1.5 h-1.5 bg-secondary"></span> 
                     Continuing The Journey
-                </span>
+                </span> --}}
                 <!-- TITLE -->
                 <h2 class="text-white text-2xl md:text-3xl font-bold leading-tight mt-2">
                     Building On More Than Four Decades Of Excellence

@@ -4,7 +4,7 @@
 @section('content')
     @include('themes.default.common.herobanner')
 
-    <section class="section-padding bg-slate-100 overflow-hidden">
+    <section class="section-padding bg-slate-100 overflow-hidden" style="padding-bottom: 0px;">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
@@ -34,7 +34,7 @@
                             Show
                         </span>
                         <select id="perPage"
-                            class="h-11 px-4 border border-slate-300 bg-[var(--neutral-50)] text-sm text-slate-700 focus:border-secondary outline-none">
+                            class="h-11 px-4 border border-slate-300 bg-[#fdfdfd] text-sm text-slate-700 focus:border-secondary outline-none">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="20">20</option>
@@ -48,7 +48,7 @@
                         <div class="relative w-full lg:w-[320px]">
                             <input type="text" id="searchInput" placeholder="Search healthinformation..."
                                 autocomplete="off"
-                                class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[var(--neutral-50)] text-sm outline-none focus:border-secondary">
+                                class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[#fdfdfd] text-sm outline-none focus:border-secondary">
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                             </i>
                         </div>

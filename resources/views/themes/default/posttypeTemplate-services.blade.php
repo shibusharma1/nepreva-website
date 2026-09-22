@@ -21,7 +21,7 @@
             </div>
             <!-- LOCATION TOGGLE -->
             <div class="flex justify-center mb-12">
-                <div class="inline-flex bg-slate-100 p-1.5 rounded-full border border-slate-200">
+                <div class="inline-flex bg-[#fdfdfd] p-1.5 rounded-full border border-slate-200">
                     @php
                         $locations = $services->where('post_parent', 26)->take(2);
                     @endphp

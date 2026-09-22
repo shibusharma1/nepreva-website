@@ -373,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
             data.forEach((doctor, index) => {
                 doctorGrid.insertAdjacentHTML(
                     "beforeend",
-                    `<article class="group bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                    `<article class="group bg-[#fdfdfd] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                         <div class="relative overflow-hidden">
                             <img
                                 src="${doctor.image}"
@@ -504,7 +504,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <a href="${doc.file}"
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="inline-flex items-center gap-2 text-primary font-semibold mr-3">
+                           class="inline-flex items-center gap-2 text-black/90 font-medium mr-3">
                             <i class="fa-solid fa-file-pdf text-secondary"></i>
                             ${escapeHtml(doc.title || 'View PDF')}
                         </a>
@@ -517,7 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a href="${item.file}"
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 text-primary font-semibold">
+                       class="inline-flex items-center gap-2 text-black/90 font-medium">
                         <i class="fa-solid fa-file-pdf text-secondary"></i>
                         View PDF
                     </a>
@@ -542,11 +542,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const serialNumber = (currentPage - 1) * perPage + index + 1;
                 publicationTable.innerHTML += `
                     <tr class="border-b border-slate-200 hover:bg-slate-100 transition">
-                        <td class="px-5 py-4 font-semibold text-primary">
+                        <td class="px-5 py-4 font-medium text-black/90">
                             ${serialNumber}
                         </td>
                         <td class="px-5 py-4 text-black/90">
-                            <strong>${escapeHtml(item.title)}</strong>
+                            <strong class="font-medium">${escapeHtml(item.title)}</strong>
                             ${item.content ? `<br>${item.content}` : ''}
                         </td>
                         <td class="px-5 py-4 text-center">
@@ -570,7 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         class="pub-page-btn px-4 py-2 border transition
                         ${currentPage === i
                             ? "bg-primary text-white border-primary"
-                            : "bg-[var(--neutral-50)] text-primary border-slate-300 hover:bg-primary hover:text-white"}">
+                            : "bg-[#fdfdfd] text-primary border-slate-300 hover:bg-primary hover:text-white"}">
                         ${i}
                     </button>
                 `;

@@ -15,7 +15,7 @@
                     <div class="max-w-3xl">
                         <span
                             class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
-                            {{-- <span class="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span> --}}
+                            <span class="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span>
                             {{ $banner->caption }}
                         </span>
                         <h1
@@ -32,7 +32,7 @@
     </section>
     <section class="relative z-20 -mt-10 md:-mt-12 xl:-mt-16">
         <div class="container-custom">
-            <div class="border bg-[var(--neutral-50)] border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
+            <div class="border bg-[#fdfdfd] border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,.08)]">
                 <div class="grid grid-cols-1 md:grid-cols-3">
                     <!-- FIND DOCTOR (Hidden on Mobile) -->
                     <a href="{{ url('doctors-at-ciwec.html') }}"
@@ -237,7 +237,7 @@
             <div class="grid grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4 mt-10 xl:mt-12">
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[#fdfdfd] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="20000">
                         0
@@ -247,7 +247,7 @@
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[#fdfdfd] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="130">
                         0
@@ -256,7 +256,7 @@
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[#fdfdfd] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="40">
                         0
@@ -265,7 +265,7 @@
                 </div>
                 <!-- ITEM -->
                 <div
-                    class="border border-slate-200 bg-[var(--neutral-50)] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
+                    class="border border-slate-200 bg-[#fdfdfd] p-4 md:p-5 text-center hover:border-secondary transition-all duration-300">
                     <h3 class="counter text-primary text-[clamp(1.5rem,2vw,1.875rem)] font-bold leading-tight"
                         data-target="2">
                         0
@@ -537,7 +537,7 @@
             <div class="relative w-full max-w-6xl">
                 <!-- CLOSE -->
                 <button id="closeVideoModal" type="button" aria-label="Close video"
-                    class="absolute -top-14 right-0 w-11 h-11 bg-[var(--neutral-50)] text-primary hover:bg-secondary hover:text-white transition-all duration-300">
+                    class="absolute -top-14 right-0 w-11 h-11 bg-[#fdfdfd] text-primary hover:bg-secondary hover:text-white transition-all duration-300">
                     <i class="fa-solid fa-xmark text-lg"></i> </button> <!-- YOUTUBE VIDEO -->
                 <div class="w-full h-[75vh] bg-black">
                     <iframe id="storyVideo" class="w-full h-full" src="" title="Patient Story Video"
@@ -588,7 +588,7 @@
                 {{-- =================================================
                  GOOGLE RATING
                  ================================================= --}}
-                <div class="border border-slate-200 bg-[var(--neutral-50)] px-6 py-5 shrink-0">
+                <div class="border border-slate-200 bg-[#fdfdfd] px-6 py-5 shrink-0">
 
                     <div class="flex items-center gap-4">
 
@@ -638,7 +638,7 @@
                     @forelse($testimonials as $testimonial)
                         <div class="swiper-slide h-auto">
                             <a href="#testimonial-lightbox-{{ $testimonial->id }}" data-glightbox="type: inline"
-                                class="testimonial-lightbox group block h-full bg-[var(--neutral-50)] border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
+                                class="testimonial-lightbox group block h-full bg-[#fdfdfd] border border-slate-200 p-8 hover:border-secondary transition-all duration-300">
 
                                 <!-- USER -->
                                 <div class="flex items-center gap-4 mb-6">
@@ -686,7 +686,7 @@
                                 </div>
 
                                 <!-- READ FULL STORY -->
-                                <div class="inline-flex items-center gap-2 text-primary font-semibold text-sm">
+                                <div class="inline-flex pl-5 items-center gap-2 text-primary font-semibold text-sm">
                                     Read Full Story
                                     <i
                                         class="fa-solid fa-arrow-right text-secondary transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -701,7 +701,7 @@
                          ================================================= --}}
                         <div class="swiper-slide">
 
-                            <div class="bg-[var(--neutral-50)] border border-slate-200 p-10 text-center">
+                            <div class="bg-[#fdfdfd] border border-slate-200 p-10 text-center">
 
                                 <h3 class="text-primary text-xl font-bold">
 
@@ -900,7 +900,7 @@
     @endif
 
     @if ($publications)
-        <section class="section-padding bg-slate-100 overflow-hidden relative">
+        <section class="section-padding bg-slate-100 overflow-hidden relative" style="padding-bottom: 0px;">
             <div class="container-custom z-10 relative">
                 <!-- HEADER -->
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
@@ -926,7 +926,7 @@
                         <!-- LEFT -->
                         <div class="flex items-center gap-3">
                             <span class="text-sm font-semibold text-primary"> Show </span> <select id="perPage"
-                                class="h-11 px-4 border border-slate-300 bg-[var(--neutral-50)] text-sm text-slate-700 focus:border-secondary outline-none">
+                                class="h-11 px-4 border border-slate-300 bg-[#fdfdfd] text-sm text-slate-700 focus:border-secondary outline-none">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -937,7 +937,7 @@
                             <div class="relative w-full lg:w-[320px]">
                                 <input type="text" id="searchInput" placeholder="Search publications..."
                                     autocomplete="off"
-                                    class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[var(--neutral-50)] text-sm outline-none focus:border-secondary">
+                                    class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[#fdfdfd] text-sm outline-none focus:border-secondary">
                                 <i
                                     class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                                 </i>
@@ -959,7 +959,7 @@
                 <!-- CONTENT -->
                 <div id="publicationContent">
                     <!-- TABLE -->
-                    <div class="overflow-x-auto border border-slate-200 bg-[var(--neutral-50)]">
+                    <div class="overflow-x-auto border border-slate-200 bg-[#fdfdfd]">
                         <table class="w-full">
                             <thead>
                                 <tr class="bg-primary text-white">

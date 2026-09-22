@@ -11,7 +11,7 @@
                     <div class="grid md:grid-cols-2 gap-8 items-center">
                         @if ($loop->iteration % 2 != 0)
                             <div class="order-2 md:order-1">
-                                <div class="bg-[var(--neutral-50)] border border-slate-200 p-8 shadow-sm">
+                                <div class="bg-[#fdfdfd] border border-slate-200 p-8 shadow-sm">
                                     <h2 class="text-primary text-2xl font-bold mb-4">{{ $post->post_title }}</h2>
                                     <div class="text-slate-600 leading-relaxed text-base md:text-lg prose prose-lg max-w-none">{!! $post->post_content !!}</div>
                                 </div>
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div>
-                                <div class="bg-[var(--neutral-50)] border border-slate-200 p-8 shadow-sm">
+                                <div class="bg-[#fdfdfd] border border-slate-200 p-8 shadow-sm">
                                     <h2 class="text-primary text-2xl font-bold mb-4">{{ $post->post_title }}</h2>
                                     <div class="text-slate-600 leading-relaxed text-base md:text-lg prose prose-lg max-w-none">{!! $post->post_content !!}</div>
                                 </div>

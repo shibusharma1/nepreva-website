@@ -1,5 +1,5 @@
 @include('themes.default.common.locationsection')
-<footer class="bg-primary overflow-hidden">
+<footer class="bg-gradient-primary overflow-hidden">
     <div class="border-b border-white/10">
         <div class="container-custom">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 py-14">
@@ -88,10 +88,10 @@
     <div class="pb-20 lg:pb-0 md:pb-0">
         <div class="container-custom">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 py-6">
-                <p class="text-white/60 text-sm">
+                <p class="text-white/90 text-sm">
                     © {{ date('Y') }} {{ $setting->copyright_text }}
                 </p>
-                <p class="text-sm text-white/70">
+                <p class="text-sm text-white/90">
                     Designed & Developed by
                     <a href="https://cyberlink.com.np/" class="text-white hover:underline">
                         Cyberlink Pvt. Ltd.
@@ -99,11 +99,11 @@
                 </p>
                 <div class="flex gap-5 text-sm">
                     <a href="{{ url('page/privacy-policy.html') }}"
-                        class="text-white/60 hover:text-secondary transition">
+                        class="text-white/90 hover:text-secondary transition">
                         Privacy Policy
                     </a>
                     <a href="{{ url('page/terms-and-conditions.html') }}"
-                        class="text-white/60 hover:text-secondary transition">
+                        class="text-white/90 hover:text-secondary transition">
                         Terms & Conditions
                     </a>
                 </div>

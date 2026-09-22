@@ -20,7 +20,7 @@
             <div class="grid xl:grid-cols-12 gap-8">
                 <!-- FORM -->
                 <div class="xl:col-span-8">
-                    <div class="bg-[var(--neutral-50)] border border-slate-200 shadow-md p-6 md:p-10">
+                    <div class="bg-[#fdfdfd] border border-slate-200 shadow-md p-6 md:p-10">
                         @if (session('error'))
                             <div id="flash-message"
                                 class="my-4 rounded-lg border border-red-200 bg-red-50 px-5 py-4 text-red-700 text-sm">
@@ -272,7 +272,7 @@
         <!-- SHAPES -->
         <div class="absolute top-0 left-0 w-[450px] h-[450px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
         </div>
-        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3">
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3">
         </div>
         <div class="container-custom relative z-10">
             <div class="grid xl:grid-cols-12 gap-10 items-center">
@@ -353,7 +353,7 @@
                 </div>
                 <!-- RIGHT -->
                 <div class="xl:col-span-5">
-                    <div class="bg-[var(--neutral-50)] p-6 md:p-8 shadow-xl border border-slate-200">
+                    <div class="bg-[#fdfdfd] p-6 md:p-8 shadow-xl border border-slate-200">
                         <div class="w-14 h-14 bg-red-100 flex items-center justify-center mx-auto rounded-full">
                             <i class="fa-solid fa-truck-medical text-red-600 text-2xl">
                             </i>

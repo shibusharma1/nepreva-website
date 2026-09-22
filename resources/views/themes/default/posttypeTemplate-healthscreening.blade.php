@@ -29,7 +29,7 @@
 
 
                 <!-- FEATURED GUIDE -->
-                <div class="bg-[var(--neutral-50)] border border-slate-200 overflow-hidden">
+                <div class="bg-[#fdfdfd] border border-slate-200 overflow-hidden">
 
                     <div class="grid lg:grid-cols-12 items-center">
 

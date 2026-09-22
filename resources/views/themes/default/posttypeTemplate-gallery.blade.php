@@ -44,7 +44,7 @@
                         <img loading="lazy" decoding="async" src="{{ asset('uploads/galleries/' . $gallery->picture) }}"
                             alt="{{ $gallery->caption ?? 'CIWEC Gallery' }}" class="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
-                            <div class="w-12 h-12 bg-[var(--neutral-50)] text-primary flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                            <div class="w-12 h-12 bg-[#fdfdfd] text-primary flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
                                 <i class="fa-solid fa-magnifying-glass-plus text-lg"></i>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                 @forelse($videos as $video)
                     <div class="video-item {{ Str::slug($video->category->caption) }}">
                         <div
-                            class="group bg-[var(--neutral-50)] border border-slate-200 overflow-hidden hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                            class="group bg-[#fdfdfd] border border-slate-200 overflow-hidden hover:border-secondary hover:-translate-y-2 transition-all duration-500">
                             <div class="relative overflow-hidden">
                                 <img src="{{ $video->thumbnail }}"
                                     class="w-full h-[260px] object-cover transition-all duration-700 group-hover:scale-110"
@@ -101,7 +101,7 @@
                                 <button class="videoBtn absolute inset-0 flex items-center justify-center"
                                     data-video="{{ $video->embed_url }}">
                                     <div
-                                        class="w-20 h-20 rounded-full bg-[var(--neutral-50)] text-primary flex items-center justify-center shadow-2xl">
+                                        class="w-20 h-20 rounded-full bg-[#fdfdfd] text-primary flex items-center justify-center shadow-2xl">
                                         <i class="fa-solid fa-play text-xl ml-1"></i>
                                     </div>
                                 </button>
@@ -121,7 +121,7 @@
                     </div>
                 @empty
                     <div class="col-span-full">
-                        <div class="bg-[var(--neutral-50)] py-20 text-center">
+                        <div class="bg-[#fdfdfd] py-20 text-center">
                             <i class="fa-solid fa-video text-5xl text-primary"></i>
                             <h3 class="text-2xl font-bold mt-6">
                                 No Videos Available

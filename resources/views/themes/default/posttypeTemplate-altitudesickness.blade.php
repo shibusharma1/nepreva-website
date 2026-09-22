@@ -24,7 +24,7 @@
                                 alt="{{ $altitudeExpert->post_title }}" class="w-full h-[400px] md:h-[450px] object-cover">
 
                             <!-- FLOATING CARD -->
-                            <div class="absolute bottom-6 left-6 bg-[var(--neutral-50)] shadow-xl p-5 border border-slate-100 max-w-[260px]">
+                            <div class="absolute bottom-6 left-6 bg-[#fdfdfd] shadow-xl p-5 border border-slate-100 max-w-[260px]">
                                 <span class="text-secondary font-bold uppercase text-xs tracking-[1px]">
                                     Specialized Care
                                 </span>
@@ -117,7 +117,7 @@
                 <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
                     <!-- LOW RISK -->
                     <div
-                        class="group bg-[var(--neutral-50)] border border-slate-200 border-t-4 border-t-green-500 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                        class="group bg-[#fdfdfd] border border-slate-200 border-t-4 border-t-green-500 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
                         <span class="inline-block bg-green-100 text-green-700 px-3 py-1 text-xs font-bold uppercase tracking-[1px]">
                             LOW RISK
                         </span>
@@ -152,7 +152,7 @@
                     </div>
                     <!-- MODERATE -->
                     <div
-                        class="group bg-[var(--neutral-50)] border border-slate-200 border-t-4 border-t-yellow-500 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                        class="group bg-[#fdfdfd] border border-slate-200 border-t-4 border-t-yellow-500 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
                         <span class="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 text-xs font-bold uppercase tracking-[1px]">
                             MODERATE RISK
                         </span>
@@ -187,7 +187,7 @@
                     </div>
                     <!-- HIGH -->
                     <div
-                        class="group bg-[var(--neutral-50)] border border-slate-200 border-t-4 border-t-orange-500 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                        class="group bg-[#fdfdfd] border border-slate-200 border-t-4 border-t-orange-500 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
                         <span class="inline-block bg-orange-100 text-orange-700 px-3 py-1 text-xs font-bold uppercase tracking-[1px]">
                             HIGH RISK
                         </span>
@@ -222,7 +222,7 @@
                     </div>
                     <!-- EXTREME -->
                     <div
-                        class="group bg-[var(--neutral-50)] border border-slate-200 border-t-4 border-t-red-600 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
+                        class="group bg-[#fdfdfd] border border-slate-200 border-t-4 border-t-red-600 p-6 hover:-translate-y-2 hover:shadow-xl transition-all duration-500">
                         <span class="inline-block bg-red-100 text-red-700 px-3 py-1 text-xs font-bold uppercase tracking-[1px]">
                             EXTREME RISK
                         </span>
@@ -280,7 +280,7 @@
             <div class="grid lg:grid-cols-2 gap-8">
                 <!-- AMS -->
                 <div
-                    class="group bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                    class="group bg-[#fdfdfd] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                     <div class="h-1.5 bg-yellow-500">
                     </div>
                     <div class="p-6 md:p-8">
@@ -331,7 +331,7 @@
                 </div>
                 <!-- HAPE -->
                 <div
-                    class="group bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                    class="group bg-[#fdfdfd] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                     <div class="h-1.5 bg-red-500">
                     </div>
                     <div class="p-6 md:p-8">
@@ -382,7 +382,7 @@
                 </div>
                 <!-- HACE -->
                 <div
-                    class="group bg-var(--neutral-50) border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                    class="group bg-#fdfdfd border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                     <div class="h-1.5 bg-red-600">
                     </div>
                     <div class="p-6 md:p-8">
@@ -433,7 +433,7 @@
                 </div>
                 <!-- DEHYDRATION -->
                 <div
-                    class="group bg-[var(--neutral-50)] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                    class="group bg-[#fdfdfd] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                     <div class="h-1.5 bg-blue-500">
                     </div>
                     <div class="p-6 md:p-8">
@@ -510,7 +510,7 @@
                 </div>
 
 
-                <div class="grid lg:grid-cols-12 gap-0 overflow-hidden bg-[var(--neutral-50)] border border-slate-200 mb-10">
+                <div class="grid lg:grid-cols-12 gap-0 overflow-hidden bg-[#fdfdfd] border border-slate-200 mb-10">
 
                     <div class="lg:col-span-5">
 

@@ -192,7 +192,7 @@
                                 class="inline-flex items-center gap-2 text-secondary text-sm font-bold uppercase tracking-[2px] mb-4">
                                 {{ $firstHistory->sub_title }}
                             </span>
-                            <h3 id="historyTitleMobile" class="text-2xl md:text-3xl font-black leading-tight mb-4">
+                            <h3 id="historyTitleMobile" class="text-2xl md:text-3xl text-black font-black leading-tight mb-4">
                                 {{ $firstHistory->post_title }}
                             </h3>
                             <div class="w-16 h-[3px] bg-secondary mb-5"></div>

@@ -17,7 +17,7 @@
                     name, specialty or location.
                 </p>
             </div>
-            <div id="doctor-search" class="bg-[var(--neutral-50)] border border-slate-200 p-6 lg:p-8 shadow-sm">
+            <div id="doctor-search" class="bg-[#fdfdfd] border border-slate-200 p-6 lg:p-8 shadow-sm">
                 <div class="grid lg:grid-cols-12 gap-5">
                     <div class="lg:col-span-5">
                         <label class="block text-sm font-semibold text-primary mb-2">
@@ -132,7 +132,7 @@
             <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                 @foreach ($specialities as $speciality)
                     <div
-                        class="group bg-[var(--neutral-50)] border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                        class="group bg-[#fdfdfd] border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
                         <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
                             <i class="{{ $speciality->associated_title }} text-primary hover:text-secondary text-3xl">
                             </i>

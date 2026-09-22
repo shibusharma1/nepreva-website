@@ -4,7 +4,7 @@
 @section('content')
     @include('themes.default.common.herobanner')
 
-    <section class="section-padding bg-slate-100 overflow-hidden">
+    <section class="section-padding bg-slate-100 overflow-hidden" style="padding-bottom: 0px;">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">

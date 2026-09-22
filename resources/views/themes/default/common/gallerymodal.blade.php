@@ -35,7 +35,7 @@
     <div id="galleryModalBox" class="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-hidden bg-primary/95 rounded-2xl border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.8)] flex flex-col">
         
         <!-- Header Details Panel (Positioned at TOP) -->
-        <div id="galleryModalDetails" class="hidden w-full bg-primary/90 backdrop-blur-md px-6 py-4 sm:px-8 sm:py-5 border-b border-slate-800 shrink-0">
+        <div id="galleryModalDetails" class="hidden w-full bg-gradient-primary backdrop-blur-md px-6 py-4 sm:px-8 sm:py-5 border-b border-slate-800 shrink-0">
             <div class="flex flex-wrap items-center gap-3">
                 <span id="galleryModalSubtitle" class="inline-flex items-center gap-1.5 bg-secondary/15 text-secondary text-xs font-bold uppercase tracking-[2px] px-3 py-1 rounded-full border border-secondary/20">
                 </span>
@@ -47,12 +47,12 @@
         </div>
 
         <!-- Image Container (Below Header) -->
-        <div class="relative flex-1 bg-black/60 flex items-center justify-center min-h-[300px] sm:min-h-[420px] md:min-h-[500px] max-h-[70vh] p-4 sm:p-6 overflow-hidden">
+        <div class="relative flex-1 bg-black/80 flex items-center justify-center min-h-[300px] sm:min-h-[420px] md:min-h-[500px] max-h-[70vh] p-4 sm:p-6 overflow-hidden">
             <img id="galleryModalImg" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg transition-all duration-500 ease-out shadow-2xl">
         </div>
 
         <!-- Footer Info Bar -->
-        <div class="bg-primary/95 px-6 py-2.5 border-t border-slate-800/60 flex items-center justify-between text-xs text-white font-medium shrink-0">
+        <div class="bg-gradient-primary px-6 py-2.5 border-t border-slate-800/60 flex items-center justify-between text-xs text-white font-medium shrink-0">
             <span class="flex items-center gap-2">
                 <i class="fa-solid fa-hospital text-white text-xs"></i>
                 CIWEC Hospital
