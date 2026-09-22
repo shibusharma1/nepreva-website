@@ -370,10 +370,10 @@
         </div>
         <div class="container-custom relative z-10">
             <div class="text-center max-w-4xl mx-auto">
-                <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                    <span class="w-2 h-2 bg-secondary"></span>
+                {{-- <span class="section-label">
+                    <span class="w-1.5 h-1.5 bg-secondary"></span>
                     Your Health, Our Commitment
-                </span>
+                </span> --}}
                 <!-- TITLE -->
                 <h2 class="text-white text-2xl md:text-3xl font-bold leading-tight mt-2">
                     Experience World-Class Healthcare At CIWEC Hospital

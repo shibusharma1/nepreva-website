@@ -167,7 +167,7 @@
 
                         <!-- CONTENT -->
                         <div class="lg:col-span-7 p-8 lg:p-12">
-                            <span class="text-secondary text-xs font-bold uppercase tracking-[2px]">
+                            <span class="text-white text-xs font-bold uppercase tracking-[2px]">
                                 {{ $featuredstory->sub_title }}
                             </span>
 

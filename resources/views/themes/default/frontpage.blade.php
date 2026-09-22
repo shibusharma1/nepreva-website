@@ -15,7 +15,7 @@
                     <div class="max-w-3xl">
                         <span
                             class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 mb-6">
-                            <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                            {{-- <span class="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span> --}}
                             {{ $banner->caption }}
                         </span>
                         <h1
@@ -127,9 +127,8 @@
         </div>
         <div class="relative z-10 container-custom">
             <div class="mb-6 max-w-3xl lg:mb-8">
-                <span
-                    class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                    <span class="h-1.5 w-1.5 bg-secondary"></span>
+                <span class="section-label">
+                    {{-- <span class="h-1.5 w-1.5 bg-secondary"></span> --}}
                     {{ $whyciwecheading->sub_title }}
                 </span>
                 <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-6" data-aos="fade-up">
@@ -193,9 +192,9 @@
             <div class="grid xl:grid-cols-2 gap-12 xl:gap-20 items-center">
                 <!-- LEFT -->
                 <div>
-                    <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                        <span class="w-2 h-2 bg-secondary"></span> {{ $trustedworldwide->sub_title }} </span>
+                    <span class="section-label">
+                        {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
+                        {{ $trustedworldwide->sub_title }} </span>
                     <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-6">
                         {{ $trustedworldwide->post_title }}
                     </h2>
@@ -322,9 +321,10 @@
                             <button type="button" onclick="openHomeDoctor('ktm')"
                                 class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
                                 <span>View Profile</span>
+
                                 <span
-                                    class="flex h-6 w-6 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
-                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                    class="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
+                                    <i class="fa-solid fa-arrow-right text-xs leading-none"></i>
                                 </span>
                             </button>
                         </div>
@@ -359,9 +359,10 @@
                             <button type="button" onclick="openHomeDoctor('pkh')"
                                 class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
                                 <span>View Profile</span>
+
                                 <span
-                                    class="flex h-6 w-6 items-center justify-center bg-secondary text-white transition-transform duration-300 group-hover:translate-x-1">
-                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                    class="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
+                                    <i class="fa-solid fa-arrow-right text-xs leading-none"></i>
                                 </span>
                             </button>
                         </div>
@@ -402,9 +403,9 @@
                 <!-- HEADING -->
                 <div class="text-center mb-6 md:mb-8">
                     @if ($patientStoriesHeading->sub_title)
-                        <span
-                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                            <span class="w-2 h-2 bg-secondary"></span> {{ $patientStoriesHeading->sub_title }} </span>
+                        <span class="section-label">
+                            {{-- <span class="w-1.5 h-1.5 bg-secondary"></span>  --}}
+                            {{ $patientStoriesHeading->sub_title }} </span>
                         @endif @if ($patientStoriesHeading->post_title)
                             <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-6">
                                 {{ $patientStoriesHeading->post_title }}
@@ -544,7 +545,7 @@
     @endif
 
     <!-- TESTIMONIAL -->
-      <section class="section-padding bg-slate-100 overflow-hidden">
+    <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             {{-- =====================================================
              HEADER
@@ -553,10 +554,9 @@
 
                 <div class="max-w-3xl">
 
-                    <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
+                    <span class="section-label">
 
-                        <span class="w-2 h-2 bg-secondary"></span>
+                        {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
 
                         {{ $testimonialheading->sub_title ?? 'PATIENT FEEDBACK' }}
 
@@ -753,7 +753,7 @@
                     <span
                         class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[2px] mb-3">
 
-                        <span class="w-1.5 h-1.5 bg-secondary"></span>
+                        {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
 
                         Patient Experience
 
@@ -856,9 +856,9 @@
                 <!-- HEADER -->
                 <div class="max-w-3xl mb-12">
                     @if ($awardheading->sub_title)
-                        <span
-                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                            <span class="w-2 h-2 bg-secondary"></span> {{ $awardheading->sub_title }} </span>
+                        <span class="section-label">
+                            {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
+                            {{ $awardheading->sub_title }} </span>
                         @endif @if ($awardheading->post_title)
                             <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
                                 {{ $awardheading->post_title }}
@@ -900,9 +900,9 @@
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
                     <div class="max-w-3xl">
                         @if ($publications->sub_title)
-                            <span
-                                class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                                <span class="w-2 h-2 bg-secondary"></span> {{ $publications->sub_title }} </span>
+                            <span class="section-label">
+                                {{-- <span class="w-1.5 h-1.5 bg-secondary"></span>  --}}
+                                {{ $publications->sub_title }} </span>
                             @endif @if ($publications->post_title)
                                 <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
                                     {{ $publications->post_title }}
@@ -932,7 +932,8 @@
                                 <input type="text" id="searchInput" placeholder="Search publications..."
                                     autocomplete="off"
                                     class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[var(--neutral-50)] text-sm outline-none focus:border-secondary">
-                                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                                <i
+                                    class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                                 </i>
                             </div>
                             <button type="button" id="resetPublications"

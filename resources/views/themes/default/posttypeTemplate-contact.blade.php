@@ -8,10 +8,10 @@
         <div class="container-custom">
             <div class="grid xl:grid-cols-[1.2fr_.8fr] gap-10 items-start">
                 <div class="bg-[var(--neutral-50)] border border-slate-200 shadow-md p-6 md:p-10 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1.5 bg-secondary">
-                    </div>
+                    {{-- <div class="absolute top-0 left-0 w-full h-1.5 bg-secondary">
+                    </div> --}}
                     <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-2">
-                        <span class="w-2 h-2 bg-secondary"></span>
+                        {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
                         Send A Message
                     </span>
                     <h2 class="section-title">

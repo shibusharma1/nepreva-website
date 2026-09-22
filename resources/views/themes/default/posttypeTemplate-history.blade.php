@@ -165,8 +165,8 @@
         <div class="container-custom relative z-10">
             <div class="text-center max-w-4xl mx-auto">
                 <!-- SUBTITLE -->
-                <span class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                    <span class="w-2 h-2 bg-secondary"></span>
+                <span class="section-label">
+                    {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
                     Continuing The Journey
                 </span>
                 <!-- TITLE -->

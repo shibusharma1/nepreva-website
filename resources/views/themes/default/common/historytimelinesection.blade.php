@@ -109,7 +109,7 @@
                     <!-- HEADER -->
                     <div class="max-w-3xl mb-4 lg:mb-5">
                         <span
-                            class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
+                            class="section-label">
                             <span class="w-2 h-2 bg-secondary"></span>
                             Our Journey
                         </span>

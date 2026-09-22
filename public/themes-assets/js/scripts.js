@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <!-- DETAILS -->
                 <div class="lg:col-span-7 p-5 sm:p-8 lg:p-10">
                     <!-- Department Badge -->
-                    <span class="inline-flex items-center gap-1.5 sm:gap-2 bg-secondary/10 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-secondary rounded-md">
+                    <span class="inline-flex items-center gap-1.5 sm:gap-2 bg-primary/10 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-primary rounded-md">
                         <span class="h-1.5 w-1.5 bg-secondary rounded-full"></span>
                         ${doctor.department || 'Medical Specialist'}
                     </span>

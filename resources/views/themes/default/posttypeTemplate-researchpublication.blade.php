@@ -10,8 +10,8 @@
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
                 <div class="max-w-3xl">
                     <span
-                        class="inline-flex items-center gap-2 text-secondary text-xs font-semibold uppercase tracking-[3px] mb-3">
-                        <span class="w-2 h-2 bg-secondary"></span>
+                        class="section-label">
+                        {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
                         Research Publications
                     </span>
                     <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">

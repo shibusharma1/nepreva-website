@@ -2,8 +2,8 @@
     /* BRAND */
     --primary: #11497b;
     --primary-dark: #0d3a61;
-    --secondary: #e53935;
-    --secondary-dark: #c62828;
+    --secondary: #d71920;
+    --secondary-dark: #b7151b;
 
     /* TEXT */
     --text-heading: #0f172a;
@@ -58,10 +58,10 @@ body {
 .section-label {
     display: inline-block;
     font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 3px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--secondary);
+    color: var(--primary);
     margin-bottom: 10px;
 }
 .section-title {
@@ -75,20 +75,20 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: var(--secondary);
+    color: var(--primary);
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     /* margin-bottom: 16px; */
 }
-.section-subtitle::before {
+/* .section-subtitle::before {
     content: "";
     width: 8px;
     height: 8px;
     background: var(--secondary);
     flex-shrink: 0;
-}
+} */
 .btn-primary {
     display: inline-flex;
     align-items: center;

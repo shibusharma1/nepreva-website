@@ -27,7 +27,7 @@
                     <div class="w-full p-5 sm:p-7 lg:p-8">
                         @if ($serviceSubtitle)
                             <span class="mb-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
-                                <span class="h-1.5 w-1.5 bg-secondary"></span>
+                                {{-- <span class="h-1.5 w-1.5 bg-secondary"></span> --}}
                                 {{ $serviceSubtitle }}
                             </span>
                         @endif
