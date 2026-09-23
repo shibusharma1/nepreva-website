@@ -42,7 +42,7 @@
                                 alt="{{ $featuredGuide->post_title }}" class="w-full h-full min-h-[420px] object-cover">
 
                             <div class="absolute top-6 left-6">
-                                <span class="bg-secondary text-white px-4 py-2 text-xs font-bold uppercase">
+                                <span class="bg-secondary text-white px-4 py-2 text-xs font-semibold uppercase">
                                     Most Popular Guide
                                 </span>
                             </div>

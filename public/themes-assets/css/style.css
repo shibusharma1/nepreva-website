@@ -811,9 +811,9 @@ textarea.form-control {
 .ciwec-image-wrapper {
     width: 340px;
     height: 340px;
-    border-radius: 16px;
+    border-radius: 10px;
     overflow: hidden;
-    border: 8px solid white;
+    /* border: 8px solid white; */
     box-shadow: 0 20px 50px rgba(17, 73, 123, 0.15);
     position: relative;
     z-index: 5;

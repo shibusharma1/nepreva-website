@@ -179,7 +179,7 @@
                             <div class="mt-6 flex items-start gap-3">
                                 <input id="terms" type="checkbox" name="terms" required
                                     class="mt-0.5 h-4 w-4 accent-[var(--primary)] cursor-pointer">
-                                <label for="terms" class="text-xs text-slate-600 leading-relaxed cursor-pointer">
+                                <label for="terms" class="text-sm text-slate-600 leading-relaxed cursor-pointer">
                                     I accept the
                                     <a href="{{ url('page/terms-and-conditions.html') }}"
                                         class="text-primary font-semibold hover:underline">
