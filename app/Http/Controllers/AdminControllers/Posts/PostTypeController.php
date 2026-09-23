@@ -149,6 +149,7 @@ class PostTypeController extends Controller
    */
   public function update(Request $request, PostTypeModel $postTypeModel, $posttype, $id)
   {
+    // dd($request->all());
     $request->validate([
       'post_type' => 'required',
       'uri' => 'required'

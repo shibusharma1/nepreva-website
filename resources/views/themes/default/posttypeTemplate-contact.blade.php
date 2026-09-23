@@ -15,7 +15,7 @@
                         Send A Message
                     </span>
                     <h2 class="section-title">
-                        We're Ready To Help
+                        {{ $data->uid }}
                     </h2>
                     <p class="text-slate-600 mt-3 text-base md:text-lg leading-relaxed mb-8">
                         {!! $data->content !!}
