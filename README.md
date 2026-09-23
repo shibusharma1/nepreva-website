@@ -1,4 +1,4 @@
-# CIWEC Hospital Website — UI Audit & Improvement Guide
+# CIWEC Hospital Website
 
 This repository contains the frontend/UI work and design-system guidance for the CIWEC Hospital website.
 
