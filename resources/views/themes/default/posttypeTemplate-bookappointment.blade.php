@@ -35,7 +35,6 @@
                                 @endif
                             </div>
                         @endif
-
                         <form action="{{ route('sendmail_appointment') }}" method="POST">
                             @csrf
                             <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
@@ -209,8 +208,7 @@
                         </p>
                         <div class="space-y-5 mt-8">
                             <div class="flex gap-4">
-                                <i class="fa-solid fa-clock text-white text-lg mt-0.5">
-                                </i>
+                                <i class="fa-solid fa-clock text-white text-lg mt-0.5"></i>
                                 <div>
                                     <h4 class="font-semibold text-base">
                                         Response Time
@@ -221,8 +219,7 @@
                                 </div>
                             </div>
                             <div class="flex gap-4">
-                                <i class="fa-solid fa-phone text-white text-lg mt-0.5">
-                                </i>
+                                <i class="fa-solid fa-phone text-white text-lg mt-0.5"></i>
                                 <div>
                                     <h4 class="font-semibold text-base">
                                         Appointment Desk
@@ -235,8 +232,7 @@
                                 </div>
                             </div>
                             <div class="flex gap-4">
-                                <i class="fa-solid fa-envelope text-white text-lg mt-0.5">
-                                </i>
+                                <i class="fa-solid fa-envelope text-white text-lg mt-0.5"></i>
                                 <div>
                                     <h4 class="font-semibold text-base">
                                         Email Support
@@ -249,18 +245,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="border-t border-white/10 mt-8 pt-6">
-                            <h4 class="font-semibold text-base">
-                                Emergency?
-                            </h4>
-                            <p class="text-white/70 text-xs mt-2 leading-relaxed">
-                                For urgent medical situations,
-                                please call our emergency team directly.
-                            </p>
-                            <a href="tel:{{ $setting->phone }}" class="btn- text-xs inline-flex mt-4">
-                                Call Emergency
-                            </a>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -278,7 +262,7 @@
             <div class="grid xl:grid-cols-12 gap-10 items-center">
                 <!-- LEFT -->
                 <div class="xl:col-span-7">
-                    <span class="inline-flex items-center gap-2 bg-secondary text-white px-3.5 py-1.5 text-sm font-semibold uppercase tracking-wider">
+                    <span class="inline-flex items-center gap-2 bg-secondary text-white px-3.5 py-1.5 text-sm font-medium captalize">
                         <i class="fa-solid fa-triangle-exclamation text-xs"></i>
                         Emergency Support
                     </span>
@@ -295,8 +279,7 @@
                     <div class="grid md:grid-cols-2 gap-5 mt-8">
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-clock text-[var(--neutral-50)] text-sm">
-                                </i>
+                                <i class="fa-solid fa-clock text-[var(--neutral-50)] text-sm"></i>
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold text-base">
@@ -309,8 +292,7 @@
                         </div>
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-user-doctor text-[var(--neutral-50)] text-sm">
-                                </i>
+                                <i class="fa-solid fa-user-doctor text-[var(--neutral-50)] text-sm"></i>
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold text-base">
@@ -323,8 +305,7 @@
                         </div>
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-phone text-[var(--neutral-50)] text-sm">
-                                </i>
+                                <i class="fa-solid fa-phone text-[var(--neutral-50)] text-sm"></i>
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold text-base">
@@ -337,8 +318,7 @@
                         </div>
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-hospital text-[var(--neutral-50)] text-sm">
-                                </i>
+                                <i class="fa-solid fa-hospital text-[var(--neutral-50)] text-sm"></i>
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold text-base">
@@ -355,8 +335,7 @@
                 <div class="xl:col-span-5">
                     <div class="bg-[#fdfdfd] p-6 md:p-8 shadow-xl border border-slate-200">
                         <div class="w-14 h-14 bg-red-100 flex items-center justify-center mx-auto rounded-full">
-                            <i class="fa-solid fa-truck-medical text-red-600 text-2xl">
-                            </i>
+                            <i class="fa-solid fa-truck-medical text-red-600 text-2xl"></i>
                         </div>
                         <h3 class="text-primary text-xl font-bold text-center mt-4">
                             Emergency Hotline
@@ -364,17 +343,14 @@
                         <p class="text-slate-600 text-sm md:text-sm text-center mt-2">
                             For urgent medical assistance, contact us immediately.
                         </p>
-                        <a href="tel:{{ $setting->phone }}"
-                            class="block text-center bg-secondary text-white text-xl font-bold py-3.5 rounded-md mt-6 hover:bg-primary transition">
+                        <a href="tel:{{ $setting->phone }}" class="block text-center bg-secondary text-white text-xl font-bold py-3.5 rounded-md mt-6 hover:bg-primary transition">
                             {{ $setting->phone }}
                         </a>
                         <div class="grid grid-cols-2 gap-3 mt-4">
-                            <a href="tel:{{ $setting->phone }}"
-                                class="border border-slate-300 py-3 text-center text-sm font-semibold text-primary rounded-md hover:border-secondary hover:text-secondary transition">
+                            <a href="tel:{{ $setting->phone }}" class="border border-slate-300 py-3 text-center text-sm font-semibold text-primary rounded-md hover:border-secondary hover:text-secondary transition">
                                 Call Now
                             </a>
-                            <a href="#appointmentForm"
-                                class="bg-primary text-white py-3 text-center text-sm font-semibold rounded-md hover:bg-secondary transition">
+                            <a href="#appointmentForm" class="bg-primary text-white py-3 text-center text-sm font-semibold rounded-md hover:bg-secondary transition">
                                 Book Visit
                             </a>
                         </div>

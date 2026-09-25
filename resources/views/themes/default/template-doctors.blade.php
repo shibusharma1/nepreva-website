@@ -24,31 +24,25 @@
                             Search Doctor
                         </label>
                         <div class="relative">
-                            <input type="text" id="doctorSearch" placeholder="Search by doctor name..."
-                                class="w-full h-14 border border-slate-300 pl-14 pr-5 focus:border-secondary outline-none transition">
-                            <i
-                                class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" id="doctorSearch" placeholder="Search by doctor name..." class="w-full h-14 border border-slate-300 pl-14 pr-5 focus:border-secondary outline-none transition">
+                            <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         </div>
                     </div>
-
                     <div class="lg:col-span-3">
                         <label class="block text-sm font-semibold text-primary mb-2">
                             Department
                         </label>
-                        <select id="departmentFilter"
-                            class="w-full h-14 border border-slate-300 px-4 focus:border-secondary outline-none">
+                        <select id="departmentFilter" class="w-full h-14 border border-slate-300 px-4 focus:border-secondary outline-none">
                             <option value="">
                                 All Departments
                             </option>
                         </select>
                     </div>
-
                     <div class="lg:col-span-2">
                         <label class="block text-sm font-semibold text-primary mb-2">
                             Location
                         </label>
-                        <select id="locationFilter"
-                            class="w-full h-14 border border-slate-300 px-4 focus:border-secondary outline-none">
+                        <select id="locationFilter" class="w-full h-14 border border-slate-300 px-4 focus:border-secondary outline-none">
                             <option value="">
                                 All Locations
                             </option>
@@ -61,8 +55,7 @@
                         </select>
                     </div>
                     <div class="lg:col-span-2 flex items-end">
-                        <button id="resetFilters"
-                            class="w-full h-14 bg-primary text-white font-semibold hover:bg-secondary transition">
+                        <button id="resetFilters" class="w-full h-14 bg-primary text-white font-semibold hover:bg-secondary transition">
                             Reset
                         </button>
                     </div>
@@ -70,9 +63,6 @@
             </div>
             <div class="flex flex-wrap items-center justify-between gap-4 my-6">
                 <div>
-                    {{-- <span class="text-secondary font-semibold uppercase tracking-[3px]">
-                        Our Medical Team
-                    </span> --}}
                     <h2 class="section-title mt-2">
                         Available Doctors
                     </h2>
@@ -131,11 +121,9 @@
             </div>
             <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
                 @foreach ($specialities as $speciality)
-                    <div
-                        class="group bg-[#fdfdfd] border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                    <div class="group bg-[#fdfdfd] border border-slate-200 p-8 text-center hover:border-secondary hover:-translate-y-2 transition-all duration-500">
                         <div class="w-16 h-16 mx-auto bg-primary/10 flex items-center justify-center mb-6">
-                            <i class="{{ $speciality->associated_title }} text-primary hover:text-secondary text-3xl">
-                            </i>
+                            <i class="{{ $speciality->associated_title }} text-primary hover:text-secondary text-3xl"></i>
                         </div>
                         <h3 class="text-primary text-2xl font-black">
                             {{ $speciality->post_title }}
@@ -161,8 +149,7 @@
                         </p>
                     </div>
                     <div class="lg:col-span-4">
-                        <img src="{{ asset('uploads/medium/' . $expertcare->banner) }}" alt="{{ $expertcare->post_title }}"
-                            class="w-full h-[300px] object-cover">
+                        <img src="{{ asset('uploads/medium/' . $expertcare->banner) }}" alt="{{ $expertcare->post_title }}" class="w-full h-[300px] object-cover">
                     </div>
                 </div>
             </div>

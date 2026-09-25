@@ -3,15 +3,11 @@
 @section('meta_description', $data->meta_description)
 @section('content')
     @include('themes.default.common.herobanner')
-
     <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <div class="grid xl:grid-cols-[1.2fr_.8fr] gap-10 items-start">
                 <div class="bg-[#fdfdfd] border border-slate-200 shadow-md p-6 md:p-10 relative overflow-hidden">
-                    {{-- <div class="absolute top-0 left-0 w-full h-1.5 bg-secondary">
-                    </div> --}}
                     <span class="section-label">
-                        {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
                         Send A Message
                     </span>
                     <h2 class="section-title">
@@ -43,7 +39,6 @@
                     @endif
                     <form action="{{ route('sendmail_contact') }}" method="POST" class="space-y-5">
                         @csrf
-
                         <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
                         <div class="grid md:grid-cols-2 gap-5">
                             <!-- Full Name -->
@@ -51,77 +46,44 @@
                                 <label for="full_name" class="block text-sm font-semibold text-primary mb-2">
                                     Full Name
                                 </label>
-                                <input type="text" name="full_name" placeholder="Enter your full name"
-                                    class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
+                                <input type="text" name="full_name" placeholder="Enter your full name" class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
                             </div>
-
                             <!-- Email -->
                             <div>
                                 <label class="block text-sm font-semibold text-primary mb-2">
                                     Email Address
                                 </label>
-                                <input type="email" name="email" placeholder="Enter your email"
-                                    class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
+                                <input type="email" name="email" placeholder="Enter your email" class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
                             </div>
                         </div>
-
                         <div class="grid md:grid-cols-2 gap-5">
                             <!-- Phone -->
                             <div>
                                 <label class="block text-sm font-semibold text-primary mb-2">
                                     Phone Number
                                 </label>
-                                <input type="text" name="phone" placeholder="Enter your phone number"
-                                    class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
+                                <input type="text" name="phone" placeholder="Enter your phone number" class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
                             </div>
-
                             <!-- Subject -->
                             <div>
                                 <label class="block text-sm font-semibold text-primary mb-2">
                                     Subject
                                 </label>
-                                <input type="text" name="subject" placeholder="Enter subject"
-                                    class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
+                                <input type="text" name="subject" placeholder="Enter subject" class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
                             </div>
                         </div>
-
                         <!-- Message -->
                         <div>
                             <label class="block text-sm font-semibold text-primary mb-2">
                                 Message
                             </label>
-                            <textarea rows="5" name="message" placeholder="How can we help you?"
-                                class="w-full p-4 border border-slate-300 text-sm focus:border-secondary outline-none transition resize-none"></textarea>
+                            <textarea rows="5" name="message" placeholder="How can we help you?" class="w-full p-4 border border-slate-300 text-sm focus:border-secondary outline-none transition resize-none"></textarea>
                         </div>
-
                         <!-- Button -->
                         <button type="submit" class="btn-primary text-sm">
                             Send Message
                         </button>
                     </form>
-                    {{-- <div class="grid md:grid-cols-3 gap-4 mt-8 border-t border-slate-100 pt-6">
-                        <div class="bg-slate-50 border border-slate-200 p-4 text-center">
-                            <i class="fa-solid fa-clock text-secondary mb-2 text-lg">
-                            </i>
-                            <p class="text-xs font-semibold text-primary">
-                                Quick Response
-                            </p>
-                        </div>
-                        <div class="bg-slate-50 border border-slate-200 p-4 text-center">
-                            <i class="fa-solid fa-shield-halved text-secondary mb-2 text-lg">
-                            </i>
-                            <p class="text-xs font-semibold text-primary">
-                                Secure Inquiry
-                            </p>
-                        </div>
-                        <div class="bg-slate-50 border border-slate-200 p-4 text-center">
-                            <i class="fa-solid fa-user-doctor text-secondary mb-2 text-lg">
-                            </i>
-                            <p class="text-xs font-semibold text-primary">
-                                Expert Support
-                            </p>
-                        </div>
-                    </div> --}}
                 </div>
                 <!-- HOSPITAL INFORMATION -->
                 <div class="space-y-6">
@@ -129,8 +91,7 @@
                     <div class="bg-[#fdfdfd] border border-slate-200 p-6 md:p-7 shadow-sm">
                         <div class="flex items-center gap-4 mb-4">
                             <div class="w-12 h-12 bg- bg-secondary/10 flex items-center justify-center">
-                                <i class="fa-solid fa-hospital text-secondary text-xl">
-                                </i>
+                                <i class="fa-solid fa-hospital text-secondary text-xl"></i>
                             </div>
                             <div>
                                 <h3 class="text-primary text-xl font-bold">
@@ -167,27 +128,6 @@
                             Nepal
                         </p>
                     </div>
-                    <!-- EMERGENCY -->
-                    {{-- <div class="bg-secondary/85 text-white p-6 md:p-7 shadow-sm">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-white/10 flex items-center justify-center">
-                                <i class="fa-solid fa-truck-medical text-xl">
-                                </i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold">
-                                    Emergency Care
-                                </h3>
-                                <p class="text-white/80 text-xs uppercase tracking-wider">
-                                    Available 24/7
-                                </p>
-                            </div>
-                        </div>
-                        <a href="tel:+97714524111" class="inline-flex items-center gap-2 text-sm font-bold hover:underline">
-                            Call Emergency
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div> --}}
                     <!-- OFFICE HOURS -->
                     <div class="bg-[#fdfdfd] border border-slate-200 p-6 md:p-7 shadow-sm">
                         <h3 class="text-primary text-lg font-bold mb-4">

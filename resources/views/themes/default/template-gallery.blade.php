@@ -41,8 +41,7 @@
             <div id="galleryGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
                 @forelse ($galleries as $key => $gallery)
                     <div class="gallery-item group relative cursor-pointer overflow-hidden border border-slate-200 {{ Str::slug($gallery->category->caption) }}">
-                        <img loading="lazy" decoding="async" src="{{ asset('uploads/galleries/' . $gallery->picture) }}"
-                            alt="{{ $gallery->caption ?? 'CIWEC Gallery' }}" class="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105">
+                        <img loading="lazy" decoding="async" src="{{ asset('uploads/galleries/' . $gallery->picture) }}" alt="{{ $gallery->caption ?? 'CIWEC Gallery' }}" class="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
                             <div class="w-12 h-12 bg-[#fdfdfd] text-primary flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
                                 <i class="fa-solid fa-magnifying-glass-plus text-lg"></i>
@@ -90,18 +89,13 @@
             <div id="videoGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
                 @forelse($videos as $video)
                     <div class="video-item {{ Str::slug($video->category->caption) }}">
-                        <div
-                            class="group bg-[#fdfdfd] border border-slate-200 overflow-hidden hover:border-secondary hover:-translate-y-2 transition-all duration-500">
+                        <div class="group bg-[#fdfdfd] border border-slate-200 overflow-hidden hover:border-secondary hover:-translate-y-2 transition-all duration-500">
                             <div class="relative overflow-hidden">
-                                <img src="{{ $video->thumbnail }}"
-                                    class="w-full h-[260px] object-cover transition-all duration-700 group-hover:scale-110"
-                                    alt="{{ $video->title }}">
+                                <img src="{{ $video->thumbnail }}" class="w-full h-[260px] object-cover transition-all duration-700 group-hover:scale-110" alt="{{ $video->title }}">
                                 <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-all">
                                 </div>
-                                <button class="videoBtn absolute inset-0 flex items-center justify-center"
-                                    data-video="{{ $video->embed_url }}">
-                                    <div
-                                        class="w-20 h-20 rounded-full bg-[#fdfdfd] text-primary flex items-center justify-center shadow-2xl">
+                                <button class="videoBtn absolute inset-0 flex items-center justify-center" data-video="{{ $video->embed_url }}">
+                                    <div class="w-20 h-20 rounded-full bg-[#fdfdfd] text-primary flex items-center justify-center shadow-2xl">
                                         <i class="fa-solid fa-play text-xl ml-1"></i>
                                     </div>
                                 </button>
@@ -136,29 +130,15 @@
     <div id="videoModal" class="fixed inset-0 z-[9999] hidden">
         <div id="videoOverlay" class="absolute inset-0 bg-black/90">
         </div>
-        <div class="relative
-        flex
-        items-center
-        justify-center
-        h-screen
-        p-4">
-            <button id="closeVideo"
-                class="absolute
-            top-6
-            right-6
-            text-white
-            text-3xl
-            z-10">
+      <div class="relative flex items-center justify-center h-screen p-4">
+            <button id="closeVideo" class="absolute top-6 right-6 text-white text-3xl z-10">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <div class="w-full
-            max-w-6xl
-            aspect-video">
+            <div class="w-full max-w-6xl aspect-video">
                 <iframe id="videoFrame" class="w-full h-full" src="" allowfullscreen>
                 </iframe>
             </div>
         </div>
     </div>
-
     @include('themes.default.common.gallerymodal')
 @endsection

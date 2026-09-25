@@ -52,7 +52,6 @@
                             <a href="{{ url('page/bookappointment.html') }}"
                                 class="btn-primary inline-flex items-center gap-2 text-sm">
                                 Book Appointment
-                                {{-- <i class="fa-solid fa-arrow-right text-xs"></i> --}}
                             </a>
                             <a href="{{ url('page/contact.html') }}"
                                 class="btn-secondary inline-flex items-center gap-2 text-sm">

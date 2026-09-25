@@ -3,25 +3,20 @@
 @section('meta_description', $data->meta_description)
 @section('content')
     @include('themes.default.common.herobanner')
-
     <section class="section-padding bg-slate-100 overflow-hidden" style="padding-bottom: 0px;">
         <div class="container-custom">
             <!-- HEADER -->
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
                 <div class="max-w-3xl">
-                    <span
-                        class="section-label">
-                        {{-- <span class="w-1.5 h-1.5 bg-secondary"></span> --}}
+                    <span class="section-label">
                         Research Health Information
                     </span>
                     <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
                         Health Informations
-
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8">
                         Explore health care updates, travel medicine insights,
                         research health information and hospital healthdata.
-
                     </p>
                 </div>
             </div>
@@ -33,8 +28,7 @@
                         <span class="text-sm font-semibold text-primary">
                             Show
                         </span>
-                        <select id="perPage"
-                            class="h-11 px-4 border border-slate-300 bg-[#fdfdfd] text-sm text-slate-700 focus:border-secondary outline-none">
+                        <select id="perPage" class="h-11 px-4 border border-slate-300 bg-[#fdfdfd] text-sm text-slate-700 focus:border-secondary outline-none">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="20">20</option>
@@ -46,14 +40,10 @@
                     <!-- SEARCH & RESET -->
                     <div class="flex items-center gap-3 w-full lg:w-auto">
                         <div class="relative w-full lg:w-[320px]">
-                            <input type="text" id="searchInput" placeholder="Search healthinformation..."
-                                autocomplete="off"
-                                class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[#fdfdfd] text-sm outline-none focus:border-secondary">
-                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                            </i>
+                            <input type="text" id="searchInput" placeholder="Search healthinformation..." autocomplete="off" class="w-full h-11 pl-11 pr-4 border border-slate-300 bg-[#fdfdfd] text-sm outline-none focus:border-secondary">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         </div>
-                        <button type="button" id="resetPublications"
-                            class="reset-pub-btn h-11 px-5 bg-primary text-white text-sm font-semibold hover:bg-secondary transition flex items-center gap-2 shrink-0">
+                        <button type="button" id="resetPublications" class="reset-pub-btn h-11 px-5 bg-primary text-white text-sm font-semibold hover:bg-secondary transition flex items-center gap-2 shrink-0">
                             <i class="fa-solid fa-rotate-right text-xs"></i>
                             Reset
                         </button>
@@ -62,14 +52,7 @@
             </div>
             <!-- LOADER -->
             <div id="publicationLoader" class="hidden py-12">
-                <div
-                    class="w-12 h-12 border-[3px]
-                border-slate-200
-                border-t-secondary
-                rounded-full
-                animate-spin
-                mx-auto">
-                </div>
+              <div class="w-12 h-12 border-[3px] border-slate-200 border-t-secondary rounded-full animate-spin mx-auto"></div>
             </div>
             <!-- CONTENT -->
             <div id="publicationContent">
@@ -100,7 +83,6 @@
             </div>
         </div>
     </section>
-
     <script type="application/json" id="healthInformationData">
         {!! json_encode(
             $healthinformation->map(function ($post) {

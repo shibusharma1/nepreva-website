@@ -18,17 +18,13 @@
                             </div>
                             <div class="order-1 md:order-2">
                                 <div class="overflow-hidden border border-slate-200 shadow-sm">
-                                    <img src="{{ $post->banner ? asset('uploads/medium/' . $post->banner) : asset('themes-assets/img/commit.jpg') }}"
-                                        class="w-full h-[350px] object-cover hover:scale-105 transition duration-500"
-                                        alt="{{ $post->post_title }}" loading="lazy" />
+                                    <img src="{{ $post->banner ? asset('uploads/medium/' . $post->banner) : asset('themes-assets/img/commit.jpg') }}" class="w-full h-[350px] object-cover hover:scale-105 transition duration-500" alt="{{ $post->post_title }}" loading="lazy" />
                                 </div>
                             </div>
                         @else
                             <div>
                                 <div class="overflow-hidden border border-slate-200 shadow-sm">
-                                    <img src="{{ $post->banner ? asset('uploads/medium/' . $post->banner) : asset('themes-assets/img/blog2.webp') }}"
-                                        class="w-full h-[350px] object-cover hover:scale-105 transition duration-500"
-                                        alt="{{ $post->post_title }}" loading="lazy" />
+                                    <img src="{{ $post->banner ? asset('uploads/medium/' . $post->banner) : asset('themes-assets/img/blog2.webp') }}" class="w-full h-[350px] object-cover hover:scale-105 transition duration-500" alt="{{ $post->post_title }}" loading="lazy" />
                                 </div>
                             </div>
                             <div>

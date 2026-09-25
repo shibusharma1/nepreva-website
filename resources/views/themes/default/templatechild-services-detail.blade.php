@@ -18,8 +18,7 @@
                 <!-- Sticky Service Image -->
                 <div class="lg:col-span-5 lg:sticky lg:top-24 lg:self-start">
                     <div class="overflow-hidden">
-                        <img src="{{ $serviceImage }}" alt="{{ $serviceTitle }}"
-                            class="block h-56 w-full object-cover sm:h-64 lg:h-[340px]">
+                        <img src="{{ $serviceImage }}" alt="{{ $serviceTitle }}" class="block h-56 w-full object-cover sm:h-64 lg:h-[340px]">
                     </div>
                 </div>
                 <!-- Service Content -->
@@ -49,13 +48,10 @@
                         @endif
                         <!-- Buttons -->
                         <div class="mt-6 flex flex-wrap gap-3">
-                            <a href="{{ url('page/bookappointment.html') }}"
-                                class="btn-primary inline-flex items-center gap-2 text-sm">
+                            <a href="{{ url('page/bookappointment.html') }}" class="btn-primary inline-flex items-center gap-2 text-sm">
                                 Book Appointment
-                                {{-- <i class="fa-solid fa-arrow-right text-xs"></i> --}}
                             </a>
-                            <a href="{{ url('page/contact.html') }}"
-                                class="btn-secondary inline-flex items-center gap-2 text-sm">
+                            <a href="{{ url('page/contact.html') }}" class="btn-secondary inline-flex items-center gap-2 text-sm">
                                 Make an Inquiry
                             </a>
                         </div>

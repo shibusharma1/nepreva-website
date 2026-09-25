@@ -10,7 +10,6 @@
         ];
     @endphp
     @include('themes.default.common.herobanner')
-
     <section class="section-padding bg-slate-100 min-h-[70vh]">
         <div class="container-custom">
             <!-- HEADER -->
@@ -28,19 +27,15 @@
                     </strong>
                 </p>
             </div>
-
             <!-- SEARCH AGAIN -->
             <div class="max-w-3xl mb-10">
                 <form action="{{ route('search') }}" method="GET" class="flex items-center">
-                    <input type="text" name="q" value="{{ $search }}" required minlength="2"
-                        placeholder="Search CIWEC..."
-                        class="flex-1 h-14 px-5 border border-slate-300 border-r-0 bg-white text-slate-700 outline-none focus:border-secondary transition">
+                    <input type="text" name="q" value="{{ $search }}" required minlength="2" placeholder="Search CIWEC..." class="flex-1 h-14 px-5 border border-slate-300 border-r-0 bg-white text-slate-700 outline-none focus:border-secondary transition">
                     <button type="submit" aria-label="Search" class="btn-primary h-14 min-w-[60px] px-6 rounded-l-none flex items-center justify-center">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
             </div>
-
             @if ($results->count())
                 <!-- RESULT COUNT -->
                 <div class="mb-6 text-sm text-slate-500 font-medium">
@@ -58,7 +53,6 @@
                     </strong>
                     results
                 </div>
-
                 <!-- RESULTS -->
                 <div class="space-y-4">
                     @foreach ($results as $result)
@@ -75,7 +69,6 @@
                                 <div class="hidden sm:flex shrink-0 w-12 h-12 bg-primary/5 text-primary items-center justify-center group-hover:bg-secondary group-hover:text-white transition">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
-
                                 <!-- CONTENT -->
                                 <div class="flex-1 min-w-0">
                                     @if ($result->sub_title)
@@ -97,7 +90,6 @@
                                             {{ \Illuminate\Support\Str::limit(strip_tags($result->post_content), 180) }}
                                         </p>
                                     @endif
-
                                     <a href="{{ $resultUrl }}" class="inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-secondary transition">
                                         View Details
                                         <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
@@ -107,7 +99,6 @@
                         </article>
                     @endforeach
                 </div>
-
                 <!-- PAGINATION -->
                 <div class="mt-10">
                     {{ $results->links() }}
