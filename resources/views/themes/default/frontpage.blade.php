@@ -252,7 +252,6 @@
     </section>
 
     @include('themes.default.common.historytimelinesection')
-
     <section class="section-padding relative isolate overflow-hidden bg-slate-100">
         <div class="container-custom relative z-10">
             <div class="grid items-stretch gap-5 xl:grid-cols-[1fr_1fr_1.05fr] xl:gap-6">
@@ -273,7 +272,7 @@
                         <p class="mt-1 text-sm font-medium leading-6 text-secondary">
                             {{ $ktmdoctors->sub_title }}
                         </p>
-                        <div class="mt-2 border-t border-slate-100 pt-3">
+                        <div class="pt-3">
                             <div class="flex items-center gap-2 text-sm font-medium text-slate-500">
                                 <i class="fa-solid fa-user-doctor text-secondary"></i>
                                 <span>{{ $ktmdoctors->post_excerpt }}</span>
@@ -281,7 +280,7 @@
                         </div>
                         <div class="mt-4">
                             <button type="button" onclick="openHomeDoctor('ktm')"
-                                class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
+                                class="inline-flex items-center gap-3 text-base font-semibold text-primary">
                                 <span>View Profile</span>
                                 <span class="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
                                     <i class="fa-solid fa-arrow-right text-xs leading-none"></i>
@@ -307,7 +306,7 @@
                         <p class="mt-1 text-sm font-medium leading-6 text-secondary">
                             {{ $pkhdoctors->sub_title }}
                         </p>
-                        <div class="mt-2 border-t border-slate-100 pt-3">
+                        <div class="pt-3">
                             <div class="flex items-center gap-2 text-sm font-medium text-slate-500">
                                 <i class="fa-solid fa-user-doctor text-secondary"></i>
                                 <span>{{ $ktmdoctors->post_excerpt }}</span>
@@ -315,7 +314,7 @@
                         </div>
                         <div class="mt-4">
                             <button type="button" onclick="openHomeDoctor('pkh')"
-                                class="inline-flex items-center gap-3 text-sm font-semibold text-primary">
+                                class="inline-flex items-center gap-3 text-base font-semibold text-primary">
                                 <span>View Profile</span>
                                 <span class="flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1">
                                     <i class="fa-solid fa-arrow-right text-xs leading-none"></i>
@@ -481,15 +480,10 @@
         <div id="videoModal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/90 p-4">
             <div class="relative w-full max-w-6xl">
                 <!-- CLOSE -->
-                <button id="closeVideoModal" type="button" aria-label="Close video"
-                    class="absolute -top-14 right-0 w-11 h-11 bg-[#fdfdfd] text-primary hover:bg-secondary hover:text-white transition-all duration-300 rounded-full">
+                <button id="closeVideoModal" type="button" aria-label="Close video" class="absolute -top-14 right-0 w-11 h-11 bg-[#fdfdfd] text-primary hover:bg-secondary hover:text-white transition-all duration-300 rounded-full">
                     <i class="fa-solid fa-xmark text-lg"></i> </button> <!-- YOUTUBE VIDEO -->
                 <div class="w-full h-[75vh] bg-black">
-                    <iframe id="storyVideo" class="w-full h-full" src="" title="Patient Story Video"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                    </iframe>
+                    <iframe id="storyVideo" class="w-full h-full" src="" title="Patient Story Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

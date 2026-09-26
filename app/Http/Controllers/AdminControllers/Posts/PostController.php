@@ -492,7 +492,7 @@ class PostController extends Controller
     $data->template = $request->template;
     $data->template_child = $request->template_child;
     $data->post_title = $request->post_title;
-    $data->uri = Str::slug($request->uri);
+    // $data->uri = Str::slug($request->uri);
     $data->sub_title = $request->sub_title;
     $data->uid = $request->uid;
     $data->post_content = $request->post_content;

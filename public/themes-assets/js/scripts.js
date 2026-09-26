@@ -389,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <span class="text-secondary text-sm font-semibold">
                                 ${doctor.department}
                             </span>
-                            <h3 class="text-primary text-xl font-black mt-2">
+                            <h3 class="text-primary text-xl font-black mt-1">
                                 ${doctor.name}
                             </h3>
                             <p class="text-slate-500 text-sm mt-1 leading-7">

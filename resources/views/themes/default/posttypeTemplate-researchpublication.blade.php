@@ -9,14 +9,13 @@
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
                 <div class="max-w-3xl">
                     <span class="section-label">
-                        Research Publications
+                        {{ $data->uid}}
                     </span>
                     <h2 class="text-black text-2xl md:text-3xl font-black leading-tight mb-4">
-                        Research Informations & Publications
+                        {{ $data->post_type }}
                     </h2>
                     <p class="text-slate-600 text-base md:text-lg leading-8">
-                        Explore healthcare updates, travel medicine insights,
-                        research publications and hospital healthdata.
+                         {!! $data->content !!}
                     </p>
                 </div>
             </div>

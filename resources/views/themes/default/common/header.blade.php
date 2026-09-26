@@ -359,12 +359,8 @@
                                             @endphp
                                             <a href="{{ $aboutUrl }}" class="dropdown-item {{ $isItemActive ? 'active' : '' }}">
                                                 <div>
-                                                    <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}">
-                                                        {{ $about->post_title }}
-                                                    </h5>
-                                                    <span>
-                                                        {{ $about->sub_title }}
-                                                    </span>
+                                                    <h5 class="{{ $isItemActive ? 'text-secondary font-bold' : '' }}"> {{ $about->post_title }} </h5>
+                                                    <span> {{ $about->sub_title }} </span>
                                                 </div>
                                                 <i class="fa-solid fa-arrow-right {{ $isItemActive ? 'text-secondary' : '' }}"></i>
                                             </a>
@@ -384,10 +380,7 @@
                                     }
                                 }
                                 if (!$isServiceActive) {
-                                    $isServiceActive = $checkActiveUrl(
-                                        url('page/' . posttype_url($row->uri)),
-                                        $row->uri,
-                                    );
+                                    $isServiceActive = $checkActiveUrl(url('page/' . posttype_url($row->uri)), $row->uri);
                                 }
                             @endphp
                             <div class="relative dropdown-parent">

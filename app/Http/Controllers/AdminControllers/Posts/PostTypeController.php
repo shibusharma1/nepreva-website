@@ -203,7 +203,7 @@ class PostTypeController extends Controller
     $data->meta_keyword = $request->meta_keyword;
     $data->meta_description = $request->meta_description;
     $data->content = $request->content;
-    $data->uri = Str::slug($request->uri);
+    // $data->uri = Str::slug($request->uri);
     $data->template = $request->template;
     $data->uid = $request->uid;
     $data->ordering = $request->ordering;

@@ -48,7 +48,6 @@
     @if ($historicalgalleryheading)
         <section class="section-padding bg-slate-100 overflow-hidden">
             <div class="container-custom">
-                <!-- HEADING -->
                 <div class="text-center max-w-4xl mx-auto mb-12">
                     <span class="section-subtitle">
                         {{ $historicalgalleryheading->sub_title }}
@@ -60,7 +59,6 @@
                         {{ $historicalgalleryheading->post_excerpt }}
                     </p>
                 </div>
-                <!-- GALLERY -->
                 <div id="historyGalleryGrid" class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
                     @foreach ($historicalgallery as $galleryItem)
                         @php
@@ -93,11 +91,9 @@
                     @endforeach
                 </div>
                 <!-- QUOTE -->
-                <div class="mt-12 bg-[var(--neutral-50)] border-l-4 border-secondary p-8 md:p-10 max-w-4xl mx-auto shadow-sm">
+                <div class="mt-10 bg-[var(--neutral-50)] border-l-4 border-secondary p-8 md:p-10 max-w-4xl mx-auto shadow-sm">
                     <p class="text-lg md:text-xl italic text-slate-700 leading-relaxed text-center">
-                        "Every photograph tells a story of dedication,
-                        innovation and our unwavering commitment to
-                        providing exceptional healthcare services."
+                        {!! $data->post_excerpt !!}
                     </p>
                 </div>
             </div>
@@ -111,15 +107,11 @@
             <div class="text-center max-w-4xl mx-auto">
                 <!-- TITLE -->
                 <h2 class="text-white text-2xl md:text-3xl font-bold leading-tight mt-2">
-                    Building On More Than Four Decades Of Excellence
+                    {!! $data->associated_title !!}
                 </h2>
                 <!-- TEXT -->
                 <p class="max-w-3xl mx-auto text-white/80 text-base md:text-lg leading-relaxed mt-4">
-                    Our history is built on trust, innovation,
-                    compassion and clinical excellence.
-                    As we move forward, CIWEC Hospital remains
-                    committed to delivering world-class healthcare
-                    for future generations.
+                    {!! $data->post_content !!}
                 </p>
                 <!-- CTA BUTTONS -->
                 <div class="flex flex-wrap justify-center gap-4 mt-6 lg:mt-8">

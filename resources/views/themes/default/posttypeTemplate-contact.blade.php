@@ -8,10 +8,10 @@
             <div class="grid xl:grid-cols-[1.2fr_.8fr] gap-10 items-start">
                 <div class="bg-[#fdfdfd] border border-slate-200 shadow-md p-6 md:p-10 relative overflow-hidden">
                     <span class="section-label">
-                        Send A Message
+                         {{ $data->uid }}
                     </span>
                     <h2 class="section-title">
-                        {{ $data->uid }}
+                        {{ $data->caption }}
                     </h2>
                     <p class="text-slate-600 mt-3 text-base md:text-lg leading-relaxed mb-8">
                         {!! $data->content !!}
@@ -103,8 +103,7 @@
                             </div>
                         </div>
                         <p class="text-black text-base leading-relaxed">
-                            Kapurdhara Marg<br>
-                            Kathmandu, Nepal
+                            {!! $setting->address !!}
                         </p>
                     </div>
                     <!-- POKHARA -->
@@ -124,8 +123,7 @@
                             </div>
                         </div>
                         <p class="text-black text-base leading-relaxed">
-                            Lakeside, Pokhara<br>
-                            Nepal
+                            {!! $setting->address2 !!}
                         </p>
                     </div>
                     <!-- OFFICE HOURS -->

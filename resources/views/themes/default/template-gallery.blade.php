@@ -11,14 +11,11 @@
                     Explore CIWEC
                 </span>
                 <h2 class="section-title">
-                    Moments That Define Our Journey
+                      {!! $data->post_excerpt !!}
                 </h2>
-                <p class="mt-6 text-slate-600 leading-8">
-                    Explore photographs and videos showcasing
-                    our healthcare services, medical professionals,
-                    events, facilities and milestones throughout
-                    CIWEC's history.
-                </p>
+                {{-- <p class="mt-4 text-slate-600 leading-8">
+                   {!! $data->post_content !!}
+                </p> --}}
             </div>
         </div>
         <!-- Filters -->
@@ -30,7 +27,7 @@
                 </button>
                 <!-- Dynamic Categories -->
                 @foreach ($categories as $category)
-                    <button class="gallery-filter" data-filter="{{ Str::slug($category->caption) }}">
+                    <button class="gallery-filter capitalize" data-filter="{{ Str::slug($category->caption) }}">
                         {{ $category->category }}
                     </button>
                 @endforeach
@@ -72,18 +69,14 @@
 
     <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
-            <div class="text-center mb-12">
+            <div class="text-center mb-10">
                 <span class="section-subtitle">
                     Video Gallery
                 </span>
                 <h2 class="section-title">
-                    Stories In Motion
+                    {{ $data->associated_title }}
                 </h2>
-                <p class="max-w-3xl mx-auto text-slate-600 mt-6 leading-8">
-                    Explore videos highlighting CIWEC's healthcare
-                    services, community initiatives, medical expertise
-                    and memorable moments throughout our journey.
-                </p>
+             
             </div>
             {{-- Videos --}}
             <div id="videoGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -104,10 +97,10 @@
                                 <span class="text-secondary font-bold text-sm">
                                     {{ $video->category->category }}
                                 </span>
-                                <h3 class="text-primary text-xl font-black mt-3">
+                                <h3 class="text-primary text-xl font-black mt-1">
                                     {{ $video->title }}
                                 </h3>
-                                <p class="text-slate-600 mt-4 leading-7">
+                                <p class="text-slate-600 mt-3 text-justify leading-7">
                                     {{ $video->caption }}
                                 </p>
                             </div>
@@ -127,18 +120,17 @@
         </div>
     </section>
 
-    <div id="videoModal" class="fixed inset-0 z-[9999] hidden">
-        <div id="videoOverlay" class="absolute inset-0 bg-black/90">
-        </div>
-      <div class="relative flex items-center justify-center h-screen p-4">
-            <button id="closeVideo" class="absolute top-6 right-6 text-white text-3xl z-10">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="w-full max-w-6xl aspect-video">
-                <iframe id="videoFrame" class="w-full h-full" src="" allowfullscreen>
-                </iframe>
+       <!-- YOUTUBE VIDEO MODAL -->
+        <div id="videoModal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/90 p-4">
+            <div class="relative w-full max-w-6xl">
+                <!-- CLOSE -->
+                <button id="closeVideo" type="button" aria-label="Close video" class="absolute -top-14 right-0 w-11 h-11 bg-[#fdfdfd] text-primary hover:bg-secondary hover:text-white transition-all duration-300 rounded-full">
+                    <i class="fa-solid fa-xmark text-lg"></i> 
+                </button> <!-- YOUTUBE VIDEO -->
+                <div class="w-full h-[75vh] bg-black">
+                    <iframe id="videoFrame" class="w-full h-full" src="" title="Patient Story Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
-    </div>
     @include('themes.default.common.gallerymodal')
 @endsection

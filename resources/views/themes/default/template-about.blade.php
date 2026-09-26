@@ -11,6 +11,7 @@
         $vision = $missionvisionvalue->get(0);
         $mission = $missionvisionvalue->get(1);
         $values = $missionvisionvalue->get(2);
+        // dd($data_child);
     @endphp
 
     @if ($aboutIntro)
@@ -39,11 +40,7 @@
                                 alt="{{ $aboutIntro->post_title }}" class="w-full h-[400px] md:h-[460px] object-cover">
                             <div class="absolute bottom-0 right-0 bg-primary text-white p-6 md:p-8">
                                 @php
-                                    $experienceParts = preg_split(
-                                        '/(?<=\+)\s+/',
-                                        trim($aboutIntro->meta_keyword ?? ''),
-                                        2,
-                                    );
+                                    $experienceParts = preg_split('/(?<=\+)\s+/', trim($aboutIntro->meta_keyword ?? ''), 2);
                                 @endphp
                                 <h3 class="text-2xl md:text-3xl font-bold">
                                     {{ $experienceParts[0] ?? '' }}
@@ -64,9 +61,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                     <!-- Image -->
                     <div class="lg:col-span-4">
-                        <img src="{{ !empty($directorSection->banner) ? asset('uploads/medium/' . $directorSection->banner) : asset('uploads/medium/default.webp') }}"
-                            alt="{{ $directorSection->post_title }}"
-                            class="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[300px] mx-auto rounded-full border-4 border-white shadow-md">
+                        <img src="{{ !empty($directorSection->banner) ? asset('uploads/medium/' . $directorSection->banner) : asset('uploads/medium/default.webp') }}" alt="{{ $directorSection->post_title }}" class="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[300px] mx-auto rounded-full border-4 border-white shadow-md">
                     </div>
                     <!-- Content -->
                     <div class="lg:col-span-8 text-center lg:text-left">
@@ -291,23 +286,15 @@
     @endif
 
     <section class="section-padding relative overflow-hidden bg-gradient-primary">
-        <div
-            class="absolute top-0 left-0 w-[400px] h-[400px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
-        </div>
-        <div
-            class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3">
-        </div>
+        <div class="absolute top-0 left-0 w-[400px] h-[400px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3"></div>
         <div class="container-custom relative z-10">
             <div class="text-center max-w-4xl mx-auto">
-                <!-- TITLE -->
                 <h2 class="text-white text-2xl md:text-3xl font-bold leading-tight mt-2">
-                    Experience World-Class Healthcare At CIWEC Hospital
+                    {{ $data_child[4]->post_title }}
                 </h2>
                 <p class="text-white/80 text-sm md:text-base leading-relaxed max-w-3xl mx-auto mt-4">
-                    Whether you are a traveler, expatriate, diplomat,
-                    corporate employee or local resident, our team is
-                    committed to providing compassionate, evidence-based
-                    healthcare services tailored to your needs.
+                   {{ $data_child[4]->post_excerpt }}
                 </p>
                 <div class="flex flex-wrap justify-center gap-4 mt-8">
                     <a href="{{ url('page/bookappointment.html') }}" class="btn-outline text-white">

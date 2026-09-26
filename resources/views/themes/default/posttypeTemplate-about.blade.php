@@ -24,8 +24,7 @@
                         <h2 class="section-title mt-3">
                             {{ $aboutIntro->post_title }}
                         </h2>
-                        <div class="w-16 h-1 bg-primary mt-4 mb-6">
-                        </div>
+                        <div class="w-16 h-1 bg-primary mt-4 mb-6"></div>
                         <p class="text-slate-600 leading-relaxed text-base md:text-lg">
                             {{ $aboutIntro->post_excerpt }}
                         </p>
@@ -39,11 +38,7 @@
                                 alt="{{ $aboutIntro->post_title }}" class="w-full h-[400px] md:h-[460px] object-cover">
                             <div class="absolute bottom-0 right-0 bg-primary text-white p-6 md:p-8">
                                 @php
-                                    $experienceParts = preg_split(
-                                        '/(?<=\+)\s+/',
-                                        trim($aboutIntro->meta_keyword ?? ''),
-                                        2,
-                                    );
+                                    $experienceParts = preg_split('/(?<=\+)\s+/', trim($aboutIntro->meta_keyword ?? ''), 2);
                                 @endphp
                                 <h3 class="text-2xl md:text-3xl font-bold">
                                     {{ $experienceParts[0] ?? '' }}

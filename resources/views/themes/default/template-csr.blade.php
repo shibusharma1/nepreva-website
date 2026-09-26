@@ -4,72 +4,24 @@
 @section('content')
     @include('themes.default.common.herobanner')
     @if ($csrhero)
-        <!-- CSR MISSION -->
         <section class="section-padding bg-slate-100 overflow-hidden">
             <div class="container-custom">
                 <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     <!-- LEFT CONTENT -->
                     <div>
-                        <span class="section-subtitle"> {{ $csrhero->sub_title }} </span>
+                        <span class="section-subtitle text-secondary"> {{ $csrhero->sub_title }} </span>
                         <h2 class="section-title mt-3">{{ $csrhero->post_title }}</h2>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-base md:text-lg">{{ $csrhero->post_excerpt }}</p>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-base md:text-lg">{{ trim($csrhero->post_content) }}</p>
-                        <!-- HIGHLIGHTS -->
-                        <div class="grid sm:grid-cols-2 gap-5 mt-8">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-heart-pulse text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-primary text-base">Free Health Services</h4>
-                                    <p class="text-slate-500 text-sm mt-1">Medical camps and preventive care programs.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-hand-holding-droplet text-secondary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-primary text-base">Blood Donation</h4>
-                                    <p class="text-slate-500 text-sm mt-1">Supporting lifesaving donation initiatives.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-kit-medical text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-primary text-base">First Aid Training</h4>
-                                    <p class="text-slate-500 text-sm mt-1">Empowering communities with emergency skills.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-people-group text-secondary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-primary text-base">Community Engagement</h4>
-                                    <p class="text-slate-500 text-sm mt-1">Supporting local events and social initiatives.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="mt-4 text-slate-600 leading-relaxed text-base text-justify md:text-lg">
+                            {{ $csrhero->post_excerpt }}</p>
+                        <p class="mt-4 text-slate-600 leading-relaxed text-base text-justify md:text-lg">
+                            {{ trim($csrhero->post_content) }}</p>
                     </div>
                     <!-- RIGHT CONTENT -->
                     <div class="relative">
                         <!-- MAIN IMAGE -->
-                        <img src="{{ !empty($csrhero->banner)
-                            ? asset('uploads/medium/' . $csrhero->banner)
-                            : asset('uploads/medium/default.webp') }}"
+                        <img src="{{ !empty($csrhero->banner) ? asset('uploads/medium/' . $csrhero->banner) : asset('uploads/medium/default.webp') }}"
                             alt="{{ $csrhero->post_title }}"
-                            class="w-full h-[450px] md:h-[500px] object-cover border border-slate-200 shadow-lg" />
-                        <!-- FLOATING CARD -->
-                        <div class="absolute bottom-6 left-6 bg-[#fdfdfd] p-5 md:p-6 shadow-xl max-w-[240px] border border-slate-100">
-                            <span class="text-secondary text-xs font-bold uppercase tracking-[1px]"> Since 1982 </span>
-                            <h4 class="text-primary text-base font-bold mt-1">Serving Communities Across Nepal</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed mt-2">
-                                Delivering healthcare outreach, education and humanitarian support for more than four decades.
-                            </p>
-                        </div>
+                            class="w-full h-[380px] md:h-[420px] object-cover border border-slate-200 shadow-lg" />
                         <!-- TOP BADGE -->
                         <div class="absolute top-6 right-6 bg-primary text-white px-4 py-3 shadow-lg text-center">
                             <div class="text-2xl md:text-3xl font-bold">42+</div>
@@ -92,23 +44,24 @@
                 <!-- PROGRAMS -->
                 <div class="grid lg:grid-cols-2 gap-8">
                     @foreach ($csrfeatured as $csrItem)
-                        <div class="group bg-[#fdfdfd] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
+                        <div
+                            class="group bg-[#fdfdfd] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
                             <div class="grid md:grid-cols-2">
                                 <div class="overflow-hidden">
-                                    <img src="{{ !empty($csrItem->banner)
-                                        ? asset('uploads/medium/' . $csrItem->banner)
-                                        : asset('uploads/medium/default.webp') }}"
+                                    <img src="{{ !empty($csrItem->banner) ? asset('uploads/medium/' . $csrItem->banner) : asset('uploads/medium/default.webp') }}"
                                         alt="{{ $csrItem->post_title }}"
                                         class="w-full h-full min-h-[240px] object-cover transition-all duration-500 group-hover:scale-105" />
                                 </div>
                                 <div class="p-6 md:p-8 flex flex-col justify-between">
                                     <div>
-                                        <div class="w-12 h-12 {{ $loop->odd ? 'bg-primary/10' : 'bg-secondary/10' }} flex items-center justify-center mb-4">
-                                            <i class="{{ $csrItem->associated_title }} {{ $loop->odd ? 'text-primary' : 'text-secondary' }} text-lg">
-                                            </i>
+                                        <div
+                                            class="w-12 h-12 {{ $loop->odd ? 'bg-primary/10' : 'bg-secondary/10' }} flex items-center justify-center mb-4">
+                                            <i
+                                                class="{{ $csrItem->associated_title }} {{ $loop->odd ? 'text-primary' : 'text-secondary' }} text-lg"></i>
                                         </div>
                                         <h3 class="text-primary text-xl font-bold">{{ $csrItem->post_title }}</h3>
-                                        <p class="text-slate-600 text-sm mt-3 leading-relaxed">{{ trim($csrItem->post_content) }}</p>
+                                        <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                                            {{ trim($csrItem->post_content) }}</p>
                                     </div>
                                     <div class="mt-5 pt-4 border-t border-slate-100">
                                         <span class="inline-flex items-center gap-2 text-secondary font-semibold text-sm">
@@ -132,9 +85,7 @@
                     <div class="grid lg:grid-cols-12 items-center">
                         <!-- IMAGE -->
                         <div class="lg:col-span-5">
-                            <img src="{{ !empty($featuredstory->banner)
-                                ? asset('uploads/medium/' . $featuredstory->banner)
-                                : asset('themes-assets/img/ciwec.webp') }}"
+                            <img src="{{ !empty($featuredstory->banner) ? asset('uploads/medium/' . $featuredstory->banner) : asset('themes-assets/img/ciwec.webp') }}"
                                 alt="{{ $featuredstory->post_title }}" class="w-full h-full min-h-[380px] object-cover" />
                         </div>
                         <!-- CONTENT -->
@@ -142,9 +93,12 @@
                             <span class="text-white text-xs font-bold uppercase tracking-[2px]">
                                 {{ $featuredstory->sub_title }}
                             </span>
-                            <h3 class="text-white text-2xl md:text-3xl font-bold mt-3">{{ $featuredstory->post_title }}</h3>
-                            <p class="text-white/85 mt-4 leading-relaxed text-sm md:text-base">{{ trim($featuredstory->post_excerpt) }}</p>
-                            <p class="text-white/80 mt-3 leading-relaxed text-sm md:text-base">{{ trim($featuredstory->post_content) }}</p>
+                            <h3 class="text-white text-2xl md:text-3xl font-bold mt-3">{{ $featuredstory->post_title }}
+                            </h3>
+                            <p class="text-white/85 mt-4 leading-relaxed text-sm md:text-base">
+                                {{ trim($featuredstory->post_excerpt) }}</p>
+                            <p class="text-white/80 mt-3 leading-relaxed text-sm md:text-base">
+                                {{ trim($featuredstory->post_content) }}</p>
                         </div>
                     </div>
                 </div>

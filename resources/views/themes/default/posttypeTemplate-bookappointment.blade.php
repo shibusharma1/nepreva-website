@@ -7,14 +7,13 @@
         <div class="container-custom">
             <div class="text-center max-w-4xl mx-auto mb-10">
                 <span class="section-subtitle">
-                    Appointment & Inquiry
+                    {{ $data->uid }}
                 </span>
                 <h2 class="section-title">
-                    How Can We Help You Today?
+                    {!! $data->caption !!}
                 </h2>
-                <p class="text-slate-600 mt-4 leading-relaxed text-base md:text-lg">
-                    Submit your appointment request or medical inquiry
-                    and our team will contact you as soon as possible.
+                <p class="text-slate-600 mt-3 leading-relaxed text-base md:text-lg">
+                    {!! $data->content !!}
                 </p>
             </div>
             <div class="grid xl:grid-cols-12 gap-8">
@@ -44,30 +43,38 @@
                                     I Want To
                                 </label>
                                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                                    <label class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
+                                    <label
+                                        class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
                                         <input type="radio" name="request_type" value="Appointment"
-                                            {{ old('request_type') == 'Appointment' || !old('request_type') ? 'checked' : '' }} class="accent-[var(--primary)]">
+                                            {{ old('request_type') == 'Appointment' || !old('request_type') ? 'checked' : '' }}
+                                            class="accent-[var(--primary)]">
                                         <span class="ml-2 font-medium text-slate-700">
                                             Appointment
                                         </span>
                                     </label>
-                                    <label class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
+                                    <label
+                                        class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
                                         <input type="radio" name="request_type" value="Inquiry"
-                                            {{ old('request_type') == 'Inquiry' ? 'checked' : '' }} class="accent-[var(--primary)]">
+                                            {{ old('request_type') == 'Inquiry' ? 'checked' : '' }}
+                                            class="accent-[var(--primary)]">
                                         <span class="ml-2 font-medium text-slate-700">
                                             Inquiry
                                         </span>
                                     </label>
-                                    <label class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
+                                    <label
+                                        class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
                                         <input type="radio" name="request_type" value="Health Screening"
-                                            {{ old('request_type') == 'Health Screening' ? 'checked' : '' }} class="accent-[var(--primary)]">
+                                            {{ old('request_type') == 'Health Screening' ? 'checked' : '' }}
+                                            class="accent-[var(--primary)]">
                                         <span class="ml-2 font-medium text-slate-700">
                                             Health Screening
                                         </span>
                                     </label>
-                                    <label class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
+                                    <label
+                                        class="border border-slate-200 p-3.5 rounded-md cursor-pointer hover:border-secondary transition text-sm flex items-center">
                                         <input type="radio" name="request_type" value="Travel Medicine"
-                                            {{ old('request_type') == 'Travel Medicine' ? 'checked' : '' }} class="accent-[var(--primary)]">
+                                            {{ old('request_type') == 'Travel Medicine' ? 'checked' : '' }}
+                                            class="accent-[var(--primary)]">
                                         <span class="ml-2 font-medium text-slate-700">
                                             Travel Medicine
                                         </span>
@@ -114,7 +121,8 @@
                                     <label class="block text-sm font-semibold text-primary mb-2">
                                         Preferred Location
                                     </label>
-                                    <select name="location" class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
+                                    <select name="location"
+                                        class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
                                         <option value="Kathmandu">
                                             Kathmandu
                                         </option>
@@ -127,7 +135,8 @@
                                     <label class="block text-sm font-semibold text-primary mb-2">
                                         Department
                                     </label>
-                                    <select name="department" class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
+                                    <select name="department"
+                                        class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition">
                                         <option value="">
                                             Select Department
                                         </option>
@@ -151,14 +160,16 @@
                                     </label>
                                     <input type="text" id="appointment_date" name="appointment_date"
                                         value="{{ old('appointment_date') }}" placeholder="MM/DD/YYYY"
-                                        class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition" required>
+                                        class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition"
+                                        required>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-primary mb-2">
                                         Preferred Time
                                     </label>
                                     <select id="appointment_time" name="appointment_time"
-                                        class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition" required>
+                                        class="w-full h-12 px-4 border border-slate-300 text-sm focus:border-secondary outline-none transition"
+                                        required>
                                         <option value="">
                                             Select Time
                                         </option>
@@ -251,12 +262,14 @@
         </div>
     </section>
 
-    <!-- EMERGENCY SUPPORT -->
+    {{-- <!-- EMERGENCY SUPPORT -->
     <section class="section-padding relative overflow-hidden bg-gradient-primary">
         <!-- SHAPES -->
-        <div class="absolute top-0 left-0 w-[450px] h-[450px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
+        <div
+            class="absolute top-0 left-0 w-[450px] h-[450px] bg-white/[0.03] rounded-full -translate-x-1/2 -translate-y-1/2">
         </div>
-        <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3">
+        <div
+            class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/[0.08] rounded-full translate-x-1/3 translate-y-1/3">
         </div>
         <div class="container-custom relative z-10">
             <div class="grid xl:grid-cols-12 gap-10 items-center">
@@ -343,14 +356,17 @@
                         <p class="text-slate-600 text-sm md:text-sm text-center mt-2">
                             For urgent medical assistance, contact us immediately.
                         </p>
-                        <a href="tel:{{ $setting->phone }}" class="block text-center bg-secondary text-white text-xl font-bold py-3.5 rounded-md mt-6 hover:bg-primary transition">
+                        <a href="tel:{{ $setting->phone }}"
+                            class="block text-center bg-secondary text-white text-xl font-bold py-3.5 rounded-md mt-6 hover:bg-primary transition">
                             {{ $setting->phone }}
                         </a>
                         <div class="grid grid-cols-2 gap-3 mt-4">
-                            <a href="tel:{{ $setting->phone }}" class="border border-slate-300 py-3 text-center text-sm font-semibold text-primary rounded-md hover:border-secondary hover:text-secondary transition">
+                            <a href="tel:{{ $setting->phone }}"
+                                class="border border-slate-300 py-3 text-center text-sm font-semibold text-primary rounded-md hover:border-secondary hover:text-secondary transition">
                                 Call Now
                             </a>
-                            <a href="#appointmentForm" class="bg-primary text-white py-3 text-center text-sm font-semibold rounded-md hover:bg-secondary transition">
+                            <a href="#appointmentForm"
+                                class="bg-primary text-white py-3 text-center text-sm font-semibold rounded-md hover:bg-secondary transition">
                                 Book Visit
                             </a>
                         </div>
@@ -363,7 +379,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @endsection

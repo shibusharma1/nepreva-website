@@ -159,7 +159,6 @@ class FrontpageController extends Controller
     if ($tmpl['template']) {
       $data['template'] = $data['template'];
     }
-    // dd($data);
 
     if ($data->id) {
       $data->visiter = $data->visiter + 1;
@@ -204,29 +203,27 @@ class FrontpageController extends Controller
 
     if ($data->uri === 'gallery') {
       $categories = ImageGalleryCategoryModel::whereHas('galleries')->orderBy('created_at')->get();
-
-      $galleries = ImageGalleryModel::with('category')
-        ->orderBy('created_at', 'DESC')
-        ->get();
+      $galleries = ImageGalleryModel::with('category')->orderBy('created_at', 'DESC')->get();
       $videoCategories = VideoGalleryCategoryModel::orderBy('category')->get();
-
-      $videos = VideoGalleryModel::with('category')
-        ->latest()
-        ->get();
+      $videos = VideoGalleryModel::with('category')->latest()->get();
     }
-    if ($data->uri == 'services') {
+    
+    if ($data->uri == 'healthcare-services') {
       $services = PostModel::with('documents')->where('post_type', $data->post_type)->orderBy('post_order')->get();
     }
+
     if ($data->uri == "doctors-at-ciwec") {
       $doctors = PostModel::where('post_type', 2)->where('post_parent', 45)->orderBy('post_order')->get();
       $specialities = PostModel::where('post_type', 2)->where('post_parent', 46)->orderBy('post_order')->get();
       $expertcare = PostModel::where('id', 57)->where('post_type', 2)->where('post_parent', 27)->orderBy('post_order')->first();
     }
+
     if ($data->uri == "family-medicine-health-screening") {
       $healthguide = PostModel::with('documents')->where('post_type', 2)->where('post_parent', 62)->orderBy('post_order')->get();
       $travelguide = PostModel::with('documents')->where('post_type', 2)->where('post_parent', 63)->orderBy('post_order')->first();
       $faq = PostModel::where('post_type', 2)->where('post_parent', 65)->orderBy('post_order')->get();
     }
+
     if ($data->uri == "altitude-illness-frostbite") {
       $altitudesection = PostModel::with('documents')->where('post_type', 2)->where('post_parent', 29)->orderBy('post_order')->get();
     }
@@ -235,6 +232,7 @@ class FrontpageController extends Controller
       $aboutsection = PostModel::where('post_type', 1)->where('post_parent', 17)->orderBy('post_order')->get();
       $missionvisionvalue = PostModel::where('post_type', 1)->where('post_parent', 77)->orderBy('post_order')->get();
     }
+
     if ($data->uri == "ciwec-history") {
       $historyheading = PostModel::where('id', 82)->first();
       $history = PostModel::where('post_type', 1)->where('post_parent', 82)->orderBy('post_order')->get();
@@ -243,14 +241,14 @@ class FrontpageController extends Controller
       $foundersheading = PostModel::where('id', 94)->first();
       $founders = PostModel::where('post_type', 1)->where('post_parent', 94)->orderBy('post_order')->get();
     }
+
     if ($data->uri == "ciwec-csr") {
       $csrhero = PostModel::where('id', 96)->first();
       $csrfeaturedheading = PostModel::where('id', 97)->first();
       $csrfeatured = PostModel::where('post_type', 1)->where('post_parent', 97)->orderBy('post_order')->get();
       $featuredstory = PostModel::where('id', 98)->first();
     }
-
-    // dd($csrhero,$csrfeaturedheading,$csrfeatured,$featuredstory);
+  
     return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos', 'categories', 'galleries', 'videoCategories', 'videos', 'services', 'doctors', 'specialities', 'expertcare', 'healthguide', 'travelguide', 'faq', 'altitudesection', 'aboutsection', 'missionvisionvalue', 'historyheading', 'history', 'historicalgalleryheading', 'historicalgallery', 'foundersheading', 'founders', 'csrhero', 'csrfeaturedheading', 'csrfeatured', 'featuredstory'));
   }
 

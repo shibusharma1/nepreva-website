@@ -8,15 +8,13 @@
             <!-- HEADING -->
             <div class="text-center max-w-4xl mx-auto mb-12">
                 <span class="section-subtitle">
-                    Featured Resources
+                      {{ $data_child[0]->sub_title }}
                 </span>
                 <h2 class="section-title">
-                    Essential Health Guides
+                     {!! $data_child[0]->post_title !!}
                 </h2>
                 <p class="text-slate-600 text-base md:text-lg mt-4 leading-relaxed">
-                    Explore some of our most frequently accessed health
-                    information resources, prepared by CIWEC's medical
-                    professionals to help you stay informed and healthy.
+                  {!! $data_child[0]->post_content !!}
                 </p>
             </div>
             @if ($healthguide->count())
@@ -29,10 +27,7 @@
                     <div class="grid lg:grid-cols-12 items-center">
                         <!-- IMAGE -->
                         <div class="lg:col-span-5 relative">
-                            <img src="{{ !empty($featuredGuide->banner)
-                                ? asset('uploads/medium/' . $featuredGuide->banner)
-                                : asset('uploads/medium/default.webp') }}"
-                                alt="{{ $featuredGuide->post_title }}" class="w-full h-full min-h-[420px] object-cover">
+                            <img src="{{ !empty($featuredGuide->banner) ? asset('uploads/medium/' . $featuredGuide->banner) : asset('uploads/medium/default.webp') }}" alt="{{ $featuredGuide->post_title }}" class="w-full h-full min-h-[420px] object-cover">
                             <div class="absolute top-6 left-6">
                                 <span class="bg-secondary text-white px-4 py-2 text-xs font-semibold uppercase">
                                     Most Popular Guide
@@ -122,16 +117,13 @@
             <!-- HEADER -->
             <div class="text-center max-w-4xl mx-auto mb-12">
                 <span class="section-subtitle">
-                    Travel Medicine Expertise
+                   {{ $data_child[1]->sub_title }}
                 </span>
                 <h2 class="section-title">
-                    CIWEC Travel Health Center
+                    {!! $data_child[1]->post_title !!}
                 </h2>
                 <p class="text-slate-600 text-base md:text-lg mt-4 leading-relaxed">
-                    Whether you're trekking in the Himalayas,
-                    exploring Nepal or travelling internationally,
-                    our travel health resources help you prepare,
-                    stay healthy and travel safely.
+                    {!! $data_child[1]->post_content !!}
                 </p>
             </div>
             <!-- MAIN FEATURE -->
@@ -141,7 +133,7 @@
                         @php
                             $travelguidecontent = preg_split('/\r\n|\r|\n/', trim($travelguide->post_content));
                         @endphp
-                        <span class="text-secondary font-semibold uppercase tracking-[3px] text-xs">
+                        <span class="text-white font-semibold uppercase tracking-[3px] text-xs">
                             {{ $travelguide->sub_title }}
                         </span>
                         <h3 class="text-white text-xl md:text-2xl font-bold mt-3">
@@ -183,7 +175,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid md:grid-cols-4 gap-6 mt-16">
+            {{-- <div class="grid md:grid-cols-4 gap-6 mt-16">
                 <div class="bg-[var(--neutral-50)] border border-slate-200 p-6 text-center">
                     <h3 class="text-primary text-2xl md:text-3xl font-bold">
                         40+
@@ -216,7 +208,7 @@
                         Patient Support
                     </p>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -224,10 +216,10 @@
         <div class="container-custom">
             <div class="text-center mb-10">
                 <span class="section-subtitle">
-                    Frequently Asked Questions
+                      {{ $data_child[2]->sub_title }}
                 </span>
                 <h2 class="section-title">
-                    Health Screening FAQs
+                      {{ $data_child[2]->post_title }}
                 </h2>
             </div>
             <div class="max-w-4xl mx-auto space-y-4">
@@ -248,7 +240,7 @@
                 @endforeach
             </div>
             <!-- HELP BOX -->
-            <div class="bg-primary text-center p-8 md:p-10 mt-14 max-w-4xl mx-auto">
+            {{-- <div class="bg-primary text-center p-8 md:p-10 mt-14 max-w-4xl mx-auto">
                 <h3 class="text-white text-xl md:text-2xl font-bold">
                     Still Have Questions?
                 </h3>
@@ -259,7 +251,7 @@
                 <a href="{{ url('page/contact.html') }}" class="btn-secondary hover:border hover:border-white mt-6">
                     Contact Our Team
                 </a>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection

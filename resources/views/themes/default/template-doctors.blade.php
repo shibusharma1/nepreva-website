@@ -2,19 +2,21 @@
 @section('meta_keyword', $data->meta_keyword)
 @section('meta_description', $data->meta_description)
 @section('content')
+@php
+    // dd($data_child);
+@endphp
     @include('themes.default.common.herobanner')
     <section class="section-padding bg-slate-100 overflow-hidden">
         <div class="container-custom">
             <div class="max-w-4xl mx-auto text-center mb-8">
                 <span class="section-subtitle">
-                    Medical Specialists
+                   {{ $data_child[0]->sub_title }}
                 </span>
                 <h2 class="section-title">
-                    Find The Right Doctor
+                  {{ $data_child[0]->post_title }}
                 </h2>
                 <p class="text-slate-600 text-base md:text-lg mt-6 leading-relaxed">
-                    Search our experienced healthcare professionals by
-                    name, specialty or location.
+                    {!! $data_child[0]->post_excerpt !!}
                 </p>
             </div>
             <div id="doctor-search" class="bg-[#fdfdfd] border border-slate-200 p-6 lg:p-8 shadow-sm">
@@ -108,15 +110,13 @@
             <!-- HEADER -->
             <div class="text-center max-w-4xl mx-auto mb-12">
                 <span class="section-subtitle">
-                    Areas Of Expertise
+                     {{ $data_child[1]->sub_title }}
                 </span>
                 <h2 class="section-title">
-                    Medical Specialities We Cover
+                    {{ $data_child[1]->post_title }}
                 </h2>
                 <p class="text-slate-600 text-base md:text-lg mt-6 leading-relaxed">
-                    Our multidisciplinary team provides specialized
-                    healthcare services across a wide range of medical
-                    disciplines to support comprehensive patient care.
+                     {!! $data_child[1]->post_excerpt !!}
                 </p>
             </div>
             <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
@@ -138,7 +138,7 @@
             <div class="bg-primary/95 mt-12 overflow-hidden">
                 <div class="grid lg:grid-cols-12 items-center">
                     <div class="lg:col-span-8 p-10 lg:p-14">
-                        <span class="text-secondary font-bold uppercase tracking-[3px]">
+                        <span class="text-white font-bold uppercase tracking-[3px]">
                             {{ $expertcare->sub_title }}
                         </span>
                         <h3 class="text-white text-2xl md:text-3xl font-bold mt-4">
@@ -156,8 +156,7 @@
         </div>
     </section>
     @php
-        $doctorData = $doctors
-            ->map(function ($doctor) {
+        $doctorData = $doctors->map(function ($doctor) {
                 return [
                     'id' => $doctor->id,
                     'slug' => $doctor->uri,
@@ -173,12 +172,9 @@
                     'research' => '12',
                     'education' => [],
 
-                    'image' => !empty($doctor->banner)
-                        ? asset('uploads/medium/' . $doctor->banner)
-                        : asset('uploads/medium/david-IMsaOobp4lk4Er82hHTKnU9LoaxxMES6SqAyyURl.webp'),
+                    'image' => !empty($doctor->banner) ? asset('uploads/medium/' . $doctor->banner) : asset('uploads/medium/david-IMsaOobp4lk4Er82hHTKnU9LoaxxMES6SqAyyURl.webp'),
                 ];
-            })
-            ->values();
+            })->values();
     @endphp
     <script type="application/json" id="doctorData">
         {!! json_encode($doctorData) !!}
