@@ -34,8 +34,7 @@
                     <ul class="space-y-3">
                         @foreach ($services->skip(1)->take(6) as $service)
                             <li>
-                                <a href="{{ url($service->uri).'.html'}}"
-                                    class="text-white hover:text-secondary transition">
+                                <a href="{{ url($service->uri).'.html'}}" class="text-white hover:text-secondary transition">
                                     {{ $service->post_title }}
                                 </a>
                             </li>
@@ -53,29 +52,24 @@
                     <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex">
                         @csrf
                         <input type="hidden" id="g_recaptcha_response" name="g_recaptcha_response">
-                        <input type="email" placeholder="Email Address" name="email"
-                            class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
-                        <button type="submit"
-                            class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition hover:border-2 hover:border-secondary">
+                        <input type="email" placeholder="Email Address" name="email" class="flex-1 h-12 px-4 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition">
+                        <button type="submit" class="w-14 bg-secondary text-white hover:bg-white hover:text-primary transition hover:border-2 hover:border-secondary">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </form>
                     <div class="flex gap-3 mt-6">
                         @if ($setting->facebook_link)
-                            <a href="{{ $setting->facebook_link }}"
-                                class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                            <a href="{{ $setting->facebook_link }}" class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         @endif
                         @if ($setting->instagram_link)
-                            <a href="{{ $setting->instagram_link }}"
-                                class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                            <a href="{{ $setting->instagram_link }}" class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         @endif
                         @if ($setting->youtube_link)
-                            <a href="{{ $setting->youtube_link }}"
-                                class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
+                            <a href="{{ $setting->youtube_link }}" class="w-10 h-10 border border-white/20 text-white flex items-center justify-center hover:bg-secondary hover:border-secondary transition">
                                 <i class="fab fa-youtube"></i>
                             </a>
                         @endif
@@ -98,12 +92,10 @@
                     </a>
                 </p>
                 <div class="flex gap-5 text-sm">
-                    <a href="{{ url('page/privacy-policy.html') }}"
-                        class="text-white/90 hover:text-secondary transition">
+                    <a href="{{ url('page/privacy-policy.html') }}" class="text-white/90 hover:text-secondary transition">
                         Privacy Policy
                     </a>
-                    <a href="{{ url('page/terms-and-conditions.html') }}"
-                        class="text-white/90 hover:text-secondary transition">
+                    <a href="{{ url('page/terms-and-conditions.html') }}" class="text-white/90 hover:text-secondary transition">
                         Terms & Conditions
                     </a>
                 </div>
@@ -113,12 +105,10 @@
 </footer>
 
 <!-- Back to top button  -->
-<button id="backToTop" aria-label="Back to top"
-    class="fixed bottom-40 right-4 md:bottom-28 md:right-6 z-[60] w-14 h-14 bg-white border-2 border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,.15)] text-primary opacity-0 pointer-events-none translate-y-8 transition-all duration-500 rounded-full hover:border-primary hover:text-secondary">
+<button id="backToTop" aria-label="Back to top" class="fixed bottom-40 right-4 md:bottom-28 md:right-6 z-[60] w-14 h-14 bg-white border-2 border-slate-200 shadow-[0_8px_25px_rgba(0,0,0,.15)] text-primary opacity-0 pointer-events-none translate-y-8 transition-all duration-500 rounded-full hover:border-primary hover:text-secondary">
     <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="46" stroke="#E5E7EB" stroke-width="4" fill="none" />
-        <circle id="scrollProgress" cx="50" cy="50" r="46" stroke="#D71920" stroke-width="4"
-            fill="none" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" />
+        <circle id="scrollProgress" cx="50" cy="50" r="46" stroke="#D71920" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" />
     </svg>
     <i class="fa-solid fa-arrow-up relative z-10 text-sm pointer-events-none"></i>
 </button>
