@@ -91,7 +91,7 @@
                     @endforeach
                 </div>
                 <!-- QUOTE -->
-                <div class="mt-10 bg-[var(--neutral-50)] border-l-4 border-secondary p-8 md:p-10 max-w-4xl mx-auto shadow-sm">
+                <div class="mt-10 bg-white border-l-4 border-secondary p-8 md:p-10 max-w-4xl mx-auto shadow-sm">
                     <p class="text-lg md:text-xl italic text-slate-700 leading-relaxed text-center">
                         {!! $data->post_excerpt !!}
                     </p>
