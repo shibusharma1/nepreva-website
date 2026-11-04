@@ -524,7 +524,7 @@ var Core = function(options) {
          });
 
          // Scroll lock all fixed content overflow
-         $('#content').scrollLock('on', 'div');
+         //$('#content').scrollLock('on', 'div');
 
       };
 
@@ -666,12 +666,12 @@ var Core = function(options) {
            if (Delay) {
              var Timer = setTimeout(function() {
                 This.scroller({ trackMargin: Margin, });
-               $('#content').scrollLock('on', 'div');
+               //$('#content').scrollLock('on', 'div');
              }, Delay);
            } 
            else {
              This.scroller({ trackMargin: Margin, });
-             $('#content').scrollLock('on', 'div');
+             //$('#content').scrollLock('on', 'div');
            }
 
          });
