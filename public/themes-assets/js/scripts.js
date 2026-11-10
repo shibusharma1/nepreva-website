@@ -1,1287 +1,648 @@
 /**
- * CIWEC Hospital - Unified Master JavaScript Bundle
- * Consolidates all theme scripts, interactive modals, filters, timelines, and UI features.
+ * Nepreva Global Solutions - Scripts
+ * Unified JavaScript for all pages
  */
-
-document.addEventListener("DOMContentLoaded", () => {
-    /* ==========================================================================
-       1. GLOBAL DOCTOR PROFILE MODAL SYSTEM
-       ========================================================================== */
-    window.renderDoctorModal = function (doctor) {
-        const doctorModal = document.getElementById('doctorModal');
-        const doctorModalContent = document.getElementById('doctorModalContent');
-
-        if (!doctorModal || !doctorModalContent || !doctor) {
-            return;
-        }
-
-        const educationHtml = Array.isArray(doctor.education) && doctor.education.length
-            ? `<div class="mt-6">
-                <h3 class="text-base font-bold text-primary mb-2 border-b border-slate-100 pb-1">
-                    Education & Credentials
-                </h3>
-                <ul class="space-y-2.5 mt-3">
-                    ${doctor.education.map(item => `
-                        <li class="flex items-start gap-2.5 text-sm text-slate-600">
-                            <i class="fa-solid fa-circle-check text-secondary mt-0.5 text-xs"></i>
-                            <span>${item}</span>
-                        </li>
-                    `).join('')}
-                </ul>
-               </div>`
-            : '';
-
-        doctorModalContent.innerHTML = `
-            <div class="grid lg:grid-cols-12">
-                <!-- IMAGE -->
-                <div class="lg:col-span-5 bg-slate-100 relative min-h-[220px] sm:min-h-[300px] lg:min-h-full">
-                    <img
-                        src="${doctor.image || ''}"
-                        alt="${doctor.name || 'Doctor'}"
-                        class="h-[220px] sm:h-[320px] lg:h-full w-full object-cover object-top">
-                </div>
-
-                <!-- DETAILS -->
-                <div class="lg:col-span-7 p-5 sm:p-8 lg:p-10">
-                    <!-- Department Badge -->
-                    <span class="inline-flex items-center gap-1.5 sm:gap-2 bg-primary/10 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-primary rounded-md">
-                        <span class="h-1.5 w-1.5 bg-secondary rounded-full"></span>
-                        ${doctor.department || 'Medical Specialist'}
-                    </span>
-
-                    <!-- Doctor Name -->
-                    <h2 class="mt-2.5 sm:mt-3 text-xl sm:text-2xl lg:text-3xl font-bold leading-tight text-primary">
-                        ${doctor.name || ''}
-                    </h2>
-
-                    <!-- Qualification -->
-                    <p class="mt-1 text-xs sm:text-sm font-medium text-slate-500">
-                        ${doctor.qualification || ''}
-                    </p>
-
-                    <!-- Accent Line -->
-                    <div class="my-3 sm:my-4 h-1 w-12 bg-secondary"></div>
-
-                    <!-- Stats Box -->
-                    <div class="bg-slate-50 border border-slate-200 p-3 sm:p-4 grid grid-cols-3 gap-1.5 sm:gap-3 my-4 sm:my-5 text-center rounded-lg sm:rounded-xl">
-                        <div class="px-1">
-                            <div class="text-base sm:text-xl font-bold text-primary">
-                                ${doctor.experience || '-'}
-                            </div>
-                            <p class="mt-0.5 sm:mt-1 text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider leading-tight">
-                                Experience
-                            </p>
-                        </div>
-
-                        <div class="border-x border-slate-200 px-1">
-                            <div class="text-base sm:text-xl font-bold text-primary">
-                                ${doctor.patients || '-'}
-                            </div>
-                            <p class="mt-0.5 sm:mt-1 text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider leading-tight">
-                                Patients
-                            </p>
-                        </div>
-
-                        <div class="px-1">
-                            <div class="text-base sm:text-xl font-bold text-primary">
-                                ${doctor.research || '-'}
-                            </div>
-                            <p class="mt-0.5 sm:mt-1 text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider leading-tight">
-                                Publications
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- About -->
-                    <div class="mt-4 sm:mt-5">
-                        <h3 class="text-sm sm:text-base font-bold text-primary mb-1.5 sm:mb-2 border-b border-slate-100 pb-1">
-                            About Doctor
-                        </h3>
-                        <p class="mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
-                            ${doctor.about || 'Doctor information is currently unavailable.'}
-                        </p>
-                    </div>
-
-                    ${educationHtml}
-
-                    <!-- Languages -->
-                    <div class="mt-4 sm:mt-5">
-                        <h3 class="text-sm sm:text-base font-bold text-primary mb-1.5 sm:mb-2 border-b border-slate-100 pb-1">
-                            Languages Spoken
-                        </h3>
-                        <p class="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-600 font-medium">
-                            ${doctor.languages || 'English, Nepali'}
-                        </p>
-                    </div>
-
-                    <!-- CTA Button -->
-                    <div class="mt-6 sm:mt-7">
-                        <a href="/page/bookappointment.html" class="btn-primary inline-flex items-center gap-2.5 w-full sm:w-auto justify-center">
-                            Book Appointment
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        doctorModal.classList.remove('hidden');
-        doctorModal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
+(function () {
+    var reduce =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var $ = function (s, r) {
+        return (r || document).querySelector(s);
+    };
+    var $$ = function (s, r) {
+        return [].slice.call((r || document).querySelectorAll(s));
+    };
+    var tick =
+        '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+    var ico = function (n) {
+        return '<svg class="ico"><use href="#' + n + '"/></svg>';
     };
 
-    window.closeDoctorModal = function () {
-        const doctorModal = document.getElementById('doctorModal');
-        if (!doctorModal) return;
-        doctorModal.classList.add('hidden');
-        doctorModal.classList.remove('flex');
-        document.body.style.overflow = '';
-    };
-
-    const closeDoctorBtn = document.getElementById('closeDoctorModal');
-    const doctorOverlay = document.getElementById('doctorOverlay');
-    if (closeDoctorBtn) closeDoctorBtn.addEventListener('click', window.closeDoctorModal);
-    if (doctorOverlay) doctorOverlay.addEventListener('click', window.closeDoctorModal);
-
-    const homeDoctorsEl = document.getElementById('homeDoctorsData');
-    if (homeDoctorsEl) {
-        let homeDoctors = {};
-        try {
-            homeDoctors = JSON.parse(homeDoctorsEl.textContent || '{}');
-        } catch (e) {
-            homeDoctors = {};
-        }
-        window.openHomeDoctor = function (key) {
-            const doctor = homeDoctors[key];
-            if (doctor && window.renderDoctorModal) {
-                window.renderDoctorModal(doctor);
-            } else {
-                console.error('Doctor not found:', key);
-            }
-        };
-    }
-
-    /* ==========================================================================
-       2. GLOBAL GALLERY LIGHTBOX MODAL SYSTEM
-       ========================================================================== */
-    let currentGalleryItems = [];
-    let currentGalleryIndex = 0;
-
-    const galleryModal = document.getElementById('galleryModal');
-    const galleryOverlay = document.getElementById('galleryOverlay');
-    const closeGalleryBtn = document.getElementById('closeGalleryModal');
-    const prevGalleryBtn = document.getElementById('prevGalleryBtn');
-    const nextGalleryBtn = document.getElementById('nextGalleryBtn');
-
-    window.updateGalleryModalView = function () {
-        if (!currentGalleryItems.length) return;
-        const item = currentGalleryItems[currentGalleryIndex];
-
-        const counter = document.getElementById('galleryCounter');
-        const img = document.getElementById('galleryModalImg');
-        const detailsPanel = document.getElementById('galleryModalDetails');
-        const subtitleEl = document.getElementById('galleryModalSubtitle');
-        const titleEl = document.getElementById('galleryModalTitle');
-        const descEl = document.getElementById('galleryModalDescription');
-
-        if (counter) counter.textContent = `${currentGalleryIndex + 1} / ${currentGalleryItems.length}`;
-        if (img) {
-            img.src = item.src;
-            img.alt = item.title || '';
-        }
-
-        const hasDetails = item.title || item.subtitle || item.description;
-        if (detailsPanel) {
-            if (hasDetails) {
-                detailsPanel.classList.remove('hidden');
-                if (subtitleEl) subtitleEl.textContent = item.subtitle || 'CIWEC Gallery';
-                if (titleEl) titleEl.textContent = item.title || '';
-                if (descEl) {
-                    descEl.textContent = item.description || '';
-                    descEl.classList.toggle('hidden', !item.description);
-                }
-            } else {
-                detailsPanel.classList.add('hidden');
-            }
-        }
-    };
-
-    window.openGalleryModal = function (items, index = 0) {
-        if (!items || !items.length || !galleryModal) return;
-        currentGalleryItems = items;
-        currentGalleryIndex = Math.max(0, Math.min(index, items.length - 1));
-
-        window.updateGalleryModalView();
-
-        galleryModal.classList.remove('hidden');
-        galleryModal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-    };
-
-    window.closeGalleryModal = function () {
-        if (!galleryModal) return;
-        galleryModal.classList.add('hidden');
-        galleryModal.classList.remove('flex');
-        document.body.style.overflow = '';
-    };
-
-    if (closeGalleryBtn) closeGalleryBtn.addEventListener('click', window.closeGalleryModal);
-    if (galleryOverlay) galleryOverlay.addEventListener('click', window.closeGalleryModal);
-
-    if (prevGalleryBtn) {
-        prevGalleryBtn.addEventListener('click', () => {
-            if (!currentGalleryItems.length) return;
-            currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryItems.length) % currentGalleryItems.length;
-            window.updateGalleryModalView();
+    /* ---------- Navigation Dropdowns & Scrim ---------- */
+    var drops = $$("[data-drop]"),
+        scrim = document.getElementById("scrim"),
+        tmr = null;
+    function closeAll() {
+        drops.forEach(function (b) {
+            var target = document.getElementById(b.dataset.drop);
+            if (target) target.classList.remove("open");
+            b.setAttribute("aria-expanded", "false");
         });
+        if (scrim) scrim.classList.remove("on");
     }
-
-    if (nextGalleryBtn) {
-        nextGalleryBtn.addEventListener('click', () => {
-            if (!currentGalleryItems.length) return;
-            currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryItems.length;
-            window.updateGalleryModalView();
-        });
+    function openD(b) {
+        closeAll();
+        var target = document.getElementById(b.dataset.drop);
+        if (target) target.classList.add("open");
+        b.setAttribute("aria-expanded", "true");
+        if (scrim && !b.parentNode.classList.contains("sm"))
+            scrim.classList.add("on");
     }
-
-    /* ==========================================================================
-       3. SERVICES PAGE & SERVICE MODAL HANDLERS
-       ========================================================================== */
-    const locationButtons = document.querySelectorAll('.location-btn');
-    const serviceWrappers = document.querySelectorAll('.service-wrapper');
-
-    locationButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            locationButtons.forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white', 'shadow-md');
-                btn.classList.add('text-slate-600', 'hover:text-primary');
-            });
-
-            this.classList.remove('text-slate-600', 'hover:text-primary');
-            this.classList.add('bg-primary', 'text-white', 'shadow-md');
-
-            serviceWrappers.forEach(wrapper => wrapper.classList.add('hidden'));
-
-            const locationId = this.dataset.location;
-            const activeWrapper = document.getElementById('location-' + locationId);
-            if (activeWrapper) activeWrapper.classList.remove('hidden');
-        });
-    });
-
-    const serviceModal = document.getElementById('serviceModal');
-    const serviceModalBackdrop = document.getElementById('serviceModalBackdrop');
-    const serviceModalClose = document.getElementById('serviceModalClose');
-    const serviceModalTitle = document.getElementById('serviceModalTitle');
-    const serviceModalSubtitle = document.getElementById('serviceModalSubtitle');
-    const serviceModalDescription = document.getElementById('serviceModalDescription');
-    const serviceModalIcon = document.getElementById('serviceModalIcon');
-
-    window.openServiceModal = function (button) {
-        if (!serviceModal) return;
-        const title = button.dataset.title || '';
-        const subtitle = button.dataset.subtitle || '';
-        const associatedTitle = button.dataset.associatedTitle || 'fa-solid fa-stethoscope';
-        const description = button.dataset.description || '';
-
-        if (serviceModalTitle) serviceModalTitle.textContent = title;
-        if (serviceModalSubtitle) serviceModalSubtitle.textContent = subtitle;
-        if (serviceModalDescription) serviceModalDescription.textContent = description;
-        if (serviceModalIcon) serviceModalIcon.className = associatedTitle + ' text-xl';
-
-        serviceModal.classList.remove('hidden');
-        serviceModal.classList.add('flex');
-        serviceModal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('overflow-hidden');
-    };
-
-    window.closeServiceModal = function () {
-        if (!serviceModal) return;
-        serviceModal.classList.add('hidden');
-        serviceModal.classList.remove('flex');
-        serviceModal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('overflow-hidden');
-    };
-
-    document.querySelectorAll('.service-modal-trigger').forEach(button => {
-        button.addEventListener('click', function () {
-            window.openServiceModal(this);
-        });
-    });
-
-    if (serviceModalClose) serviceModalClose.addEventListener('click', window.closeServiceModal);
-    if (serviceModalBackdrop) serviceModalBackdrop.addEventListener('click', window.closeServiceModal);
-
-    /* ==========================================================================
-       4. DOCTORS PAGE FILTERING SYSTEM
-       ========================================================================== */
-    const doctorDataElement = document.getElementById('doctorData');
-    if (doctorDataElement) {
-        let doctors = [];
-        try {
-            doctors = JSON.parse(doctorDataElement.textContent || '[]');
-        } catch (e) {
-            doctors = [];
-        }
-
-        const doctorLoader = document.getElementById("doctorLoader");
-        const doctorGrid = document.getElementById("doctorGrid");
-        const departmentSelect = document.getElementById("departmentFilter");
-        const doctorSearchInput = document.getElementById("doctorSearch");
-        const locationFilterSelect = document.getElementById("locationFilter");
-        const resetFiltersBtn = document.getElementById("resetFilters");
-        const clearSearchBtn = document.getElementById("clearSearchBtn");
-
-        function showDoctorLoader() {
-            if (doctorLoader) doctorLoader.classList.remove("hidden");
-            if (doctorGrid) doctorGrid.classList.add("hidden");
-        }
-
-        function hideDoctorLoader() {
-            if (doctorLoader) doctorLoader.classList.add("hidden");
-            if (doctorGrid) doctorGrid.classList.remove("hidden");
-        }
-
-        function populateDepartments() {
-            if (!departmentSelect) return;
-            departmentSelect.innerHTML = `<option value="">All Departments</option>`;
-            const departments = [...new Set(doctors.map(item => item.department).filter(Boolean))];
-            departments.forEach(department => {
-                departmentSelect.insertAdjacentHTML(
-                    "beforeend",
-                    `<option value="${department}">${department}</option>`
-                );
-            });
-        }
-
-        function renderDoctors(data) {
-            if (!doctorGrid) return;
-            const doctorCount = document.getElementById("doctorCount");
-            const emptyState = document.getElementById("doctorEmptyState");
-            doctorGrid.innerHTML = "";
-
-            if (doctorCount) {
-                doctorCount.innerText = `${data.length} Doctor${data.length !== 1 ? "s" : ""}`;
-            }
-
-            if (data.length === 0) {
-                if (emptyState) emptyState.classList.remove("hidden");
-                return;
-            }
-
-            if (emptyState) emptyState.classList.add("hidden");
-
-            data.forEach((doctor, index) => {
-                doctorGrid.insertAdjacentHTML(
-                    "beforeend",
-                    `<article class="group bg-[#fdfdfd] border border-slate-200 hover:border-secondary hover:shadow-xl transition-all duration-500 overflow-hidden">
-                        <div class="relative overflow-hidden">
-                            <img
-                                src="${doctor.image}"
-                                alt="${doctor.name}"
-                                class="w-full h-[280px] object-cover transition duration-700 group-hover:scale-105">
-                            <div class="absolute top-4 left-4">
-                                <span class="bg-primary text-white px-4 py-2 text-xs font-semibold">
-                                    ${doctor.location}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <span class="text-secondary text-sm font-semibold">
-                                ${doctor.department}
-                            </span>
-                            <h3 class="text-primary text-xl font-black mt-1">
-                                ${doctor.name}
-                            </h3>
-                            <p class="text-slate-500 text-sm mt-1 leading-7">
-                                ${doctor.qualification}
-                            </p>
-                            <button
-                                type="button"
-                                class="doctor-profile-btn btn-primary w-full mt-2"
-                                data-index="${index}">
-                                View Profile
-                            </button>
-                        </div>
-                    </article>`
-                );
-            });
-
-            doctorGrid.querySelectorAll('.doctor-profile-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const idx = parseInt(this.dataset.index);
-                    if (data[idx]) window.renderDoctorModal(data[idx]);
-                });
-            });
-        }
-
-        function filterDoctors() {
-            showDoctorLoader();
-            setTimeout(() => {
-                const keyword = (doctorSearchInput?.value || "").toLowerCase();
-                const department = departmentSelect?.value || "";
-                const location = locationFilterSelect?.value || "";
-
-                const filtered = doctors.filter(doctor => {
-                    const matchSearch = doctor.name.toLowerCase().includes(keyword);
-                    const matchDepartment = department === "" || doctor.department === department;
-                    const matchLocation = location === "" || doctor.location === location;
-                    return matchSearch && matchDepartment && matchLocation;
-                });
-                renderDoctors(filtered);
-                hideDoctorLoader();
-            }, 300);
-        }
-
-        populateDepartments();
-        renderDoctors(doctors);
-
-        if (doctorSearchInput) doctorSearchInput.addEventListener("input", filterDoctors);
-        if (departmentSelect) departmentSelect.addEventListener("change", filterDoctors);
-        if (locationFilterSelect) locationFilterSelect.addEventListener("change", filterDoctors);
-
-        const resetAll = () => {
-            if (doctorSearchInput) doctorSearchInput.value = "";
-            if (departmentSelect) departmentSelect.value = "";
-            if (locationFilterSelect) locationFilterSelect.value = "";
-            renderDoctors(doctors);
-        };
-
-        if (resetFiltersBtn) resetFiltersBtn.addEventListener("click", resetAll);
-        if (clearSearchBtn) clearSearchBtn.addEventListener("click", resetAll);
-    }
-
-    /* ==========================================================================
-       5. PUBLICATIONS & HEALTH INFORMATION PAGINATED TABLES
-       ========================================================================== */
-    const publicationsDataEl = document.getElementById("publicationsData") || document.getElementById("healthInformationData");
-    const publicationTable = document.getElementById("publicationTable");
-
-    if (publicationsDataEl && publicationTable) {
-        let publications = [];
-        try {
-            publications = JSON.parse(publicationsDataEl.textContent || "[]");
-        } catch (e) {
-            publications = [];
-        }
-
-        const pagination = document.getElementById("publicationPagination");
-        const loader = document.getElementById("publicationLoader");
-        const content = document.getElementById("publicationContent");
-        const searchInput = document.getElementById("searchInput");
-        const perPageSelect = document.getElementById("perPage");
-
-        let currentPage = 1;
-        let perPage = parseInt(perPageSelect?.value || 5);
-        let search = "";
-
-        function showPubLoader() {
-            if (loader) loader.classList.remove("hidden");
-            if (content) {
-                content.style.opacity = ".3";
-                content.style.pointerEvents = "none";
-            }
-        }
-
-        function hidePubLoader() {
-            if (loader) loader.classList.add("hidden");
-            if (content) {
-                content.style.opacity = "1";
-                content.style.pointerEvents = "auto";
-            }
-        }
-
-        function escapeHtml(value) {
-            const div = document.createElement("div");
-            div.textContent = value ?? "";
-            return div.innerHTML;
-        }
-
-        function getActionButtons(item) {
-            if (item.documents && item.documents.length) {
-                let buttons = "";
-                item.documents.forEach(doc => {
-                    buttons += `
-                        <a href="${doc.file}"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="inline-flex items-center gap-2 text-black/90 font-medium mr-3">
-                            <i class="fa-solid fa-file-pdf text-secondary"></i>
-                            ${escapeHtml(doc.title || 'View PDF')}
-                        </a>
-                    `;
-                });
-                return buttons;
-            }
-            if (item.file) {
-                return `
-                    <a href="${item.file}"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 text-black/90 font-medium">
-                        <i class="fa-solid fa-file-pdf text-secondary"></i>
-                        View PDF
-                    </a>
-                `;
-            }
-            return `<span class="text-slate-400">No Document</span>`;
-        }
-
-        function renderPubTable(data) {
-            publicationTable.innerHTML = "";
-            if (!data.length) {
-                publicationTable.innerHTML = `
-                    <tr>
-                        <td colspan="3" class="px-5 py-8 text-center text-slate-500">
-                            No records found
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            data.forEach((item, index) => {
-                const serialNumber = (currentPage - 1) * perPage + index + 1;
-                publicationTable.innerHTML += `
-                    <tr class="border-b border-slate-200 hover:bg-slate-100 transition">
-                        <td class="px-5 py-4 font-medium text-black/90">
-                            ${serialNumber}
-                        </td>
-                        <td class="px-5 py-4 text-black/90">
-                            <strong class="font-medium">${escapeHtml(item.title)}</strong>
-                            ${item.content ? `<br>${item.content}` : ''}
-                        </td>
-                        <td class="px-5 py-4 text-center">
-                            ${getActionButtons(item)}
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function renderPubPagination(totalPages) {
-            if (!pagination) return;
-            pagination.innerHTML = "";
-            if (totalPages <= 1) return;
-
-            for (let i = 1; i <= totalPages; i++) {
-                pagination.innerHTML += `
-                    <button
-                        type="button"
-                        data-page="${i}"
-                        class="pub-page-btn px-4 py-2 border transition
-                        ${currentPage === i
-                            ? "bg-primary text-white border-primary"
-                            : "bg-[#fdfdfd] text-primary border-slate-300 hover:bg-primary hover:text-white"}">
-                        ${i}
-                    </button>
-                `;
-            }
-
-            pagination.querySelectorAll(".pub-page-btn").forEach(btn => {
-                btn.addEventListener("click", function () {
-                    currentPage = parseInt(this.dataset.page);
-                    fetchPubs();
-                });
-            });
-        }
-
-        function fetchPubs() {
-            showPubLoader();
-            setTimeout(() => {
-                const searchTerm = search.trim().toLowerCase();
-                const filtered = publications.filter(item => (item.title || "").toLowerCase().includes(searchTerm));
-                const totalPages = Math.ceil(filtered.length / perPage);
-                if (currentPage > totalPages && totalPages > 0) currentPage = 1;
-
-                const start = (currentPage - 1) * perPage;
-                const data = filtered.slice(start, start + perPage);
-                renderPubTable(data);
-                renderPubPagination(totalPages);
-                hidePubLoader();
-            }, 300);
-        }
-
-        if (perPageSelect) {
-            perPageSelect.addEventListener("change", function () {
-                perPage = parseInt(this.value);
-                currentPage = 1;
-                fetchPubs();
-            });
-        }
-
-        if (searchInput) {
-            let typingTimer;
-            searchInput.addEventListener("input", function () {
-                clearTimeout(typingTimer);
-                const val = this.value;
-                typingTimer = setTimeout(() => {
-                    search = val;
-                    currentPage = 1;
-                    fetchPubs();
-                }, 300);
-            });
-        }
-
-        const resetBtn = document.getElementById("resetPublications") || document.querySelector(".reset-pub-btn");
-        if (resetBtn) {
-            resetBtn.addEventListener("click", function () {
-                if (searchInput) searchInput.value = "";
-                search = "";
-                currentPage = 1;
-                if (perPageSelect) {
-                    perPageSelect.value = "5";
-                    perPage = 5;
-                }
-                fetchPubs();
-            });
-        }
-
-        fetchPubs();
-    }
-
-    /* ==========================================================================
-       6. HISTORY TIMELINE SCROLL & INTERACTION
-       ========================================================================== */
-    const historySection = document.getElementById("history-section");
-    const historyDataEl = document.getElementById("historyData");
-    if (historySection && historyDataEl) {
-        const scrollContainer = document.getElementById("history-scroll-container");
-        const sticky = document.getElementById("history-sticky");
-        const buttons = document.querySelectorAll(".history-year");
-
-        if (scrollContainer && sticky && buttons.length) {
-            let historyData = {};
-            try {
-                historyData = JSON.parse(historyDataEl.textContent || "{}");
-            } catch (e) {
-                historyData = {};
-            }
-
-            const historyIds = [];
-            buttons.forEach(button => {
-                const id = String(button.dataset.historyId);
-                if (id && !historyIds.includes(id)) {
-                    historyIds.push(id);
-                }
-            });
-
-            if (historyIds.length) {
-                const image = document.getElementById("historyImage");
-                const year = document.getElementById("historyYear");
-                const title = document.getElementById("historyTitle");
-                const description = document.getElementById("historyDescription");
-                const mobileImage = document.getElementById("historyImageMobile");
-                const mobileYear = document.getElementById("historyYearMobile");
-                const mobileTitle = document.getElementById("historyTitleMobile");
-                const mobileDescription = document.getElementById("historyDescriptionMobile");
-
-                let currentIndex = 0;
-                let clickScrolling = false;
-                let scrollTimeout = null;
-                let ticking = false;
-
-                function updateActiveButton(index) {
-                    const activeId = String(historyIds[index]);
-                    buttons.forEach(button => {
-                        const buttonId = String(button.dataset.historyId);
-                        const dot = button.querySelector(".history-year-dot");
-                        if (buttonId === activeId) {
-                            button.classList.add("active");
-                            if (dot) {
-                                dot.classList.remove("bg-slate-300");
-                                dot.classList.add("bg-secondary");
-                            }
-                        } else {
-                            button.classList.remove("active");
-                            if (dot) {
-                                dot.classList.remove("bg-secondary");
-                                dot.classList.add("bg-slate-300");
-                            }
-                        }
-                    });
-                }
-
-                function showHistory(index) {
-                    if (index < 0 || index >= historyIds.length) return;
-                    const id = String(historyIds[index]);
-                    const data = historyData[id];
-                    if (!data) return;
-                    currentIndex = index;
-
-                    if (year) year.textContent = data.year || "";
-                    if (title) title.textContent = data.title || "";
-                    if (description) description.textContent = data.description || "";
-                    if (image && data.image) {
-                        image.src = data.image;
-                        image.alt = data.title || "";
-                    }
-
-                    if (mobileYear) mobileYear.textContent = data.year || "";
-                    if (mobileTitle) mobileTitle.textContent = data.title || "";
-                    if (mobileDescription) mobileDescription.textContent = data.description || "";
-                    if (mobileImage && data.image) {
-                        mobileImage.src = data.image;
-                        mobileImage.alt = data.title || "";
-                    }
-
-                    updateActiveButton(index);
-                }
-
-                function setupScrollHeight() {
-                    if (window.innerWidth < 1024) {
-                        scrollContainer.style.height = "";
-                        return;
-                    }
-                    const visibleHeight = sticky.offsetHeight;
-                    const perItem = Math.round(window.innerHeight * 0.8);
-                    const totalScroll = Math.max(0, (historyIds.length - 1) * perItem);
-                    scrollContainer.style.height = (visibleHeight + totalScroll) + "px";
-                }
-
-                function updateFromScroll() {
-                    if (window.innerWidth < 1024 || clickScrolling) return;
-                    const rect = scrollContainer.getBoundingClientRect();
-                    const stickyTop = sticky.offsetTop;
-                    const travelled = Math.max(0, -rect.top + stickyTop);
-                    const totalScroll = scrollContainer.offsetHeight - sticky.offsetHeight;
-                    if (totalScroll <= 0) return;
-                    let progress = Math.max(0, Math.min(1, travelled / totalScroll));
-                    const index = Math.round(progress * (historyIds.length - 1));
-                    if (index !== currentIndex) showHistory(index);
-                }
-
-                buttons.forEach(button => {
-                    button.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        const id = String(this.dataset.historyId);
-                        const index = historyIds.indexOf(id);
-                        if (index === -1) return;
-                        showHistory(index);
-
-                        if (window.innerWidth >= 1024) {
-                            const totalScroll = scrollContainer.offsetHeight - sticky.offsetHeight;
-                            const progress = historyIds.length <= 1 ? 0 : index / (historyIds.length - 1);
-                            const containerTop = scrollContainer.getBoundingClientRect().top + window.scrollY;
-                            const target = containerTop + (sticky.offsetTop || 0) + (totalScroll * progress);
-                            clickScrolling = true;
-                            clearTimeout(scrollTimeout);
-                            window.scrollTo({ top: target, behavior: "smooth" });
-                            scrollTimeout = setTimeout(() => {
-                                clickScrolling = false;
-                                updateFromScroll();
-                            }, 900);
-                        } else {
-                            this.scrollIntoView({ behavior: "smooth", block: "center" });
-                        }
-                    });
-                });
-
-                window.addEventListener("scroll", () => {
-                    if (ticking) return;
-                    ticking = true;
-                    requestAnimationFrame(() => {
-                        updateFromScroll();
-                        ticking = false;
-                    });
-                }, { passive: true });
-
-                window.addEventListener("resize", () => {
-                    setupScrollHeight();
-                    updateFromScroll();
-                });
-
-                showHistory(0);
-                setupScrollHeight();
-            }
-        }
-    }
-
-    const historyGalleryGrid = document.getElementById("historyGalleryGrid");
-    if (historyGalleryGrid) {
-        historyGalleryGrid.addEventListener("click", function (e) {
-            const item = e.target.closest(".history-gallery-item");
-            if (!item) return;
-
-            const allItems = Array.from(document.querySelectorAll("#historyGalleryGrid .history-gallery-item"));
-            const itemsData = allItems.map(el => ({
-                src: el.dataset.src || "",
-                title: el.dataset.title || "",
-                subtitle: el.dataset.subtitle || "CIWEC History",
-                description: el.dataset.description || ""
-            }));
-
-            const index = allItems.indexOf(item);
-            if (index !== -1 && window.openGalleryModal) {
-                window.openGalleryModal(itemsData, index);
-            }
-        });
-    }
-
-    /* ==========================================================================
-       7. GALLERY PAGE FILTER & LIGHTBOX
-       ========================================================================== */
-    const galleryGrid = document.getElementById("galleryGrid");
-    if (galleryGrid) {
-        galleryGrid.addEventListener("click", (e) => {
-            const item = e.target.closest(".gallery-item");
-            if (!item) return;
-
-            const visibleItems = Array.from(document.querySelectorAll("#galleryGrid .gallery-item")).filter(
-                el => el.style.display !== "none"
-            );
-
-            const itemsData = visibleItems.map(el => {
-                const img = el.querySelector("img");
-                return {
-                    src: img ? img.src : "",
-                    title: img ? img.alt : "CIWEC Hospital Gallery",
-                    subtitle: "Gallery",
-                    description: ""
-                };
-            });
-
-            const clickedIndex = visibleItems.indexOf(item);
-            if (clickedIndex !== -1 && window.openGalleryModal) {
-                window.openGalleryModal(itemsData, clickedIndex);
-            }
-        });
-    }
-
-    const filterButtons = document.querySelectorAll(".gallery-filter");
-    const galleryItems = document.querySelectorAll(".gallery-item");
-    if (filterButtons.length && galleryItems.length) {
-        filterButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                filterButtons.forEach(btn => btn.classList.remove("active"));
-                button.classList.add("active");
-                const filter = button.dataset.filter;
-                galleryItems.forEach(item => {
-                    item.style.display = filter === "all" || item.classList.contains(filter) ? "" : "none";
-                });
-            });
-        });
-    }
-
-    /* ==========================================================================
-       8. BOOK APPOINTMENT FLATPICKR & TIME SLOTS
-       ========================================================================== */
-    const appointmentDateInput = document.getElementById('appointment_date');
-    const appointmentTimeSelect = document.getElementById('appointment_time');
-
-    if (appointmentDateInput && typeof flatpickr !== "undefined") {
-        flatpickr(appointmentDateInput, {
-            dateFormat: "Y-m-d",
-            minDate: "today",
-            disableMobile: true
-        });
-    }
-
-    if (appointmentDateInput && appointmentTimeSelect) {
-        function formatDate(date) {
-            return date.toISOString().split('T')[0];
-        }
-
-        function populateTimes() {
-            appointmentTimeSelect.innerHTML = '';
-            const selectedDate = appointmentDateInput.value;
-            const today = formatDate(new Date());
-            const now = new Date();
-            let slotsAdded = 0;
-
-            for (let hour = 9; hour <= 17; hour++) {
-                for (let minute = 0; minute < 60; minute += 30) {
-                    const hh = String(hour).padStart(2, '0');
-                    const mm = String(minute).padStart(2, '0');
-                    if (selectedDate === today) {
-                        if (hour < now.getHours() || (hour === now.getHours() && minute <= now.getMinutes())) {
-                            continue;
-                        }
-                    }
-                    const option = document.createElement('option');
-                    option.value = `${hh}:${mm}`;
-                    const displayHour = hour > 12 ? hour - 12 : hour;
-                    const ampm = hour >= 12 ? 'PM' : 'AM';
-                    option.text = `${displayHour}:${mm} ${ampm}`;
-                    appointmentTimeSelect.appendChild(option);
-                    slotsAdded++;
-                }
-            }
-
-            if (slotsAdded === 0) {
-                const option = document.createElement('option');
-                option.value = "";
-                option.text = "No slots available for today.";
-                option.disabled = true;
-                option.selected = true;
-                appointmentTimeSelect.appendChild(option);
-            }
-        }
-
-        appointmentDateInput.addEventListener('change', populateTimes);
-        populateTimes();
-    }
-
-    /* ==========================================================================
-       9. HEALTH SCREENING FAQ ACCORDIONS
-       ========================================================================== */
-    const faqItems = document.querySelectorAll(".faq-item");
-    if (faqItems.length) {
-        faqItems.forEach((item) => {
-            const button = item.querySelector(".faq-btn");
-            if (button) {
-                button.addEventListener("click", () => {
-                    const isActive = item.classList.contains("active");
-                    faqItems.forEach((faq) => faq.classList.remove("active"));
-                    if (!isActive) item.classList.add("active");
-                });
-            }
-        });
-    }
-
-    /* ==========================================================================
-       10. FRONTPAGE MODEL SWITCHER & VIDEO MODAL
-       ========================================================================== */
-    const modelItems = document.querySelectorAll('.model-item');
-    const centerImage = document.getElementById('centerImage');
-    if (modelItems.length && centerImage) {
-        modelItems.forEach(item => {
-            item.addEventListener('click', () => {
-                modelItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                centerImage.style.opacity = '0';
-                centerImage.style.transform = 'scale(.95)';
-                setTimeout(() => {
-                    centerImage.src = item.dataset.image;
-                    centerImage.style.opacity = '1';
-                    centerImage.style.transform = 'scale(1)';
-                }, 250);
-            });
-        });
-    }
-
-    /* Video Lightbox */
-    const videoModal = document.getElementById("videoModal");
-    const storyVideo = document.getElementById("storyVideo");
-    const videoFrame = document.getElementById("videoFrame");
-    const closeVideoModal = document.getElementById("closeVideoModal") || document.getElementById("closeVideo");
-
-    if (videoModal) {
-        document.querySelectorAll(".story-card[data-video], .videoBtn").forEach(trigger => {
-            trigger.addEventListener("click", (e) => {
-                e.preventDefault();
-                const videoUrl = trigger.dataset.video;
-                if (!videoUrl) return;
-
-                const targetMedia = storyVideo || videoFrame;
-                if (targetMedia) {
-                    const separator = videoUrl.includes("?") ? "&" : "?";
-                    targetMedia.src = `${videoUrl}${separator}autoplay=1&rel=0`;
-                    videoModal.classList.remove("hidden");
-                    videoModal.classList.add("flex");
-                    document.body.style.overflow = "hidden";
-                }
-            });
-        });
-
-        const closeModal = () => {
-            videoModal.classList.add("hidden");
-            videoModal.classList.remove("flex");
-            if (storyVideo) storyVideo.src = "";
-            if (videoFrame) videoFrame.src = "";
-            document.body.style.overflow = "";
-        };
-
-        if (closeVideoModal) closeVideoModal.addEventListener("click", closeModal);
-        videoModal.addEventListener("click", (e) => {
-            if (e.target === videoModal) closeModal();
-        });
-    }
-
-    /* KEYBOARD ESCAPE LISTENER FOR ALL MODALS */
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-            if (window.closeDoctorModal) window.closeDoctorModal();
-            if (window.closeGalleryModal) window.closeGalleryModal();
-            if (window.closeServiceModal) window.closeServiceModal();
-        }
-    });
-
-    /* ==========================================================================
-       11. CORE SWIPERS & UTILITIES
-       ========================================================================== */
-    if (document.querySelector(".awardSwiper") && typeof Swiper !== "undefined") {
-        new Swiper(".awardSwiper", {
-            loop: true,
-            speed: 1000,
-            spaceBetween: 24,
-            autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
-            pagination: { el: ".award-pagination", clickable: true },
-            breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1280: { slidesPerView: 3 } }
-        });
-    }
-
-    if (document.querySelector(".patientStoriesSwiper") && typeof Swiper !== "undefined") {
-        new Swiper(".patientStoriesSwiper", {
-            loop: true,
-            speed: 1000,
-            spaceBetween: 20,
-            autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
-            pagination: { el: ".patient-story-pagination", clickable: true },
-            breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 } }
-        });
-    }
-
-    if (document.querySelector(".specialitySwiper") && typeof Swiper !== "undefined") {
-        new Swiper(".specialitySwiper", {
-            loop: false,
-            speed: 900,
-            slidesPerView: 1.15,
-            spaceBetween: 1,
-            autoplay: true,
-            pagination: { el: ".speciality-pagination", clickable: true },
-            breakpoints: { 640: { slidesPerView: 2.1 }, 1024: { slidesPerView: 3.2 }, 1280: { slidesPerView: 4.5 } }
-        });
-    }
-
-    if (document.querySelector(".reviewSwiper") && typeof Swiper !== "undefined") {
-        new Swiper(".reviewSwiper", {
-            loop: true,
-            speed: 1000,
-            spaceBetween: 24,
-            autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
-            breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1280: { slidesPerView: 3 } }
-        });
-    }
-
-    /* GLightbox Inline Modal Initialization for Testimonials */
-    if (typeof GLightbox !== "undefined" && document.querySelector(".testimonial-lightbox, [data-glightbox]")) {
-        GLightbox({
-            selector: '.testimonial-lightbox, [data-glightbox]',
-            touchNavigation: true,
-            loop: false,
-            autoplayVideos: true
-        });
-    }
-
-    /* Back To Top + Scroll Progress */
-    const backToTop = document.getElementById("backToTop");
-    const progressCircle = document.getElementById("scrollProgress");
-    if (backToTop) {
-        backToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 250) {
-                backToTop.classList.remove("opacity-0", "pointer-events-none", "translate-y-8");
-                backToTop.classList.add("opacity-100", "translate-y-0");
-            } else {
-                backToTop.classList.add("opacity-0", "pointer-events-none", "translate-y-8");
-                backToTop.classList.remove("opacity-100", "translate-y-0");
-            }
-
-            if (progressCircle) {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const progress = scrollTop / docHeight;
-                progressCircle.style.strokeDashoffset = 289 - progress * 289;
-            }
-        });
-    }
-
-    /* Header Shadow */
-    const header = document.getElementById("header");
-    if (header) {
-        window.addEventListener("scroll", () => {
-            header.classList.toggle("shadow-md", window.scrollY > 20);
-        });
-    }
-
-    /* Search Toggle */
-    const searchToggle = document.getElementById("searchToggle");
-    const searchWrapper = document.getElementById("searchWrapper");
-    const searchOverlay = document.getElementById("searchOverlay");
-    if (searchToggle && searchWrapper && searchOverlay) {
-        searchToggle.addEventListener("click", (e) => {
+    var canHover =
+        window.matchMedia &&
+        window.matchMedia("(hover:hover) and (min-width:1021px)").matches;
+    drops.forEach(function (b) {
+        b.addEventListener("click", function (e) {
             e.stopPropagation();
-            searchWrapper.classList.toggle("search-active");
+            if (canHover) {
+                openD(b);
+            } else if (b.getAttribute("aria-expanded") === "true") {
+                closeAll();
+            } else {
+                openD(b);
+            }
         });
-        searchOverlay.addEventListener("click", () => searchWrapper.classList.remove("search-active"));
+        if (canHover) {
+            var li = b.parentNode;
+            li.addEventListener("mouseenter", function () {
+                clearTimeout(tmr);
+                openD(b);
+            });
+            li.addEventListener("mouseleave", function () {
+                tmr = setTimeout(closeAll, 200);
+            });
+        }
+    });
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".mega")) closeAll();
+    });
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeAll();
+    });
+    if (scrim) scrim.addEventListener("click", closeAll);
+    $$(".mega a").forEach(function (a) {
+        a.addEventListener("click", closeAll);
+    });
+
+    /* ---------- Mobile Navigation Menu ---------- */
+    var bg = document.getElementById("burger"),
+        mn = document.getElementById("mnav");
+    if (bg && mn) {
+        bg.addEventListener("click", function () {
+            var o = mn.classList.toggle("open");
+            bg.setAttribute("aria-expanded", o);
+        });
+        $$("#mnav a").forEach(function (a) {
+            a.addEventListener("click", function () {
+                mn.classList.remove("open");
+                bg.setAttribute("aria-expanded", "false");
+            });
+        });
     }
 
-    /* Counter Animation */
-    const counters = document.querySelectorAll(".counter");
-    if (counters.length) {
-        const counterObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = +(counter.dataset.target || counter.dataset.count);
-                        let current = 0;
-                        const increment = target / 120;
-                        const updateCounter = () => {
-                            if (current < target) {
-                                current += increment;
-                                counter.innerText = Math.floor(current);
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.innerText = target.toLocaleString() + "+";
-                            }
-                        };
-                        updateCounter();
-                        counterObserver.unobserve(counter);
-                    }
-                });
+    /* ---------- Forms (design preview handler) ---------- */
+    $$("form.pform").forEach(function (f) {
+        f.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var m = f.querySelector(".fmsg") || document.getElementById("fmsg");
+            if (m) {
+                m.classList.add("show");
+                m.textContent =
+                    "This is a design preview, so nothing was sent. On the live site this form goes to the Nepreva team, who reply within one business day.";
+            }
+        });
+    });
+
+    /* ---------- Services Dropdown Pre-selector ---------- */
+    function setSvc(n) {
+        if (!n) return;
+        $$("select[name=svc]").forEach(function (s) {
+            for (var i = 0; i < s.options.length; i++) {
+                if (s.options[i].text === n) s.selectedIndex = i;
+            }
+        });
+    }
+    var p = $(".pg.on");
+    if (p) setSvc(p.dataset.svc);
+
+    /* ---------- Category Filter Buttons (Insights page) ---------- */
+    var fb = $$(".filters button");
+    fb.forEach(function (b) {
+        b.addEventListener("click", function () {
+            fb.forEach(function (x) {
+                x.setAttribute("aria-pressed", x === b);
+            });
+            var c = b.dataset.c;
+            $$(".acard").forEach(function (a) {
+                a.style.display =
+                    c === "all" || a.dataset.cat === c ? "" : "none";
+            });
+        });
+    });
+
+    /* ---------- Engagement Board (Homepage) ---------- */
+    var boardEl = document.getElementById("board");
+    if (boardEl) {
+        var DATA = {
+            firm: {
+                title: "Interim audit support: trade receivables",
+                sub: "Working under your methodology and file structure",
+                stages: [
+                    {
+                        n: "Prepared",
+                        w: "Delivery team",
+                        items: [
+                            "Lead schedule agreed to the ledger",
+                            "Confirmation sample selected from your criteria",
+                            "Subsequent receipts tested",
+                        ],
+                    },
+                    {
+                        n: "Reviewed",
+                        w: "Chartered Accountant reviewer",
+                        items: [
+                            "Testing re-performed on a sample",
+                            "Review notes raised and logged",
+                            "Review notes cleared and evidenced",
+                        ],
+                    },
+                    {
+                        n: "Delivered",
+                        w: "To your engagement team",
+                        items: [
+                            "File indexed to your template",
+                            "Handed over for your sign-off",
+                            "Feedback captured for the next cycle",
+                        ],
+                    },
+                ],
+                foot: "Your methodology. Your sign-off.",
+                chip: "Ready for your review",
             },
-            { threshold: 0.4 }
-        );
-        counters.forEach((counter) => counterObserver.observe(counter));
-    }
+            biz: {
+                title: "Month-end close: bank and accruals",
+                sub: "Posted in your ledger, to your close calendar",
+                stages: [
+                    {
+                        n: "Prepared",
+                        w: "Delivery team",
+                        items: [
+                            "Bank reconciliations across all accounts",
+                            "Accruals and prepayments schedule",
+                            "Intercompany balances matched",
+                        ],
+                    },
+                    {
+                        n: "Reviewed",
+                        w: "Chartered Accountant reviewer",
+                        items: [
+                            "Reconciling items cleared or explained",
+                            "Variance commentary drafted",
+                            "Management accounts tie to the ledger",
+                        ],
+                    },
+                    {
+                        n: "Delivered",
+                        w: "To your finance lead",
+                        items: [
+                            "Close pack in your format",
+                            "Handed over for your sign-off",
+                            "Open points logged for next month",
+                        ],
+                    },
+                ],
+                foot: "Reviewed before it reaches you.",
+                chip: "Ready for your sign-off",
+            },
+        };
+        var timers = [],
+            cur = "firm";
+        function clearT() {
+            timers.forEach(clearTimeout);
+            timers = [];
+        }
+        function renderBoard(k) {
+            cur = k;
+            clearT();
+            var d = DATA[k],
+                total = 0,
+                html = "";
+            var bTitle = $("#bTitle"),
+                bSub = $("#bSub"),
+                stages = $("#stages"),
+                bTot = $("#bTot"),
+                bNum = $("#bNum"),
+                bBar = $("#bBar"),
+                chip = $("#bChip"),
+                bFootTxt = $("#bFootTxt");
 
-    /* ==========================================================================
-       12. NAVIGATION & MOBILE MENU SYSTEM
-       ========================================================================== */
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const mobileOverlay = document.getElementById("mobileOverlay");
-    const closeMenu = document.getElementById("closeMenu");
-    const whatsappWidget = document.querySelector(".whatsapp-widget");
-    const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
+            if (bTitle) bTitle.textContent = d.title;
+            if (bSub) bSub.textContent = d.sub;
+            d.stages.forEach(function (s, i) {
+                html +=
+                    '<li class="stage" data-s="' +
+                    i +
+                    '"><div class="st-h"><span class="st-dot">' +
+                    tick +
+                    "</span><b>" +
+                    s.n +
+                    '</b><span class="who">' +
+                    s.w +
+                    "</span></div><ul>" +
+                    s.items
+                        .map(function (t) {
+                            total++;
+                            return '<li class="it">' + t + "</li>";
+                        })
+                        .join("") +
+                    "</ul></li>";
+            });
+            if (stages) stages.innerHTML = html;
+            if (bTot) bTot.textContent = total;
+            if (bNum) bNum.textContent = 0;
+            if (bBar) bBar.style.width = "0";
+            if (chip) {
+                chip.className = "chip";
+                chip.textContent = "In the review chain";
+            }
+            if (bFootTxt) bFootTxt.textContent = "Work in progress";
 
-    function openMobileMenu() {
-        mobileMenu?.classList.add("active");
-        mobileOverlay?.classList.add("active");
-        document.body.classList.add("menu-open");
-        whatsappWidget?.classList.add("hidden");
-    }
+            var its = [].slice.call(document.querySelectorAll("#stages .it"));
+            function setN(n) {
+                if (bNum) bNum.textContent = n;
+                if (bBar) bBar.style.width = (n / total) * 100 + "%";
+                document
+                    .querySelectorAll("#stages .stage")
+                    .forEach(function (st) {
+                        var all = st.querySelectorAll(".it"),
+                            on = st.querySelectorAll(".it.on");
+                        st.classList.toggle("done", all.length === on.length);
+                    });
+                if (n === total) {
+                    if (chip) {
+                        chip.className = "chip ready";
+                        chip.textContent = d.chip;
+                    }
+                    if (bFootTxt) bFootTxt.textContent = d.foot;
+                }
+            }
+            if (reduce) {
+                its.forEach(function (e) {
+                    e.classList.add("on");
+                });
+                setN(total);
+                return;
+            }
+            its.forEach(function (e, i) {
+                timers.push(
+                    setTimeout(
+                        function () {
+                            e.classList.add("on");
+                            setN(i + 1);
+                        },
+                        650 + i * 520,
+                    ),
+                );
+            });
+        }
 
-    function closeMobileMenu() {
-        mobileMenu?.classList.remove("active");
-        mobileOverlay?.classList.remove("active");
-        document.body.classList.remove("menu-open");
-        whatsappWidget?.classList.remove("hidden");
-        mobileDropdowns.forEach(dropdown => {
-            dropdown.classList.remove("active");
+        document.querySelectorAll("#board .seg button").forEach(function (b) {
+            b.addEventListener("click", function () {
+                document
+                    .querySelectorAll("#board .seg button")
+                    .forEach(function (x) {
+                        x.setAttribute("aria-selected", x === b);
+                    });
+                renderBoard(b.dataset.k);
+            });
         });
+        renderBoard("firm");
     }
 
-    menuToggle?.addEventListener("click", openMobileMenu);
-    closeMenu?.addEventListener("click", closeMobileMenu);
-    mobileOverlay?.addEventListener("click", closeMobileMenu);
+    /* ---------- Engagement Models Tabs (Homepage) ---------- */
+    var mt = $("#mtabs"),
+        mp = $("#mpanel");
+    if (mt && mp) {
+        var MODELS = [
+            {
+                n: "Dedicated team",
+                b: "Best when you have steady, ongoing volume and want a named team that learns your business.",
+                f: [
+                    "A named team working exclusively on your engagements",
+                    "Learns your clients, templates and conventions",
+                    "Grows by adding people to the same team",
+                ],
+            },
+            {
+                n: "Managed service",
+                b: "Best when you want an outcome, such as a close, a payroll or a report set, delivered against agreed SLAs.",
+                f: [
+                    "Outcome-based scope with agreed service levels",
+                    "Performance reported against those levels",
+                    "Nepreva manages the team and the capacity",
+                ],
+            },
+            {
+                n: "Project support",
+                b: "Best for defined-scope work such as a clean-up, a model or a one-off review.",
+                f: [
+                    "Fixed scope and an agreed timeline",
+                    "A clear hand-over at the end",
+                    "A low-risk first step before a longer engagement",
+                ],
+            },
+            {
+                n: "Peak-season capacity",
+                b: "Best for filing seasons and deadline spikes that outpace your headcount.",
+                f: [
+                    "Capacity added for the weeks you need it",
+                    "Scaled back once the peak passes",
+                    "No recruitment cycle each time",
+                ],
+            },
+            {
+                n: "Hybrid delivery",
+                b: "Best when a stable core is complemented by periodic surges.",
+                f: [
+                    "A dedicated core team",
+                    "Flexible capacity layered on top as volume changes",
+                    "One governance structure across both",
+                ],
+            },
+        ];
+        MODELS.forEach(function (m, i) {
+            var b = document.createElement("button");
+            b.setAttribute("role", "tab");
+            b.setAttribute("aria-selected", i === 0);
+            b.textContent = m.n;
+            b.addEventListener("click", function () {
+                mt.querySelectorAll("button").forEach(function (x) {
+                    x.setAttribute("aria-selected", x === b);
+                });
+                showModel(i);
+            });
+            mt.appendChild(b);
+        });
+        function showModel(i) {
+            var m = MODELS[i];
+            mp.innerHTML =
+                "<h3>" +
+                m.n +
+                '</h3><p class="best">' +
+                m.b +
+                "</p><ul>" +
+                m.f
+                    .map(function (t) {
+                        return "<li>" + ico("i-check") + t + "</li>";
+                    })
+                    .join("") +
+                "</ul>";
+        }
+        showModel(0);
+    }
 
-    mobileDropdowns.forEach(dropdown => {
-        const button = dropdown.querySelector(".mobile-dropdown-btn");
-        if (!button) return;
+    /* ---------- Quality Chain Tabs (Homepage) ---------- */
+    var pp = $("#pipe"),
+        pd = $("#pdetail");
+    if (pp && pd) {
+        var QC = [
+            {
+                n: "Brief",
+                i: "i-doc",
+                t: "Your instructions come first",
+                p: "Your methodology, templates and instructions are documented before work starts. The team follows them as given, rather than substituting a generic default.",
+                c: [
+                    "Documented standard operating procedures",
+                    "Client-specific instructions and templates",
+                    "Defined preparer, reviewer and partner roles",
+                    "Agreed turnaround and escalation path",
+                ],
+            },
+            {
+                n: "Prepare",
+                i: "i-pen",
+                t: "Prepared against procedure",
+                p: "The preparer completes the work against the documented procedure and self-checks it before it moves on. Automation is used where it removes repetitive effort.",
+                c: [
+                    "Preparer self-check",
+                    "Work performed in your systems",
+                    "Automated outputs flagged for human review",
+                    "Supporting documentation filed as work proceeds",
+                ],
+            },
+            {
+                n: "Review",
+                i: "i-eye",
+                t: "An independent second pair of eyes",
+                p: "A reviewer separate from the preparer performs maker-checker review. Review notes are logged and tracked until they are closed, never left informal.",
+                c: [
+                    "Maker-checker on every deliverable",
+                    "Review notes tracked to closure",
+                    "Chartered Accountant reviewer",
+                    "Exceptions escalated, not absorbed",
+                ],
+            },
+            {
+                n: "Sign-off",
+                i: "i-usercheck",
+                t: "Partner accountability",
+                p: "Technical and partner-level sign-off happens before anything leaves Nepreva. A named partner is accountable for each engagement.",
+                c: [
+                    "Technical review before client delivery",
+                    "Named partner oversight",
+                    "Human review of all automated outputs",
+                    "Quality record retained",
+                ],
+            },
+            {
+                n: "Deliver",
+                i: "i-send",
+                t: "Ready for your own sign-off",
+                p: "You receive work that is ready for your review and approval. Your feedback goes back into the brief, so the next cycle starts better than the last.",
+                c: [
+                    "Delivered in your format",
+                    "Handed over for your sign-off",
+                    "Client feedback captured",
+                    "Improvements fed into the next cycle",
+                ],
+            },
+        ];
+        QC.forEach(function (q, i) {
+            var b = document.createElement("button");
+            b.className = "node";
+            b.setAttribute("role", "tab");
+            b.setAttribute("aria-selected", i === 0);
+            b.innerHTML =
+                '<span class="dot">' + ico(q.i) + "</span><b>" + q.n + "</b>";
+            b.addEventListener("click", function () {
+                pp.querySelectorAll(".node").forEach(function (x) {
+                    x.setAttribute("aria-selected", x === b);
+                });
+                showQ(i);
+            });
+            pp.appendChild(b);
+        });
+        function showQ(i) {
+            var q = QC[i];
+            pd.innerHTML =
+                "<div><h3>" +
+                q.t +
+                "</h3><p>" +
+                q.p +
+                '</p></div><div class="ctl">' +
+                q.c
+                    .map(function (t) {
+                        return (
+                            "<div>" +
+                            ico("i-check") +
+                            "<span>" +
+                            t +
+                            "</span></div>"
+                        );
+                    })
+                    .join("") +
+                "</div>";
+        }
+        showQ(0);
+    }
 
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            mobileDropdowns.forEach(item => {
-                if (item !== dropdown && item.classList.contains("active")) {
-                    item.classList.remove("active");
+    /* ---------- Time-zone Overlap (Homepage) ---------- */
+    var zt = $("#ztabs"),
+        tr = $("#track");
+    if (zt && tr) {
+        var NP = 5.75,
+            S = 9 * 60,
+            E = 17.5 * 60; // office hours in minutes
+        var Z = [
+            { n: "United Kingdom", off: 0 },
+            { n: "Gulf", off: 4 },
+            { n: "Australia (Sydney)", off: 11 },
+            { n: "Canada (Eastern)", off: -5 },
+        ];
+        Z.forEach(function (z, i) {
+            var b = document.createElement("button");
+            b.setAttribute("role", "tab");
+            b.setAttribute("aria-selected", i === 0);
+            b.textContent = z.n;
+            b.addEventListener("click", function () {
+                zt.querySelectorAll("button").forEach(function (x) {
+                    x.setAttribute("aria-selected", x === b);
+                });
+                drawZ(i);
+            });
+            zt.appendChild(b);
+        });
+        function drawZ(i) {
+            var z = Z[i],
+                shift = (NP - z.off) * 60; // client local -> Nepal time
+            var cs = S + shift,
+                ce = E + shift; // client band in Nepal time (minutes)
+            var parts = [];
+            var a = ((cs % 1440) + 1440) % 1440,
+                len = ce - cs,
+                b = a + len;
+            if (b <= 1440) {
+                parts.push([a, b]);
+            } else {
+                parts.push([a, 1440]);
+                parts.push([0, b - 1440]);
+            }
+            var ov = 0,
+                ovParts = [];
+            parts.forEach(function (p) {
+                var lo = Math.max(p[0], S),
+                    hi = Math.min(p[1], E);
+                if (hi > lo) {
+                    ov += hi - lo;
+                    ovParts.push([lo, hi]);
                 }
             });
-
-            dropdown.classList.toggle("active");
-        });
-    });
-
-    const searchToggles = document.querySelectorAll(".searchToggle, .searchToggleMobile");
-    const closeSearch = document.getElementById("closeSearch");
-
-    function openSearch() {
-        if (searchWrapper) {
-            searchWrapper.classList.add("search-active");
-            document.body.classList.add("menu-open");
+            var pc = function (m) {
+                    return (m / 1440) * 100 + "%";
+                },
+                w = function (a, b) {
+                    return ((b - a) / 1440) * 100 + "%";
+                };
+            var h = "";
+            for (var t = 0; t <= 24; t += 3)
+                h += '<i class="gl" style="left:' + pc(t * 60) + '"></i>';
+            h +=
+                '<div class="lane l1"><div class="seg-b seg-n" style="left:' +
+                pc(S) +
+                ";width:" +
+                w(S, E) +
+                '"></div><span class="lane-l" style="left:' +
+                pc(S) +
+                ';margin-left:8px">Nepal team</span></div>';
+            h +=
+                '<div class="lane l2">' +
+                parts
+                    .map(function (p) {
+                        return (
+                            '<div class="seg-b seg-c" style="left:' +
+                            pc(p[0]) +
+                            ";width:" +
+                            w(p[0], p[1]) +
+                            '"></div>'
+                        );
+                    })
+                    .join("") +
+                '<span class="lane-l" style="left:' +
+                pc(parts[0][0]) +
+                ';margin-left:8px">Your team</span></div>';
+            h +=
+                '<div class="lane l3">' +
+                ovParts
+                    .map(function (p) {
+                        return (
+                            '<div class="seg-b seg-o" style="top:0;bottom:0;left:' +
+                            pc(p[0]) +
+                            ";width:" +
+                            w(p[0], p[1]) +
+                            '"></div>'
+                        );
+                    })
+                    .join("") +
+                "</div>";
+            h += '<div class="ticks">';
+            for (var t2 = 0; t2 <= 24; t2 += 3)
+                h +=
+                    '<span style="left:' +
+                    pc(t2 * 60) +
+                    '">' +
+                    (t2 === 24 ? "24" : String(t2).padStart(2, "0")) +
+                    "</span>";
+            h += "</div>";
+            tr.innerHTML = h;
+            var hrs = ov / 60;
+            var tzBig = $("#tzBig"),
+                tzTxt = $("#tzTxt");
+            if (hrs > 0) {
+                if (tzBig)
+                    tzBig.textContent =
+                        (Math.round(hrs * 100) / 100)
+                            .toString()
+                            .replace(/\.0+$/, "") + " hrs";
+                if (tzTxt)
+                    tzTxt.textContent =
+                        "of shared working time with " +
+                        z.n +
+                        " each day, so questions get answered live.";
+            } else {
+                if (tzBig) tzBig.textContent = "Overnight";
+                if (tzTxt)
+                    tzTxt.textContent =
+                        "No shared hours. Work handed over at your close is waiting, reviewed, when your team opens the next morning.";
+            }
         }
+        drawZ(0);
     }
 
-    function closeSearchModal() {
-        if (searchWrapper) {
-            searchWrapper.classList.remove("search-active");
-            document.body.classList.remove("menu-open");
+    /* ---------- Sticky Mobile CTA (Homepage) ---------- */
+    var mc = $("#mcta"),
+        hero = $(".hero"),
+        fin = $("#start");
+    if (mc && hero && fin) {
+        function onS() {
+            var y = window.scrollY || 0,
+                hb = hero.offsetTop + hero.offsetHeight - 120,
+                fr = fin.getBoundingClientRect();
+            mc.classList.toggle(
+                "show",
+                y > hb && fr.top > window.innerHeight * 0.6,
+            );
         }
+        window.addEventListener("scroll", onS, { passive: true });
+        onS();
     }
-
-    searchToggles.forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            openSearch();
-        });
-    });
-
-    closeSearch?.addEventListener("click", closeSearchModal);
-
-    const dropdownParents = document.querySelectorAll(".dropdown-parent");
-    const dropdownMenus = document.querySelectorAll(".dropdown-menu");
-
-    function closeAllDropdowns() {
-        dropdownMenus.forEach(menu => menu.classList.remove("active"));
-        dropdownParents.forEach(parent => parent.classList.remove("active"));
-    }
-
-    dropdownParents.forEach(parent => {
-        const toggle = parent.querySelector(".dropdown-toggle");
-        if (!toggle) return;
-
-        const dropdownId = toggle.dataset.dropdown;
-        const menu = document.getElementById(dropdownId);
-        if (!menu) return;
-
-        parent.addEventListener("mouseenter", () => {
-            if (window.innerWidth >= 1024) {
-                closeAllDropdowns();
-                menu.classList.add("active");
-                parent.classList.add("active");
-            }
-        });
-
-        parent.addEventListener("mouseleave", () => {
-            if (window.innerWidth >= 1024) {
-                menu.classList.remove("active");
-                parent.classList.remove("active");
-            }
-        });
-
-        toggle.addEventListener("click", (e) => {
-            if (window.innerWidth >= 1024) {
-                e.preventDefault();
-                const isActive = menu.classList.contains("active");
-                closeAllDropdowns();
-                if (!isActive) {
-                    menu.classList.add("active");
-                    parent.classList.add("active");
-                }
-            }
-        });
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!e.target.closest(".dropdown-parent")) {
-            closeAllDropdowns();
-        }
-    });
-
-    /* ==========================================================================
-       13. MOBILE STICKY BAR SHOW/HIDE ON SCROLL
-       ========================================================================== */
-    const mobileStickyBar = document.getElementById("mobileStickyBar");
-    if (mobileStickyBar) {
-        let lastScrollY = window.scrollY;
-
-        window.addEventListener("scroll", () => {
-            const currentScrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const isAtBottom = (windowHeight + currentScrollY) >= (documentHeight - 20);
-            const delta = currentScrollY - lastScrollY;
-
-            if (isAtBottom || currentScrollY <= 0 || delta < -5) {
-                mobileStickyBar.classList.remove("translate-y-full");
-            } else if (delta > 5 && currentScrollY > 50) {
-                mobileStickyBar.classList.add("translate-y-full");
-            }
-
-            lastScrollY = currentScrollY;
-        }, { passive: true });
-    }
-});
-
+})();
