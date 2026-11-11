@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 321 295">
+  <style>
+    path.frame { fill: #1F3A74; }
+    path.blue { fill: #1F3A74; }
+    path.green { fill: #83BD42; }
+    @media (prefers-color-scheme: dark) {
+      path.frame { fill: #9DB6F5; }
+      path.blue { fill: #9DB6F5; }
+    }
+  </style>
+  <path class="frame" d="M42 8H276V244H232L210 222H252V30H64V82L42 60Z"/>
+  <path class="green" d="M80 96H192V205Z"/>
+  <path class="blue" d="M22 152H135V258Z"/>
+</svg>

@@ -11,7 +11,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="<?= url('/') ?>" />
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600'>
-    <link rel="icon" type="image/png" href="{{ asset('themes-assets/img/logo.png') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('themes-assets/img/favicon.svg') }}">
+    <link rel="icon" type="image/webp" href="{{ asset('themes-assets/img/favicon.webp') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('themes-assets/img/apple-touch-icon.png') }}">
     @yield('additional-css')
     <link rel="stylesheet" type="text/css"
         href="{{ asset(env('PUBLIC_PATH') . 'assets/skin/default_skin/css/theme.css') }}">
@@ -21,7 +23,7 @@
         href="{{ asset(env('PUBLIC_PATH') . 'assets/skin/default_skin/css/theme3.css') }}">
     <link rel="stylesheet" type="text/css"
         href="{{ asset(env('PUBLIC_PATH') . 'assets/admin-tools/admin-forms/css/admin-forms.css') }}">
-    <link rel="shortcut icon" href="{{ asset(env('PUBLIC_PATH') . 'themes-assets/images/favicon.png') }}">
+    {{-- <link rel="shortcut icon" href="{{ asset(env('PUBLIC_PATH') . 'themes-assets/images/favicon.png') }}"> --}}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
