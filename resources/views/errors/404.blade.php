@@ -11,8 +11,8 @@
                 <div class="ctas" style="justify-content:center">
                     <a class="btn btn-primary" href="{{ url("/") }}">Go to the homepage</a>
                         <a class="btn btn-ghost" href="services.php">Explore services</a>
-                        <a class="btn btn-ghost" href="contact.php">Contact us</a>
-                    </div>
+                        <a class="btn btn-ghost" href="{{ url('page/contact.html') }}">Contact us</a>
+                    </div>  
             </div>
         </section>
     </main>

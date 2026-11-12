@@ -15,7 +15,7 @@
                                 <th>SN</th>
                                 <th>Full Name</th>
                                 <th>Contact Details</th>
-                                <!-- <th>Subject</th> -->
+                                <th>Service</th>
                                 <th>Message</th>
                                 <th class="text-left">Action</th>
                             </tr>
@@ -26,11 +26,23 @@
                                     <tr class="bg-light">
                                         <td>{{ $key + 1 }}</td>
                                         <td>
-                                            {{ ucfirst($row->full_name) }} {{ $row->country }} <br>
+                                           <strong> {{ ucfirst($row->full_name) }} </strong>
+                                            <br>
+                                            Company : {{ $row->company ?? 'N/A' }}
+                                            <br>
                                             {{ $row->created_at->format('d M Y') }}
                                         </td>
-                                        <td>{{ $row->email }}<br> {{ $row->number }}</td>
-                                        <!-- <td>{{ $row->subject }}</td> -->
+                                        <td>
+                                            <strong>{{ $row->email }}</strong>
+                                                    <br>
+                                                    Country : {{ $row->country ?? 'N/A' }}
+                                        </td>
+                                        <td>
+                                            <strong>{{ $row->svc }}</strong>
+                                            <br>
+                                                Model : {{ $row->model ?? 'N/A' }}
+
+                                        </td>
                                         <td><textarea readonly>{!! $row->message !!}</textarea></td>
                                         <td class="text-left">
                                             <form action="{{ route('inquiry.delete', $row->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this career entry?');">

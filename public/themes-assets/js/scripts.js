@@ -93,13 +93,13 @@
     /* ---------- Forms (design preview handler) ---------- */
     $$("form.pform").forEach(function (f) {
         f.addEventListener("submit", function (e) {
-            e.preventDefault();
-            var m = f.querySelector(".fmsg") || document.getElementById("fmsg");
-            if (m) {
-                m.classList.add("show");
-                m.textContent =
-                    "This is a design preview, so nothing was sent. On the live site this form goes to the Nepreva team, who reply within one business day.";
-            }
+            // e.preventDefault();
+            // var m = f.querySelector(".fmsg") || document.getElementById("fmsg");
+            // if (m) {
+            //     m.classList.add("show");
+            //     m.textContent =
+            //         "This is a design preview, so nothing was sent. On the live site this form goes to the Nepreva team, who reply within one business day.";
+            // }
         });
     });
 

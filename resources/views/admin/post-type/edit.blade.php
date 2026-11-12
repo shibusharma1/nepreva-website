@@ -55,25 +55,27 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="inputStandard" class="col-lg-2 control-label"> Sub Title</label>
-                        <div class="col-lg-8">
-                            <div class="bs-component">
-                                <input type="text" value="{{ $data->uid }}" name="uid" class="form-control"
-                                    placeholder="" />
+                    @if (in_array($data->id, [6]))
+                        <div class="form-group">
+                            <label for="inputStandard" class="col-lg-2 control-label"> Sub Title</label>
+                            <div class="col-lg-8">
+                                <div class="bs-component">
+                                    <input type="text" value="{{ $data->uid }}" name="uid" class="form-control"
+                                        placeholder="" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @if ($data->id == 5 || $data->id == 13)
+                    @endif
+
+                    @if (in_array($data->id, [6, 8, 9]))
                         <div class="form-group">
-						<label for="inputStandard" class="col-lg-2 control-label"> Caption </label>
-						<div class="col-lg-8">
-							<div class="bs-component">
-								<textarea class="form-control my-editor" id="" name="caption" rows="1" autocomplete="off">{{$data->caption}}</textarea>
-							</div>
-						</div>
-					</div>
+                            <label for="inputStandard" class="col-lg-2 control-label"> Caption </label>
+                            <div class="col-lg-8">
+                                <div class="bs-component">
+                                    <textarea class="form-control my-editor" id="" name="caption" rows="1" autocomplete="off">{{ $data->caption }}</textarea>
+                                </div>
+                            </div>
+                        </div>
                     @endif
 
                     <div class="form-group">
@@ -139,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-
+                     @if ($data->id == 5 || $data->id == 13)
                     <div class="form-group">
                         <label class="col-lg-2 control-label" for="textArea3"> Banner </label>
                         <div class="col-lg-8">
@@ -156,6 +158,7 @@
                             @endif
                         </div>
                     </div>
+                    @endif
 
                     <div class="form-group">
                         <label class="col-lg-2 control-label" for="textArea3"> </label>

@@ -27,7 +27,7 @@
           </div>
 
           <div class="form-group">
-            <label for="inputStandard" class="col-lg-3 control-label">Location</label>
+            <label for="inputStandard" class="col-lg-3 control-label">Office Location</label>
             <div class="col-lg-8">
               <div class="bs-component">
                 <input type="text" class="form-control" id="" name="address" value="{{$data->address}}" />
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputStandard" class="col-lg-3 control-label">Factory</label>
+            <label for="inputStandard" class="col-lg-3 control-label">Time Zone</label>
             <div class="col-lg-8">
               <div class="bs-component">
                 <input type="text" class="form-control" id="" name="address2" value="{{$data->address2}}" />
@@ -58,7 +58,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-3 control-label">Email Secondary</label>
             <div class="col-lg-8">
               <div class="bs-component">
@@ -66,11 +66,9 @@
                   value="{{$data->email_secondary}}" />
               </div>
             </div>
-          </div>
+          </div> --}}
 
-
-
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-3 control-label">Phone Primary</label>
             <div class="col-lg-8">
               <div class="bs-component">
@@ -85,10 +83,10 @@
                 <input type="text" id="" name="phone2" class="form-control" placeholder="" value="{{$data->phone2}}" />
               </div>
             </div>
-          </div>
+          </div> --}}
 
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-3 control-label">Frontpage Youtube Video </label>
             <div class="col-lg-8">
               <div class="bs-component">
@@ -97,21 +95,20 @@
                   rows="7">{{$data->website}}</textarea>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="form-group">
-            <label class="col-lg-3 control-label" for="textArea2"> Contact Page Map</label>
+            <label class="col-lg-3 control-label" for="textArea2"> Response Time</label>
             <div class="col-lg-8">
               <div class="bs-component">
                 <textarea class="form-control" id="contentEditor1" name="google_map"
                   rows="7">{{$data->google_map}}</textarea>
-
               </div>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-lg-3 control-label" for="textArea2"> Footer Text </label>
+            <label class="col-lg-3 control-label" for="textArea2"> Footer Text 1</label>
             <div class="col-lg-8">
               <div class="bs-component">
                 {{-- <input type="text" class="form-control" id="" name="welcome_title" rows="3"
@@ -122,7 +119,7 @@
           </div>
 
           <div class="form-group">
-            <label class="col-lg-3 control-label" for="textArea2">Welcome Text</label>
+            <label class="col-lg-3 control-label" for="textArea2">Footer Text 2</label>
             <div class="col-lg-9">
               <div class="bs-component">
                 <textarea class="form-control" id="" name="welcome_text" rows="3">{{$data->welcome_text}}</textarea>
@@ -175,8 +172,6 @@
     </div>
     <div class="col-md-3">
       <div class="admin-form">
-
-
         <div class="sid_ mb10">
           <h4> Facebook Link </h4>
           <div class="bs-component">
@@ -190,20 +185,20 @@
                   <input type="text" id="" name="linkedin_link" class="form-control" placeholder="" value="{{$data->linkedin_link}}" />
                 </div>            
              </div> -->
-        <div class="sid_ mb10">
+        {{-- <div class="sid_ mb10">
           <h4> Instagram </h4>
           <div class="bs-component">
             <input type="text" id="" name="instagram_link" class="form-control" placeholder=""
               value="{{$data->instagram_link}}" />
           </div>
         </div>
-        {{-- <div class="sid_ mb10">
+        <div class="sid_ mb10">
           <h4> Google Plus</h4>
           <div class="bs-component">
             <input type="text" id="" name="google_plus" class="form-control" placeholder=""
               value="{{$data->google_plus}}" />
           </div>
-        </div> --}}
+        </div>
         <div class="sid_ mb10">
           <h4> Twitter Link </h4>
           <div class="bs-component">
@@ -218,8 +213,7 @@
             <input type="text" id="" name="youtube_link" class="form-control" placeholder=""
               value="{{$data->youtube_link}}" />
           </div>
-        </div>
-
+        </div> --}}
       </div>
     </div>
   </form>

@@ -4,12 +4,28 @@
 @section('meta_description', $data->meta_description)
 @section('thumbnail', $data->page_thumbnail)
 @section('content')
-    @include('themes.default.common.herobanner')
-    <section class="section-padding bg-slate-100">
-        <div class="container-custom">
-            <div class="editor-content leading-relaxed text-slate-600 prose max-w-none">
-                {!! $data->content !!}
-            </div>
+    <main id="main">
+        <div class="pg on" data-page="privacy-policy" data-title="{{ $data->meta_keyword }}" data-noform="1">
+            <section class="art-head">
+                <div class="wrap">
+                    <div class="in">
+                        <h1>{{ $data->post_type }}</h1>
+                        <p class="lead">
+                            {{ $data->caption }} 
+                        Last updated: [ {{ $data->updated_at }} ].
+                    </p>
+                    </div>
+                </div>
+            </section>
+            <section class="sec" style="padding-top:10px">
+                <div class="wrap">
+                    <article class="prose">
+                        <p class="draftbanner"><b>Draft for legal review.</b> This text is a plain-language starting point.
+                            Have it reviewed by legal counsel, and replace items marked [CONFIRM], before publishing.</p>
+                        {!! $data->content !!}
+                    </article>
+                </div>
+            </section>
         </div>
-    </section>
+    </main>
 @endsection

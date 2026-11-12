@@ -357,9 +357,9 @@ class FrontpageController extends Controller
     return redirect()->back()->with('message', 'Contact message successfully sent.');
   }
 
-  public function sendmail_contact_appointment(Request $request)
+  public function build_your_delivery_team(Request $request)
   {
-    // dd($request->all());
+    dd($request->all());
     $g_recaptcha_response = $request->input('g_recaptcha_response');
     $result = $this->getCaptcha($g_recaptcha_response);
     if ($result->success == true && $result->score > 0.5) {
@@ -489,26 +489,31 @@ class FrontpageController extends Controller
   public function sendmail_contact(Request $request)
   {
     // dd($request->all());
-    $g_recaptcha_response = $request->input('g_recaptcha_response');
-    $result = $this->getCaptcha($g_recaptcha_response);
-    if ($result->success == true) {
+    // $g_recaptcha_response = $request->input('g_recaptcha_response');
+    // $result = $this->getCaptcha($g_recaptcha_response);
+    // if ($result->success == true) {
       try {
         $request->validate([
           'full_name' => 'required|string|max:255',
-          // 'lname' => 'required|string|max:255',
-          'phone' => 'required|string|max:255',
           'email' => 'required|email',
-          'subject' => 'nullable|string|max:255',
+          // 'number' => 'nullable|string|max:255',
+          'model' => 'nullable|string|max:255',
           'message' => 'nullable|string|max:255',
+          'country' => 'nullable|string|max:255',
+          'company' => 'nullable|string|max:255',
+          'svc' => 'nullable|string|max:255',
         ]);
 
         if ($request->isMethod('post')) {
           $contact = ContactModel::create([
             'full_name' => $request->full_name,
             'email' => $request->email,
-            'number' => $request->phone,
-            'subject' => $request->subject,
+            // 'number' => $request->phone,
+            'model' => $request->model,
             'message' => $request->message,
+            'country' => $request->country,
+            'company' => $request->company,
+            'svc' => $request->svc,
             // 'country' => $request->lname,
           ]);
           // return new ContactMail();
@@ -535,12 +540,12 @@ class FrontpageController extends Controller
           'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
         ]);
       }
-    } else {
-      return redirect()->back()->with([
-        'error' => true,
-        'message' => 'You are Robot.'
-      ]);
-    }
+    // } else {
+    //   return redirect()->back()->with([
+    //     'error' => true,
+    //     'message' => 'You are Robot.'
+    //   ]);
+    // }
   }
 
   public function sendmail_resume(Request $request)

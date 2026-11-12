@@ -1,11 +1,10 @@
 <footer class="foot">
     <div class="wrap">
         <div class="foot-g">
-            <div><a class="logo" href="index.php"><img src="{{ asset("themes-assets/img/logo-white.webp") }}" alt="Nepreva" width="640"
-                        height="140"></a>
-                <p class="about">Chartered Accountant-led accounting, audit support and finance delivery for
-                    international firms and businesses.</p>
-                <p class="supp">Supported by NBSM, an independent member of Moore Global.</p>
+            <div><a class="logo" href="index.php"><img src="{{ asset('themes-assets/img/logo-white.webp') }}"
+                        alt="Nepreva" width="640" height="140"></a>
+                <p class="about">{{ $setting->welcome_title }}</p>
+                <p class="supp">{{ $setting->welcome_text }}</p>
             </div>
             <div>
                 <h4>Solutions</h4><a href="for-accounting-audit-firms.php">For accounting &amp; audit firms</a><a
@@ -27,9 +26,9 @@
                 <p class="small" style="color:#A8B3D3;margin-top:14px">hello@nepreva.com<br>Kathmandu, Nepal</p>
             </div>
         </div>
-        <div class="foot-b"><span>© 2026 Nepreva Global Solutions. All rights reserved.</span><span><a
-                    href="privacy-policy.php" style="display:inline">Privacy Policy</a> &nbsp;&nbsp; <a
-                    href="terms-of-use.php" style="display:inline">Terms of Use</a></span></div>
+        <div class="foot-b"><span>&copy; {{ date('Y') }} {{ $setting->copyright_text }}</span><span><a
+                    href="{{ url('page/privacy-policy.html') }}" style="display:inline">Privacy Policy</a> &nbsp;&nbsp; <a
+                    href="{{ url('page/terms-and-conditions.html') }}" style="display:inline">Terms of Use</a></span></div>
     </div>
 </footer>
 

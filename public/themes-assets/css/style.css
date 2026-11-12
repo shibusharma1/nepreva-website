@@ -152,7 +152,7 @@ button {
     left: 12px;
 }
 .wrap {
-    width: min(1240px, 100% - 2 * clamp(20px, 4vw, 48px));
+    width: min(1240px, 100% - 2 * clamp(20px, 4vw, 48px)) !important;
     margin-inline: auto;
 }
 .sec {

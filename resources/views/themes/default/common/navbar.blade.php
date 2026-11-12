@@ -1,6 +1,6 @@
 <header class="hdr">
     <div class="wrap hdr-in">
-        <a class="logo" href="index.php" aria-label="Nepreva home"><img class="ll"
+        <a class="logo" href="{{ url('/') }}" aria-label="Nepreva home"><img class="ll"
                 src="{{ asset('themes-assets/img/logo-colour.webp') }}" alt="Nepreva" width="640" height="140"><img
                 class="ld" src="{{ asset('themes-assets/img/logo-white.webp') }}" alt="" width="640"
                 height="140"></a>
@@ -116,8 +116,8 @@
             <li><a class="nl" href="insights.php">Insights</a></li>
             <li><a class="nl" href="about.php">About</a></li>
         </ul>
-        <div class="hdr-cta"><a class="tl" href="contact.php">Request a proposal</a><a
-                class="btn btn-primary btn-sm" href="build-your-delivery-team.php">Build your delivery team</a>
+        <div class="hdr-cta"><a class="tl" href="{{ url('page/contact.html') }}">Request a proposal</a><a
+                class="btn btn-primary btn-sm" href="{{ url('page/build-your-delivery-team.html') }}">Build your delivery team</a>
             <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"
                 aria-controls="mnav"><svg class="ico">
                     <path d="M4 7h16M4 12h16M4 17h16" />

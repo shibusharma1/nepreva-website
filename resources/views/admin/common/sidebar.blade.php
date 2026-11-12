@@ -24,25 +24,19 @@
                 </a>
             </li>
             @if (checkAuth(1))
-                <li>
+                {{-- <li>
                     <a href="{{ url('admin/banner') }}">
                         <span class="fa fa-file-image-o text-info" aria-hidden="true"></span>
                         <span class="sidebar-title"> Manage Banners</span>
                     </a>
-                </li>
+                </li> --}}
             @endif
             @if (checkAuth(2))
                 <li>
-                    @if (Request::segment(2) == 'product' ||
-                            Request::segment(3) == 'product' ||
-                            Request::segment(2) == 'about' ||
+                    @if (Request::segment(2) == 'about' ||
                             Request::segment(3) == 'about' ||
-                            Request::segment(2) == 'blog' ||
-                            Request::segment(2) == 'gallery' ||
                             Request::segment(2) == 'contact' ||
-                            Request::segment(2) == 'partners' ||
                             Request::segment(2) == 'career' ||
-                            Request::segment(3) == 'career' ||
                             Request::segment(2) == 'mission' ||
                             Request::segment(2) == 'frontpage' ||
                             Request::segment(3) == 'frontpage' ||
@@ -57,31 +51,29 @@
                     </a>
                     <ul class="nav sub-nav">
                         @if (Auth::id() == 1 || checkAuth(4))
-                            <li
-                                class="{{ Request::segment(count(Request::segments())) == 'posttype' ? 'active' : '' }}">
+                            <li class="{{ Request::segment(count(Request::segments())) == 'posttype' ? 'active' : '' }}">
                                 <a href="{{ url('type/posttype') }}">
                                     <span class="fa fa-arrows"></span>
                                     Post Types
                                 </a>
                             </li>
-                            <!-- @if (Auth::id() == 1)
-<li>
+                            @if (Auth::id() == 1)
+                                <li>
                                     <a href="{{ url('admin/postcategory') }}">
                                         <span class="fa fa-arrows"></span>
                                         Post Categories
                                     </a>
                                 </li>
-@endif -->
+                        @endif
                         @endif
                         <!-- Post Type List -->
                         @if ($posttype)
                             @foreach ($posttype as $row)
-                                <li
-                                    class="{{ Request::segment(2) == $row->uri || (Request::segment(2) == 'posttype' && Request::segment(3) == $row->id) || Request::segment(3) == $row->uri ? 'active' : '' }}">
+                                <li class="{{ Request::segment(2) == $row->uri || (Request::segment(2) == 'posttype' && Request::segment(3) == $row->id) || Request::segment(3) == $row->uri ? 'active' : '' }}">
                                     @if (has_posts($row->id))
                                         <a href="{{ url('admin/' . $row->uri) }}">
                                         @else
-                                            <a href="{{ url('type/posttype/' . $row->id . '/edit') }}">
+                                        <a href="{{ url('type/posttype/' . $row->id . '/edit') }}">
                                     @endif
                                     <span class="fa fa fa-arrows-h"></span>
                                     {{ $row->post_type }}
@@ -93,7 +85,7 @@
                 </li>
             @endif
 
-            <li class="">
+            {{-- <li class="">
                 @if (Request::segment(2) == 'imagecategory' || Request::segment(2) == 'imagegallery')
                     <a class="accordion-toggle menu-open" href="avoid:javascript;">
                     @else
@@ -117,10 +109,10 @@
                         </a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
 
             @if (checkAuth(5))
-                <li class="">
+                {{-- <li class="">
                     <a href="avoid:javascript;" class="accordion-toggle">
                         <span class="fa fa-file-video-o text-info"></span>
                         <span class="sidebar-title"> Manage Video Gallery </span>
@@ -140,7 +132,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             @endif
 
             {{-- @if (checkAuth(9))
@@ -167,8 +159,7 @@
                 </li>
             @endif --}}
 
-            {{-- {{ dd(route('newsletter.subscribers')) }} --}}
-            <li class="">
+            {{-- <li class="">
                 @if (Request::segment(2) == 'newsletter-subscribers' ||
                         Request::segment(2) == 'newsletter-email-template' ||
                         Request::segment(2) == 'newsletter-subscribers-list')
@@ -191,7 +182,7 @@
                         </a>
                     </li>
 
-                    {{-- <!-- Email Template -->
+                    <!-- Email Template -->
                     <li class="{{ Request::segment(2) == 'newsletter-email-template' ? 'active' : '' }}">
                         <a href="{{ route('newsletter.email.template') }}">
                             <span class="fa fa-arrows-h"></span>
@@ -205,9 +196,9 @@
                             <span class="fa fa-arrows-h"></span>
                             Send Email
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
-            </li>
+            </li> --}}
             {{-- </li> --}}
 
             @if (checkAuth(9))
@@ -241,7 +232,7 @@
             @endif
 
             <li class="">
-                @if (Request::segment(2) == 'contact_us' || Request::segment(2) == 'application')
+                @if (Request::segment(2) == 'contact_us' || Request::segment(2) == 'build-your-delivery-team')
                     <a class="accordion-toggle menu-open">
                     @else
                         <a class="accordion-toggle">
@@ -260,13 +251,13 @@
                     <li class="{{ Request::segment(2) == 'contact_us' ? 'active' : '' }}">
                         <a href="{{ url('inquiry/contact_us') }}">
                             <span class="fa fa fa-arrows-h"></span>
-                            Contact Us
+                            Request for Proposal
                         </a>
                     </li>
-                    <li class="{{ Request::segment(2) == 'appointments' ? 'active' : '' }}">
-                        <a href="{{ url('inquiry/appointments') }}">
+                    <li class="{{ Request::segment(2) == 'build-your-delivery-team' ? 'active' : '' }}">
+                        <a href="{{ url('inquiry/build-your-delivery-team') }}">
                             <span class="fa fa fa-arrows-h"></span>
-                            Appointments
+                            Build Your Delivery Team
                         </a>
                     </li>
                 </ul>
