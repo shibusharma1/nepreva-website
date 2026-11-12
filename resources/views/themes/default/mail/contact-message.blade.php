@@ -18,7 +18,7 @@ table, th, td {
 <div style="margin:0 auto; max-width:700px; width:100%;">
 <center>
 <div style="background:#FFF; padding:8px 0px; margin-bottom:5px;">
-<img src="{{ asset('themes-assets/img/logo.png') }}" />
+<img src="{{ asset('themes-assets/img/logo-white.webp') }}" />
 </div>
 </center>
 

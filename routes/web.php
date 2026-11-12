@@ -9,6 +9,11 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+
+
 Route::get('/', 'FrontendControllers\FrontpageController@index');
 Route::get('/search','FrontendControllers\FrontpageController@search')->name('search');
 

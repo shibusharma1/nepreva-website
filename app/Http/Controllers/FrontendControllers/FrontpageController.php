@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\AdminAppointmentMail;
 use App\Models\Banners\BannerModel;
-use App\Models\MultipleBanners\MultipleBannerModel;
+// use App\Models\MultipleBanners\MultipleBannerModel;
 use App\Models\Posts\PostModel;
 use App\Models\Posts\AssociatedPostModel;
 use App\Models\Posts\PostCategoryModel;
-use App\Models\Posts\PostImageModel;
+// use App\Models\Posts\PostImageModel;
 use App\Models\Posts\PostDocModel;
 use App\Models\Settings\SettingModel;
 use App\Models\Galleries\ImageGalleryModel;
@@ -21,8 +21,8 @@ use App\Models\Galleries\ImageGalleryCategoryModel;
 use App\Models\Galleries\VideoGalleryModel;
 use Mail;
 use App\Mail\SendMail;
-use App\Mail\SendMailContact;
-use App\Mail\SendResume;
+// use App\Mail\SendMailContact;
+// use App\Mail\SendResume;
 use App\Mail\CareerApply;
 use App\Mail\CareerMail;
 use App\Mail\PatientAppointmentMail;
@@ -34,7 +34,7 @@ use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class FrontpageController extends Controller
@@ -69,51 +69,51 @@ class FrontpageController extends Controller
     return view('themes.default.frontpage', compact('banner', 'history', 'specialitiesheading', 'specialities', 'whyciwecheading', 'whyciwec', 'leftCards', 'rightCards', 'trustedworldwide', 'whatsnewheading', 'whatsnewcards', 'featuredCard', 'smallCards', 'doctorssection', 'ktmdoctors', 'pkhdoctors', 'patientStories', 'patientStoriesHeading', 'testimonialheading', 'testimonials', 'awardheading', 'awards', 'publications'));
   }
 
-  public function search(Request $request)
-  {
-    $request->validate([
-      'q' => 'required|string|min:2|max:100',
-    ]);
+  // public function search(Request $request)
+  // {
+  //   $request->validate([
+  //     'q' => 'required|string|min:2|max:100',
+  //   ]);
 
-    $search = trim($request->input('q'));
+  //   $search = trim($request->input('q'));
 
-    $results = PostModel::query()
-      ->with('documents')
-      ->where('post_type', 2)
-      ->whereIn('post_parent', [26, 27, 28, 29, 45])
-      ->where('status', '1')
-      ->where('published', '1')
-      ->where('is_active', '1')
-      ->where('is_draft', '0')
-      ->where('is_trashed', '0')
-      ->where(function ($query) use ($search) {
-        $query->where('post_title', 'LIKE', "%{$search}%")
-          ->orWhere('sub_title', 'LIKE', "%{$search}%")
-          ->orWhere('post_excerpt', 'LIKE', "%{$search}%")
-          ->orWhere('post_content', 'LIKE', "%{$search}%")
-          ->orWhere('post_tags', 'LIKE', "%{$search}%")
-          ->orWhere('meta_keyword', 'LIKE', "%{$search}%")
-          ->orWhere('meta_description', 'LIKE', "%{$search}%");
-      })
-      ->orderByRaw("
-            CASE
-                WHEN post_title = ? THEN 1
-                WHEN post_title LIKE ? THEN 2
-                WHEN post_title LIKE ? THEN 3
-                WHEN sub_title LIKE ? THEN 4
-                ELSE 5
-            END
-        ", [
-        $search,
-        "{$search}%",
-        "%{$search}%",
-        "%{$search}%"
-      ])
-      ->orderBy('post_order')
-      ->paginate(10)
-      ->withQueryString();
-    return view('themes.default.search-results', compact('results', 'search'));
-  }
+  //   $results = PostModel::query()
+  //     ->with('documents')
+  //     ->where('post_type', 2)
+  //     ->whereIn('post_parent', [26, 27, 28, 29, 45])
+  //     ->where('status', '1')
+  //     ->where('published', '1')
+  //     ->where('is_active', '1')
+  //     ->where('is_draft', '0')
+  //     ->where('is_trashed', '0')
+  //     ->where(function ($query) use ($search) {
+  //       $query->where('post_title', 'LIKE', "%{$search}%")
+  //         ->orWhere('sub_title', 'LIKE', "%{$search}%")
+  //         ->orWhere('post_excerpt', 'LIKE', "%{$search}%")
+  //         ->orWhere('post_content', 'LIKE', "%{$search}%")
+  //         ->orWhere('post_tags', 'LIKE', "%{$search}%")
+  //         ->orWhere('meta_keyword', 'LIKE', "%{$search}%")
+  //         ->orWhere('meta_description', 'LIKE', "%{$search}%");
+  //     })
+  //     ->orderByRaw("
+  //           CASE
+  //               WHEN post_title = ? THEN 1
+  //               WHEN post_title LIKE ? THEN 2
+  //               WHEN post_title LIKE ? THEN 3
+  //               WHEN sub_title LIKE ? THEN 4
+  //               ELSE 5
+  //           END
+  //       ", [
+  //       $search,
+  //       "{$search}%",
+  //       "%{$search}%",
+  //       "%{$search}%"
+  //     ])
+  //     ->orderBy('post_order')
+  //     ->paginate(10)
+  //     ->withQueryString();
+  //   return view('themes.default.search-results', compact('results', 'search'));
+  // }
 
   public function posttype($uri)
   {
@@ -252,14 +252,14 @@ class FrontpageController extends Controller
     return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos', 'categories', 'galleries', 'videoCategories', 'videos', 'services', 'doctors', 'specialities', 'expertcare', 'healthguide', 'travelguide', 'faq', 'altitudesection', 'aboutsection', 'missionvisionvalue', 'historyheading', 'history', 'historicalgalleryheading', 'historicalgallery', 'foundersheading', 'founders', 'csrhero', 'csrfeaturedheading', 'csrfeatured', 'featuredstory'));
   }
 
-  public function product_detail($uri)
-  {
-    $data = AssociatedPostModel::where('uri', $uri)->first();
-    $post = PostModel::where('id', $data->post_id)->with('associatePosts')->first();
-    $related = AssociatedPostModel::where('post_id', $post->id)->where('id', '!=', $data->id)->get();
-    // dd('test',$data,$post);
-    return view('themes.default.productdetail', compact('data', 'post', 'related'));
-  }
+  // public function product_detail($uri)
+  // {
+  //   $data = AssociatedPostModel::where('uri', $uri)->first();
+  //   $post = PostModel::where('id', $data->post_id)->with('associatePosts')->first();
+  //   $related = AssociatedPostModel::where('post_id', $post->id)->where('id', '!=', $data->id)->get();
+  //   // dd('test',$data,$post);
+  //   return view('themes.default.productdetail', compact('data', 'post', 'related'));
+  // }
 
   public function pagedetail_child($parenturi, $uri)
   {
@@ -291,15 +291,15 @@ class FrontpageController extends Controller
     return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type'));
   }
 
-  public function servicetype($category_uri)
-  {
-    $category = PostCategoryModel::where('uri', $category_uri)->first();
-    if ($category) {
-      $data = PostModel::where('post_category', $category->id)->orderBy('post_order', 'desc')->get();
-      return view('themes.default.service-list', compact('data', 'category'));
-    }
-    return false;
-  }
+  // public function servicetype($category_uri)
+  // {
+  //   $category = PostCategoryModel::where('uri', $category_uri)->first();
+  //   if ($category) {
+  //     $data = PostModel::where('post_category', $category->id)->orderBy('post_order', 'desc')->get();
+  //     return view('themes.default.service-list', compact('data', 'category'));
+  //   }
+  //   return false;
+  // }
 
   public function apply($parenturi, $uri)
   {
@@ -327,28 +327,28 @@ class FrontpageController extends Controller
     return view('themes.default.' . $template . '', compact('post', 'bod', 'parent_post', 'news_updates'));
   }
 
-  public function category_navigation($uri)
-  {
-    $post_category = PostCategoryModel::where('uri', trim($uri))->first();
-    if ($post_category->id == 2) {
-      $data =  PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
-      return view('themes.default.completed', compact('data', 'post_category'));
-    } else {
-      $data =  PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
-      return view('themes.default.ongoing', compact('data', 'post_category'));
-    }
-  }
+  // public function category_navigation($uri)
+  // {
+  //   $post_category = PostCategoryModel::where('uri', trim($uri))->first();
+  //   if ($post_category->id == 2) {
+  //     $data =  PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
+  //     return view('themes.default.completed', compact('data', 'post_category'));
+  //   } else {
+  //     $data =  PostModel::where(['post_category' => $post_category->id])->orderBy('post_order', 'asc')->paginate(15);
+  //     return view('themes.default.ongoing', compact('data', 'post_category'));
+  //   }
+  // }
 
   /***********************************
    ******** Root Navigation ***********
    ************************************/
 
-  public function photo_gallery($cat_id)
-  {
-    $data = ImageGalleryModel::where(['category_id' => $cat_id])->get();
-    $cat = ImageGalleryCategoryModel::where(['id' => $cat_id])->first();
-    return view('themes.default.photo_gallery_thumbnail', compact('data', 'cat'));
-  }
+  // public function photo_gallery($cat_id)
+  // {
+  //   $data = ImageGalleryModel::where(['category_id' => $cat_id])->get();
+  //   $cat = ImageGalleryCategoryModel::where(['id' => $cat_id])->first();
+  //   return view('themes.default.photo_gallery_thumbnail', compact('data', 'cat'));
+  // }
 
   public function sendmail()
   {
