@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\View;
 
 
 Route::get('/', 'FrontendControllers\FrontpageController@index');
-Route::get('/search','FrontendControllers\FrontpageController@search')->name('search');
+Route::get('/search', 'FrontendControllers\FrontpageController@search')->name('search');
 
 /* Authentication Routes... */
 Route::get('adminisclient', 'Auth\LoginController@showLoginForm')->name('login');
@@ -60,6 +60,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('inquiry/contact_us/{id}', 'AdminControllers\AdminMenu\AdminMenuController@contact_delete')->name('inquiry.delete');
     Route::get('inquiry/appointments', 'AdminControllers\AdminMenu\AdminMenuController@appointment_inquiry');
     Route::delete('inquiry/appointment/{id}', 'AdminControllers\AdminMenu\AdminMenuController@appointment_delete')->name('appointment.delete');
+    Route::get('inquiry/delivery-team-requests', 'AdminControllers\AdminMenu\AdminMenuController@delivery_team_requests')->name('delivery-team-requests.index');
+    Route::delete('/delivery-team-requests/{id}', 'AdminControllers\AdminMenu\AdminMenuController@delete_delivery_team_request')->name('delivery-team-requests.delete');
     Route::get('inquiry/application', 'AdminControllers\AdminMenu\AdminMenuController@application_inquiry');
     Route::delete('inquiry/application/{id}', 'AdminControllers\AdminMenu\AdminMenuController@career_delete')->name('career.delete');
 

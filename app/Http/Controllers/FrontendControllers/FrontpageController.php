@@ -35,6 +35,9 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 // use Illuminate\Support\Str;
+use App\Models\Inquiry\DeliveryTeamRequest;
+use App\Mail\DeliveryTeamRequestConfirmationMail;
+use App\Mail\AdminDeliveryTeamRequestMail;
 use Illuminate\Validation\ValidationException;
 
 class FrontpageController extends Controller
@@ -131,26 +134,13 @@ class FrontpageController extends Controller
     }
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
 
-    $publications = collect();
-    $healthinformation = collect();
-    if ($data->uri == 'research-publication') {
-      $publications = PostModel::with('documents')->where('post_type', $data->id)
-        ->orderBy('post_order')
-        ->get();
-    }
-
-    if ($data->uri == 'health-information') {
-      $healthinformation = PostModel::with('documents')->where('post_type', $data->id)
-        ->orderBy('post_order')
-        ->get();
-    }
-
-    return view('themes.default.' . $data['template'] . '', compact('data', 'documents', 'posts', 'setting', 'publications', 'healthinformation'));
+    // dd($posts[0]->associatePosts);
+    return view('themes.default.' . $data['template'] . '', compact('data', 'documents', 'posts', 'setting'));
   }
 
   public function pagedetail($uri)
   {
-    
+
     if (!check_uri($uri)) {
       abort(404);
     }
@@ -207,7 +197,7 @@ class FrontpageController extends Controller
       $videoCategories = VideoGalleryCategoryModel::orderBy('category')->get();
       $videos = VideoGalleryModel::with('category')->latest()->get();
     }
-    
+
     if ($data->uri == 'healthcare-services') {
       $services = PostModel::with('documents')->where('post_type', $data->post_type)->orderBy('post_order')->get();
     }
@@ -248,7 +238,7 @@ class FrontpageController extends Controller
       $csrfeatured = PostModel::where('post_type', 1)->where('post_parent', 97)->orderBy('post_order')->get();
       $featuredstory = PostModel::where('id', 98)->first();
     }
-  
+
     return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos', 'categories', 'galleries', 'videoCategories', 'videos', 'services', 'doctors', 'specialities', 'expertcare', 'healthguide', 'travelguide', 'faq', 'altitudesection', 'aboutsection', 'missionvisionvalue', 'historyheading', 'history', 'historicalgalleryheading', 'historicalgallery', 'foundersheading', 'founders', 'csrhero', 'csrfeaturedheading', 'csrfeatured', 'featuredstory'));
   }
 
@@ -359,131 +349,88 @@ class FrontpageController extends Controller
 
   public function build_your_delivery_team(Request $request)
   {
-    dd($request->all());
-    $g_recaptcha_response = $request->input('g_recaptcha_response');
-    $result = $this->getCaptcha($g_recaptcha_response);
-    if ($result->success == true && $result->score > 0.5) {
-      try {
-        $request->validate([
-          'request_type'      => 'required|string|max:100',
-          'name'              => 'required|string|max:255',
-          'email'             => 'required|email:rfc,dns|max:255',
-          'phone'             => 'required|string|max:30',
-          'nationality'       => 'nullable|string|max:100',
-          'location'          => 'required|in:Kathmandu,Pokhara',
-          'department'        => 'nullable|string|max:255',
-          'appointment_date'  => 'required|date|after_or_equal:today',
-          'appointment_time'  => 'required|date_format:H:i',
-          'message'           => 'nullable|string|max:2000',
-          'terms'             => 'accepted',
+    // dd($request->all());
+    // $g_recaptcha_response = $request->input('g_recaptcha_response');
+    // $result = $this->getCaptcha($g_recaptcha_response);
+    // if ($result->success == true && $result->score > 0.5) {
+    try {
+      $request->validate([
+        'name'      => 'required|string|max:255',
+        'email'     => 'required|email:rfc,dns|max:255',
+        'company'   => 'nullable|string|max:255',
+        'country'   => 'nullable|string|max:100',
+        'role'      => 'nullable|string|max:150',
+
+        'svc'       => 'nullable|string|max:255',
+        'volume'    => 'nullable|string|max:100',
+        'cur'       => 'nullable|string|max:100',
+        'des'       => 'nullable|string|max:100',
+        'systems'   => 'nullable|string|max:100',
+
+        'timeline'  => 'nullable|string|max:100',
+        'model'     => 'nullable|string|max:150',
+
+        'msg'       => 'nullable|string|max:5000',
+      ]);
+
+      if ($request->isMethod('post')) {
+        $deliveryRequest = DeliveryTeamRequest::create([
+          'name'             => $request->name,
+          'email'            => $request->email,
+          'company'          => $request->company,
+          'country'          => $request->country,
+          'role'             => $request->role,
+          'service'          => $request->svc,
+          'volume'           => $request->volume,
+          'currency'         => $request->cur,
+          'destination'      => $request->des,
+          'systems'           => $request->systems,
+          'timeline'         => $request->timeline,
+          'engagement_model' => $request->model,
+          'message'          => $request->msg,
+          'status'           => 'Pending',
         ]);
-
-
-        if ($request->appointment_date === now()->toDateString()) {
-
-          $selectedDateTime = Carbon::parse(
-            $request->appointment_date . ' ' . $request->appointment_time
-          );
-
-          if ($selectedDateTime->isPast()) {
-
-            return back()
-              ->withInput()
-              ->with([
-                'error' => true,
-                'message' => 'Please choose a future time.'
-              ]);
-          }
-        }
-
-        $opening = Carbon::createFromTime(9, 0);
-        $closing = Carbon::createFromTime(19, 0);
-
-        $selectedTime = Carbon::createFromFormat('H:i', $request->appointment_time);
-
-        if ($selectedTime->lt($opening) || $selectedTime->gt($closing)) {
-
-          return back()
-            ->withInput()
-            ->with([
-              'error' => true,
-              'message' => 'Appointments are available only between 9:00 AM and 7:00 PM.'
-            ]);
-        }
-
-        $appointmentExists = AppointmentModel::whereDate('appointment_date', $request->appointment_date)
-          ->whereTime('appointment_time', $request->appointment_time)
-          ->where('location', $request->location)
-          ->exists();
-
-        if ($appointmentExists) {
-          return back()
-            ->withInput()
-            ->with([
-              'error' => true,
-              'message' => 'This time slot has already been booked for the selected location.'
-            ]);
-        }
-
-        if ($request->isMethod('post')) {
-          $appointment = AppointmentModel::create([
-            'request_type'      => $request->request_type,
-            'full_name'         => $request->name,
-            'email'             => $request->email,
-            'phone'             => $request->phone,
-            'country'           => $request->nationality,
-            'location'          => $request->location,
-            'service'           => $request->department,
-            'appointment_date'  => $request->appointment_date,
-            'appointment_time'  => $request->appointment_time,
-            'message'           => $request->message,
-            'status'            => 'Pending',
-          ]);
-
-          Mail::to($appointment->email)
-            ->queue(new PatientAppointmentMail($appointment));
-          $setting = SettingModel::where('id', 1)->first();
-          $adminEmail = $request->location === 'Kathmandu'
-            ? $setting->email_primary
-            : $setting->email_secondary;
-
-          Log::info('admin email as per lovation is :', [$adminEmail]);
-
+        // Customer confirmation email
+        Mail::to($deliveryRequest->email)
+          ->queue(new DeliveryTeamRequestConfirmationMail($deliveryRequest));
+        // Admin notification email
+        $setting = SettingModel::where('id', 1)->first();
+        $adminEmail = $setting->email_primary ?? null;
+        if ($adminEmail) {
           Mail::to($adminEmail)
-            ->queue(new PatientAppointmentMail($appointment));
-          // Log:info([]);
-          $adminEmail = "ss02001135@gmail.com";
-
-          Mail::to($adminEmail)
-            ->queue(new AdminAppointmentMail($appointment));
-          // }
-
-          $message = "Thank you for your appointment request. Our healthcare team will review your request and contact you shortly.";
-          return view(
-            'themes.default.inquiry-success',
-            [
-              'message' => $message,
-              'name' => $appointment->full_name,
-            ]
-          );
+            ->queue(new AdminDeliveryTeamRequestMail($deliveryRequest));
         }
-      } catch (ValidationException $e) {
-        return redirect()->back()->with([
-          'error' => true,
-          'message' => $e->validator->errors()->all()
-        ]);
-      } catch (Exception $e) {
-        return redirect()->back()->with([
-          'error' => true,
-          'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
-        ]);
+        // Additional admin email
+        $adminEmail = "ss02001135@gmail.com";
+        Mail::to($adminEmail)->queue(new AdminDeliveryTeamRequestMail($deliveryRequest));
+        $message = "Thank you for your delivery team request. Our team will review your requirements and contact you shortly.";
+        return view('themes.default.inquiry-success',
+          [
+            'message' => $message,
+            'name' => $deliveryRequest->name,
+          ]
+        );
       }
-    } else {
-      return redirect()->back()->with([
+    } catch (ValidationException $e) {
+      return redirect()->back()->withInput()->with([
         'error' => true,
-        'message' => 'You are Robot.'
+        'message' => $e->validator->errors()->all()
+      ]);
+    } catch (\Exception $e) {
+      \Log::error('Delivery Team Request Error: ' . $e->getMessage());
+      return redirect()->back()->withInput()->with([
+        'error' => true,
+        'message' => app()->isLocal()
+          ? $e->getMessage()
+          : 'Something went wrong. Please try again.'
       ]);
     }
+    // } else {
+    //   return redirect()->back()->with([
+    //     'error' => true,
+    //     'message' => 'You are Robot.'
+    //   ]);
+    // }
   }
 
   public function sendmail_contact(Request $request)
@@ -492,54 +439,54 @@ class FrontpageController extends Controller
     // $g_recaptcha_response = $request->input('g_recaptcha_response');
     // $result = $this->getCaptcha($g_recaptcha_response);
     // if ($result->success == true) {
-      try {
-        $request->validate([
-          'full_name' => 'required|string|max:255',
-          'email' => 'required|email',
-          // 'number' => 'nullable|string|max:255',
-          'model' => 'nullable|string|max:255',
-          'message' => 'nullable|string|max:255',
-          'country' => 'nullable|string|max:255',
-          'company' => 'nullable|string|max:255',
-          'svc' => 'nullable|string|max:255',
-        ]);
+    try {
+      $request->validate([
+        'full_name' => 'required|string|max:255',
+        'email' => 'required|email',
+        // 'number' => 'nullable|string|max:255',
+        'model' => 'nullable|string|max:255',
+        'message' => 'nullable|string|max:255',
+        'country' => 'nullable|string|max:255',
+        'company' => 'nullable|string|max:255',
+        'svc' => 'nullable|string|max:255',
+      ]);
 
-        if ($request->isMethod('post')) {
-          $contact = ContactModel::create([
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            // 'number' => $request->phone,
-            'model' => $request->model,
-            'message' => $request->message,
-            'country' => $request->country,
-            'company' => $request->company,
-            'svc' => $request->svc,
-            // 'country' => $request->lname,
-          ]);
-          // return new ContactMail();
-          // Mail::to($request->email)->send(new ContactMail());
-          $setting = SettingModel::where('id', 1)->first();
-          Log::info('Setting email', [$setting->email_primary]);
-          $adminEmail = "ss02001135@gmail.com";
-
-          Mail::to($adminEmail)
-            ->queue(new ContactMail($contact));
-
-          $name = $request->full_name;
-          $message = "<p>Thank you for contacting us. One of our team will be in touch with you soon.</p>";
-          return view('themes.default.inquiry-success', compact('message', 'name'));
-        }
-      } catch (ValidationException $e) {
-        return redirect()->back()->with([
-          'error' => true,
-          'message' => $e->validator->errors()->all()
+      if ($request->isMethod('post')) {
+        $contact = ContactModel::create([
+          'full_name' => $request->full_name,
+          'email' => $request->email,
+          // 'number' => $request->phone,
+          'model' => $request->model,
+          'message' => $request->message,
+          'country' => $request->country,
+          'company' => $request->company,
+          'svc' => $request->svc,
+          // 'country' => $request->lname,
         ]);
-      } catch (Exception $e) {
-        return redirect()->back()->with([
-          'error' => true,
-          'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
-        ]);
+        // return new ContactMail();
+        // Mail::to($request->email)->send(new ContactMail());
+        $setting = SettingModel::where('id', 1)->first();
+        Log::info('Setting email', [$setting->email_primary]);
+        $adminEmail = "ss02001135@gmail.com";
+
+        Mail::to($adminEmail)
+          ->queue(new ContactMail($contact));
+
+        $name = $request->full_name;
+        $message = "<p>Thank you for contacting us. One of our team will be in touch with you soon.</p>";
+        return view('themes.default.inquiry-success', compact('message', 'name'));
       }
+    } catch (ValidationException $e) {
+      return redirect()->back()->with([
+        'error' => true,
+        'message' => $e->validator->errors()->all()
+      ]);
+    } catch (Exception $e) {
+      return redirect()->back()->with([
+        'error' => true,
+        'message' => app()->isLocal() ? $e->getMessage() : 'Something went wrong. Please try again.'
+      ]);
+    }
     // } else {
     //   return redirect()->back()->with([
     //     'error' => true,

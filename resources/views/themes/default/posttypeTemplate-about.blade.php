@@ -204,65 +204,6 @@
                 </div>
             </section>
         </div>
-        <section class="final sec" id="start"><svg class="mk" aria-hidden="true" viewBox="0 0 321 295"
-                style="--mk-frame:#fff;--mk-green:#fff;--mk-blue:#fff">
-                <use href="#mark" />
-            </svg>
-            <div class="wrap in">
-                <div>
-                    <h2>Ready to extend your team?</h2>
-                    <p class="lead">Whether you need additional capacity for a peak season, a dedicated team or a
-                        long-term finance delivery partner, let’s design the right model around your business.</p>
-                    <ul class="assure">
-                        <li><svg class="ico">
-                                <use href="#i-check" />
-                            </svg>A member of the Nepreva team replies within one business day</li>
-                        <li><svg class="ico">
-                                <use href="#i-check" />
-                            </svg>We scope a realistic team, timeline and model before your first call</li>
-                        <li><svg class="ico">
-                                <use href="#i-check" />
-                            </svg>You can start with a pilot</li>
-                    </ul>
-                </div>
-                <div class="formcard">
-                    <h3>Build your delivery team</h3>
-                    <p class="small">Tell us a little about your business and current finance function.</p>
-                    <form class="pform" novalidate>
-                        <div class="fg">
-                            <div><label>Full name<input name="name" autocomplete="name"></label></div>
-                            <div><label>Work email<input name="email" type="email" autocomplete="email"></label>
-                            </div>
-                            <div><label>Company<input name="company" autocomplete="organization"></label></div>
-                            <div><label>Country<input name="country" autocomplete="country-name"></label></div>
-                            <div><label>Service required<select name="svc">
-                                        <option>Not sure yet</option>
-                                        <option>Accounting &amp; Bookkeeping</option>
-                                        <option>Financial Reporting</option>
-                                        <option>Audit &amp; Assurance Support</option>
-                                        <option>Tax &amp; Compliance Support</option>
-                                        <option>Payroll</option>
-                                        <option>Finance Operations</option>
-                                        <option>FP&amp;A &amp; Financial Modelling</option>
-                                        <option>Virtual CFO</option>
-                                        <option>Employer of Record (EOR)</option>
-                                    </select></label></div>
-                            <div><label>Preferred engagement model<select name="model">
-                                        <option>Not sure yet</option>
-                                        <option>Dedicated Team</option>
-                                        <option>Managed Service</option>
-                                        <option>Project Support</option>
-                                        <option>Peak-Season Capacity</option>
-                                        <option>Hybrid Delivery</option>
-                                    </select></label></div>
-                            <div class=full><label>What are you trying to solve?
-                                    <textarea name="msg"></textarea>
-                                </label></div>
-                        </div><button class="btn btn-lime" type="submit">Request a proposal</button>
-                        <p class="fmsg" role="status"></p>
-                    </form>
-                </div>
-            </div>
-        </section>
+        @include('themes.default.common.cta-build-your-delivery-team')
     </main>
 @endsection

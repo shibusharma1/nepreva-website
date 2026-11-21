@@ -156,7 +156,36 @@
             </div>
           </div>
 
+        <div class="panel-heading">
+          <span class="panel-title">Build Your Dream CTA</span>
+        </div>
+        <br>
+            <div class="form-group">
+              <label class="col-lg-3 control-label" for="cta_title">CTA Title</label>
+              <div class="col-lg-8">
+                <div class="bs-component">
+                    <input type="text" id="" name="cta_title" class="form-control" placeholder="" value="{{$data->cta_title}}" />
+                </div>
+              </div>
+            </div>
 
+            <div class="form-group">
+              <label class="col-lg-3 control-label" for="cta_brief">CTA Brief</label>
+              <div class="col-lg-8">
+                <div class="bs-component">
+                  <textarea class="form-control" id="cta_brief" name="cta_brief" rows="3">{{ $data->cta_brief }}</textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label" for="editor2">CTA Description</label>
+              <div class="col-lg-8">
+                <div class="bs-component">
+                  <textarea class="form-control my-editor" id="editor2" name="cta_contents" rows="5">{{ $data->cta_contents }}</textarea>
+                </div>
+              </div>
+            </div>
 
           <div class="form-group">
             <label class="col-lg-3 control-label" for=""></label>
@@ -179,13 +208,13 @@
               value="{{$data->facebook_link}}" />
           </div>
         </div>
-        <!-- <div class="sid_ mb10"> 
+        <div class="sid_ mb10"> 
             <h4>Linkedin </h4>                   
                 <div class="bs-component">
                   <input type="text" id="" name="linkedin_link" class="form-control" placeholder="" value="{{$data->linkedin_link}}" />
                 </div>            
-             </div> -->
-        {{-- <div class="sid_ mb10">
+             </div> 
+        <div class="sid_ mb10">
           <h4> Instagram </h4>
           <div class="bs-component">
             <input type="text" id="" name="instagram_link" class="form-control" placeholder=""
@@ -213,7 +242,8 @@
             <input type="text" id="" name="youtube_link" class="form-control" placeholder=""
               value="{{$data->youtube_link}}" />
           </div>
-        </div> --}}
+        </div> 
+
       </div>
     </div>
   </form>

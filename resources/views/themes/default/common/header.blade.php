@@ -11,6 +11,7 @@
     <link rel="icon" type="image/webp" href="{{ asset('themes-assets/img/favicon.webp') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('themes-assets/img/apple-touch-icon.png') }}">
     <link rel="stylesheet" href="{{ asset('themes-assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     <a class="skip" href="#main">Skip to content</a>

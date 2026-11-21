@@ -255,7 +255,7 @@
                         </a>
                     </li>
                     <li class="{{ Request::segment(2) == 'build-your-delivery-team' ? 'active' : '' }}">
-                        <a href="{{ url('inquiry/build-your-delivery-team') }}">
+                        <a href="{{ url('inquiry/delivery-team-requests') }}">
                             <span class="fa fa fa-arrows-h"></span>
                             Build Your Delivery Team
                         </a>

@@ -1,10 +1,31 @@
 <footer class="foot">
     <div class="wrap">
         <div class="foot-g">
-            <div><a class="logo" href="index.php"><img src="{{ asset('themes-assets/img/logo-white.webp') }}"
+            <div><a class="logo" href="{{ url('/') }}"><img src="{{ asset('themes-assets/img/logo-white.webp') }}"
                         alt="Nepreva" width="640" height="140"></a>
                 <p class="about">{{ $setting->welcome_title }}</p>
                 <p class="supp">{{ $setting->welcome_text }}</p>
+                @php
+                    $socialLinks = [
+                        'facebook_link' => ['icon' => 'fa-facebook-f', 'name' => 'Facebook'],
+                        'linkedin_link' => ['icon' => 'fa-linkedin-in', 'name' => 'LinkedIn'],
+                        'instagram_link' => ['icon' => 'fa-instagram', 'name' => 'Instagram'],
+                        'twitter_link' => ['icon' => 'fa-x-twitter', 'name' => 'X'],
+                        'youtube_link' => ['icon' => 'fa-youtube', 'name' => 'YouTube'],
+                        'google_plus' => ['icon' => 'fa-google-plus-g', 'name' => 'Google Plus'],
+                    ];
+                @endphp
+
+                <div class="footer-socials">
+                    @foreach ($socialLinks as $field => $social)
+                        @if (!empty($setting->$field))
+                            <a href="{{ $setting->$field }}" target="_blank" rel="noopener noreferrer"
+                                aria-label="{{ $social['name'] }}" title="{{ $social['name'] }}">
+                                <i class="fa-brands {{ $social['icon'] }}"></i>
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
             </div>
             <div>
                 <h4>Solutions</h4><a href="for-accounting-audit-firms.php">For accounting &amp; audit firms</a><a
@@ -27,8 +48,9 @@
             </div>
         </div>
         <div class="foot-b"><span>&copy; {{ date('Y') }} {{ $setting->copyright_text }}</span><span><a
-                    href="{{ url('page/privacy-policy.html') }}" style="display:inline">Privacy Policy</a> &nbsp;&nbsp; <a
-                    href="{{ url('page/terms-and-conditions.html') }}" style="display:inline">Terms of Use</a></span></div>
+                    href="{{ url('page/privacy-policy.html') }}" style="display:inline">Privacy Policy</a> &nbsp;&nbsp;
+                <a href="{{ url('page/terms-and-conditions.html') }}" style="display:inline">Terms of Use</a></span>
+        </div>
     </div>
 </footer>
 

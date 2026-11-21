@@ -74,18 +74,13 @@
                                         </td>
 
                                         <td>
-                                            @if (
-                                                
-                                                    (Request::segment(2) == 'product' && Request::segment(3)) ||
-                                                    (Request::segment(2) == 'frontpage' && $row->id == 29))
+                                            @if (in_array(Request::segment(2), ['build-your-delivery-team']) && in_array($row->id, [150]))
                                                 <a href="{{ url('admin/associated/' . Request::segment(2) . '/' . $row->id) }}"
                                                     title="Associated posts">
                                                     <i class="fa fa-list-ol"></i>
                                                 </a>
                                             @endif
-                                            @if (Request::segment(2) == 'gallery' ||
-                                                    (Request::segment(2) == 'frontpage' && $row->id == 28) ||
-                                                    Request::segment(2) == 'partners')
+                                            @if (in_array(Request::segment(2), ['build-your-delivery-teama']) && in_array($row->id, [151]))
                                                 <a href="{{ route('admin.multiplephoto', $row->id) }}" title="Photo">
                                                     <i class="fa fa-file-image-o" aria-hidden="true"></i>
                                                 </a>
@@ -93,7 +88,7 @@
                                             {{-- <a href="{{  route('admin.multiplevideo.index', $row->id ) }}" title="Video">
                                                     <i class="fa fa-file-video-o" aria-hidden="true"></i>
                                                   </a> --}}
-                                            @if(Request::segment(2) != 'about' && Request::segment(2) != 'home')
+                                            @if (in_array(Request::segment(2), ['build-your-delivery-teama']) && in_array($row->id, [151]))
                                             <a href="{{ route('doc.multipledocument', $row->id) }}" title="PDF">
                                                 <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                             </a>

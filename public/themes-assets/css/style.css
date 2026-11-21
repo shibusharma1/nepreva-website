@@ -3238,6 +3238,41 @@ h2 {
 .mm-foot .btn:hover {
     background: #97cc55;
 }
+.footer-socials {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    color: #A8B3D3;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.footer-socials a:hover {
+    color: #ffffff;
+    background: #11497B;
+    border-color: #11497B;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 576px) {
+    .footer-socials {
+        margin-top: 18px;
+    }
+}
 .mega.sm {
     left: -20px;
     right: auto;

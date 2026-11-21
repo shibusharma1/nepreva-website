@@ -113,8 +113,8 @@
                                     questions</small></span></a></div>
                 </div>
             </li>
-            <li><a class="nl" href="insights.php">Insights</a></li>
-            <li><a class="nl" href="about.php">About</a></li>
+            <li><a class="nl" href="{{ url('page/insights.html') }}">Insights</a></li>
+            <li><a class="nl" href="{{ url('page/about-us.html') }}">About</a></li>
         </ul>
         <div class="hdr-cta"><a class="tl" href="{{ url('page/contact.html') }}">Request a proposal</a><a
                 class="btn btn-primary btn-sm" href="{{ url('page/build-your-delivery-team.html') }}">Build your delivery team</a>

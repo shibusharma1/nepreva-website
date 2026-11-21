@@ -7,7 +7,8 @@ use App\Models\Inquiry\ContactModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\AdminMenu\AdminMenuModel;
-use App\Models\Inquiry\AppointmentModel;
+// use App\Models\Inquiry\AppointmentModel;
+use App\Models\Inquiry\DeliveryTeamRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -114,25 +115,22 @@ class AdminMenuController extends Controller
             return redirect()->back()->with('success',' Deleted  successfully');
         }
     }
-    public function appointment_inquiry()
+  
+    public function delivery_team_requests()
     {
-        $appointments = AppointmentModel::orderBy('id','desc')->get();
-        return view('admin.appointment.index',compact('appointments'));    
+        $inquiry = DeliveryTeamRequest::orderBy('id', 'desc')->get();
+        return view('admin.delivery-team-request.index', compact('inquiry'));
     }
 
-    public function appointment_delete($id){
-        $del = AppointmentModel::findorfail($id);
-        if($del->delete())
-        {
-            return redirect()->back()->with('success',' Deleted  successfully');
+    public function delete_delivery_team_request($id)
+    {
+        $del = DeliveryTeamRequest::findOrFail($id);
+        if ($del->delete()) {
+            return redirect()->back()->with('success', 'Deleted successfully');
         }
+        return redirect()->back()->with('error', 'Unable to delete the request.');
     }
 
-    public function application_inquiry()
-    {
-        $career = CareerModel::orderBy('id','desc')->get();
-        return view('admin.career.index',compact('career'));    
-    }
     public function career_delete($id){
         $del = CareerModel::findorfail($id);
 

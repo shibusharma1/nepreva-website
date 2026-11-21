@@ -128,7 +128,8 @@
             </div>
           </div>
           @endif
-
+          
+          @if(Request::segment(2) != 'build-your-delivery-team')
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Brief </label>
             <div class="col-lg-9">
@@ -166,6 +167,7 @@
               </div>
             </div>
           </div>
+          @endif
 
           {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label"> External Link </label>
@@ -197,6 +199,7 @@
           <div class="clearfix"></div>
         </div>
 
+        @if(Request::segment(2) != 'build-your-delivery-team')
         <div class="sid_ mb10">
           <label class="field select">
             <select id="template" name="template">
@@ -207,6 +210,7 @@
             <i class="arrow"></i>
           </label>
         </div>
+        @endif
 
         {{-- <div class="sid_ mb10">
           <label class="field select">
@@ -327,6 +331,7 @@
           </div>
         </div> --}}
 
+        @if(Request::segment(2) != 'build-your-delivery-team')
         <div class="sid_ mb10">
           <h4> Banner </h4>
           <div class="hd_show_con">
@@ -342,6 +347,7 @@
             </div>
           </div>
         </div>
+        @endif
 
       </div>
     </div>
