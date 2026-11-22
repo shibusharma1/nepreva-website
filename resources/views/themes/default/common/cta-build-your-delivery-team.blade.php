@@ -3,21 +3,14 @@
     </svg>
     <div class="wrap in">
         <div>
-            <h2>Ready to extend your team?</h2>
-            <p class="lead">Whether you need additional capacity for a peak season, a dedicated team or a
-                long-term finance delivery partner, let’s design the right model around your business.</p>
-            <ul class="assure">
-                <li>
-                    <svg class="ico">
-                        <use href="#i-check" />
-                    </svg>A member of the Nepreva team replies within one business day</li>
-                <li><svg class="ico">
-                        <use href="#i-check" />
-                    </svg>We scope a realistic team, timeline and model before your first call</li>
-                <li><svg class="ico">
-                        <use href="#i-check" />
-                    </svg>You can start with a pilot</li>
-            </ul>
+            <h2>{{ $setting->cta_title }}</h2>
+            <p class="lead">{{ $setting->cta_brief }}</p>
+            @php
+                $content = $setting->cta_contents;
+                $content = preg_replace('/<ul[^>]*>/i', '<ul class="assure">', $content);
+                $content = preg_replace('/<li[^>]*>/i', '<li><svg class="ico"><use href="#i-check" /></svg>', $content);
+            @endphp
+            {!! $content !!}
         </div>
         @include('themes.default.common.build-your-delivery-team-form')
     </div>
