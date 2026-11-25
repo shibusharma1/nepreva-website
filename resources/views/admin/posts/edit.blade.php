@@ -32,7 +32,7 @@
               </div>
             </div>
           </div>
-          @if (Request::segment(2) == 'home' || Request::segment(2) == 'about' || Request::segment(2) == 'services')
+          @if (Request::segment(2) == 'home' || (Request::segment(2) == 'about' && in_array($data->id,['156'])) || (Request::segment(2) == 'services' && in_array($data->id,['162'])))
             <div class="form-group">
               <label for="inputStandard" class="col-lg-2 control-label">Sub Title</label>
               <div class="col-lg-9">
@@ -43,9 +43,9 @@
             </div>
           @endif
 
-          @if(Request::segment(2) == 'home' || Request::segment(2) == 'services' || Request::segment(2) == 'about')
+          @if(Request::segment(2) == 'home' || (Request::segment(2) == 'services' && in_array($data->id,['162'])) || (Request::segment(2) == 'about' && in_array($data->id,['156'])))
             <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Icon</label>
+              <label for="inputStandard" class="col-lg-2 control-label">Section Title</label>
               <div class="col-lg-9">
                 <div class="bs-component">
                   <input type="text" id="" name="associated_title" class="form-control"
@@ -55,9 +55,6 @@
             </div>
           @endif
           <?php /*?>
-
-
-
 
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Associated Title </label>
@@ -129,7 +126,7 @@
           </div>
           @endif
           
-          @if(Request::segment(2) != 'build-your-delivery-team')
+          @if(Request::segment(2) != 'build-your-delivery-team' && (in_array($data->id, [154,155,156,157,158,159,160,161,163,164,165,166])))
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Brief </label>
             <div class="col-lg-9">
@@ -138,17 +135,21 @@
               </div>
             </div>
           </div>
+          @endif
 
-          <div class="form-group">
-            <label class="col-lg-2 control-label" for="textArea2">Content</label>
-            <div class="col-lg-10">
-              <div class="bs-component">
-                <textarea class="form-control my-editor" id="editor2" name="post_content"
-                  rows="20"> {{$data->post_content}}</textarea>
+          @if(Request::segment(2) != 'build-your-delivery-team' && in_array($data->id, [152,154,156,159,160,161,162,163]))
+              <div class="form-group">
+                  <label class="col-lg-2 control-label" for="textArea2">Content</label>
+                  <div class="col-lg-10">
+                      <div class="bs-component">
+                          <textarea class="form-control my-editor" id="editor2" name="post_content"
+                              rows="20">{{ old('post_content', $data->post_content) }}</textarea>
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
+          @endif
 
+          @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about' && (Request::segment(2) == 'services' && in_array($data->id,['162'])))          
           <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label">Meta Key</label>
             <div class="col-lg-9">
@@ -157,7 +158,9 @@
               </div>
             </div>
           </div>
-
+          @endif
+          
+          @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about' && (Request::segment(2) == 'services' && in_array($data->id,['162'])))          
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Meta Description </label>
             <div class="col-lg-9">
@@ -168,6 +171,95 @@
             </div>
           </div>
           @endif
+          {{-- Information Section --}}
+          {{-- <div class="panel"  style="border:none !important;">
+              <div class="panel-heading">
+                  <span class="panel-title">Information Section</span>
+              </div>
+              <div class="panel-body">
+                  <div class="form-group">
+                      <label class="col-lg-2 control-label" for="info_section_title">
+                          Section Title
+                      </label>
+                      <div class="col-lg-9">
+                          <input type="text" id="info_section_title" name="info_section_title" class="form-control" value="{{ old('info_section_title', $data->info_section_title) }}" placeholder="e.g. Nine service lines">
+                      </div>
+                  </div>
+                  @for ($i = 1; $i <= 3; $i++)
+                      <div class="form-group">
+                          <label class="col-lg-2 control-label"
+                              for="info_section_label_{{ $i }}">
+                              Label {{ $i }}
+                          </label>
+                          <div class="col-lg-9">
+                              <input type="text" id="info_section_label_{{ $i }}" name="info_section_label_{{ $i }}" class="form-control" value="{{ old('info_section_label_'.$i, $data->{'info_section_label_'.$i}) }}" placeholder="e.g. Delivered from">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-lg-2 control-label"
+                              for="info_section_value_{{ $i }}">
+                              Value {{ $i }}
+                          </label>
+                          <div class="col-lg-9">
+                              <input type="text" id="info_section_value_{{ $i }}" name="info_section_value_{{ $i }}" class="form-control" value="{{ old('info_section_value_'.$i, $data->{'info_section_value_'.$i}) }}" placeholder="e.g. Kathmandu, Nepal">
+                          </div>
+                      </div>
+                  @endfor
+          </div> --}}
+
+      @if((Request::segment(2) == 'services' && in_array($data->id,['162'])) || Request::segment(2) == 'why-nepreva')
+          {{-- Information Section --}}
+          <div class="form-group">
+              <label class="col-lg-2 control-label" for="info_section_title">
+                  Section Title
+              </label>
+              <div class="col-lg-9">
+                  <input
+                      type="text"
+                      id="info_section_title"
+                      name="info_section_title"
+                      class="form-control"
+                      value="{{ old('info_section_title', $data->info_section_title) }}"
+                      placeholder="e.g. Nine service lines"
+                  >
+              </div>
+          </div>
+
+          @for ($i = 1; $i <= 3; $i++)
+              <div class="form-group">
+                  <label class="col-lg-2 control-label" for="info_section_label_{{ $i }}">
+                      Label {{ $i }}
+                  </label>
+                  <div class="col-lg-9">
+                      <input
+                          type="text"
+                          id="info_section_label_{{ $i }}"
+                          name="info_section_label_{{ $i }}"
+                          class="form-control"
+                          value="{{ old('info_section_label_'.$i, $data->{'info_section_label_'.$i}) }}"
+                          placeholder="e.g. Delivered from"
+                      >
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-lg-2 control-label" for="info_section_value_{{ $i }}">
+                      Value {{ $i }}
+                  </label>
+                  <div class="col-lg-9">
+                      <input
+                          type="text"
+                          id="info_section_value_{{ $i }}"
+                          name="info_section_value_{{ $i }}"
+                          class="form-control"
+                          value="{{ old('info_section_value_'.$i, $data->{'info_section_value_'.$i}) }}"
+                          placeholder="e.g. Kathmandu, Nepal"
+                      >
+                  </div>
+              </div>
+          @endfor
+          @endif
+
 
           {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label"> External Link </label>
@@ -199,7 +291,7 @@
           <div class="clearfix"></div>
         </div>
 
-        @if(Request::segment(2) != 'build-your-delivery-team')
+        @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about')
         <div class="sid_ mb10">
           <label class="field select">
             <select id="template" name="template">
@@ -274,10 +366,6 @@
           </label>
         </div>
 
-
-
-
-
         <div class="sid_ mb10">
           <h4> Thumbnail </h4>
           <div class="hd_show_con">
@@ -330,9 +418,10 @@
             </div>
           </div>
         </div> --}}
+          </div>
 
         @if(Request::segment(2) != 'build-your-delivery-team')
-        <div class="sid_ mb10">
+        {{-- <div class="sid_ mb10">
           <h4> Banner </h4>
           <div class="hd_show_con">
             <div id="xedit-demo">
@@ -346,7 +435,7 @@
               <input type="file" name="banner" />
             </div>
           </div>
-        </div>
+        </div> --}}
         @endif
 
       </div>

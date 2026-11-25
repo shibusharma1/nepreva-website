@@ -118,6 +118,7 @@
               </div>
             </div>
           </div>
+          
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea2">Content</label>
             <div class="col-lg-10">
@@ -143,6 +144,43 @@
                 <textarea class="form-control" id="textArea3" name="meta_description" rows="3"></textarea>
               </div>
             </div>
+          </div>
+          
+          {{-- Information Section --}}
+          <div class="panel" style="border: none !important;">
+              <div class="panel-heading">
+                  <span class="panel-title">Information Section</span>
+              </div>
+              <div class="panel-body">
+                  <div class="form-group">
+                      <label class="col-lg-2 control-label" for="info_section_title">
+                          Section Title
+                      </label>
+                      <div class="col-lg-9">
+                          <input type="text" id="info_section_title" name="info_section_title" class="form-control" value="{{ old('info_section_title') }}" placeholder="e.g. Nine service lines">
+                      </div>
+                  </div>
+                  @for ($i = 1; $i <= 3; $i++)
+                      <div class="form-group">
+                          <label class="col-lg-2 control-label"
+                              for="info_section_label_{{ $i }}">
+                              Label {{ $i }}
+                          </label>
+                          <div class="col-lg-9">
+                              <input type="text" id="info_section_label_{{ $i }}" name="info_section_label_{{ $i }}" class="form-control" value="{{ old('info_section_label_'.$i) }}" placeholder="e.g. Delivered from">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-lg-2 control-label"
+                              for="info_section_value_{{ $i }}">
+                              Value {{ $i }}
+                          </label>
+                          <div class="col-lg-9">
+                             <input type="text" id="info_section_value_{{ $i }}" name="info_section_value_{{ $i }}" class="form-control" value="{{ old('info_section_value_'.$i) }}" placeholder="e.g. Kathmandu, Nepal">
+                          </div>
+                      </div>
+                  @endfor
+              </div>
           </div>
 
           {{-- <div class="form-group">
@@ -269,14 +307,14 @@
           </div>
         </div> --}}
 
-        <div class="sid_ mb10">
+        {{-- <div class="sid_ mb10">
           <h4> Banner </h4>
           <div class="hd_show_con">
             <div id="xedit-demo">
               <input type="file" name="banner" />
             </div>
           </div>
-        </div>
+        </div> --}}
 
       </div>
 

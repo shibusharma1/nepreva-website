@@ -127,7 +127,7 @@
             </div>
           </div> --}}
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Banner </label>
             <div class="col-lg-8">
               <div class="bs-component">
@@ -139,8 +139,48 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
+        {{-- Information Section --}}
+        <div class="panel" style="border: none !important;">
+            <div class="panel-heading">
+                <span class="panel-title">Information Section</span>
+            </div>
 
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="info_section_title">
+                        Section Title
+                    </label>
+                    <div class="col-lg-8">
+                        <input type="text" id="info_section_title" name="info_section_title" class="form-control" value="{{ old('info_section_title') }}" placeholder="e.g. Nine service lines">
+                    </div>
+                </div>
+
+                @for ($i = 1; $i <= 3; $i++)
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label"
+                            for="info_section_label_{{ $i }}">
+                            Label {{ $i }}
+                        </label>
+                        <div class="col-lg-8">
+                            <input type="text" id="info_section_label_{{ $i }}" name="info_section_label_{{ $i }}" class="form-control" value="{{ old('info_section_label_'.$i) }}" placeholder="e.g. Delivered from">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label"
+                            for="info_section_value_{{ $i }}">
+                            Value {{ $i }}
+                        </label>
+                        <div class="col-lg-8">
+                           <input type="text" id="info_section_value_{{ $i }}" name="info_section_value_{{ $i }}" class="form-control" value="{{ old('info_section_value_'.$i) }}" placeholder="e.g. Kathmandu, Nepal">
+                        </div>
+                    </div>
+                @endfor
+
+            </div>
+        </div>
 
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> </label>

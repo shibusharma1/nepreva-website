@@ -8,22 +8,10 @@
             <section class="phero">
                 <div class="wrap g">
                     <div>
-                        <h1>Perspectives on building finance delivery capacity.</h1>
-                        <p class="lead">Practical thinking for practice leaders and finance teams weighing how to scale:
-                            audit support, accounting, outsourcing models, technology and Nepal as a delivery destination.
-                        </p>
+                        <h1>{!! $data->caption !!}</h1>
+                        <p class="lead">{{ strip_tags($data->content) }}</p>
                     </div>
-                    <aside class="glance">
-                        <h2>Insights</h2>
-                        <dl>
-                            <dt>Topics</dt>
-                            <dd>Audit support, accounting, outsourcing, Nepal</dd>
-                            <dt>Written for</dt>
-                            <dd>Practice leaders and finance teams</dd>
-                            <dt>Published by</dt>
-                            <dd class=lime>Nepreva Global Solutions</dd>
-                        </dl>
-                    </aside>
+                    @include('themes.default.common.aside')
                 </div>
             </section>
             <section class="band sec">

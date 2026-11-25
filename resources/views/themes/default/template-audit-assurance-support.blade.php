@@ -3,21 +3,25 @@
 @section('meta_description', $data->meta_description)
 @section('content')
     <main id="main">
-        <div class="pg on" data-page="audit-assurance-support" data-title="Audit &amp; Assurance Support | Nepreva"
-            data-svc="Audit &amp; Assurance Support">
+        <div class="pg on" data-page="audit-assurance-support" data-title="Audit &amp; Assurance Support | Nepreva" data-svc="Audit &amp; Assurance Support">
             <section class="phero">
                 <div class="wrap g">
-                    <div><a class="crumb" href="services.php"><svg class="ico">
+                    <div>
+                        <a class="crumb" href="services.php">
+                        <svg class="ico">
                                 <use href="#i-chev" />
-                            </svg>All services</a>
+                            </svg>All services
+                        </a>
                         <h1>More audit-support capacity. Less turnaround pressure.</h1>
                         <p class="lead">Busy season arrives on schedule, whether or not your team has the people for it.
                             Nepreva provides Chartered Accountant-led audit support that plugs into your engagement
                             structure and works entirely under your methodology, templates and review chain. You keep the
                             client relationship and the professional responsibility. We strengthen the delivery behind it.
                         </p>
-                        <div class="ctas"><a class="btn btn-primary" href="#start">Build your delivery team</a><a
-                                class="btn btn-ghost" href="#start">Request a proposal</a></div>
+                        <div class="ctas">
+                            <a class="btn btn-primary" href="#start">Build your delivery team</a>
+                            <a class="btn btn-ghost" href="#start">Request a proposal</a>
+                        </div>
                     </div>
                     <aside class="glance" aria-label="At a glance">
                         <h2>Audit &amp; Assurance Support at a glance</h2>
@@ -77,6 +81,7 @@
                             professional judgement.</span></p>
                 </div>
             </section>
+
             <section class="sec">
                 <div class="wrap">
                     <div class="head-split">
@@ -103,6 +108,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="band sec">
                 <div class="wrap">
                     <div class="head-split">
@@ -135,6 +141,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="sec">
                 <div class="wrap whobox">
                     <div>

@@ -8,23 +8,12 @@
             <section class="phero">
                 <div class="wrap g">
                     <div>
-                        <h1>Finance. Accounting. Audit support. Delivered.</h1>
-                        <p class="lead">Every service is scoped around an outcome for your practice or business, delivered
-                            by Chartered Accountant-led teams and reviewed against documented quality standards.</p>
+                        <h1>{!! $data->caption !!}</h1>
+                        <p class="lead">{{ strip_tags($data->content) }}</p>
                         <div class="ctas"><a class="btn btn-primary" href="#start">Build your delivery team</a><a
                                 class="btn btn-ghost" href="#start">Request a proposal</a></div>
                     </div>
-                    <aside class="glance">
-                        <h2>Nine service lines</h2>
-                        <dl>
-                            <dt>Delivered from</dt>
-                            <dd>Kathmandu, Nepal</dd>
-                            <dt>Led by</dt>
-                            <dd>Chartered Accountants</dd>
-                            <dt>Governed by</dt>
-                            <dd class="lime">Named partner oversight</dd>
-                        </dl>
-                    </aside>
+                     @include('themes.default.common.aside')
                 </div>
             </section>
             <section class="band sec">

@@ -74,7 +74,7 @@
                                         </td>
 
                                         <td>
-                                            @if (in_array(Request::segment(2), ['build-your-delivery-team']) && in_array($row->id, [150]))
+                                            @if (in_array(Request::segment(2), ['build-your-delivery-team', 'career', 'about', 'services']) && in_array($row->id, [150 ,151, 153, 155, 156, 157, 158,164,165]))
                                                 <a href="{{ url('admin/associated/' . Request::segment(2) . '/' . $row->id) }}"
                                                     title="Associated posts">
                                                     <i class="fa fa-list-ol"></i>

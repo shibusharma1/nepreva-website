@@ -58,11 +58,26 @@ class PostTypeController extends Controller
   {
     $request->validate([
       'post_type' => 'required',
-      'uri' => 'required|unique:cl_post_type'
+      'uri' => 'required|unique:cl_post_type',
+      'info_section_title' => 'nullable|string|max:255',
+
+      'info_section_label_1' => 'nullable|string|max:255',
+      'info_section_value_1' => 'nullable|string',
+
+      'info_section_label_2' => 'nullable|string|max:255',
+      'info_section_value_2' => 'nullable|string',
+
+      'info_section_label_3' => 'nullable|string|max:255',
+      'info_section_value_3' => 'nullable|string',
     ]);
     $medium_width = env('MEDIUM_WIDTH');
     $medium_height = env('MEDIUM_HEIGHT');
     $data = $request->all();
+    $data['info_section_title'] = $request->info_section_title;
+    for ($i = 1; $i <= 3; $i++) {
+        $data["info_section_label_{$i}"] = $request->input("info_section_label_{$i}");
+        $data["info_section_value_{$i}"] = $request->input("info_section_value_{$i}");
+    }
     $banner = '';
     if ($request->hasFile('banner')) {
       $file = $request->file('banner');
@@ -152,7 +167,17 @@ class PostTypeController extends Controller
     // dd($request->all());
     $request->validate([
       'post_type' => 'required',
-      'uri' => 'required'
+      'uri' => 'required',
+      'info_section_title' => 'nullable|string|max:255',
+
+      'info_section_label_1' => 'nullable|string|max:255',
+      'info_section_value_1' => 'nullable|string',
+
+      'info_section_label_2' => 'nullable|string|max:255',
+      'info_section_value_2' => 'nullable|string',
+
+      'info_section_label_3' => 'nullable|string|max:255',
+      'info_section_value_3' => 'nullable|string',
     ]);
     $medium_width = env('MEDIUM_WIDTH');
     $medium_height = env('MEDIUM_HEIGHT');
@@ -203,6 +228,13 @@ class PostTypeController extends Controller
     $data->meta_keyword = $request->meta_keyword;
     $data->meta_description = $request->meta_description;
     $data->content = $request->content;
+    // Information Section
+    $data->info_section_title = $request->info_section_title;
+
+    for ($i = 1; $i <= 3; $i++) {
+        $data->{"info_section_label_{$i}"} = $request->input("info_section_label_{$i}");
+        $data->{"info_section_value_{$i}"} = $request->input("info_section_value_{$i}");
+    }
     // $data->uri = Str::slug($request->uri);
     $data->template = $request->template;
     $data->uid = $request->uid;

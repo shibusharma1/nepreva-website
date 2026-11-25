@@ -26,27 +26,9 @@
               </div>
             </div>
           </div>
-          @if (Request::segment(3) == 'product')
-            <div class="form-group">
-              <label for="title" class="col-lg-2 control-label">Brand Name</label>
-              <div class="col-lg-8">
-                <div class="bs-component">
-                  <input type="text" id="title" name="sub_title" class="form-control" />
-                </div>
-              </div>
-            </div>
+
 
             <div class="form-group">
-              <label for="composition" class="col-lg-2 control-label">Composition</label>
-              <div class="col-lg-8">
-                <div class="bs-component">
-                  <textarea class="form-control my-editor" id="" name="composition" rows="3" autocomplete="off"></textarea>
-                </div>
-              </div>
-            </div>
-          @endif
-
-          <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label">Brief</label>
             <div class="col-lg-8">
               <div class="bs-component">
@@ -56,6 +38,38 @@
               </div>
             </div>
           </div>
+
+           @if (Request::segment(3) == 'career' && Request::segment(4) == '153')
+            <div class="form-group">
+              <label for="composition" class="col-lg-2 control-label">You bring</label>
+              <div class="col-lg-8">
+                <div class="bs-component">
+                  <textarea class="form-control my-editor" id="" name="composition" rows="3" autocomplete="off"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="title" class="col-lg-2 control-label">Other Info</label>
+              <div class="col-lg-8">
+                <div class="bs-component">
+                  <input type="text" id="title" name="sub_title" class="form-control" />
+                </div>
+              </div>
+            </div>
+          @endif
+
+          
+          {{-- <div class="form-group">
+            <label for="inputStandard" class="col-lg-2 control-label">Brief</label>
+            <div class="col-lg-8">
+              <div class="bs-component">
+                <div class="bs-component">
+                  <textarea class="form-control my-editor" id="" name="brief" rows="3" autocomplete="off"></textarea>
+                </div>
+              </div>
+            </div>
+          </div> --}}
 
           <div class="form-group">
             <label for="title" class="col-lg-2 control-label">Ordering</label>

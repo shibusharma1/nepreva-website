@@ -511,6 +511,16 @@ class PostController extends Controller
     $data->project_status = $request->project_status;
     $data->show_in_home = $request->has('show_in_home') ? '1' : '0';
     $data->home_order = $request->home_order;
+    // Information Section
+    $data->info_section_title = $request->info_section_title;
+
+    for ($i = 1; $i <= 3; $i++) {
+        $data->{"info_section_label_{$i}"} =
+            $request->input("info_section_label_{$i}");
+
+        $data->{"info_section_value_{$i}"} =
+            $request->input("info_section_value_{$i}");
+    }
 
     $data->save();
 

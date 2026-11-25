@@ -131,6 +131,12 @@ class AdminMenuController extends Controller
         return redirect()->back()->with('error', 'Unable to delete the request.');
     }
 
+    public function application_inquiry()
+    {
+        $career = CareerModel::orderBy('id','desc')->get();
+        return view('admin.career.index',compact('career'));    
+    }
+
     public function career_delete($id){
         $del = CareerModel::findorfail($id);
 

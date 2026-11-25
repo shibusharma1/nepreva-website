@@ -7,23 +7,14 @@
             <section class="phero">
                 <div class="wrap g">
                     <div>
-                        <h1>A professional delivery partner, not a commodity outsourcer.</h1>
-                        <p class="lead">Every engagement is Chartered Accountant-led and partner-governed, with documented
-                            quality controls and technology that speeds up the work without replacing judgement.</p>
-                        <div class="ctas"><a class="btn btn-primary" href="#start">Build your delivery team</a><a
-                                class="btn btn-ghost" href="how-we-work.php">See how we work</a></div>
+                        <h1>{!! $data->caption !!}</h1>
+                        <p class="lead">{{ strip_tags($data->content) }}</p>
+                        <div class="ctas">
+                            <a class="btn btn-primary" href="#start">Build your delivery team</a>
+                            <a class="btn btn-ghost" href="how-we-work.php">See how we work</a>
+                        </div>
                     </div>
-                    <aside class="glance">
-                        <h2>Why firms choose Nepreva</h2>
-                        <dl>
-                            <dt>Led by</dt>
-                            <dd>Chartered Accountants</dd>
-                            <dt>Governed by</dt>
-                            <dd>Named partner oversight</dd>
-                            <dt>Reviewed by</dt>
-                            <dd class=lime>Maker-checker on every deliverable</dd>
-                        </dl>
-                    </aside>
+                     @include('themes.default.common.aside')
                 </div>
             </section>
             <div class="subnav">
