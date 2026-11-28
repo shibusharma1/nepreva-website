@@ -119,7 +119,7 @@ function geturl($uri = NULL, $page_key = NULL)
     $data = PostModel::where(['page_key' => $page_key])->firstOrFail();
     return $data->page_key . '.html';
   }
-  return $data->uri . '.html';
+  return url($data->uri . '.html');
 }
 
 function posttype_url($uri)

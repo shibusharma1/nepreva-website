@@ -31,9 +31,9 @@
               </div>
             </div>
           </div>
-          @if (Request::segment(2) == 'home' || Request::segment(2) == 'about' || Request::segment(2) == 'services')
+          @if (Request::segment(2) == 'home' || Request::segment(2) == 'about' || Request::segment(2) == 'services' || Request::segment(2) == 'why-nepreva' || Request::segment(2) == 'insights')
             <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Sub Title</label>
+              <label for="inputStandard" class="col-lg-2 control-label">{{ Request::segment(2) == 'insights' ? "Author" : "Sub Title" }}</label>
               <div class="col-lg-9">
                 <div class="bs-component">
                   <input type="text" id="" name="sub_title" class="form-control" placeholder="" />
@@ -41,9 +41,22 @@
               </div>
             </div>
           @endif
+           @if(Request::segment(2) == 'insights')
+          <div class="form-group">
+            <label for="inputStandard" class="col-lg-2 control-label"> {{ request()->segment(2) == 'insights' ? 'Read Time' : 'Icon' }}</label>
+            <div class="col-lg-9">
+              <div class="bs-component">
+                <input type="text" id="" name="post_tags" class="form-control" value="{{$data->post_tags ?? ''}}" />
+              </div>
+            </div>
+          </div>
+          @endif
+
           @if (Request::segment(2) == 'home' || Request::segment(2) == 'services' || Request::segment(2) == 'about')
             <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Icon</label>
+              <label for="inputStandard" class="col-lg-2 control-label"> Icon
+                  {{-- {{ request()->segment(2) == 'insights' ? 'Read Time' : 'Icon' }} --}}
+              </label>
               <div class="col-lg-9">
                 <div class="bs-component">
                   <input type="text" id="" name="associated_title" class="form-control" />
@@ -211,7 +224,7 @@
           <div class="clearfix"></div>
         </div>
 
-        {{-- <div class="sid_ mb10">
+        <div class="sid_ mb10">
           <label class="field select">
             <select id="template" name="template">
               @foreach($templates as $key => $template)
@@ -220,7 +233,7 @@
             </select>
             <i class="arrow"></i>
           </label>
-        </div> --}}
+        </div>
 
         {{-- <div class="sid_ mb10">
           <label class="field select">

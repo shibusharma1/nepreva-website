@@ -32,9 +32,44 @@
               </div>
             </div>
           </div>
-          @if (Request::segment(2) == 'home' || (Request::segment(2) == 'about' && in_array($data->id,['156'])) || (Request::segment(2) == 'services' && in_array($data->id,['162'])))
+
+          @if((Request::segment(2) == 'services' && in_array($data->id,['167', '172','177','182','187','192','197','202','207','212','217'])))
+          <div class="form-group">
+            <label for="inputStandard" class="col-lg-2 control-label"> {{ request()->segment(2) == 'insights' ? 'Read Time' : 'Icon' }}</label>
+            <div class="col-lg-9">
+              <div class="bs-component">
+                <input type="text" id="" name="icon" class="form-control" value="{{$data->icon}}" />
+              </div>
+            </div>
+          </div>
+          @endif
+
+          @if((Request::segment(2) == 'insights' && in_array($data->id,['242','245','247','249','251','253'])))
+          <div class="form-group">
+            <label for="inputStandard" class="col-lg-2 control-label"> {{ request()->segment(2) == 'insights' ? 'Read Time' : 'Icon' }}</label>
+            <div class="col-lg-9">
+              <div class="bs-component">
+                <input type="text" id="" name="post_tags" class="form-control" value="{{$data->post_tags}}" />
+              </div>
+            </div>
+          </div>
+          @endif
+
+          @if(Request::segment(2) == 'services' && in_array($data->id,['177', '182','187','192','197','202','207','212','217']))
+          <div class="form-group">
+            <label for="inputStandard" class="col-lg-2 control-label"> Description </label>
+            <div class="col-lg-9">
+              <div class="bs-component">
+                <input type="text" id="" name="external_link" class="form-control" value="{{$data->external_link}}" />
+              </div>
+            </div>
+          </div>
+          @endif
+
+          @if (Request::segment(2) == 'home' || (Request::segment(2) == 'insights' && !in_array($data->id,['241','244','248','250','252']))  || (Request::segment(2) == 'about' && in_array($data->id,['156'])) || (Request::segment(2) == 'services' && in_array($data->id,['177'])) || (Request::segment(2) == 'why-nepreva' && in_array($data->id,['222','223','229'])))
+          {{-- @if (Request::segment(2) == 'home' || (Request::segment(2) == 'insights' && !in_array($data->id,['241',]))  || (Request::segment(2) == 'about' && in_array($data->id,['156'])) || (Request::segment(2) == 'services' && in_array($data->id,['177'])) || (Request::segment(2) == 'why-nepreva' && in_array($data->id,['222','223','229']))) --}}
             <div class="form-group">
-              <label for="inputStandard" class="col-lg-2 control-label">Sub Title</label>
+              <label for="inputStandard" class="col-lg-2 control-label">{{ Request::segment(2) == 'insights' ? "Author" : "Sub Title" }}</label>
               <div class="col-lg-9">
                 <div class="bs-component">
                   <input type="text" id="" name="sub_title" class="form-control" value="{{$data->sub_title}}" />
@@ -43,7 +78,7 @@
             </div>
           @endif
 
-          @if(Request::segment(2) == 'home' || (Request::segment(2) == 'services' && in_array($data->id,['162'])) || (Request::segment(2) == 'about' && in_array($data->id,['156'])))
+          @if(Request::segment(2) == 'home' || (Request::segment(2) == 'services' && in_array($data->id,['188','193','213','229'])) || (Request::segment(2) == 'about' && in_array($data->id,['156'])) || (Request::segment(2) == 'why-nepreva' && in_array($data->id,['225','226','227','228','235'])))
             <div class="form-group">
               <label for="inputStandard" class="col-lg-2 control-label">Section Title</label>
               <div class="col-lg-9">
@@ -126,7 +161,7 @@
           </div>
           @endif
           
-          @if(Request::segment(2) != 'build-your-delivery-team' && (in_array($data->id, [154,155,156,157,158,159,160,161,163,164,165,166])))
+          @if(Request::segment(2) != 'build-your-delivery-team' && (in_array($data->id, [154,155,156,157,158,159,160,161,178,179,180,181,167,169,170,172,177,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,231,235,242,245,247,249,251,253])))
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Brief </label>
             <div class="col-lg-9">
@@ -137,7 +172,7 @@
           </div>
           @endif
 
-          @if(Request::segment(2) != 'build-your-delivery-team' && in_array($data->id, [152,154,156,159,160,161,162,163]))
+          @if(Request::segment(2) != 'build-your-delivery-team' && in_array($data->id, [152,154,156,159,160,161,177,178,167,172,182,183,187,188,192,193,197,198,202,203,207,208,212,213,217,218,223,224,226,228,229,232,233,235,242,245,247,249,251,253]))
               <div class="form-group">
                   <label class="col-lg-2 control-label" for="textArea2">Content</label>
                   <div class="col-lg-10">
@@ -149,7 +184,7 @@
               </div>
           @endif
 
-          @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about' && (Request::segment(2) == 'services' && in_array($data->id,['162'])))          
+          @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about' && (Request::segment(2) == 'services' && in_array($data->id,['167', '172','177','182','187','192','197','202','207','212','217'])))          
           <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label">Meta Key</label>
             <div class="col-lg-9">
@@ -160,7 +195,7 @@
           </div>
           @endif
           
-          @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about' && (Request::segment(2) == 'services' && in_array($data->id,['162'])))          
+          @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about' && (Request::segment(2) == 'services' && in_array($data->id,['167', '172','177','182','187','192','197','202','207','212','217'])))          
           <div class="form-group">
             <label class="col-lg-2 control-label" for="textArea3"> Meta Description </label>
             <div class="col-lg-9">
@@ -171,57 +206,15 @@
             </div>
           </div>
           @endif
-          {{-- Information Section --}}
-          {{-- <div class="panel"  style="border:none !important;">
-              <div class="panel-heading">
-                  <span class="panel-title">Information Section</span>
-              </div>
-              <div class="panel-body">
-                  <div class="form-group">
-                      <label class="col-lg-2 control-label" for="info_section_title">
-                          Section Title
-                      </label>
-                      <div class="col-lg-9">
-                          <input type="text" id="info_section_title" name="info_section_title" class="form-control" value="{{ old('info_section_title', $data->info_section_title) }}" placeholder="e.g. Nine service lines">
-                      </div>
-                  </div>
-                  @for ($i = 1; $i <= 3; $i++)
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label"
-                              for="info_section_label_{{ $i }}">
-                              Label {{ $i }}
-                          </label>
-                          <div class="col-lg-9">
-                              <input type="text" id="info_section_label_{{ $i }}" name="info_section_label_{{ $i }}" class="form-control" value="{{ old('info_section_label_'.$i, $data->{'info_section_label_'.$i}) }}" placeholder="e.g. Delivered from">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label class="col-lg-2 control-label"
-                              for="info_section_value_{{ $i }}">
-                              Value {{ $i }}
-                          </label>
-                          <div class="col-lg-9">
-                              <input type="text" id="info_section_value_{{ $i }}" name="info_section_value_{{ $i }}" class="form-control" value="{{ old('info_section_value_'.$i, $data->{'info_section_value_'.$i}) }}" placeholder="e.g. Kathmandu, Nepal">
-                          </div>
-                      </div>
-                  @endfor
-          </div> --}}
 
-      @if((Request::segment(2) == 'services' && in_array($data->id,['162'])) || Request::segment(2) == 'why-nepreva')
+      @if((Request::segment(2) == 'services' && in_array($data->id,['177', '167','172','182','187','192','197','202','207','212','217'])) || (Request::segment(2) == 'why-nepreva' && in_array($data->id,['229','235'])))
           {{-- Information Section --}}
           <div class="form-group">
               <label class="col-lg-2 control-label" for="info_section_title">
                   Section Title
               </label>
               <div class="col-lg-9">
-                  <input
-                      type="text"
-                      id="info_section_title"
-                      name="info_section_title"
-                      class="form-control"
-                      value="{{ old('info_section_title', $data->info_section_title) }}"
-                      placeholder="e.g. Nine service lines"
-                  >
+                <input type="text" id="info_section_title" name="info_section_title" class="form-control" value="{{ old('info_section_title', $data->info_section_title) }}" placeholder="e.g. Nine service lines" >
               </div>
           </div>
 
@@ -231,14 +224,7 @@
                       Label {{ $i }}
                   </label>
                   <div class="col-lg-9">
-                      <input
-                          type="text"
-                          id="info_section_label_{{ $i }}"
-                          name="info_section_label_{{ $i }}"
-                          class="form-control"
-                          value="{{ old('info_section_label_'.$i, $data->{'info_section_label_'.$i}) }}"
-                          placeholder="e.g. Delivered from"
-                      >
+                     <input type="text" id="info_section_label_{{ $i }}" name="info_section_label_{{ $i }}" class="form-control" value="{{ old('info_section_label_'.$i, $data->{'info_section_label_'.$i}) }}" placeholder="e.g. Delivered from" >
                   </div>
               </div>
 
@@ -247,19 +233,11 @@
                       Value {{ $i }}
                   </label>
                   <div class="col-lg-9">
-                      <input
-                          type="text"
-                          id="info_section_value_{{ $i }}"
-                          name="info_section_value_{{ $i }}"
-                          class="form-control"
-                          value="{{ old('info_section_value_'.$i, $data->{'info_section_value_'.$i}) }}"
-                          placeholder="e.g. Kathmandu, Nepal"
-                      >
+                      <input type="text" id="info_section_value_{{ $i }}" name="info_section_value_{{ $i }}" class="form-control" value="{{ old('info_section_value_'.$i, $data->{'info_section_value_'.$i}) }}" placeholder="e.g. Kathmandu, Nepal" >
                   </div>
               </div>
           @endfor
           @endif
-
 
           {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label"> External Link </label>
@@ -269,7 +247,6 @@
               </div>
             </div>
           </div> --}}
-
         </div>
       </div>
     </div>
@@ -290,8 +267,9 @@
           </footer>
           <div class="clearfix"></div>
         </div>
-
-        @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about')
+{{-- 
+        @if((Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about') || (Request::segment(2) == 'why-nepreva' && in_array($data->id,['222']))) --}}
+        @if(Request::segment(2) != 'build-your-delivery-team' && Request::segment(2) != 'career' && Request::segment(2) != 'about' && $data->id != 222)
         <div class="sid_ mb10">
           <label class="field select">
             <select id="template" name="template">

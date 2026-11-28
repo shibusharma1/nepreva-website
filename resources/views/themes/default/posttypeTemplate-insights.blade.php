@@ -14,62 +14,32 @@
                     @include('themes.default.common.aside')
                 </div>
             </section>
+            @php
+                // dd($posts->where('post_parent',0));
+            @endphp
             <section class="band sec">
                 <div class="wrap">
-                    <div class="filters"><button data-c="all" aria-pressed="true">All</button><button
-                            data-c="Audit support" aria-pressed="false">Audit support</button><button data-c="Outsourcing"
-                            aria-pressed="false">Outsourcing</button><button data-c="Nepal"
-                            aria-pressed="false">Nepal</button><button data-c="Accounting"
-                            aria-pressed="false">Accounting</button><button data-c="Employer of Record"
-                            aria-pressed="false">Employer of Record</button></div>
-                    <div class="acards"><a class="acard feat" data-cat="Audit support"
-                            href="manage-audit-peak-season-workloads.php"><span class="cat">Audit support &nbsp;·&nbsp; 6
-                                min read</span>
-                            <h3>How audit firms can manage peak-season workloads</h3>
-                            <p>Peak season is a timing problem as much as a capacity problem. Six practices that protect
-                                sign-off dates without burning out your team.</p><span class="tlink">Read article <svg
-                                    class="ico">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                        </a><a class="acard" data-cat="Outsourcing" href="outsourcing-vs-offshoring.php"><span
-                                class="cat">Outsourcing &nbsp;·&nbsp; 5 min read</span>
-                            <h3>Outsourcing vs offshoring: what’s the difference?</h3>
-                            <p>The two words are often used as if they meant the same thing. They don’t, and the difference
-                                matters when you choose a model.</p><span class="tlink">Read article <svg class="ico">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                        </a><a class="acard" data-cat="Audit support"
-                            href="what-makes-an-audit-support-partnership-work.php"><span class="cat">Audit support
-                                &nbsp;·&nbsp; 6 min read</span>
-                            <h3>What makes an audit support partnership work?</h3>
-                            <p>Seven things that separate a smooth audit support arrangement from a frustrating one, and a
-                                checklist to run before you begin.</p><span class="tlink">Read article <svg class="ico">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                        </a><a class="acard" data-cat="Nepal"
-                            href="why-nepal-is-emerging-as-a-delivery-destination.php"><span class="cat">Nepal
-                                &nbsp;·&nbsp; 5 min read</span>
-                            <h3>Why Nepal is emerging as a professional services delivery destination</h3>
-                            <p>A balanced look at the strengths Nepal offers for accounting and finance delivery, and the
-                                points worth weighing before you commit.</p><span class="tlink">Read article <svg
-                                    class="ico">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                        </a><a class="acard" data-cat="Accounting" href="improving-month-end-close.php"><span
-                                class="cat">Accounting &nbsp;·&nbsp; 6 min read</span>
-                            <h3>Improving month-end close: a practical guide</h3>
-                            <p>A calmer, faster close usually comes from discipline rather than software. A practical guide
-                                with a sample calendar.</p><span class="tlink">Read article <svg class="ico">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                        </a><a class="acard" data-cat="Employer of Record" href="employer-of-record-in-nepal.php"><span
-                                class="cat">Employer of Record &nbsp;·&nbsp; 5 min read</span>
-                            <h3>Employing in Nepal without a local entity: how Employer of Record works</h3>
-                            <p>What an Employer of Record does, who is responsible for what, and what to ask a provider
-                                before you start.</p><span class="tlink">Read article <svg class="ico">
-                                    <use href="#i-arrow" />
-                                </svg></span>
-                        </a></div>
+                    <div class="filters"><button data-c="all" aria-pressed="true">All</button>
+                        @foreach ($posts->where('post_parent', 0) as $item)
+                            <button data-c="{{ $item->post_title }}" aria-pressed="false">{{ $item->post_title }}</button>
+                        @endforeach
+                    </div>
+                    <div class="acards">
+
+                        @foreach ($posts->where('post_parent', '!=', 0) as $insight)
+                            <a class="acard {{ $loop->first ? 'feat' : '' }}" data-cat="{{ $insight->parent->post_title }}"
+                                href="{{ geturl($insight->uri) }}">
+                                <span class="cat">{{ $insight->parent->post_title }} &nbsp;·&nbsp;
+                                    {{ $insight->post_tags }}</span>
+                                <h3>{{ $insight->post_title }}</h3>
+                                <p>{{ $insight->post_excerpt }}</p>
+                                <span class="tlink">Read article <svg class="ico">
+                                        <use href="#i-arrow" />
+                                    </svg>
+                                </span>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
             </section>
         </div>

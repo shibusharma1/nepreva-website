@@ -107,13 +107,14 @@ class FrontpageController extends Controller
       $data['template'] = $data['template'];
     }
     if ($data) {
-      $posts = PostModel::where('post_type', $data->id)->with('associatePosts')->orderBy('post_order', 'asc')->paginate(6);
+      $posts = PostModel::where('post_type', $data->id)->with('associatePosts')->orderBy('post_order', 'asc')->paginate(10);
     }
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
     $career = PostModel::where('post_type', 10)->where('id', 153)->with('associatePosts')->orderBy('post_order', 'asc')->paginate(6);
-    // dd($posts[5]);
+    $services = PostModel::where('post_type', $data->id)->where('id', '!=', $data['id'])->where('post_parent', 0)->orderBy('id','asc')->get();
+    // dd($services->skip(2));
     // dd($posts[0]->associatePosts);
-    return view('themes.default.' . $data['template'] . '', compact('data', 'documents', 'posts', 'setting','career'));
+    return view('themes.default.' . $data['template'] . '', compact('data', 'documents', 'posts', 'setting','career','services'));
   }
 
   public function pagedetail($uri)
@@ -136,16 +137,14 @@ class FrontpageController extends Controller
     $pos_type = PostTypeModel::where('id', $data->post_type)->first();
     $documents = PostDocModel::where('post_id', $data['id'])->orderBy('ordering', 'desc')->get();
     if ($data && $data->post_parent == '0') {
-      $data_child = PostModel::where('post_parent', $data['id'])->with('associatePosts')->orderBy('post_order', 'asc')->get();
+      $data_child = PostModel::where('post_parent', $data['id'])->with(['associatePosts','children'])->orderBy('post_order', 'asc')->get();
       $associated_posts = AssociatedPostModel::whereIn('post_id', $data_child->pluck('id'))->paginate(8);
     } else {
-      $data_child = PostModel::where('post_type', $data->post_type)->where('post_parent', $data['post_parent'])->with('associatePosts')->orderBy('id', 'asc')->get();
+      $data_child = PostModel::where('post_type', $data->post_type)->where('post_parent', $data['post_parent'])->with(['associatePosts','children'])->orderBy('id', 'asc')->get();
       $associated_posts = AssociatedPostModel::where('post_id', $data['id'])->paginate(8);
     }
-    $related_posts = PostModel::where('post_type', $data->post_type)->where('id', '!=', $data['id'])->where('post_parent', '==', 0)->inRandomOrder()->limit(3)->get();
+    $related_posts = PostModel::where('post_type', $data->post_type)->where('id', '!=', $data['id'])->where('post_parent', 0)->inRandomOrder()->limit(3)->get();
     $multiphotos = $data->images()->orderBy('created_at', 'desc')->paginate(6);
-
-    // dd($related_posts);
 
     return view('themes.default.' . $data['template'] . '', compact('data', 'data_child', 'associated_posts', 'documents', 'pos_type', 'related_posts', 'multiphotos'));
   }

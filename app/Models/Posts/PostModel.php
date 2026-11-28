@@ -77,4 +77,8 @@ class PostModel extends Model
         }
         return $post;
     }
+    public function children()
+    {
+        return $this->hasMany(PostModel::class, 'post_parent', 'id')->orderBy('post_order', 'asc');
+    }
 }

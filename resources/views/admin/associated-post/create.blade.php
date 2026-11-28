@@ -59,6 +59,20 @@
             </div>
           @endif
 
+          @if(Request::segment(3) == 'insights')
+            <div class="form-group">
+              <label for="inputStandard" class="col-lg-2 control-label">Note Information</label>
+              <div class="col-lg-8">
+                <div class="bs-component">
+                  <div class="bs-component">
+                    <textarea class="form-control" id="" name="information" rows="3"
+                      autocomplete="off"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+
           
           {{-- <div class="form-group">
             <label for="inputStandard" class="col-lg-2 control-label">Brief</label>

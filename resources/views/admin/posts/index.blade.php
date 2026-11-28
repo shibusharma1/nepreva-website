@@ -74,7 +74,7 @@
                                         </td>
 
                                         <td>
-                                            @if (in_array(Request::segment(2), ['build-your-delivery-team', 'career', 'about', 'services']) && in_array($row->id, [150 ,151, 153, 155, 156, 157, 158,164,165]))
+                                            @if (in_array(Request::segment(2), ['build-your-delivery-team', 'career', 'about', 'services','why-nepreva','insights']) && in_array($row->id, [150 ,151, 153, 155, 156, 157, 158,179,180,168,169,170,171,173,174,175,176,184,185,189,190,194,195,199,200,204,205,209,210,214,215,219,220,222,225,226,227,230,231,234,236,237,238,239,240,242,245,247,249,251,253]))
                                                 <a href="{{ url('admin/associated/' . Request::segment(2) . '/' . $row->id) }}"
                                                     title="Associated posts">
                                                     <i class="fa fa-list-ol"></i>
